@@ -40,7 +40,7 @@
     "ember-resolver": "^2.0.3",
     "jsoneditor": "5.5.6",
     "loader.js": "^4.0.1",
-    "torii-provider-arcgis": "0.2.3"
+    "torii-provider-arcgis": "0.2.4"
   },
   "keywords": [
     "ember-addon"
