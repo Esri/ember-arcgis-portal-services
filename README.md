@@ -1,14 +1,14 @@
-# Ember-arcgis-portal-services
+# ember-arcgis-portal-services
 
-This README outlines the details of collaborating on this Ember addon.
+Ember Services for working with ArcGIS Portal/Online
 
 ## Installation
 
-* `git clone` this repository
+* `ember install ember-arcgis-portal-services`
 * `npm install`
 * `bower install`
 
-## Running
+## Running Test App
 
 * `ember server`
 * Visit your app at http://localhost:4200.

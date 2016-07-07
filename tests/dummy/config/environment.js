@@ -16,8 +16,23 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    torii: {
+     sessionServiceName: 'session',
+     providers: {
+       'arcgis-oauth-bearer': {
+         apiKey: 'x3u9xkfpYyYbJu08'
+       }
+     }
+   }
   };
+
+
+  //Overrides for testing to easily swap to AGO Iframe flow
+  // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
+  // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'arcgisonline';
+  // ENV.torii.providers['arcgis-oauth-bearer'].remoteServiceName = 'iframe';
+  // ENV.torii.providers['arcgis-oauth-bearer'].display = 'iframe';
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -40,6 +55,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.locationType = 'hash';
+    ENV.baseURL = '/ember-arcgis-portal-services/';
 
   }
 

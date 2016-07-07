@@ -1,0 +1,16 @@
+#torii-iframe {
+  width:400px;
+  height:600px;
+  display:block;
+  border: 0px
+}
+div.jsoneditor-component{
+  min-height:800px
+}
+div.jsoneditor{
+  height:800px;
+}
+
+[class*="col-"] {
+    margin-bottom: 15px;
+}

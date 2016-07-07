@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Groups</h2>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="exampleInputName2">Query</label>
+        {{input class="form-control" value=query}}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputName2">Start</label>
+        {{input class="form-control" value=start}}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputName2">Num</label>
+        {{input class="form-control" value=num}}
+      </div>
+      <button type="button" class="btn btn-default" {{action "search" query}}>Search</button>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+  {{#if hasResults}}
+
+    <table class="table table-striped">
+      <thead>
+        <th>Title</th>
+        <th>Access</th>
+        <th>Owner</th>
+        <th>Modified</th>
+      </thead>
+      <tbody>
+        {{#each filtered.results as |group|}}
+        <tr>
+          <td>{{group.title}}</td>
+          <td>{{group.access}}</td>
+          <td>{{group.owner}}</td>
+          <td>{{group.modified}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <div class="alert alert-warning">No items found for query {{q}}.</div>
+  {{/if}}
+  </div>
+</div>
+{{log filtered}}

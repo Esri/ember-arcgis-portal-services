@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Edit {{model.title}}
+      <button type="button" name="button" class="btn btn-default pull-right"{{action 'cancel'}}>Cancel</button>
+      <button type="button" name="button" class="btn btn-primary pull-right"{{action 'save'}}>Save</button></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+      <h3>Item Json</h3>
+    {{json-editor json=itemJson mode="code" onChange=(action (mut itemJson))}}
+  </div>
+  <div class="col-sm-6">
+    <h3>Data Json</h3>
+    {{json-editor json=dataJson mode="code" onChange=(action (mut dataJson))}}
+  </div>
+</div>
