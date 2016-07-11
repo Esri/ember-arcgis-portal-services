@@ -2,21 +2,22 @@ import Ember from 'ember';
 import serviceMixin from '../mixins/service-mixin';
 
 export default Ember.Service.extend(serviceMixin,{
-  getPortalBaseUrl(){
-    let portalBaseUrl = 'https://www.arcgis.com/sharing/rest';
+
+  getPortalRestUrl(){
+    let portalBaseUrl = 'https://www.arcgis.com';
     //check for and use the url configured in the host app
-    if(this.get('hostAppConfig.APP.portalRestUrl')){
-      portalBaseUrl = this.get('hostAppConfig.APP.portalRestUrl');
+    if(this.get('hostAppConfig.APP.portalBaseUrl')){
+      portalBaseUrl = this.get('hostAppConfig.APP.portalBaseUrl');
     }
-    return portalBaseUrl;
+    return portalBaseUrl + '/sharing/rest';
   },
   /**
    * Item Search
    */
   search(form){
     let qs = this.encodeForm(form);
-    let portalBaseUrl = this.getPortalBaseUrl();
-    let url = `${portalBaseUrl}/search?${qs}`;
+    let portalRestUrl = this.getPortalRestUrl();
+    let url = `${portalRestUrl}/search?${qs}`;
     return this.request(url);
   },
 
@@ -25,8 +26,8 @@ export default Ember.Service.extend(serviceMixin,{
    */
   getById(itemId){
     let qs = this.encodeForm({});
-    let portalBaseUrl = this.getPortalBaseUrl();
-    let url = `${portalBaseUrl}/content/items/${itemId}?${qs}`;
+    let portalRestUrl = this.getPortalRestUrl();
+    let url = `${portalRestUrl}/content/items/${itemId}?${qs}`;
     return this.request(url);
   },
 
@@ -36,8 +37,8 @@ export default Ember.Service.extend(serviceMixin,{
    */
   getDataById(itemId){
     let qs = this.encodeForm({});
-    let portalBaseUrl = this.getPortalBaseUrl();
-    let url = `${portalBaseUrl}/content/items/${itemId}/data?${qs}`;
+    let portalRestUrl = this.getPortalRestUrl();
+    let url = `${portalRestUrl}/content/items/${itemId}/data?${qs}`;
     return this.request(url);
   },
 
@@ -47,8 +48,8 @@ export default Ember.Service.extend(serviceMixin,{
    */
   update(item){
     console.log('Items Service got update for ' + item.title);
-    let portalBaseUrl = this.getPortalBaseUrl();
-    let url = `${portalBaseUrl}/content/users/${item.owner}/items/${item.id}/update?f=json`;
+    let portalRestUrl = this.getPortalRestUrl();
+    let url = `${portalRestUrl}/content/users/${item.owner}/items/${item.id}/update?f=json`;
     return this._post(url, item);
   },
 
@@ -57,8 +58,8 @@ export default Ember.Service.extend(serviceMixin,{
    * will create the `/data` if the `.text` value is present
    */
   create(item){
-    let portalBaseUrl = this.getPortalBaseUrl();
-    let url = `${portalBaseUrl}/content/users/${item.owner}/addItem?f=json`;
+    let portalRestUrl = this.getPortalRestUrl();
+    let url = `${portalRestUrl}/content/users/${item.owner}/addItem?f=json`;
     return this._post(url, item);
   },
 
@@ -66,8 +67,8 @@ export default Ember.Service.extend(serviceMixin,{
    * Delete an item from AGO
    */
   destroy(itemId, owner){
-    let portalBaseUrl = this.getPortalBaseUrl();
-    let url = `${portalBaseUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
+    let portalRestUrl = this.getPortalRestUrl();
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
     return this._post(url, {});
   },
 

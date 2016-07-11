@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Changes
+- correctly pull in parent app configuration
+
 ## [0.2.4]
 ### Added
 - `groups-service` with `.search(query)`

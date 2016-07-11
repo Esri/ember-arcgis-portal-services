@@ -53,7 +53,7 @@ export default Ember.Mixin.create({
     //TODO: Add checks for 200-is-499 etc via https://github.com/ember-cli/ember-ajax#customize-issuccess
 
     return this.get('ajax').request(url, options)
-    .catch((err)=>{
+    .catch((/*err*/)=>{
       return {};
     });
 
