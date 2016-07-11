@@ -2,5 +2,8 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-arcgis-portal-services'
+  name: 'ember-arcgis-portal-services',
+  isDevelopingAddon: function() {
+    return true;
+  }
 };
