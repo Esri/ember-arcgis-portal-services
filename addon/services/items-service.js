@@ -5,10 +5,12 @@ export default Ember.Service.extend(serviceMixin,{
 
   getPortalRestUrl(){
     let portalBaseUrl = 'https://www.arcgis.com';
+
     //check for and use the url configured in the host app
     if(this.get('hostAppConfig.APP.portalBaseUrl')){
       portalBaseUrl = this.get('hostAppConfig.APP.portalBaseUrl');
     }
+    console.debug('Item Service portalBaseUrl: ' + portalBaseUrl);
     return portalBaseUrl + '/sharing/rest';
   },
   /**
@@ -73,13 +75,29 @@ export default Ember.Service.extend(serviceMixin,{
   },
 
   /**
+   * Extra logic to transform the item prior to POSTing it
+   */
+  _serializeItem(item){
+    let clone = Ember.copy(item, true);
+    //Array items need to become comma delim strings
+    if(clone.typeKeywords){
+      clone.typeKeywords = item.typeKeywords.join(', ');
+    }
+    if(clone.tags){
+      clone.tags = item.tags.join(', ');
+    }
+    return clone;
+  },
+  /**
    * Shared logic for POST operations
    */
   _post(url, item){
-    let form = this.encodeForm(item);
+
+    let serializedItem = this._serializeItem(item);
+
     let options = {
       method:'POST',
-      data: form
+      data: serializedItem
     };
     return this.request(url, options);
   },

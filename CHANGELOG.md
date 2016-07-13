@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Changes
 - correctly pull in parent app configuration
+- add `item-service.serializeItem(item)` internal function that will correctly serialize an item for POSTing to the item apis via jQuery
 
 ## [0.2.4]
 ### Added
