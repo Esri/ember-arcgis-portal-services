@@ -3,14 +3,6 @@ import serviceMixin from '../mixins/service-mixin';
 
 export default Ember.Service.extend(serviceMixin,{
 
-  getPortalRestUrl(){
-    let portalBaseUrl = 'https://www.arcgis.com';
-    //check for and use the url configured in the host app
-    if(this.get('hostAppConfig.APP.portalBaseUrl')){
-      portalBaseUrl = this.get('hostAppConfig.APP.portalBaseUrl');
-    }
-    return portalBaseUrl + '/sharing/rest';
-  },
   /**
    * Item Search
    */

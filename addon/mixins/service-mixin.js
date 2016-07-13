@@ -22,6 +22,15 @@ export default Ember.Mixin.create({
     }).join('&');
   },
 
+  getPortalRestUrl(){
+    let portalBaseUrl = 'https://www.arcgis.com';
+    //check for and use the url configured in the host app
+    if(this.get('hostAppConfig.APP.portalBaseUrl')){
+      portalBaseUrl = this.get('hostAppConfig.APP.portalBaseUrl');
+    }
+    return portalBaseUrl + '/sharing/rest';
+  },
+
 
   /**
    * Centralized Request with ArcGIS Payload checking
