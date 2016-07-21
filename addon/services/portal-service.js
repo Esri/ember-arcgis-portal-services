@@ -23,9 +23,22 @@ export default Ember.Service.extend(serviceMixin, {
   update(portal){
     console.log('Portal Service got update for ' + portal.id);
     let portalRestUrl = this.getPortalRestUrl();
-    let url = `${portalRestUrl}/content/users/${portal.id}/update?f=json`;
+    let url = `${portalRestUrl}/portals/${portal.id}/update?f=json`;
     return this._post(url, portal);
-  }
+  },
+
+  /**
+   * Shared logic for POST operations
+   */
+  _post(url, obj){
+
+    let options = {
+      method:'POST',
+      data: obj
+    };
+    return this.request(url, options);
+  },
+
 
 
 });
