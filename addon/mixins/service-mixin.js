@@ -15,6 +15,11 @@ export default Ember.Mixin.create({
     f:'json'
   },
 
+  portalRestUrl: Ember.computed('hostAppConfig.APP.portalBaseUrl', function () {
+    const portalBaseUrl = this.getWithDefault('hostAppConfig.APP.portalBaseUrl', 'https://www.arcgis.com');
+    return `${portalBaseUrl}/sharing/rest`;
+  }),
+
   encodeForm(form = {}){
     Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
