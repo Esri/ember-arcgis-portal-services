@@ -1,0 +1,48 @@
+{{#if showPagination}}
+<ul class="pagination">
+  {{!-- If we're on the first page, do not display the link --}}
+  {{#if isFirstPage}}
+    <li class="disabled">
+      <a aria-label="">&laquo;</a>
+    </li>
+    <li class="disabled">
+      <a aria-label="">&lsaquo;</a>
+    </li>
+  {{else}}
+    <li>
+      {{#link-to (query-params start=1) }}&laquo;{{/link-to}}
+    </li>
+    <li>
+      {{#link-to (query-params start=prevStart) }}&lsaquo;{{/link-to}}
+    </li>
+  {{/if}}
+
+  {{!--
+    For each page, display a link leading to it.
+    We could be smart and disable the link for the current page,
+    just like we're doing for the "previous"/"next" links.
+  --}}
+  {{#each pageRange as |num|}}
+    <li class="{{num.className}}">
+      {{#link-to (query-params start=num.start)}}{{num.page}}{{/link-to}}
+    </li>
+  {{/each}}
+
+  {{!-- If we're on the last page, do not display the link --}}
+  {{#if isLastPage}}
+    <li class="disabled">
+      <a >&rsaquo;</a>
+    </li>
+    <li class="disabled">
+      <a >&raquo;</a>
+    </li>
+  {{else}}
+    <li>
+      {{#link-to (query-params start=nextStart) }}&rsaquo;{{/link-to}}
+    </li>
+    <li>
+      {{#link-to (query-params start=lastStart) }}&raquo;{{/link-to}}
+    </li>
+  {{/if}}
+</ul>
+{{/if}}

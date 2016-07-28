@@ -16,12 +16,14 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      portalBaseUrl: 'https://qaext.arcgis.com'
     },
     torii: {
      sessionServiceName: 'session',
      providers: {
        'arcgis-oauth-bearer': {
-         apiKey: 'x3u9xkfpYyYbJu08'
+         //apiKey: 'x3u9xkfpYyYbJu08' //production
+         apiKey: 'VpiQwiuWl7KMTGys' //qaext
        }
      }
    }
@@ -29,7 +31,7 @@ module.exports = function(environment) {
 
 
   //Overrides for testing to easily swap to AGO Iframe flow
-  // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
+  ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
   // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'arcgisonline';
   // ENV.torii.providers['arcgis-oauth-bearer'].remoteServiceName = 'iframe';
   // ENV.torii.providers['arcgis-oauth-bearer'].display = 'iframe';

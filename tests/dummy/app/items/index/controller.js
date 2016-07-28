@@ -2,56 +2,39 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   itemsService: Ember.inject.service('items-service'),
-  queryParams: ['q'],
-  q:'',
+  session: Ember.inject.service(),
+  queryParams:['start','num','q', 'owner', 'tags', 'type'],
+  start: 1,
+  q:null,
   query:'*',
   start:1,
-  num:100,
+  num:10,
+  owner:null,
+  tags:null,
+  type:null,
 
-  hasResults: Ember.computed('filtered', function(){
-    let result = false;
-    if(this.get('filtered.results.length')){
-      result = true;
-    }
-    return result;
+  totalCount: Ember.computed('model.total', function(){
+    return this.get('model.total');
   }),
-
-  filtered: {},
 
   queryChanged: Ember.observer('q', function(){
     this.set('query', this.get('q'));
-    this.search(this.get('q'));
   }),
 
-  init(){
-    this._super(...arguments);
-    if(this.get('q') === ''){
-      this.search("*");
-    }
-  },
+  portalItemUrl: Ember.computed('session.portal', function(){
+    let cbu = this.get('session.portal.customBaseUrl');
+    let urlKey = this.get('session.portal.urlKey');
+    return `https://${urlKey}.${cbu}/home/item.html?id=`;
+  }),
 
-  search(query){
-    let username = this.get('session.currentUser.username');
-    //construct the query
-    let form = {
-      q:`title:${query} AND owner:${username}`, //AND access:public AND isopendata:true
-      sortField:'title',
 
-      num:this.get('num'),
-      start:this.get('start'),
-    };
-
-    this.get('itemsService').search(form)
-      .then((response)=> {
-        console.info('Response has ' + response.results.length + ' results');
-        this.set('filtered', response);
-      });
-  },
 
   actions: {
-    search(value){
-      this.set('q', value);
-      this.search(value);
+    filter(){
+      this.set('q', this.get('query'));
+      //reset the page
+      this.set('start',1);
+      this.transitionToRoute('items.index');
     },
     destroy(item){
       this.get('itemsService').destroy(item.id, item.owner)

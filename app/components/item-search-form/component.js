@@ -1,0 +1,1 @@
+export { default } from 'ember-arcgis-portal-services/components/item-search-form/component';
