@@ -30,18 +30,21 @@ export default Ember.Component.extend({
      return (this.get('model.start') * this.get('model.num')) >= this.get('totalPages');
    }),
 
+
+
    pageRange: Ember.computed('model.num', 'totalPages', function () {
      let result = Ember.A();
 
-     let currentPage = this.get('model.start') / this.get('model.num');
+     let currentPage = Math.ceil(this.get('model.start') / this.get('model.num'));
      let totalPages = this.get('totalPages');
 
      let start = (totalPages > 10 && currentPage > 6) ? currentPage - 5 : 1;
      let end = (totalPages > start + 9) ? start + 9 : totalPages;
      let num = this.get('model.num');
      for(let i = start; i <= end; i++) {
-       let thisStart = (((i * num) - num) + 1);
-       result.push({ page: i, start: thisStart, className: (i === currentPage) ? 'active' : '' });
+       let pageStart = (((i * num) - num) + 1);
+       console.log('i ' + i + ' pageStart:' + pageStart);
+       result.push({ page: i, start: pageStart, className: (i === currentPage) ? 'active' : '' });
      }
 
      return result;
