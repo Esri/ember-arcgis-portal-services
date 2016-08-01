@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - correctly pull in parent app configuration
 - add `item-service.serializeItem(item)` internal function that will correctly serialize an item for POSTing to the item apis via jQuery
 - add `portal-service` with `update`
+- bumped to node 6.3.0 in `.nvmrc` and `.travis.yml`
 
 ## [0.2.4]
 ### Added
