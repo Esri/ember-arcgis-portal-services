@@ -1,5 +1,4 @@
 import Ember from 'ember';
-//import fetch from 'ember-network/fetch';
 
 
 export default Ember.Mixin.create({
@@ -56,29 +55,10 @@ export default Ember.Mixin.create({
     }
 
     //TODO: Add checks for 200-is-499 etc via https://github.com/ember-cli/ember-ajax#customize-issuccess
-
+    //Note: Tried to use fetch but could not get headers and form encoding to work as AGO expected
     return this.get('ajax').request(url, options)
     .catch((/*err*/)=>{
       return {};
     });
-
-
-    // return fetch(url, opts)
-    //   .then((response) =>{
-    //     if(response.ok){
-    //       //check body...
-    //
-    //       return response.json()
-    //       .then((json)=>{
-    //         if(json.error){
-    //           return Promise.reject(json);//json.then(Promise.reject.bind(Promise));
-    //         }else{
-    //           return json;
-    //         }
-    //       });
-    //     }else{
-    //       console.error('Fetch response was not OK');
-    //     }
-    //   });
   }
 });

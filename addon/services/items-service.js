@@ -76,6 +76,11 @@ export default Ember.Service.extend(serviceMixin,{
     if(clone.tags){
       clone.tags = item.tags.join(', ');
     }
+    //convert .data to .text
+    if(clone.data){
+      clone.text = JSON.stringify(clone.data);
+      delete clone.data;
+    }
     return clone;
   },
   /**
