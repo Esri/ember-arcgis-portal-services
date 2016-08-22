@@ -9,7 +9,6 @@ export default Ember.Service.extend(serviceMixin, {
   search (form) {
     let qs = this.encodeForm(form);
     const portalBaseUrl = this.get('portalRestUrl');
-    // q=title%3A${window.encodeURIComponent(q)}+AND+access%3Apublic+AND+isopendata%3Atrue&sortField=title&num=100&f=json
     let url = `${portalBaseUrl}/community/groups?${qs}`;
     return this.request(url);
   },
@@ -18,6 +17,37 @@ export default Ember.Service.extend(serviceMixin, {
     const portalBaseUrl = this.get('portalRestUrl');
     const url = `${portalBaseUrl}/content/groups/${id}?f=json`;
     return this.request(url);
+  },
+
+
+  create (group){
+    const portalBaseUrl = this.get('portalRestUrl');
+    let url = `${portalBaseUrl}/community/createGroup?f=json`;
+    let options = {
+      method:'POST',
+      data: group
+    };
+    return this.request(url, options);
+  },
+
+  users(id){
+    const portalBaseUrl = this.get('portalRestUrl');
+    const url = `${portalBaseUrl}/community/groups/${id}/users?f=json`;
+    return this.request(url);
+  },
+
+  addUsers(id, users){
+    let data = {
+      users: users.join(',')
+    };
+    const portalBaseUrl = this.get('portalRestUrl');
+    let url = `${portalBaseUrl}/community/groups/${id}/addUsers?f=json`;
+    let options = {
+      method:'POST',
+      data: data
+    };
+    return this.request(url, options);
   }
+
 
 });
