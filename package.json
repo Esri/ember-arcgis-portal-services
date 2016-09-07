@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
     "doc": "doc",
@@ -24,7 +24,6 @@
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-github-pages": "0.1.0",
-    
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jsoneditor": "0.1.2",
