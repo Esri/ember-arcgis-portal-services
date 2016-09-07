@@ -47,7 +47,11 @@ export default Ember.Service.extend(serviceMixin, {
       data: data
     };
     return this.request(url, options);
-  }
+  },
+
+  reassign(id, username){
+    Ember.debug('group-service.reassign not implemented!');
+  },
 
 
 });
