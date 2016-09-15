@@ -13,37 +13,57 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(url);
   },
 
+  /**
+   * Get the item json
+   */
+  getById (id) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/community/groups/${id}`;
+    return this.request(url);
+  },
+
+  /**
+   * Get items in a group, by Group Id
+   */
   getItemsById (id) {
     const portalBaseUrl = this.get('portalRestUrl');
     const url = `${portalBaseUrl}/content/groups/${id}?f=json`;
     return this.request(url);
   },
 
-
-  create (group){
+  /**
+   * Create a group
+   */
+  create (group) {
     const portalBaseUrl = this.get('portalRestUrl');
     let url = `${portalBaseUrl}/community/createGroup?f=json`;
     let options = {
-      method:'POST',
+      method: 'POST',
       data: group
     };
     return this.request(url, options);
   },
 
-  users(id){
+  /**
+   * Get the users that are members of a group
+   */
+  users (id) {
     const portalBaseUrl = this.get('portalRestUrl');
     const url = `${portalBaseUrl}/community/groups/${id}/users?f=json`;
     return this.request(url);
   },
 
-  addUsers(id, users){
+  /**
+   * Add users to a group
+   */
+  addUsers (id, users) {
     let data = {
       users: users.join(',')
     };
     const portalBaseUrl = this.get('portalRestUrl');
     let url = `${portalBaseUrl}/community/groups/${id}/addUsers?f=json`;
     let options = {
-      method:'POST',
+      method: 'POST',
       data: data
     };
     return this.request(url, options);

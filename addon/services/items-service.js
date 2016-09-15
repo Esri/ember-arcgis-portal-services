@@ -1,12 +1,19 @@
 import Ember from 'ember';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin,{
+export default Ember.Service.extend(serviceMixin, {
+
+  /**
+   * Get the url for item page
+   */
+  getItemPageUrl (id) {
+    return `${this.get('portalUrl')}/home/item.html?id=${id}`;
+  },
 
   /**
    * Item Search
    */
-  search(form){
+  search (form) {
     let qs = this.encodeForm(form);
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/search?${qs}`;
@@ -16,7 +23,7 @@ export default Ember.Service.extend(serviceMixin,{
   /**
    * Get the item json
    */
-  getById(itemId){
+  getById (itemId) {
     let qs = this.encodeForm({});
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/items/${itemId}?${qs}`;
@@ -27,7 +34,7 @@ export default Ember.Service.extend(serviceMixin,{
    * Get the `/data` as json. If nothing is returned by AGO
    * and empty object (`{}`) will be returned by this call
    */
-  getDataById(itemId){
+  getDataById (itemId) {
     let qs = this.encodeForm({});
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/items/${itemId}/data?${qs}`;
@@ -38,7 +45,7 @@ export default Ember.Service.extend(serviceMixin,{
    * Update an existing item
    * will update the `/data` if the `.text` value is present
    */
-  update(item){
+  update (item) {
     console.log('Items Service got update for ' + item.title);
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${item.owner}/items/${item.id}/update?f=json`;
@@ -49,7 +56,7 @@ export default Ember.Service.extend(serviceMixin,{
    * Create a new item
    * will create the `/data` if the `.text` value is present
    */
-  create(item){
+  create (item) {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${item.owner}/addItem?f=json`;
     return this._post(url, item);
@@ -58,7 +65,7 @@ export default Ember.Service.extend(serviceMixin,{
   /**
    * Delete an item from AGO
    */
-  destroy(itemId, owner){
+  destroy (itemId, owner) {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
     return this._post(url, {});
@@ -67,17 +74,17 @@ export default Ember.Service.extend(serviceMixin,{
   /**
    * Extra logic to transform the item prior to POSTing it
    */
-  _serializeItem(item){
+  _serializeItem (item) {
     let clone = Ember.copy(item, true);
-    //Array items need to become comma delim strings
-    if(clone.typeKeywords){
+    // Array items need to become comma delim strings
+    if (clone.typeKeywords) {
       clone.typeKeywords = item.typeKeywords.join(', ');
     }
-    if(clone.tags){
+    if (clone.tags) {
       clone.tags = item.tags.join(', ');
     }
-    //convert .data to .text
-    if(clone.data){
+    // convert .data to .text
+    if (clone.data) {
       clone.text = JSON.stringify(clone.data);
       delete clone.data;
     }
@@ -86,15 +93,14 @@ export default Ember.Service.extend(serviceMixin,{
   /**
    * Shared logic for POST operations
    */
-  _post(url, item){
-
+  _post (url, item) {
     let serializedItem = this._serializeItem(item);
 
     let options = {
-      method:'POST',
+      method: 'POST',
       data: serializedItem
     };
     return this.request(url, options);
-  },
+  }
 
 });

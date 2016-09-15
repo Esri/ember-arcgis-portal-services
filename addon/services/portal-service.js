@@ -2,25 +2,13 @@ import Ember from 'ember';
 import serviceMixin from '../mixins/service-mixin';
 
 export default Ember.Service.extend(serviceMixin, {
-
-  getPortalRestUrl(){
-    let portalBaseUrl = 'https://www.arcgis.com';
-
-    //check for and use the url configured in the host app
-    if(this.get('hostAppConfig.APP.portalBaseUrl')){
-      portalBaseUrl = this.get('hostAppConfig.APP.portalBaseUrl');
-    }
-    console.debug('Item Service portalBaseUrl: ' + portalBaseUrl);
-    return portalBaseUrl + '/sharing/rest';
-  },
-  /**
-
+  session: Ember.inject.service('session'),
 
   /**
    * Update an existing item
    * will update the `/data` if the `.text` value is present
    */
-  update(portal){
+  update (portal) {
     console.log('Portal Service got update for ' + portal.id);
     let portalRestUrl = this.getPortalRestUrl();
     let url = `${portalRestUrl}/portals/${portal.id}/update?f=json`;
@@ -30,15 +18,12 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post(url, obj){
+  _post (url, obj) {
 
     let options = {
-      method:'POST',
+      method: 'POST',
       data: obj
     };
     return this.request(url, options);
   },
-
-
-
 });
