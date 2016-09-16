@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
@@ -16,22 +16,26 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      portalBaseUrl: 'https://qaext.arcgis.com'
+      portalBaseUrl: 'https://qaext.arcgis.com',
+      arcgisPortal: {
+        domain: 'arcgis.com',
+        env: 'qaext',
+        maps: 'mapsqa',
+      },
     },
     torii: {
-     sessionServiceName: 'session',
-     providers: {
-       'arcgis-oauth-bearer': {
-         //apiKey: 'x3u9xkfpYyYbJu08' //production
-         apiKey: 'VpiQwiuWl7KMTGys' //qaext
-       }
-     }
-   }
+      sessionServiceName: 'session',
+      providers: {
+        'arcgis-oauth-bearer': {
+         // apiKey: 'x3u9xkfpYyYbJu08' // production
+          apiKey: 'VpiQwiuWl7KMTGys' // qaext
+        }
+      }
+    }
   };
 
-
-  //Overrides for testing to easily swap to AGO Iframe flow
-  ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
+  // Overrides for testing to easily swap to AGO Iframe flow
+  ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://' + ENV.APP.arcgisPortal.env + '.' + ENV.APP.arcgisPortal.domain;
   // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'arcgisonline';
   // ENV.torii.providers['arcgis-oauth-bearer'].remoteServiceName = 'iframe';
   // ENV.torii.providers['arcgis-oauth-bearer'].display = 'iframe';

@@ -2,6 +2,31 @@
 
 Ember Services for working with ArcGIS Portal/Online
 
+**Note**  This is still a very nascent project, and things will change.
+
+If you use this project, be sure to lock to a specific version in your package.json.
+
+We expect this project to have many releases before the 1.0.0 "Public API" stablization.
+
+### environment.js
+
+You need to add a section in the `.APP` hash to add `arcgisPortal` details
+```
+// environment.js
+...
+APP: {
+  // portalBaseUrl is still needed
+  portalBaseUrl: 'https://qaext.arcgis.com',
+  // this new hash is what we are transitioning to
+  arcgisPortal: {
+    domain: 'arcgis.com',
+    env: 'www',
+    maps: 'maps',
+  },
+},
+...
+```
+
 ## Installation
 
 * `ember install ember-arcgis-portal-services`

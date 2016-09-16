@@ -27,15 +27,17 @@ export default Ember.Mixin.create({
   portalUrl: Ember.computed('hostAppConfig.APP.arcgisPortal', function () {
     let domain = this.get('hostAppConfig.APP.arcgisPortal.domain') || 'arcgis.com';
     let subdomain = this.get('hostAppConfig.APP.arcgisPortal.env') || 'www';
-
+    let url ='';
     if (this.get('session.isAuthenticated')) {
       // get the org key
       let urlKey = this.get('session.portal.urlKey');
       subdomain = this.get('hostAppConfig.APP.arcgisPortal.maps') || 'maps';
-      return `https://${urlKey}.${subdomain}.${domain}`;
+      url = `https://${urlKey}.${subdomain}.${domain}`;
     } else {
-      return `https://${subdomain}.${domain}`;
+      url = `https://${subdomain}.${domain}`;
     }
+    Ember.debug('Portal Url: ' + url);
+    return url;
   }),
 
   encodeForm (form = {}) {
