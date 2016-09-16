@@ -46,7 +46,6 @@ export default Ember.Service.extend(serviceMixin, {
    * will update the `/data` if the `.text` value is present
    */
   update (item) {
-    console.log('Items Service got update for ' + item.title);
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${item.owner}/items/${item.id}/update?f=json`;
     return this._post(url, item);

@@ -27,7 +27,7 @@ export default Ember.Mixin.create({
   portalUrl: Ember.computed('hostAppConfig.APP.arcgisPortal', function () {
     let domain = this.get('hostAppConfig.APP.arcgisPortal.domain') || 'arcgis.com';
     let subdomain = this.get('hostAppConfig.APP.arcgisPortal.env') || 'www';
-    let url ='';
+    let url = '';
     if (this.get('session.isAuthenticated')) {
       // get the org key
       let urlKey = this.get('session.portal.urlKey');
