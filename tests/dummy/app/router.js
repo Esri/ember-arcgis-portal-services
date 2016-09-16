@@ -5,9 +5,9 @@ const Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
-  this.authenticatedRoute('items', function(){
-    this.route('item', {path:':id'}, function() {
+Router.map(function () {
+  this.authenticatedRoute('items', function () {
+    this.route('item', {path: ':id'}, function () {
       this.route('index', {path: '/'});
       this.route('edit');
     });
@@ -15,8 +15,6 @@ Router.map(function() {
   });
   this.authenticatedRoute('groups');
   this.route('signin');
-
-
 });
 
 export default Router;

@@ -3,48 +3,48 @@ import serviceMixin from '../mixins/service-mixin';
 
 export default Ember.Service.extend(serviceMixin, {
 
-
-  shareItemWithEveryone(owner, itemId){
-    let data = {
-      owner:owner,
-      items:itemId,
-      everyone:true
-    };
-    return this._shareItems(data);
-  },
-
-  shareItemWithOrg(owner, itemId){
-    let data = {
-      owner:owner,
-      items:itemId,
-      org:true
-    };
-    return this._shareItems(data);
-  },
-
-  shareItems (owner, items, groups) {
+  shareItemWithEveryone (owner, itemId) {
     let data = {
       owner: owner,
-      items:items.join(','),
-      groups:groups.join(','),
-    }
-    return this._shareItems(data);
+      items: itemId,
+      everyone: true,
+      f: 'json'
+    };
+    return this.shareItems(data);
+  },
+
+  shareItemWithOrg (owner, itemId) {
+    let data = {
+      owner: owner,
+      items: itemId,
+      org: true,
+      f: 'json'
+    };
+    return this.shareItems(data);
+  },
+
+  shareItemsWithGroups (owner, items, groups) {
+    let data = {
+      owner: owner,
+      items: items.join(','),
+      groups: groups.join(','),
+      f: 'json'
+    };
+    return this.shareItems(data);
   },
 
   shareItemsWithControl (owner, items, groups) {
-
     let data = {
       owner: owner,
-      items:items.join(','),
-      groups:groups.join(','),
-      confirmItemControl:true,
-      f:'json'
-    }
-
-    return this._shareItems(data);
+      items: items.join(','),
+      groups: groups.join(','),
+      confirmItemControl: true,
+      f: 'json'
+    };
+    return this.shareItems(data);
   },
 
-  _shareItems(options){
+  shareItems (options) {
     const portalBaseUrl = this.get('portalRestUrl');
     let url = `${portalBaseUrl}/content/users/${options.owner}/shareItems`;
     return this._post(url, options);
@@ -53,10 +53,9 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post(url, data){
-
+  _post (url, data) {
     let options = {
-      method:'POST',
+      method: 'POST',
       data: data
     };
 

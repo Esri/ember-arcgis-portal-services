@@ -2,40 +2,40 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   itemsService: Ember.inject.service('items-service'),
-  queryParams:{
-    'start': {refreshModel:true},
-    'num': {refreshModel:true},
-    'q': {refreshModel:true},
-    'owner':{refreshModel:true},
-    'tags':{refreshModel:true},
-    'type':{refreshModel:true}
+  queryParams: {
+    'start': {refreshModel: true},
+    'num': {refreshModel: true},
+    'q': {refreshModel: true},
+    'owner': {refreshModel: true},
+    'tags': {refreshModel: true},
+    'type': {refreshModel: true}
   },
 
-  lastAgoQuery:'',
+  lastAgoQuery: '',
 
-  createAgoQuery: function(query, owner, tags, type){
-    console.log(`Query ${query} owner ${owner} tags ${tags} type ${type}` );
+  createAgoQuery: function (query, owner, tags, type) {
+    console.log(`Query ${query} owner ${owner} tags ${tags} type ${type}`);
     let parts = [];
-    if(query){
+    if (query) {
       parts.push(query);
     }
 
-    if(owner){
+    if (owner) {
       parts.push('owner:' + owner);
     }
 
-    if(tags){
-      if(tags.indexOf(',')){
+    if (tags) {
+      if (tags.indexOf(',')) {
         let ta = tags.split(',');
-        ta.map(function(t){
+        ta.map(function (t) {
           parts.push('tags:' + t);
         });
-      }else{
+      } else {
         parts.push('tags:' + tags);
       }
     }
 
-    if(type){
+    if (type) {
       parts.push('type:"' + type + '"');
     }
     console.log('parts: ' + JSON.stringify(parts));
@@ -44,24 +44,36 @@ export default Ember.Route.extend({
     return agoQuery;
   },
 
-
-  model(params){
+  model (params) {
     let agoQuery = this.createAgoQuery(params.q, params.owner, params.tags, params.type);
     let agoParams = {
       q: agoQuery,
       start: params.start,
-      num: params.num
+      num: params.num,
+      sortField: 'title'
     };
-    //only if there is no query string, add the bbox
-    if(!agoQuery){
-      agoParams.bbox = "-180,-90,180,90"
+    // only if there is no query string, add the bbox
+    if (!agoQuery) {
+      agoParams.bbox = '-180,-90,180,90';
     }
-    //if the query changes, reset the paging
-    if(this.get('lastAgoQuery') !== agoQuery){
+    // if the query changes, reset the paging
+    if (this.get('lastAgoQuery') !== agoQuery) {
       this.set('lastAgoQuery', agoQuery);
-      //reset paging
+      // reset paging
       agoParams.start = 1;
     }
     return this.get('itemsService').search(agoParams);
+  },
+  actions: {
+    destroy (item) {
+      this.get('itemsService').destroy(item.id, item.owner)
+        .then(() => {
+          // need to transition to the route so we pick up new entries
+          Ember.debug('Item Deleted... transitioning route to get new results...');
+          Ember.run.later(this, function () {
+            this.refresh();
+          }, 100);
+        });
+    }
   }
 });
