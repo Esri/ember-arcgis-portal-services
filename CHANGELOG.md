@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.1]
+- Update portalUrl implementation
+
 ## [0.2.0]
 - use of `APP.arcgisPortal` config node for determining urls
 - update dummy app
