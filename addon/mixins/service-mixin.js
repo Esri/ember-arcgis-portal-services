@@ -25,18 +25,17 @@ export default Ember.Mixin.create({
    * Return the ArcGIS Portal base url (for visiting pages etc)
    */
   portalUrl: Ember.computed('hostAppConfig.APP.arcgisPortal', function () {
-    let domain = this.get('hostAppConfig.APP.arcgisPortal.domain') || 'arcgis.com';
-    let subdomain = this.get('hostAppConfig.APP.arcgisPortal.env') || 'www';
     let url = '';
     if (this.get('session.isAuthenticated')) {
-      // get the org key
-      let urlKey = this.get('session.portal.urlKey');
-      subdomain = this.get('hostAppConfig.APP.arcgisPortal.maps') || 'maps';
-      url = `https://${urlKey}.${subdomain}.${domain}`;
+      // delegate to session service
+      url = `https://${this.get('session.orgPortalUrl')}`;
     } else {
+      const domain = this.get('hostAppConfig.APP.arcgisPortal.domain') || 'arcgis.com';
+      const subdomain = this.get('hostAppConfig.APP.arcgisPortal.env') || 'www';
       url = `https://${subdomain}.${domain}`;
     }
     Ember.debug('Portal Url: ' + url);
+
     return url;
   }),
 

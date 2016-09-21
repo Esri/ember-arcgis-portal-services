@@ -1,8 +1,16 @@
 module.exports = {
+  root: true,
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: 'module'
+  },
   extends: [
-    require.resolve('ember-cli-eslint/coding-standard/ember-application.js'),
-    require.resolve('eslint-config-semistandard/eslintrc.json')
+    'eslint:recommended',
+    'semistandard'
   ],
+  env: {
+    'browser': true
+  },
   rules: {
     "comma-dangle": [2, "only-multiline"],
     "no-console": 0,
