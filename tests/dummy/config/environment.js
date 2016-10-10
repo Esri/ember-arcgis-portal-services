@@ -4,7 +4,7 @@ module.exports = function (environment) {
   var ENV = {
     modulePrefix: 'dummy',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -14,8 +14,6 @@ module.exports = function (environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
       portalBaseUrl: 'https://qaext.arcgis.com',
       arcgisPortal: {
         domain: 'arcgis.com',
@@ -34,12 +32,6 @@ module.exports = function (environment) {
     }
   };
 
-  // Overrides for testing to easily swap to AGO Iframe flow
-  ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://' + ENV.APP.arcgisPortal.env + '.' + ENV.APP.arcgisPortal.domain;
-  // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'arcgisonline';
-  // ENV.torii.providers['arcgis-oauth-bearer'].remoteServiceName = 'iframe';
-  // ENV.torii.providers['arcgis-oauth-bearer'].display = 'iframe';
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -50,7 +42,6 @@ module.exports = function (environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -61,8 +52,6 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.locationType = 'hash';
-    ENV.baseURL = '/ember-arcgis-portal-services/';
 
   }
 

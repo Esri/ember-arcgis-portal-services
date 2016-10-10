@@ -9,8 +9,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:testall",
-    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\"; git push; git checkout -"
+    "test": "ember try:each"
   },
   "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
   "engines": {
@@ -20,32 +19,33 @@
   "license": "Apache 2",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "ember-cli": "2.4.3",
-    "ember-cli-active-link-wrapper": "0.2.0",
-    "ember-cli-eslint": "3.0.0",
+    "ember-cli": "2.8.0",
+    "ember-cli-active-link-wrapper": "0.3.2",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-github-pages": "0.1.0",
+    "ember-cli-eslint": "3.0.0",
+    "ember-cli-github-pages": "0.1.2",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jsoneditor": "0.1.2",
-    "ember-cli-qunit": "^1.4.0",
-    "ember-cli-release": "1.0.0-beta.2",
+    "ember-cli-qunit": "^2.1.0",
+    "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.4.2",
+    "ember-data": "^2.8.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
-    "jsoneditor": "5.5.6",
-    "loader.js": "^4.0.1",
     "eslint-config-semistandard": "~7.0.0",
     "eslint-config-standard": "~6.0.0",
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-react": "^6.2.0",
     "eslint-plugin-standard": "^2.0.0",
-    "torii-provider-arcgis": "0.2.4"
+    "jsoneditor": "5.5.6",
+    "loader.js": "^4.0.1",
+    "torii-provider-arcgis": "0.3.0"
   },
   "keywords": [
     "ember-addon"
