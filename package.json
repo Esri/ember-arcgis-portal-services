@@ -1,7 +1,7 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.2.1",
+  "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,12 +11,12 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "Dave Bouwman <dbouwman@esri.com>",
+  "license": "Apache 2",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
     "ember-cli": "2.8.0",
