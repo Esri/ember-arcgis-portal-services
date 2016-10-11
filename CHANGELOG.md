@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- add arcgis ajax service to reject 200 responses with errors
+- add update, delete, and save methods to group service
+- add oauth service to support registering and updating apps
+
 ## [0.3.0]
 ### Changed
 - Upgrade to ember 2.8
