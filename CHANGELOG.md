@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+
+## [0.4.0]
 ### Added
 - add arcgis ajax service to reject 200 responses with errors
 - add update, delete, and save methods to group service
