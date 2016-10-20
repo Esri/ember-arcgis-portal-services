@@ -24,6 +24,7 @@ export default Ember.Service.extend(serviceMixin, {
 
   /**
    * Get items in a group, by Group Id
+   * TODO: Add Paging
    */
   getItemsById (id) {
     const portalBaseUrl = this.get('portalRestUrl');
@@ -101,6 +102,9 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(url, options);
   },
 
+  /**
+   * Reassign ownership of the group
+   */
   reassign (id, username) {
     Ember.debug('group-service.reassign not implemented!');
   },

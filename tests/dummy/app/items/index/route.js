@@ -8,13 +8,14 @@ export default Ember.Route.extend({
     'q': {refreshModel: true},
     'owner': {refreshModel: true},
     'tags': {refreshModel: true},
+    'typeKeywords': {refreshModel: true},
     'type': {refreshModel: true}
   },
 
   lastAgoQuery: '',
 
-  createAgoQuery: function (query, owner, tags, type) {
-    console.log(`Query ${query} owner ${owner} tags ${tags} type ${type}`);
+  createAgoQuery: function (query, owner, tags, type, typeKeywords) {
+    console.log(`Query ${query} owner ${owner} tags ${tags} type ${type} typeKeywords ${typeKeywords}`);
     let parts = [];
     if (query) {
       parts.push(query);
@@ -35,9 +36,21 @@ export default Ember.Route.extend({
       }
     }
 
+    if (typeKeywords) {
+      if (typeKeywords.indexOf(',')) {
+        let ta = typeKeywords.split(',');
+        ta.map(function (t) {
+          parts.push('typekeywords:' + t);
+        });
+      } else {
+        parts.push('typekeywords:' + typeKeywords);
+      }
+    }
+
     if (type) {
       parts.push('type:"' + type + '"');
     }
+
     console.log('parts: ' + JSON.stringify(parts));
     let agoQuery = parts.join(' AND ');
     console.log('AGO Query: ' + agoQuery);
@@ -45,7 +58,7 @@ export default Ember.Route.extend({
   },
 
   model (params) {
-    let agoQuery = this.createAgoQuery(params.q, params.owner, params.tags, params.type);
+    let agoQuery = this.createAgoQuery(params.q, params.owner, params.tags, params.type, params.typeKeywords);
     let agoParams = {
       q: agoQuery,
       start: params.start,
