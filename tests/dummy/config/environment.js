@@ -54,9 +54,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    //ENV.rootURL = '/ember-arcgis-portal-services';
-    // torii still uses baseUrl
-    ENV.baseURL = '/ember-arcgis-portal-services/';
+    ENV.rootURL = '/ember-arcgis-portal-services';
   }
 
   return ENV;
