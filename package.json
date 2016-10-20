@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
     "doc": "doc",
@@ -9,10 +9,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:testall",
-    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
-    "test": "ember try:each"
-
+    "test": "ember try:each",
+    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";"
   },
   "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
   "engines": {
