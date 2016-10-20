@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   num: 10,
   owner: null,
   tags: null,
+  typeKeywords:null,
   type: null,
 
   totalCount: Ember.computed('model.total', function () {

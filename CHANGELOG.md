@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [0.5.0]
+### Added
+- README reflects the current API
+
+### Removed
+- moved `item-search-form` and `list-pager` components into the dummy app as they are no intended to be part of this addon.
+
+
 ## [0.4.0]
 ### Added
 - add arcgis ajax service to reject 200 responses with errors
