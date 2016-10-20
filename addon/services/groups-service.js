@@ -37,6 +37,38 @@ export default Ember.Service.extend(serviceMixin, {
   create (group) {
     const portalBaseUrl = this.get('portalRestUrl');
     let url = `${portalBaseUrl}/community/createGroup?f=json`;
+    return this._post(url, group);
+  },
+
+  /**
+   * Update an existing group
+   */
+  update (group) {
+    let portalBaseUrl = this.get('portalRestUrl');
+    let url = `${portalBaseUrl}/community/groups/${group.id}/update?f=json`;
+    return this._post(url, group);
+  },
+
+  /**
+   * Create a new group or update an existing one if it has an id
+   */
+  save (group) {
+    if (group.id) {
+      return this.update(group).then((response) => {
+        // normalize response to include group like create() does
+        response.group = group;
+        response.group.id = response.groupId;
+        return response;
+      });
+    } else {
+      return this.create(group);
+    }
+  },
+
+  /**
+   * Shared logic for POST operations
+   */
+  _post (url, group) {
     let options = {
       method: 'POST',
       data: group
@@ -69,9 +101,19 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(url, options);
   },
 
-  reassign(id, username){
+  reassign (id, username) {
     Ember.debug('group-service.reassign not implemented!');
   },
 
-
+  /**
+   * Delete a group from AGO
+   */
+  destroy (id) {
+    const portalBaseUrl = this.get('portalRestUrl');
+    let url = `${portalBaseUrl}/community/groups/${id}/delete?f=json`;
+    let options = {
+      method: 'POST'
+    };
+    return this.request(url, options);
+  }
 });

@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
     "doc": "doc",
@@ -10,7 +10,9 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:testall",
-    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";"
+    "deploy": "ember github-pages:commit --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
+    "test": "ember try:each"
+
   },
   "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
   "engines": {
@@ -20,31 +22,33 @@
   "license": "Apache 2",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "ember-cli": "2.4.3",
-    "ember-cli-active-link-wrapper": "0.2.0",
-    "ember-cli-eslint": "1.7.0",
+    "ember-cli": "2.8.0",
+    "ember-cli-active-link-wrapper": "0.3.2",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-github-pages": "0.1.0",
+    "ember-cli-eslint": "3.0.0",
+    "ember-cli-github-pages": "0.1.2",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jsoneditor": "0.1.2",
-    "ember-cli-qunit": "^1.4.0",
-    "ember-cli-release": "1.0.0-beta.2",
+    "ember-cli-qunit": "^2.1.0",
+    "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.4.2",
+    "ember-data": "^2.8.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
+    "eslint-config-semistandard": "~7.0.0",
+    "eslint-config-standard": "~6.0.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.2.0",
+    "eslint-plugin-standard": "^2.0.0",
     "jsoneditor": "5.5.6",
     "loader.js": "^4.0.1",
-    "eslint-config-semistandard": "^7.0.0-beta.0",
-    "eslint-config-standard": "5.3.5",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.0",
-    "torii-provider-arcgis": "0.2.4"
+    "torii-provider-arcgis": "0.3.0"
   },
   "keywords": [
     "ember-addon"

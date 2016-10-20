@@ -4,10 +4,8 @@
 // For details on each option run `ember help release`
 module.exports = {
   // local: true,
-  remote: 'upstream',
-  annotation: "Release %@",
-  message: "Bumped version to %@",
-  manifest: [ 'package.json', 'bower.json' ],
+  annotation: 'Release %@',
+  message: 'Bumped version to %@',
   publish: true,
   // strategy: 'date',
   // format: 'YYYY-MM-DD',

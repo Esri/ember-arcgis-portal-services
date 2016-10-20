@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+## [0.4.0]
+### Added
+- add arcgis ajax service to reject 200 responses with errors
+- add update, delete, and save methods to group service
+- add oauth service to support registering and updating apps
+
+## [0.3.0]
+### Changed
+- Upgrade to ember 2.8
+
+## [0.2.1]
+- Update portalUrl implementation
+
 ## [0.2.0]
 - use of `APP.arcgisPortal` config node for determining urls
 - update dummy app
