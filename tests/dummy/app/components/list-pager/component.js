@@ -50,9 +50,9 @@ export default Ember.Component.extend({
 
   range: Ember.computed('model.meta.queryParameters.page.number', 'isLastPage', function () {
     let range = {'start': 1, 'end': 10};
-    let per_page = this.get('model.num');
-    range.start = (per_page * this.get('page')) - per_page + 1;
-    range.end = (per_page * this.get('page'));
+    let perPage = this.get('model.num');
+    range.start = (perPage * this.get('page')) - perPage + 1;
+    range.end = (perPage * this.get('page'));
 
     if (range.start < 1) { range.start = 1; } // no starting on 0
     if (this.get('isLastPage')) { range.end = this.get('totalCount'); } // last page magic

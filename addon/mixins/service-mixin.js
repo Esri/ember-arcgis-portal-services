@@ -1,6 +1,5 @@
 import Ember from 'ember';
 
-
 export default Ember.Mixin.create({
   arcgisAjax: Ember.inject.service(),
   session: Ember.inject.service('session'),
@@ -34,7 +33,7 @@ export default Ember.Mixin.create({
       const subdomain = this.get('hostAppConfig.APP.arcgisPortal.env') || 'www';
       url = `https://${subdomain}.${domain}`;
     }
-    Ember.debug('Portal Url: ' + url);
+    // Ember.debug('Portal Url: ' + url);
 
     return url;
   }),

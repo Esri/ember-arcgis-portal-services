@@ -3,33 +3,31 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   itemsService: Ember.inject.service('items-service'),
 
-  itemJson:Ember.computed('model.item', function(){
-      return this.get('model.item');
+  itemJson: Ember.computed('model.item', function () {
+    return this.get('model.item');
   }),
 
-  dataJson:Ember.computed('model.data', function(){
-      return this.get('model.data');
+  dataJson: Ember.computed('model.data', function () {
+    return this.get('model.data');
   }),
 
   actions: {
-
-    save: function(){
+    save: function () {
       console.log('Saving item...');
-      //transfer values from the modelJson --> model
+      // transfer values from the modelJson --> model
       let item = this.get('itemJson');
 
-      if(this.get('dataJson')){
+      if (this.get('dataJson')) {
         item.text = JSON.stringify(this.get('dataJson'));
       }
 
       this.get('itemsService').create(item)
-      .then((resp)=>{
-        this.transitionToRoute('items.index');
-      });
-
+        .then((resp) => {
+          this.transitionToRoute('items.index');
+        });
     },
-    cancel: function(){
-      //return to the item list
+    cancel: function () {
+      // return to the item list
       this.transitionToRoute('items.index');
     }
   }

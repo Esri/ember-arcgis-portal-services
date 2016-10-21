@@ -19,7 +19,6 @@ export default Ember.Service.extend(serviceMixin, {
    * Shared logic for POST operations
    */
   _post (url, obj) {
-
     let options = {
       method: 'POST',
       data: obj
