@@ -54,7 +54,8 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/ember-arcgis-portal-services';
+    ENV.locationType = 'hash';
+    ENV.rootURL = '/ember-arcgis-portal-service/';
   }
 
   return ENV;

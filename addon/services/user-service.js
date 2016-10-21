@@ -3,7 +3,6 @@ import serviceMixin from '../mixins/service-mixin';
 
 export default Ember.Service.extend(serviceMixin, {
 
-
   /**
    * User Search
    */
