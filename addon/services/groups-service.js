@@ -18,7 +18,7 @@ export default Ember.Service.extend(serviceMixin, {
    */
   getById (id) {
     let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/community/groups/${id}`;
+    let url = `${portalRestUrl}/community/groups/${id}?f=json`;
     return this.request(url);
   },
 
