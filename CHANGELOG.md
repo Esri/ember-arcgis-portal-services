@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## [0.5.1]
+### Changed
+- fix for missing `f=json` on `groups-service::getById`
+
 ## [0.5.0]
 ### Added
 - README reflects the current API
