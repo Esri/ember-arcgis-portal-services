@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - moved to `ember-network/fetch` to make this fastboot compatible
 
+### Added
+- `item-service.addResource(itemId, owner, file)`
+- `item-service.getResources(itemId) `
+- `item-service.destroyResource(itemId, owner, resource)`
+
 ## [0.5.1]
 ### Changed
 - fix for missing `f=json` on `groups-service::getById`
