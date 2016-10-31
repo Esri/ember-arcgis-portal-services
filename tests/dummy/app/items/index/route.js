@@ -77,6 +77,7 @@ export default Ember.Route.extend({
     }
     return this.get('itemsService').search(agoParams);
   },
+
   actions: {
     destroy (item) {
       this.get('itemsService').destroy(item.id, item.owner)

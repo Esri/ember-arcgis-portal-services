@@ -71,6 +71,29 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Add a resource to an item
+   */
+  addResource (itemId, owner, options) {
+    // Valid types
+    const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
+
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
+  },
+
+  getResources (itemId) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/items/${itemId}/resources?f=json`;
+    return this.request(url);
+  },
+
+  destroyResource (itemId, owner, resource) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/removeResources?f=json`;
+    this._post(url, {resource: resource});
+  },
+
+  /**
    * Extra logic to transform the item prior to POSTing it
    */
   _serializeItem (item) {
