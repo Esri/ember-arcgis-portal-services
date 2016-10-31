@@ -40,7 +40,7 @@ export default Ember.Mixin.create({
   }),
 
   encodeForm (form = {}) {
-    Ember.merge(form, this.get('defaultParams'));
+    // Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
       return [key, form[key]].map(encodeURI).join('=');
     }).join('&');
@@ -79,7 +79,6 @@ export default Ember.Mixin.create({
     return response.json();
   },
 
-
   /**
    * Fetch based request method
    */
@@ -95,6 +94,11 @@ export default Ember.Mixin.create({
           'Content-Type': 'application/x-www-form-urlencoded'
         };
       }
+      // if a body was passed, we need to set the content type to multipart
+      if (opts.body) {
+        delete opts.headers['Content-Type'];// = 'multipart/form-data';
+      }
+
       // if we have a data, create a formData from it
       if (opts.data) {
         var form = this.encodeForm(opts.data);

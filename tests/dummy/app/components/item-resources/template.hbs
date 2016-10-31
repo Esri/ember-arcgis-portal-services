@@ -1,0 +1,20 @@
+{{#if isLoading}}
+<h3>Loading resources...</h3>
+{{else}}
+  <h3>Resources</h3>
+  <table class="table table-striped">
+    <thead>
+      <th>Name</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      {{#each model.resources as |res|}}
+      <tr>
+        <td>{{res.resource}}</td>
+        <td><button type="button"  class="btn btn-danger" {{action "destroy" res}}> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{upload-button onChange=(action 'filesChanged')}}
+{{/if}}
