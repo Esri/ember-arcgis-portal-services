@@ -2,7 +2,6 @@ import Ember from 'ember';
 import fetch from 'ember-network/fetch';
 
 export default Ember.Mixin.create({
-  arcgisAjax: Ember.inject.service(),
   session: Ember.inject.service('session'),
 
   hostAppConfig: Ember.computed(function () {
@@ -119,34 +118,5 @@ export default Ember.Mixin.create({
 
     return fetch(url, opts)
       .then(this.checkStatusAndParseJson);
-  },
-
-  /**
-   * Centralized Request with ArcGIS Payload checking
-   */
-  // requestAjax (url, options) {
-  //   let opts = options || {};
-  //
-  //   if (opts.method && opts.method === 'POST') {
-  //     // if we are POSTing, we need to manually set the content-type because AGO
-  //     // actually does care about this header
-  //     opts.headers = {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     };
-  //   }
-  //
-  //   // append in the token
-  //   if (this.get('session') && this.get('session.token')) {
-  //     let token = this.get('session.token');
-  //     // add a token
-  //     if (url.indexOf('?') > -1) {
-  //       url = url + '&token=' + token;
-  //     } else {
-  //       url = url + '?token=' + token;
-  //     }
-  //   }
-  //
-  //   return this.get('arcgisAjax').request(url, options);
-  // }
+  }
 });
