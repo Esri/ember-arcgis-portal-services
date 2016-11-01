@@ -72,13 +72,6 @@ export default Ember.Mixin.create({
   },
 
   /**
-   * Helper to parse the response as json
-   */
-  parseJSON (response) {
-    return response.json();
-  },
-
-  /**
    * Fetch based request method
    */
   request (url, options) {
