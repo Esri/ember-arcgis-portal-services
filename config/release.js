@@ -7,7 +7,7 @@ module.exports = {
   annotation: 'Release %@',
   message: 'Bumped version to %@',
   publish: true,
-  remote: 'upstream'
+  remote: 'origin'
   // strategy: 'date',
   // format: 'YYYY-MM-DD',
   // timezone: 'America/Los_Angeles',
