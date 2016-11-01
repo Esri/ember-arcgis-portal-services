@@ -16,7 +16,7 @@ export default Ember.Service.extend(serviceMixin, {
   search (form) {
     let qs = this.encodeForm(form);
     let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/search?${qs}`;
+    let url = `${portalRestUrl}/search?${qs}&f=json`;
     return this.request(url);
   },
 
@@ -26,7 +26,7 @@ export default Ember.Service.extend(serviceMixin, {
   getById (itemId) {
     let qs = this.encodeForm({});
     let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/items/${itemId}?${qs}`;
+    let url = `${portalRestUrl}/content/items/${itemId}?${qs}&f=json`;
     return this.request(url);
   },
 
@@ -37,7 +37,7 @@ export default Ember.Service.extend(serviceMixin, {
   getDataById (itemId) {
     let qs = this.encodeForm({});
     let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/items/${itemId}/data?${qs}`;
+    let url = `${portalRestUrl}/content/items/${itemId}/data?${qs}&f=json`;
     return this.request(url);
   },
 
@@ -68,6 +68,35 @@ export default Ember.Service.extend(serviceMixin, {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
     return this._post(url, {});
+  },
+
+  /**
+   * Add a resource to an item
+   */
+  addResource (itemId, owner, file) {
+    // Valid types
+    const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
+    // TODO: Check type
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
+    let options = {};
+    options.body = new FormData();
+    // stuff the file into the formData...
+    options.body.append('file', file);
+    options.method = 'POST';
+    return this.request(url, options);
+  },
+
+  getResources (itemId) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/items/${itemId}/resources?f=json`;
+    return this.request(url);
+  },
+
+  destroyResource (itemId, owner, resource) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/removeResources?f=json`;
+    this.request(url, {method: 'POST', data: {resource: resource}});
   },
 
   /**
