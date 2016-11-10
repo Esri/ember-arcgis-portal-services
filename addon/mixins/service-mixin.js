@@ -15,27 +15,17 @@ export default Ember.Mixin.create({
   /**
    * Return the ArcGIS Portal Rest base url
    */
-  portalRestUrl: Ember.computed('hostAppConfig.APP.portalBaseUrl', function () {
+  portalRestUrl: Ember.computed('session.portalHostName', function () {
     let baseUrl = this.get('portalUrl');
     return baseUrl + '/sharing/rest';
   }),
 
   /**
    * Return the ArcGIS Portal base url (for visiting pages etc)
+   * Defaults to https because there is no negative to using it
    */
-  portalUrl: Ember.computed('hostAppConfig.APP.arcgisPortal', function () {
-    let url = '';
-    if (this.get('session.isAuthenticated')) {
-      // delegate to session service
-      url = `https://${this.get('session.orgPortalUrl')}`;
-    } else {
-      const domain = this.get('hostAppConfig.APP.arcgisPortal.domain') || 'arcgis.com';
-      const subdomain = this.get('hostAppConfig.APP.arcgisPortal.env') || 'www';
-      url = `https://${subdomain}.${domain}`;
-    }
-    // Ember.debug('Portal Url: ' + url);
-
-    return url;
+  portalUrl: Ember.computed('session.portalHostName', function () {
+    return 'https://' + this.get('session.portalHostName');
   }),
 
   encodeForm (form = {}) {

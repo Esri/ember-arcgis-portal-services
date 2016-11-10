@@ -13,6 +13,7 @@ After adding this to your project, you will have a number of services available 
 
 ## Dependencies
 This project is now using `ember-network/fetch` to enable fastboot compatibility. Please also `ember install ember-network`
+- `torii-provider-arcgis` install via `npm i torii-provider-arcgis`
 
 ### Shared Methods
 All the services expose a set of shared helper properties and methods:
@@ -81,20 +82,19 @@ All the services expose a set of shared helper properties and methods:
 
 ### environment.js
 
-You need to add a section in the `.APP` hash to add `arcgisPortal` details
+Configuration for how to connect to the portal is managed in the `torii` section. If you are using ArcGIS Online, the `portalUrl` property is not needed.
 ```
 // environment.js
 ...
-APP: {
-  // portalBaseUrl is still needed
-  portalBaseUrl: 'https://qaext.arcgis.com',
-  // this new hash is what we are transitioning to
-  arcgisPortal: {
-    domain: 'arcgis.com',
-    env: 'www',
-    maps: 'maps',
-  },
-},
+torii: {
+  sessionServiceName: 'session',
+  providers: {
+    'arcgis-oauth-bearer': {
+      apiKey: 'SECRET-KEY-FOR-YOUR-APP',
+      portalUrl: 'https://yourawesomeportal.com'
+    }
+  }
+}
 ...
 ```
 
