@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+## [0.7.0]
+### Changed
+- relies on `session.portalHostName` instead of `ENV.APP.arcgisPortal.*`. This makes configuration more consistent and removes duplication urls in the app config file.
 
 ## [0.6.0]
 ### Changed

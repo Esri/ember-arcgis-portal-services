@@ -14,25 +14,26 @@ module.exports = function (environment) {
     },
 
     APP: {
-      portalBaseUrl: 'https://qaext.arcgis.com',
-      arcgisPortal: {
-        domain: 'arcgis.com',
-        env: 'qaext',
-        maps: 'mapsqa',
-      },
+      // portalBaseUrl: 'https://qaext.arcgis.com',
+      // arcgisPortal: {
+      //   domain: 'arcgis.com',
+      //   env: 'qaext',
+      //   maps: 'mapsqa',
+      // },
     },
     torii: {
       sessionServiceName: 'session',
       providers: {
         'arcgis-oauth-bearer': {
          // apiKey: 'x3u9xkfpYyYbJu08' // production
-          apiKey: 'VpiQwiuWl7KMTGys' // qaext
+          apiKey: 'VpiQwiuWl7KMTGys', // qaext
+          portalUrl: 'https://qaext.arcgis.com'
         }
       }
     }
   };
 
-  ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
+  // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
