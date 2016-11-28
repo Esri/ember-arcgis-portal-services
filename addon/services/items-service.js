@@ -64,7 +64,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Delete an item from AGO
    */
-  destroy (itemId, owner) {
+  remove (itemId, owner) {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
     return this._post(url, {});

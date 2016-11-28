@@ -46,6 +46,7 @@ export default Ember.Mixin.create({
         if (json.error) {
           // cook an error
           error = new Error(json.error.message);
+          error.code = json.error.code || 404;
           error.response = response;
           Ember.debug('Error in response:  ' + json.error.message);
           throw error;
@@ -98,7 +99,7 @@ export default Ember.Mixin.create({
         url = url + '?token=' + token;
       }
     }
-
+    Ember.debug('Portal Services making request to: ' + url);
     return fetch(url, opts)
       .then(this.checkStatusAndParseJson);
   }

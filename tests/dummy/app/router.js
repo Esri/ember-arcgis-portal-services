@@ -16,6 +16,10 @@ Router.map(function () {
   });
   this.authenticatedRoute('groups');
   this.route('signin');
+
+  this.route('groups', function() {
+    this.route('new');
+  });
 });
 
 export default Router;
