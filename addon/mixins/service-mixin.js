@@ -39,7 +39,7 @@ export default Ember.Mixin.create({
    * Fetch does not reject on non-200 responses, so we need to check this manually
    */
   checkStatusAndParseJson (response) {
-    var error;
+    let error;
     if (response.status >= 200 && response.status < 300) {
       // check if this is one of those groovy 200-but-a-400 things
       return response.json().then((json) => {
@@ -56,8 +56,7 @@ export default Ember.Mixin.create({
       });
     } else {
       // Response has non 200 http code
-      error = new Error(response.statusText);
-      error.response = response;
+      error = new Error('Got ' + response.status + ' ' + response.statusText);
       throw error;
     }
   },
