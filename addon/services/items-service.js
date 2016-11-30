@@ -93,7 +93,7 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(url);
   },
 
-  destroyResource (itemId, owner, resource) {
+  removeResource (itemId, owner, resource) {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/removeResources?f=json`;
     this.request(url, {method: 'POST', data: {resource: resource}});

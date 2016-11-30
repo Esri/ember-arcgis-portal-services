@@ -80,7 +80,7 @@ export default Ember.Route.extend({
 
   actions: {
     destroy (item) {
-      this.get('itemsService').destroy(item.id, item.owner)
+      this.get('itemsService').remove(item.id, item.owner)
         .then(() => {
           // need to transition to the route so we pick up new entries
           Ember.debug('Item Deleted... transitioning route to get new results...');
