@@ -31,7 +31,7 @@ export default Ember.Mixin.create({
   encodeForm (form = {}) {
     // Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
-      return [key, form[key]].map(encodeURI).join('=');
+      return [key, form[key]].map(encodeURIComponent).join('=');
     }).join('&');
   },
 
@@ -85,6 +85,7 @@ export default Ember.Mixin.create({
       if (opts.data) {
         var form = this.encodeForm(opts.data);
         opts.body = form;
+        debugger;
       }
     }
 

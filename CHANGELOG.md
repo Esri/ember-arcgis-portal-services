@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.7.2]
+### Changed
+- the mixin now correctly encodes form fields using `encodeURIComponent`, which allows `&` chars in the `text` payload
+- renamed the `groups-service.destroy` method to `.remove`
+
 ## [0.7.1]
 ### Changed
 - added more consistent error formatting

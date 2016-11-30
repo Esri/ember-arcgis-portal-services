@@ -112,7 +112,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Delete a group from AGO
    */
-  destroy (id) {
+  remove (id) {
     const portalBaseUrl = this.get('portalRestUrl');
     let url = `${portalBaseUrl}/community/groups/${id}/delete?f=json`;
     let options = {
