@@ -85,7 +85,6 @@ export default Ember.Mixin.create({
       if (opts.data) {
         var form = this.encodeForm(opts.data);
         opts.body = form;
-        debugger;
       }
     }
 
