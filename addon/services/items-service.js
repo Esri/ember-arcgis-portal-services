@@ -71,11 +71,11 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
-   * Add a resource to an item
+   * Upload a resource (file) to an item
    */
-  addResource (itemId, owner, file) {
+  uploadResource (itemId, owner, file) {
     // Valid types
-    const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
+    // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
     // TODO: Check type
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
@@ -87,16 +87,38 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(url, options);
   },
 
+  /**
+   * Add a resource
+   */
+  addResource (itemId, owner, name, content) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
+    let options = {
+      method: 'POST',
+      data: {
+        fileName: name,
+        text: content
+      }
+    };
+    return this.request(url, options);
+  },
+
+  /**
+   * Get the resources associated with an Item
+   */
   getResources (itemId) {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/items/${itemId}/resources?f=json`;
     return this.request(url);
   },
 
+  /**
+   * Remove a resource
+   */
   removeResource (itemId, owner, resource) {
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/removeResources?f=json`;
-    this.request(url, {method: 'POST', data: {resource: resource}});
+    return this.request(url, {method: 'POST', data: {resource: resource}});
   },
 
   /**

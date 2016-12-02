@@ -3,22 +3,20 @@ import layout from './template';
 
 export default Ember.Component.extend({
   layout,
-  itemsService: Ember.inject.service('items-service'),
-  session: Ember.inject.service(),
   isLoading: true,
+  session: Ember.inject.service(),
   // Lazy load the resources
   didInsertElement () {
     this._getResources();
   },
   resourceBaseUrl: Ember.computed('session', 'item', function () {
     let portalHostName = this.get('session.portalHostName');
-    let item = this.get('item');
-    return `//${portalHostName}/sharing/rest/content/items/${item.id}/resources/`;
+    let portalId = this.get('session.portal.id');
+    return `//${portalHostName}/sharing/rest/portals/${portalId}/resources/`;
   }),
   _getResources () {
     this.set('isLoading', true);
     this.get('onFetchResources')()
-
     .then((resources) => {
       this.set('model', resources);
       this.set('isLoading', false);
@@ -27,14 +25,14 @@ export default Ember.Component.extend({
 
   actions: {
     destroy (resource) {
-      this.get('onRemoveResource')(resource)
+      this.get('onRemoveResource')(resource.key)
       .then(() => {
         this._getResources();
       });
     },
     filesChanged (files) {
       Ember.debug('Files changed!'); // files[0]
-      this.get('onUploadFile')(files[0])
+      this.get('onUploadFile')(files)
       .then(() => {
         this._getResources();
       });

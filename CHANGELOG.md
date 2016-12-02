@@ -2,7 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-
+## [0.8.0]
+### Added
+-  `item-service.uploadResource(itemId, owner, file)`
+-  `item-service.addResource(itemId, owner, name, content)`
+-  `portal-service.getResources`
+-  `portal-service.removeResource(resourceName)`
+-  `portal-service.uploadResource(file)`
+-  `portal-service.addResource(name, content)`
 
 ## [0.7.3]
 ### Changed

@@ -20,6 +20,7 @@ Router.map(function () {
   this.route('groups', function() {
     this.route('new');
   });
+  this.route('portal');
 });
 
 export default Router;
