@@ -18,6 +18,11 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    {{item-resources item=model.item}}
+    {{item-resources item=model.item
+      onFetchResources=(action 'fetchResources')
+      onRemoveResource=(action 'removeResource')
+      onUploadFile=(action 'uploadFile')
+      onJsonUpload=(action 'sendJson')
+      }}
   </div>
 </div>

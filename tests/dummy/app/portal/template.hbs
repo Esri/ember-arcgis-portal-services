@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>{{model.portal.name}}</h2>
+    {{portal-resources
+      onFetchResources=(action 'fetchResources')
+      onRemoveResource=(action 'removeResource')
+      onUploadFile=(action 'uploadFile')
+      onJsonUpload=(action 'sendJson')
+      }}
+  </div>
+</div>
