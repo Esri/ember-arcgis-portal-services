@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
     },
 
     sendJson (jsonObj) {
-      return this.get('portalService').addResource('theme.json', JSON.stringify(jsonObj));
+      return this.get('portalService').addResource('opendata.json', JSON.stringify(jsonObj));
     },
 
     fetchResources () {

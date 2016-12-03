@@ -39,7 +39,9 @@ export default Ember.Component.extend({
     },
     sendJson () {
       let obj = {
-        foo: 'bar'
+        settings: {
+          groupId: '4bdcf2f7e42843cebbe43b69a8d56bdb'
+        }
       };
       this.get('onJsonUpload')(obj)
       .then(() => {

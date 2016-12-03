@@ -104,6 +104,22 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Update a resource
+   */
+  updateResource (itemId, owner, name, content) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/updateResources?f=json`;
+    let options = {
+      method: 'POST',
+      data: {
+        fileName: name,
+        text: content
+      }
+    };
+    return this.request(url, options);
+  },
+
+  /**
    * Get the resources associated with an Item
    */
   getResources (itemId) {
