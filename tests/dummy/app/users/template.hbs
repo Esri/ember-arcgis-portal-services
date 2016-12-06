@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>User Search</h2>
+    {{!-- {{item-search-form onFilter=(action 'filter')
+      owner=owner
+      tags=tags
+      type=type
+      typeKeywords=typeKeywords
+      query=query}} --}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    {{#if totalCount}}
+      <h4>Found {{totalCount}} Items</h4>
+      <table class="table table-striped">
+        <thead>
+          <th>Full Name</th>
+          <th>Email</th>
+        </thead>
+        <tbody>
+          {{#each model.users as |item|}}
+          <tr>
+            <td>{{item.fullName}}</td>
+            <td>{{item.email}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{list-pager model=model}}
+    {{else}}
+    <div class="alert alert-warning">No items found for query {{q}}.</div>
+    {{/if}}
+  </div>
+</div>
