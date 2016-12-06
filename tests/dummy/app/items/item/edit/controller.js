@@ -41,7 +41,11 @@ export default Ember.Controller.extend({
       const item = this.get('model.item');
       return this.get('itemsService').addResource(item.id, item.owner, 'theme.json', JSON.stringify(jsonObj));
     },
-    fetchResources(){
+    sendText (text, fileName) {
+      const item = this.get('model.item');
+      return this.get('itemsService').addResource(item.id, item.owner, fileName, text);
+    },
+    fetchResources () {
       const item = this.get('model.item');
       return this.get('itemsService').getResources(item.id);
     }

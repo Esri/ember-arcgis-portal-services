@@ -17,5 +17,11 @@
     </tbody>
   </table>
   {{upload-button onChange=(action 'filesChanged')}}
-  <button class="btn btn-primay" {{action "sendJson"}}>Send Json File</button>
+  <div class="form-group">
+    <label for="fileUrl">Url to Resource</label>
+    {{input type=text value=urlToResource class="form-control" placeholder="Url to Resource"}}
+  </div>
+  <button class="btn btn-primay" {{action "sendText"}}>Send Fetch and Upload File</button>
+  <pre><code>{{cssAsString}}</code></pre>
+
 {{/if}}

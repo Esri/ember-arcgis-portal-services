@@ -8,6 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function () {
   this.authenticatedRoute('items', function () {
+    this.route('bulk');
     this.route('item', {path: ':id'}, function () {
       this.route('index', {path: '/'});
       this.route('edit');
