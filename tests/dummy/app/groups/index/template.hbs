@@ -27,7 +27,7 @@
         <th>Title</th>
         <th>Access</th>
         <th>Owner</th>
-        <th>Modified</th>
+        <th>Actions</th>
       </thead>
       <tbody>
         {{#each filtered.results as |group|}}
@@ -35,7 +35,9 @@
           <td>{{link-to group.title 'groups.group' group}}</td>
           <td>{{group.access}}</td>
           <td>{{group.owner}}</td>
-          <td>{{group.modified}}</td>
+          <td>
+            <a href="{{agoGroupsBaseUrl}}?id={{group.id}}" target="_blank" class="btn btn-default"><span class="glyphicon glyphicon-share"></span></a>
+          </td>
         </tr>
         {{/each}}
       </tbody>

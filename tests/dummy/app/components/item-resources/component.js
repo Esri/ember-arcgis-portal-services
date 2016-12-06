@@ -1,11 +1,14 @@
 import Ember from 'ember';
 import layout from './template';
+import fetch from 'ember-network/fetch';
 
 export default Ember.Component.extend({
   layout,
   itemsService: Ember.inject.service('items-service'),
+
   session: Ember.inject.service(),
   isLoading: true,
+  urlToResource: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
   // Lazy load the resources
   didInsertElement () {
     this._getResources();
@@ -47,6 +50,28 @@ export default Ember.Component.extend({
       .then(() => {
         this._getResources();
       });
+    },
+    sendText () {
+      // fetch the content of the url as a string
+      // get the fileName from the url...
+      let parts = this.get('urlToResource').split('/');
+      let filename = parts[parts.length - 1] + '.txt';
+      return fetch(this.get('urlToResource'))
+      .then((response) => {
+        return response.text();
+      })
+      .then((cssAsString) => {
+        this.get('cssAsString', cssAsString);
+        return this.get('onTextUpload')(cssAsString, filename)
+        .then(() => {
+          this._getResources();
+        });
+      });
+      // let text = ''
+      // this.get('onTextUpload')(text)
+      // .then(() => {
+      //   this._getResources();
+      // });
     }
   }
 });

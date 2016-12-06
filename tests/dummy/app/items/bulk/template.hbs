@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <h2>Item Search {{#link-to 'items.new' class="btn btn-warning btn-lrg pull-right"}}New Item{{/link-to}}</h2>
+    <h2>Bulk Delete</h2>
     {{item-search-form onFilter=(action 'filter')
       owner=owner
       tags=tags
@@ -12,7 +12,27 @@
 <div class="row">
   <div class="col-sm-12">
     {{#if totalCount}}
-      <h4>Found {{totalCount}} Items</h4>
+      <h4>Found {{totalCount}} Items <button class="btn btn-danger" {{action 'prenuke'}}>Delete all {{totalCount}}</button></h4>
+      {{#if showConfirmation}}
+      <div class="col-sm-6 col-md-offset-3">
+        <div class="panel panel-danger">
+          <div class="panel-heading">BULK DELETE!!!</div>
+          <div class="panel-body">
+            <p>Please be aware that there is no undo. This will delete all the items that match the current criteria. Done. Gone. Finito.
+            Also this may take a while... so kick back while we abuse the API.
+            </p>
+            <div class="progress">
+              <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="{{progressStyle}}">
+                <span class="sr-only">0% Complete</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-danger btn-block" {{action 'nuke' totalCount}}>Yes, I get it - Delete all {{totalCount}} items</button><
+          </div>
+        </div>
+      </div>
+      {{/if}}
       <table class="table table-striped">
         <thead>
           <th>Title</th>
@@ -46,7 +66,6 @@
         </tbody>
       </table>
       {{list-pager model=model}}
-      {{#link-to 'items.bulk' class="btn btn-warning btn-lrg pull-right"}}Bulk Actions{{/link-to}}
     {{else}}
     <div class="alert alert-warning">No items found for query {{q}}.</div>
     {{/if}}

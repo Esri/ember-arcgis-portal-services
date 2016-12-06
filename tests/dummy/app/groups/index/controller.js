@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   groupsService: Ember.inject.service('groups-service'),
+  session: Ember.inject.service(),
   queryParams: ['q'],
   q: '*',
   query: '*',
@@ -15,6 +16,10 @@ export default Ember.Controller.extend({
       result = true;
     }
     return result;
+  }),
+
+  agoGroupsBaseUrl: Ember.computed('session', function () {
+    return `https://${this.get('session.portalHostName')}/home/group.html`;
   }),
 
   queryChanged: Ember.observer('q', function () {
