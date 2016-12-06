@@ -32,7 +32,7 @@
       <tbody>
         {{#each filtered.results as |group|}}
         <tr>
-          <td>{{group.title}}</td>
+          <td>{{link-to group.title 'groups.group' group}}</td>
           <td>{{group.access}}</td>
           <td>{{group.owner}}</td>
           <td>{{group.modified}}</td>

@@ -103,6 +103,22 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Remove users to a group
+   */
+  removeUsers (id, users) {
+    let data = {
+      users: users.join(',')
+    };
+    const portalBaseUrl = this.get('portalRestUrl');
+    let url = `${portalBaseUrl}/community/groups/${id}/removeUsers?f=json`;
+    let options = {
+      method: 'POST',
+      data: data
+    };
+    return this.request(url, options);
+  },
+
+  /**
    * Reassign ownership of the group
    */
   reassign (id, username) {

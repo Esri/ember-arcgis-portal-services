@@ -17,9 +17,13 @@ Router.map(function () {
   this.authenticatedRoute('groups');
   this.route('signin');
 
-  this.route('groups', function() {
+  this.route('groups', function () {
+    this.route('group', { path: '/:id' });
     this.route('new');
   });
+
+  this.route('users');
+
   this.route('portal');
 });
 

@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- groups-service::removeUsers method
+
 ## [0.8.1]
 - `item-service.updateResource(itemId, owner, name, content)`
 
