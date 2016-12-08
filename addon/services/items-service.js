@@ -73,7 +73,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Upload a resource (file) to an item
    */
-  uploadResource (itemId, owner, file) {
+  uploadResource (itemId, owner, file, filename) {
     // Valid types
     // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
     // TODO: Check type
@@ -82,7 +82,11 @@ export default Ember.Service.extend(serviceMixin, {
     let options = {};
     options.body = new FormData();
     // stuff the file into the formData...
-    options.body.append('file', file);
+    if (filename) {
+      options.body.append('file', file, filename);
+    } else {
+      options.body.append('file', file);
+    }
     options.method = 'POST';
     return this.request(url, options);
   },
