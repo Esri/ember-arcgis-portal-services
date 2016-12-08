@@ -28,13 +28,6 @@ export default Ember.Mixin.create({
     return 'https://' + this.get('session.portalHostName');
   }),
 
-  /**
-   * Return the ArcGIS Geocode base url if it exists, if not use default
-   */
-  geocodeUrl: Ember.computed('hostAppConfig.geocodeUrl', function () {
-    return this.get('hostAppConfig').APP.geocodeUrl ? this.get('hostAppConfig').APP.geocodeUrl : `https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/find?text=`;
-  }),
-
   encodeForm (form = {}) {
     // Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
