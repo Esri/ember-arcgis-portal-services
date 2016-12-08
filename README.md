@@ -22,6 +22,7 @@ All the services expose a set of shared helper properties and methods:
 | --- | --- | --- |
 | `portalRestUrl` | `string` | Return the ArcGIS Portal Rest base url |
 | `portalUrl` | `string` | Return the ArcGIS Portal base url (for visiting pages etc) |
+| `geocodeUrl` | `string` | Return the geocode base url |
 
 | Method |  Returns |Description |
 | --- | --- | --- |
@@ -79,6 +80,12 @@ All the services expose a set of shared helper properties and methods:
 | --- | --- | --- |
 | `registerApp (itemId, redirectUris, appType = 'browser')` | `promise` | Registers an App item as an actual AGO Application. Returning clientId, client secret etc |
 | `updateApp(clientId, redirectUris)` | `promise` | Currently just supports changing the set of valid redirect uris. PR's accepted to expand this |
+
+### Geocode Service
+
+| Method |  Returns |Description |
+| --- | --- | --- |
+| `findLocationAddress(inputString)` | `promise` | Returns a location address based on an input string that moves through a specified or default geocode url |
 
 ### environment.js
 
