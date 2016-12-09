@@ -9,24 +9,23 @@ export default Ember.Service.extend(serviceMixin, {
     return this.get('hostAppConfig').APP.geocodeUrl || `https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/`;
   }),
 
-  findLocationAddress (inputString, ops) {
+  findLocationAddress (inputString, options) {
     let geocodeUrl = this.get('geocodeUrl');
     let defaults = {
       outSR: 4326,
       maxLocations: 1,
       bbox: null
     };
-    let options = Ember.$.extend({}, defaults, ops);
-    let url = `${geocodeUrl}findAddressCandidates?f=json&singleLine=${inputString}&maxLocations=${options.maxLocations}&outSR=${options.outSR}`;
+    let ops = Ember.$.extend({}, defaults, options);
+    let url = `${geocodeUrl}findAddressCandidates?f=json&singleLine=${inputString}&maxLocations=${ops.maxLocations}&outSR=${ops.outSR}`;
 
-    if (typeof options.bbox === 'string') {
-      throw new Error('The bbox used is a string, when it should be an object with xmin, ymin, xmax, and ymax key value pairs. :: geocode-service.js');
-    }
-
-    // this conditional is defending against 'null'
-    if (options.bbox) {
-      let bb = `${options.bbox.xmin},${options.bbox.ymin},${options.bbox.xmax},${options.bbox.ymax}`;
-      url = `${url}&searchExtent=${bb}`;
+    if (ops.bbox) {
+      if (ops.bbox.hasOwnProperty('xmin') && ops.bbox.hasOwnProperty('ymin') && ops.bbox.hasOwnProperty('xmax') && ops.bbox.hasOwnProperty('ymax')) {
+        let bb = `${ops.bbox.xmin},${ops.bbox.ymin},${ops.bbox.xmax},${ops.bbox.ymax}`;
+        url = `${url}&searchExtent=${bb}`;
+      } else {
+        throw new Error('options.bbox provided is not an object with xmin, ymin, xmax, and ymax key value pairs. :: geocode-service.js');
+      }
     }
 
     return this.request(url);
