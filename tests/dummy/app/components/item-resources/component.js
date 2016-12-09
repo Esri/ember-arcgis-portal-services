@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   itemsService: Ember.inject.service('items-service'),
 
   session: Ember.inject.service(),
+  token: Ember.computed.alias('session.token'),
   isLoading: true,
   urlToResource: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
   // Lazy load the resources

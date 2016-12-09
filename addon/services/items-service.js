@@ -73,12 +73,16 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Upload a resource (file) to an item
    */
-  uploadResource (itemId, owner, file, filename) {
+  uploadResource (itemId, owner, file, filename, replace = false) {
     // Valid types
     // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
     // TODO: Check type
     let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
+    let action = 'addResources';
+    if (replace) {
+      action = 'updateResources';
+    }
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/${action}?f=json`;
     let options = {};
     options.body = new FormData();
     // stuff the file into the formData...
