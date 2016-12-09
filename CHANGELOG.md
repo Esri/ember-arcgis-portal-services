@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [0.8.5]
+### Added
+- `item-service.uploadResource(itemId, owner, file, replace = false)` optional param so we can replace resources
+
+## [0.8.4]
 ### Added
 - geocode-service::findLocationAddress method
 - geocode-service::geocodeUrl method

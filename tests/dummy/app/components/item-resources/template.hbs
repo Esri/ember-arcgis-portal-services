@@ -10,7 +10,7 @@
     <tbody>
       {{#each model.resources as |res|}}
       <tr>
-        <td><a href="{{resourceBaseUrl}}{{res.resource}}" target="_blank">{{res.resource}}</a></td>
+        <td><a href="{{resourceBaseUrl}}{{res.resource}}?token={{token}}" target="_blank">{{res.resource}}</a></td>
         <td><button type="button"  class="btn btn-danger" {{action "destroy" res}}> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
       </tr>
       {{/each}}
