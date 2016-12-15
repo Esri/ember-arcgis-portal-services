@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   itemsService: Ember.inject.service('items-service'),
 
+  sharingService: Ember.inject.service('sharing-service'),
+
   itemJson: Ember.computed('model.item', function () {
     return this.get('model.item');
   }),
@@ -48,7 +50,37 @@ export default Ember.Controller.extend({
     fetchResources () {
       const item = this.get('model.item');
       return this.get('itemsService').getResources(item.id);
-    }
+    },
+
+    shareWithEveryone () {
+      let item = this.get('model.item');
+      this.get('sharingService').shareItemWithEveryone(item.owner, item.id)
+      .then((result) => {
+        this.set('model.item.access', 'everyone');
+      });
+    },
+    shareWithOrg () {
+      let item = this.get('model.item');
+      this.get('sharingService').shareItemWithOrg(item.owner, item.id)
+      .then((result) => {
+        this.set('model.item.access', 'org');
+      });
+    },
+    shareWithGroups () {
+      let item = this.get('model.item');
+      let data = {
+        owner: item.owner,
+        items: [item.id].join(','),
+        everyone: false,
+        org: false,
+        confirmItemControl: true,
+        f: 'json'
+      };
+      this.get('sharingService').shareItem(data)
+      .then((result) => {
+        this.set('model.item.access', 'shared');
+      });
+    },
 
   }
 

@@ -7,6 +7,15 @@
 </div>
 
 <div class="row">
+  <div class="col-sm-12">
+    <h4>Sharing: {{model.item.access}}</h4>
+    <p>This only handles sharing to the org or everyone</p>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" {{action 'shareWithGroups'}}>Only Existing Groups</button>
+      <button type="button" class="btn btn-default" {{action 'shareWithOrg'}}>Org</button>
+      <button type="button" class="btn btn-default" {{action 'shareWithEveryone'}}>Everyone</button>
+    </div>
+  </div>
   <div class="col-sm-6">
       <h3>Item Json</h3>
     {{json-editor json=itemJson mode="code" onChange=(action (mut itemJson))}}
