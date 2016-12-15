@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Added
 - sharing controls on item detail view in dummy
+- added `surge` and `github` environment settings
+- updated `npm run deploy` to use the `github` environment
 
 ## [0.8.5]
 ### Added
