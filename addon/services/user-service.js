@@ -24,6 +24,6 @@ export default Ember.Service.extend(serviceMixin, {
     const portalBaseUrl = this.get('portalRestUrl');
     let url = `${portalBaseUrl}/community/users/${username}?f=json`;
     return this.request(url);
-  }
+  },
 
 });

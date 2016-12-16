@@ -73,6 +73,7 @@ All the services expose a set of shared helper properties and methods:
 | `getByName(username)` | `promise` | Get a user object by name. |
 
 
+
 ## OAuth Service
 **Note:** This is not  used for authentication - rather its purpose is to allow Application Items to be programatically manipulated.
 
@@ -86,6 +87,17 @@ All the services expose a set of shared helper properties and methods:
 | Method |  Returns |Description |
 | --- | --- | --- |
 | `findLocationAddress(inputString)` | `promise` | Returns a location address based on an input string that moves through a specified or default geocode url |
+
+### Portal Service
+
+| Method |  Returns |Description |
+| --- | --- | --- |
+| `update(portal)` | `promise` | Update a portal. Lots of rules apply to what can be changed |
+| `uploadResource (file)` | `promise` | Upload a file as a portal resource |
+| `addResource (name, content)` | `promise` | Add a resource to a portal |
+| `getResources () ` | `promise` | Get list of portal resources |
+| `removeResource (resourceName)` | `promise` | Remove a resource from a porta |
+| `users(portalId, start = 1, num = 100)` | `promise` | Get a portal users. |
 
 ### environment.js
 
