@@ -82,4 +82,14 @@ export default Ember.Service.extend(serviceMixin, {
     let url = `${portalRestUrl}/portals/self/removeresource?f=json`;
     return this.request(url, {method: 'POST', data: {key: resourceName}});
   },
+
+  /**
+  * Paged access to users in a portal
+  */
+  users (portalId, start = 1, num = 100) {
+    const portalBaseUrl = this.get('portalRestUrl');
+    let url = `${portalBaseUrl}/portals/${portalId}/users/?f=json&start=${start}&num=${num}`;
+    return this.request(url);
+  }
+
 });
