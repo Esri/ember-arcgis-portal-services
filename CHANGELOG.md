@@ -2,14 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.8.6]
+## [0.8.7]
 ### Changed
 - serialize `item.properties` into a string when saving items
+### Added
+- additional group controls in dummy
+
+## [0.8.6]
 ### Added
 - sharing controls on item detail view in dummy
 - added `surge` and `github` environment settings
 - updated `npm run deploy` to use the `github` environment
-- additional group controls in dummy
+
 
 ## [0.8.5]
 ### Added
