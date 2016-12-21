@@ -162,6 +162,10 @@ export default Ember.Service.extend(serviceMixin, {
       clone.text = JSON.stringify(clone.data);
       delete clone.data;
     }
+    // Convert properties to a string
+    if (clone.properties) {
+      clone.properties = JSON.stringify(clone.properties);
+    }
     return clone;
   },
   /**

@@ -3,16 +3,18 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   groupsService: Ember.inject.service('groups-service'),
   session: Ember.inject.service(),
-  queryParams: ['q'],
+  queryParams: ['start', 'num', 'q', 'owner', 'tags'],
   q: '*',
   query: '*',
+  owner: null,
+  tags: null,
   start: 1,
-  num: 100,
+  num: 10,
   filtered: {},
 
-  hasResults: Ember.computed('filtered', function () {
+  hasResults: Ember.computed('model.results', function () {
     let result = false;
-    if (this.get('filtered.results.length')) {
+    if (this.get('model.results.length')) {
       result = true;
     }
     return result;
@@ -24,36 +26,14 @@ export default Ember.Controller.extend({
 
   queryChanged: Ember.observer('q', function () {
     this.set('query', this.get('q'));
-    this.search(this.get('q'));
   }),
 
-  init () {
-    this._super(...arguments);
-    if (this.get('q') === '') {
-      this.search('*');
-    }
-  },
-
-  search (query) {
-    // construct the query
-    let form = {
-      q: `title:${query}`, // AND access:public AND isopendata:true
-      sortField: 'title',
-      num: this.get('num'),
-      start: this.get('start')
-    };
-
-    this.get('groupsService').search(form)
-      .then((response) => {
-        console.info('Response has ' + response.results.length + ' results');
-        this.set('filtered', response);
-      });
-  },
-
   actions: {
-    search (value) {
-      this.set('q', value);
-      this.search(value);
+    filter () {
+      this.set('q', this.get('query'));
+      // reset the page
+      this.set('start', 1);
+      this.transitionToRoute('items.index');
     }
   }
 });
