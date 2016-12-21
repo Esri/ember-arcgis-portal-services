@@ -19,7 +19,9 @@ Router.map(function () {
   this.route('signin');
 
   this.route('groups', function () {
-    this.route('group', { path: '/:id' });
+    this.route('group', { path: '/:id' }, function() {
+      this.route('edit');
+    });
     this.route('new');
   });
 
