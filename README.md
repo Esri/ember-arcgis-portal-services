@@ -12,8 +12,7 @@ We expect this project to have many releases before the 1.0.0 "Public API" stabl
 After adding this to your project, you will have a number of services available for injection into your routes/controllers/services.
 
 ## Dependencies
-This project is now using `ember-network/fetch` to enable fastboot compatibility. Please also `ember install ember-network`
-- `torii-provider-arcgis` install via `npm i torii-provider-arcgis`
+- [torii-provider-arcgis](https://github.com/dbouwman/torii-provider-arcgis) - see [usage](https://github.com/dbouwman/torii-provider-arcgis#usage) for installation and configuration instructions.
 
 ### Shared Methods
 All the services expose a set of shared helper properties and methods:
