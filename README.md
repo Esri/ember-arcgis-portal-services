@@ -39,6 +39,8 @@ All the services expose a set of shared helper properties and methods:
 | `update(item)` |  `promise` | Updates an existing item. The `.owner` property must be set. |
 | `create(item)` |  `promise` | Creates an item. The `.owner` property must be set. |
 | `destroy(itemId, owner)` |  `promise` | Delete the item. |
+| `protect(itemId, owner)` |  `promise` | Protect the item. |
+| `unprotect(itemId, owner)` |  `promise` | Unprotect the item. |
 
 ### Groups Service
 

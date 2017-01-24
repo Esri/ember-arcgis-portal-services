@@ -7,13 +7,21 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-6">
     <h4>Sharing: {{model.item.access}}</h4>
     <p>This only handles sharing to the org or everyone</p>
     <div class="btn-group" role="group" aria-label="...">
       <button type="button" class="btn btn-default" {{action 'shareWithGroups'}}>Only Existing Groups</button>
       <button type="button" class="btn btn-default" {{action 'shareWithOrg'}}>Org</button>
       <button type="button" class="btn btn-default" {{action 'shareWithEveryone'}}>Everyone</button>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <h4>Protected: {{model.item.protected}}</h4>
+    <p>Set Delete Protection</p>
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-default" {{action 'protectItem'}}>Protect</button>
+      <button type="button" class="btn btn-default" {{action 'unprotectItem'}}>Unprotect</button>
     </div>
   </div>
   <div class="col-sm-6">
