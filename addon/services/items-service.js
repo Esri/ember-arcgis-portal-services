@@ -70,6 +70,19 @@ export default Ember.Service.extend(serviceMixin, {
     return this._post(url, {});
   },
 
+  protect (itemId, owner) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/protect?f=json`;
+    return this._post(url, {});
+  },
+
+  unprotect (itemId, owner) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/unprotect?f=json`;
+    return this._post(url, {});
+  },
+
+
   /**
    * Upload a resource (file) to an item
    */

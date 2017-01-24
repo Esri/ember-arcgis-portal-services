@@ -14,6 +14,33 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
+
+    protectItem: function () {
+      const itemId = this.get('model.item.id');
+      const owner = this.get('model.item.owner');
+      return this.get('itemsService').protect(itemId, owner)
+      .then((result) => {
+        if (result.success) {
+          this.set('model.item.protected', true);
+        } else {
+          Ember.debug('Protect call failed: ' + JSON.stringify(result));
+        }
+      });
+    },
+
+    unprotectItem: function () {
+      const itemId = this.get('model.item.id');
+      const owner = this.get('model.item.owner');
+      return this.get('itemsService').unprotect(itemId, owner)
+      .then((result) => {
+        if (result.success) {
+          this.set('model.item.protected', false);
+        } else {
+          Ember.debug('Unprotect call failed: ' + JSON.stringify(result));
+        }
+      })
+    },
+
     save: function () {
       // get the item
       let item = this.get('itemJson');
