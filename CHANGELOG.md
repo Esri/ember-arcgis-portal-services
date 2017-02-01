@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.8.9]
+### Added
+- `portal-service.update` throws "this.getPortalRestUrl is undefined"
+
 ## [0.8.8]
 ### Added
 - `items-service.protect` and `items-service.unprotect`
