@@ -10,7 +10,7 @@ export default Ember.Service.extend(serviceMixin, {
    */
   update (portal) {
     console.log('Portal Service got update for ' + portal.id);
-    let portalRestUrl = this.getPortalRestUrl();
+    let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/portals/${portal.id}/update?f=json`;
     return this._post(url, portal);
   },
