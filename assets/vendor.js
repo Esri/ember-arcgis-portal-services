@@ -102107,6 +102107,18 @@ define('ember-arcgis-portal-services/services/items-service', ['exports', 'ember
       return this._post(url, {});
     },
 
+    protect: function protect(itemId, owner) {
+      var portalRestUrl = this.get('portalRestUrl');
+      var url = portalRestUrl + '/content/users/' + owner + '/items/' + itemId + '/protect?f=json';
+      return this._post(url, {});
+    },
+
+    unprotect: function unprotect(itemId, owner) {
+      var portalRestUrl = this.get('portalRestUrl');
+      var url = portalRestUrl + '/content/users/' + owner + '/items/' + itemId + '/unprotect?f=json';
+      return this._post(url, {});
+    },
+
     /**
      * Upload a resource (file) to an item
      */
@@ -102200,6 +102212,10 @@ define('ember-arcgis-portal-services/services/items-service', ['exports', 'ember
       if (clone.data) {
         clone.text = JSON.stringify(clone.data);
         delete clone.data;
+      }
+      // Convert properties to a string
+      if (clone.properties) {
+        clone.properties = JSON.stringify(clone.properties);
       }
       return clone;
     },
@@ -102339,7 +102355,20 @@ define('ember-arcgis-portal-services/services/portal-service', ['exports', 'embe
       var portalRestUrl = this.get('portalRestUrl');
       var url = portalRestUrl + '/portals/self/removeresource?f=json';
       return this.request(url, { method: 'POST', data: { key: resourceName } });
+    },
+
+    /**
+    * Paged access to users in a portal
+    */
+    users: function users(portalId) {
+      var start = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+      var num = arguments.length <= 2 || arguments[2] === undefined ? 100 : arguments[2];
+
+      var portalBaseUrl = this.get('portalRestUrl');
+      var url = portalBaseUrl + '/portals/' + portalId + '/users/?f=json&start=' + start + '&num=' + num;
+      return this.request(url);
     }
+
   });
 });
 define('ember-arcgis-portal-services/services/sharing-service', ['exports', 'ember', 'ember-arcgis-portal-services/mixins/service-mixin'], function (exports, _ember, _emberArcgisPortalServicesMixinsServiceMixin) {

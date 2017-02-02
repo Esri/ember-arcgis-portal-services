@@ -824,6 +824,88 @@ define('dummy/components/file-input/component', ['exports', 'ember'], function (
     }
   });
 });
+define('dummy/components/group-search-form/component', ['exports', 'ember', 'dummy/components/group-search-form/template'], function (exports, _ember, _dummyComponentsGroupSearchFormTemplate) {
+  exports['default'] = _ember['default'].Component.extend({
+    layout: _dummyComponentsGroupSearchFormTemplate['default'],
+    tagName: 'form',
+    classNames: ['form-inline'],
+
+    submit: function submit() {
+      if (this.get('query') === '') {
+        this.set('query', null);
+      }
+      this.get('onFilter')();
+      return false;
+    },
+    actions: {
+      filter: function filter() {
+        if (this.get('query') === '') {
+          this.set('query', null);
+        }
+        this.get('onFilter')();
+      }
+    }
+  });
+});
+define("dummy/components/group-search-form/template", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "revision": "Ember@2.8.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 6,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/components/group-search-form/template.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "form-group");
+        var el2 = dom.createTextNode("\n   ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n   ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n   ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [0]);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(element0, 1, 1);
+        morphs[1] = dom.createMorphAt(element0, 3, 3);
+        morphs[2] = dom.createMorphAt(element0, 5, 5);
+        return morphs;
+      },
+      statements: [["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "query", ["loc", [null, [2, 17], [2, 22]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control", "placeholder", "Search"], ["loc", [null, [2, 3], [2, 66]]], 0, 0], ["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "owner", ["loc", [null, [3, 17], [3, 22]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control", "placeholder", "Owner"], ["loc", [null, [3, 3], [3, 65]]], 0, 0], ["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "tags", ["loc", [null, [4, 17], [4, 21]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control", "placeholder", "Tags"], ["loc", [null, [4, 3], [4, 63]]], 0, 0]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define('dummy/components/item-resources/component', ['exports', 'ember', 'dummy/components/item-resources/template', 'ember-network/fetch'], function (exports, _ember, _dummyComponentsItemResourcesTemplate, _emberNetworkFetch) {
   exports['default'] = _ember['default'].Component.extend({
     layout: _dummyComponentsItemResourcesTemplate['default'],
@@ -2310,7 +2392,7 @@ define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-ser
   QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/items-service.js');
   QUnit.test('should pass ESLint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/items-service.js should pass ESLint.\n');
+    assert.ok(false, 'modules/ember-arcgis-portal-services/services/items-service.js should pass ESLint.\n84:1  - More than 1 blank line not allowed. (no-multiple-empty-lines)');
   });
 });
 define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/oauth-service.lint-test', ['exports'], function (exports) {
@@ -2351,6 +2433,96 @@ define('dummy/ext/torii-provider-arcgis', ['exports', 'torii/services/torii-sess
  * This file simply re-opens the Torii Session object,
  * using the GateKeeper mixin
  */
+define('dummy/groups/group/edit/route', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Route.extend({});
+});
+define("dummy/groups/group/edit/template", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "revision": "Ember@2.8.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/groups/group/edit/template.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]], 0, 0, 0, 0]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
+define('dummy/groups/group/index/route', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Route.extend({});
+});
+define("dummy/groups/group/index/template", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "revision": "Ember@2.8.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/groups/group/index/template.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+        dom.insertBoundary(fragment, 0);
+        return morphs;
+      },
+      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]], 0, 0, 0, 0]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define('dummy/groups/group/route', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
 
@@ -2530,16 +2702,18 @@ define('dummy/groups/index/controller', ['exports', 'ember'], function (exports,
   exports['default'] = _ember['default'].Controller.extend({
     groupsService: _ember['default'].inject.service('groups-service'),
     session: _ember['default'].inject.service(),
-    queryParams: ['q'],
+    queryParams: ['start', 'num', 'q', 'owner', 'tags'],
     q: '*',
     query: '*',
+    owner: null,
+    tags: null,
     start: 1,
-    num: 100,
+    num: 10,
     filtered: {},
 
-    hasResults: _ember['default'].computed('filtered', function () {
+    hasResults: _ember['default'].computed('model.results', function () {
       var result = false;
-      if (this.get('filtered.results.length')) {
+      if (this.get('model.results.length')) {
         result = true;
       }
       return result;
@@ -2551,43 +2725,84 @@ define('dummy/groups/index/controller', ['exports', 'ember'], function (exports,
 
     queryChanged: _ember['default'].observer('q', function () {
       this.set('query', this.get('q'));
-      this.search(this.get('q'));
     }),
 
-    init: function init() {
-      this._super.apply(this, arguments);
-      if (this.get('q') === '') {
-        this.search('*');
-      }
-    },
-
-    search: function search(query) {
-      var _this = this;
-
-      // construct the query
-      var form = {
-        q: 'title:' + query, // AND access:public AND isopendata:true
-        sortField: 'title',
-        num: this.get('num'),
-        start: this.get('start')
-      };
-
-      this.get('groupsService').search(form).then(function (response) {
-        console.info('Response has ' + response.results.length + ' results');
-        _this.set('filtered', response);
-      });
-    },
-
     actions: {
-      search: function search(value) {
-        this.set('q', value);
-        this.search(value);
+      filter: function filter() {
+        this.set('q', this.get('query'));
+        // reset the page
+        this.set('start', 1);
+        this.transitionToRoute('items.index');
       }
     }
   });
 });
 define('dummy/groups/index/route', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Route.extend({});
+  exports['default'] = _ember['default'].Route.extend({
+    groupsService: _ember['default'].inject.service('groups-service'),
+    queryParams: {
+      'start': { refreshModel: true },
+      'num': { refreshModel: true },
+      'q': { refreshModel: true },
+      'owner': { refreshModel: true },
+      'tags': { refreshModel: true }
+    },
+
+    createAgoQuery: function createAgoQuery(query, owner, tags) {
+      console.log('Query ' + query + ' owner ' + owner + ' tags ' + tags);
+      var parts = [];
+      if (query) {
+        parts.push(query);
+      }
+
+      if (owner) {
+        parts.push('owner:' + owner);
+      }
+
+      if (tags) {
+        if (tags.indexOf(',')) {
+          var ta = tags.split(',');
+          ta.map(function (t) {
+            parts.push('tags:' + t);
+          });
+        } else {
+          parts.push('tags:' + tags);
+        }
+      }
+
+      console.log('parts: ' + JSON.stringify(parts));
+      var agoQuery = parts.join(' AND ');
+      console.log('AGO Query: ' + agoQuery);
+      return agoQuery;
+    },
+    /**
+     * Execute the query for groups...
+     */
+    model: function model(params) {
+      var agoQuery = this.createAgoQuery(params.q, params.owner, params.tags);
+      var agoParams = {
+        q: agoQuery,
+        start: params.start,
+        num: params.num,
+        sortField: 'title'
+      };
+
+      return this.get('groupsService').search(agoParams);
+    },
+    actions: {
+      destroy: function destroy(group) {
+        var _this = this;
+
+        this.get('groupsService').remove(group.id).then(function () {
+          // need to transition to the route so we pick up new entries
+          _ember['default'].debug('Group Deleted... transitioning route to get new results...');
+          _ember['default'].run.later(_this, function () {
+            this.refresh();
+          }, 500);
+        });
+      }
+    }
+  });
 });
 define("dummy/groups/index/template", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
@@ -2635,11 +2850,11 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 35,
+                  "line": 25,
                   "column": 14
                 },
                 "end": {
-                  "line": 35,
+                  "line": 25,
                   "column": 58
                 }
               },
@@ -2662,7 +2877,44 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
               dom.insertBoundary(fragment, null);
               return morphs;
             },
-            statements: [["content", "group.title", ["loc", [null, [35, 14], [35, 58]]], 0, 0, 0, 0]],
+            statements: [["content", "group.title", ["loc", [null, [25, 14], [25, 58]]], 0, 0, 0, 0]],
+            locals: [],
+            templates: []
+          };
+        })();
+        var child1 = (function () {
+          return {
+            meta: {
+              "revision": "Ember@2.8.2",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 29,
+                  "column": 12
+                },
+                "end": {
+                  "line": 29,
+                  "column": 142
+                }
+              },
+              "moduleName": "dummy/groups/index/template.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createElement("span");
+              dom.setAttribute(el1, "class", "glyphicon glyphicon-pencil");
+              dom.setAttribute(el1, "aria-hidden", "true");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes() {
+              return [];
+            },
+            statements: [],
             locals: [],
             templates: []
           };
@@ -2673,11 +2925,11 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 33,
+                "line": 23,
                 "column": 8
               },
               "end": {
-                "line": 42,
+                "line": 34,
                 "column": 8
               }
             },
@@ -2715,6 +2967,22 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
             var el2 = dom.createElement("td");
             var el3 = dom.createTextNode("\n            ");
             dom.appendChild(el2, el3);
+            var el3 = dom.createComment("");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n            ");
+            dom.appendChild(el2, el3);
+            var el3 = dom.createElement("button");
+            dom.setAttribute(el3, "type", "button");
+            dom.setAttribute(el3, "class", "btn btn-danger");
+            var el4 = dom.createTextNode(" ");
+            dom.appendChild(el3, el4);
+            var el4 = dom.createElement("span");
+            dom.setAttribute(el4, "class", "glyphicon glyphicon-trash");
+            dom.setAttribute(el4, "aria-hidden", "true");
+            dom.appendChild(el3, el4);
+            dom.appendChild(el2, el3);
+            var el3 = dom.createTextNode("\n            ");
+            dom.appendChild(el2, el3);
             var el3 = dom.createElement("a");
             dom.setAttribute(el3, "target", "_blank");
             dom.setAttribute(el3, "class", "btn btn-default");
@@ -2734,17 +3002,21 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
           },
           buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
             var element0 = dom.childAt(fragment, [1]);
-            var element1 = dom.childAt(element0, [7, 1]);
-            var morphs = new Array(4);
+            var element1 = dom.childAt(element0, [7]);
+            var element2 = dom.childAt(element1, [3]);
+            var element3 = dom.childAt(element1, [5]);
+            var morphs = new Array(6);
             morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
             morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 0, 0);
             morphs[2] = dom.createMorphAt(dom.childAt(element0, [5]), 0, 0);
-            morphs[3] = dom.createAttrMorph(element1, 'href');
+            morphs[3] = dom.createMorphAt(element1, 1, 1);
+            morphs[4] = dom.createElementMorph(element2);
+            morphs[5] = dom.createAttrMorph(element3, 'href');
             return morphs;
           },
-          statements: [["block", "link-to", ["groups.group", ["get", "group", ["loc", [null, [35, 51], [35, 56]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [35, 14], [35, 58]]]], ["content", "group.access", ["loc", [null, [36, 14], [36, 30]]], 0, 0, 0, 0], ["content", "group.owner", ["loc", [null, [37, 14], [37, 29]]], 0, 0, 0, 0], ["attribute", "href", ["concat", [["get", "agoGroupsBaseUrl", ["loc", [null, [39, 23], [39, 39]]], 0, 0, 0, 0], "?id=", ["get", "group.id", ["loc", [null, [39, 47], [39, 55]]], 0, 0, 0, 0]], 0, 0, 0, 0, 0], 0, 0, 0, 0]],
+          statements: [["block", "link-to", ["groups.group", ["get", "group", ["loc", [null, [25, 51], [25, 56]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [25, 14], [25, 58]]]], ["content", "group.access", ["loc", [null, [26, 14], [26, 30]]], 0, 0, 0, 0], ["content", "group.owner", ["loc", [null, [27, 14], [27, 29]]], 0, 0, 0, 0], ["block", "link-to", ["groups.group.edit", ["get", "item", ["loc", [null, [29, 43], [29, 47]]], 0, 0, 0, 0]], ["class", "btn btn-default"], 1, null, ["loc", [null, [29, 12], [29, 154]]]], ["element", "action", ["destroy", ["get", "group", ["loc", [null, [30, 77], [30, 82]]], 0, 0, 0, 0]], [], ["loc", [null, [30, 58], [30, 84]]], 0, 0], ["attribute", "href", ["concat", [["get", "agoGroupsBaseUrl", ["loc", [null, [31, 23], [31, 39]]], 0, 0, 0, 0], "?id=", ["get", "group.id", ["loc", [null, [31, 47], [31, 55]]], 0, 0, 0, 0]], 0, 0, 0, 0, 0], 0, 0, 0, 0]],
           locals: ["group"],
-          templates: [child0]
+          templates: [child0, child1]
         };
       })();
       return {
@@ -2753,11 +3025,11 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 23,
+              "line": 13,
               "column": 2
             },
             "end": {
-              "line": 45,
+              "line": 37,
               "column": 2
             }
           },
@@ -2825,7 +3097,7 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 3]), 1, 1);
           return morphs;
         },
-        statements: [["block", "each", [["get", "filtered.results", ["loc", [null, [33, 16], [33, 32]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [33, 8], [42, 17]]]]],
+        statements: [["block", "each", [["get", "model.results", ["loc", [null, [23, 16], [23, 29]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [23, 8], [34, 17]]]]],
         locals: [],
         templates: [child0]
       };
@@ -2837,11 +3109,11 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 45,
+              "line": 37,
               "column": 2
             },
             "end": {
-              "line": 47,
+              "line": 39,
               "column": 2
             }
           },
@@ -2873,7 +3145,7 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
           return morphs;
         },
-        statements: [["content", "q", ["loc", [null, [46, 62], [46, 67]]], 0, 0, 0, 0]],
+        statements: [["content", "q", ["loc", [null, [38, 62], [38, 67]]], 0, 0, 0, 0]],
         locals: [],
         templates: []
       };
@@ -2888,7 +3160,7 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 51,
+            "line": 43,
             "column": 0
           }
         },
@@ -2918,74 +3190,9 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("form");
-        dom.setAttribute(el3, "class", "form-inline");
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "form-group");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("label");
-        dom.setAttribute(el5, "for", "exampleInputName2");
-        var el6 = dom.createTextNode("Query");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "form-group");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("label");
-        dom.setAttribute(el5, "for", "exampleInputName2");
-        var el6 = dom.createTextNode("Start");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        dom.setAttribute(el4, "class", "form-group");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("label");
-        dom.setAttribute(el5, "for", "exampleInputName2");
-        var el6 = dom.createTextNode("Num");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("button");
-        dom.setAttribute(el4, "type", "button");
-        dom.setAttribute(el4, "class", "btn btn-default");
-        var el5 = dom.createTextNode("Search");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
+        var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
@@ -3018,20 +3225,15 @@ define("dummy/groups/index/template", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element2 = dom.childAt(fragment, [0, 1]);
-        var element3 = dom.childAt(element2, [3]);
-        var element4 = dom.childAt(element3, [7]);
-        var morphs = new Array(7);
-        morphs[0] = dom.createMorphAt(dom.childAt(element2, [1]), 1, 1);
-        morphs[1] = dom.createMorphAt(dom.childAt(element3, [1]), 3, 3);
-        morphs[2] = dom.createMorphAt(dom.childAt(element3, [3]), 3, 3);
-        morphs[3] = dom.createMorphAt(dom.childAt(element3, [5]), 3, 3);
-        morphs[4] = dom.createElementMorph(element4);
-        morphs[5] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
-        morphs[6] = dom.createMorphAt(fragment, 4, 4, contextualElement);
+        var element4 = dom.childAt(fragment, [0, 1]);
+        var morphs = new Array(4);
+        morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
+        morphs[1] = dom.createMorphAt(element4, 3, 3);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
+        morphs[3] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         return morphs;
       },
-      statements: [["block", "link-to", ["groups.new"], ["class", "btn btn-primary pull-right"], 0, null, ["loc", [null, [3, 15], [3, 86]]]], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "query", ["loc", [null, [7, 43], [7, 48]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [7, 8], [7, 50]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "start", ["loc", [null, [11, 43], [11, 48]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [11, 8], [11, 50]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "num", ["loc", [null, [15, 43], [15, 46]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [15, 8], [15, 48]]], 0, 0], ["element", "action", ["search", ["get", "query", ["loc", [null, [17, 70], [17, 75]]], 0, 0, 0, 0]], [], ["loc", [null, [17, 52], [17, 77]]], 0, 0], ["block", "if", [["get", "hasResults", ["loc", [null, [23, 8], [23, 18]]], 0, 0, 0, 0]], [], 1, 2, ["loc", [null, [23, 2], [47, 9]]]], ["inline", "log", [["get", "filtered", ["loc", [null, [50, 6], [50, 14]]], 0, 0, 0, 0]], [], ["loc", [null, [50, 0], [50, 16]]], 0, 0]],
+      statements: [["block", "link-to", ["groups.new"], ["class", "btn btn-primary pull-right"], 0, null, ["loc", [null, [3, 15], [3, 86]]]], ["inline", "group-search-form", [], ["onFilter", ["subexpr", "action", ["filter"], [], ["loc", [null, [4, 33], [4, 50]]], 0, 0], "owner", ["subexpr", "@mut", [["get", "owner", ["loc", [null, [5, 12], [5, 17]]], 0, 0, 0, 0]], [], [], 0, 0], "tags", ["subexpr", "@mut", [["get", "tags", ["loc", [null, [6, 11], [6, 15]]], 0, 0, 0, 0]], [], [], 0, 0], "query", ["subexpr", "@mut", [["get", "q", ["loc", [null, [7, 12], [7, 13]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [4, 4], [7, 15]]], 0, 0], ["block", "if", [["get", "hasResults", ["loc", [null, [13, 8], [13, 18]]], 0, 0, 0, 0]], [], 1, 2, ["loc", [null, [13, 2], [39, 9]]]], ["inline", "log", [["get", "filtered", ["loc", [null, [42, 6], [42, 14]]], 0, 0, 0, 0]], [], ["loc", [null, [42, 0], [42, 16]]], 0, 0]],
       locals: [],
       templates: [child0, child1, child2]
     };
@@ -3286,7 +3488,7 @@ define("dummy/index/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 73,
+            "line": 75,
             "column": 0
           }
         },
@@ -3531,7 +3733,7 @@ define("dummy/index/template", ["exports"], function (exports) {
         var el5 = dom.createTextNode("getByName");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
+        var el4 = dom.createTextNode("\n\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
@@ -3629,6 +3831,12 @@ define("dummy/index/template", ["exports"], function (exports) {
         var el5 = dom.createTextNode("removeResource");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("portalUsers");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
@@ -3651,7 +3859,7 @@ define("dummy/index/template", ["exports"], function (exports) {
         morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [72, 0], [72, 10]]], 0, 0, 0, 0]],
+      statements: [["content", "outlet", ["loc", [null, [74, 0], [74, 10]]], 0, 0, 0, 0]],
       locals: [],
       templates: []
     };
@@ -5734,27 +5942,61 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
 
     sharingService: _ember['default'].inject.service('sharing-service'),
 
-    itemJson: _ember['default'].computed('model.item', function () {
+    itemJson: _ember['default'].computed('model', function () {
+      _ember['default'].debug('ItemJson being reset...');
       return this.get('model.item');
-    }),
+    }).volatile(),
 
-    dataJson: _ember['default'].computed('model.data', function () {
+    dataJson: _ember['default'].computed('model', function () {
+      _ember['default'].debug('DataJson being reset...');
       return this.get('model.data');
+    }).volatile(),
+    // itemJson: Ember.computed.reads('model.item').volatile,
+    // datason: Ember.computed.reads('model.data').volatile,
+
+    dataJsonString: _ember['default'].computed('model', function () {
+      return JSON.stringify(this.get('dataJson'), null, ' ');
     }),
 
     actions: {
-      save: function save() {
+
+      protectItem: function protectItem() {
         var _this = this;
 
-        // get the item
-        var item = this.get('itemJson');
+        var itemId = this.get('model.item.id');
+        var owner = this.get('model.item.owner');
+        return this.get('itemsService').protect(itemId, owner).then(function (result) {
+          if (result.success) {
+            _this.set('model.item.protected', true);
+          } else {
+            _ember['default'].debug('Protect call failed: ' + JSON.stringify(result));
+          }
+        });
+      },
 
-        if (this.get('dataJson')) {
-          item.text = JSON.stringify(this.get('dataJson'));
-        }
+      unprotectItem: function unprotectItem() {
+        var _this2 = this;
+
+        var itemId = this.get('model.item.id');
+        var owner = this.get('model.item.owner');
+        return this.get('itemsService').unprotect(itemId, owner).then(function (result) {
+          if (result.success) {
+            _this2.set('model.item.protected', false);
+          } else {
+            _ember['default'].debug('Unprotect call failed: ' + JSON.stringify(result));
+          }
+        });
+      },
+
+      save: function save() {
+        var _this3 = this;
+
+        // get the item
+        var item = this.get('model.item');
+        item.text = JSON.stringify(this.get('model.data'));
 
         this.get('itemsService').update(item).then(function (resp) {
-          _this.transitionToRoute('items.index');
+          _this3.transitionToRoute('items.index');
         });
       },
       cancel: function cancel() {
@@ -5783,23 +6025,23 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
       },
 
       shareWithEveryone: function shareWithEveryone() {
-        var _this2 = this;
+        var _this4 = this;
 
         var item = this.get('model.item');
         this.get('sharingService').shareItemWithEveryone(item.owner, item.id).then(function (result) {
-          _this2.set('model.item.access', 'everyone');
+          _this4.set('model.item.access', 'everyone');
         });
       },
       shareWithOrg: function shareWithOrg() {
-        var _this3 = this;
+        var _this5 = this;
 
         var item = this.get('model.item');
         this.get('sharingService').shareItemWithOrg(item.owner, item.id).then(function (result) {
-          _this3.set('model.item.access', 'org');
+          _this5.set('model.item.access', 'org');
         });
       },
       shareWithGroups: function shareWithGroups() {
-        var _this4 = this;
+        var _this6 = this;
 
         var item = this.get('model.item');
         var data = {
@@ -5811,7 +6053,7 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
           f: 'json'
         };
         this.get('sharingService').shareItem(data).then(function (result) {
-          _this4.set('model.item.access', 'shared');
+          _this6.set('model.item.access', 'shared');
         });
       }
 
@@ -5824,10 +6066,20 @@ define('dummy/items/item/edit/route', ['exports', 'ember'], function (exports, _
     itemsService: _ember['default'].inject.service('items-service'),
     model: function model(params) {
       var item = this.modelFor('items.item');
-      _ember['default'].debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
-      return _ember['default'].RSVP.hash({
+      _ember['default'].debug('Items.item.edit:: item.id ' + item.id);
+      return _ember['default'].RSVP.hashSettled({
         item: item,
         data: this.get('itemsService').getDataById(item.id)
+      }).then(function (hashResults) {
+        _ember['default'].debug('Items.item.edit route returning model...');
+        var model = {
+          item: hashResults.item.value,
+          data: hashResults.data.value
+        };
+        if (!model.item.title === model.data.values.title) {
+          _ember['default'].debug('Items.item.edit route returning model but item and data do not match!!!!!');
+        }
+        return model;
       });
     }
   });
@@ -5844,7 +6096,7 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 39,
+            "line": 47,
             "column": 0
           }
         },
@@ -5901,7 +6153,7 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
-        dom.setAttribute(el2, "class", "col-sm-12");
+        dom.setAttribute(el2, "class", "col-sm-6");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h4");
@@ -5944,6 +6196,52 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         dom.setAttribute(el4, "type", "button");
         dom.setAttribute(el4, "class", "btn btn-default");
         var el5 = dom.createTextNode("Everyone");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h4");
+        var el4 = dom.createTextNode("Protected: ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("p");
+        var el4 = dom.createTextNode("Set Delete Protection");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "btn-group");
+        dom.setAttribute(el3, "role", "group");
+        dom.setAttribute(el3, "aria-label", "...");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "button");
+        dom.setAttribute(el4, "class", "btn btn-default");
+        var el5 = dom.createTextNode("Protect");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "type", "button");
+        dom.setAttribute(el4, "class", "btn btn-default");
+        var el5 = dom.createTextNode("Unprotect");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n    ");
@@ -6021,7 +6319,11 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var element6 = dom.childAt(element5, [1]);
         var element7 = dom.childAt(element5, [3]);
         var element8 = dom.childAt(element5, [5]);
-        var morphs = new Array(10);
+        var element9 = dom.childAt(element3, [3]);
+        var element10 = dom.childAt(element9, [5]);
+        var element11 = dom.childAt(element10, [1]);
+        var element12 = dom.childAt(element10, [3]);
+        var morphs = new Array(13);
         morphs[0] = dom.createMorphAt(element0, 1, 1);
         morphs[1] = dom.createElementMorph(element1);
         morphs[2] = dom.createElementMorph(element2);
@@ -6029,12 +6331,15 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         morphs[4] = dom.createElementMorph(element6);
         morphs[5] = dom.createElementMorph(element7);
         morphs[6] = dom.createElementMorph(element8);
-        morphs[7] = dom.createMorphAt(dom.childAt(element3, [3]), 3, 3);
-        morphs[8] = dom.createMorphAt(dom.childAt(element3, [5]), 3, 3);
-        morphs[9] = dom.createMorphAt(dom.childAt(fragment, [4, 1]), 1, 1);
+        morphs[7] = dom.createMorphAt(dom.childAt(element9, [1]), 1, 1);
+        morphs[8] = dom.createElementMorph(element11);
+        morphs[9] = dom.createElementMorph(element12);
+        morphs[10] = dom.createMorphAt(dom.childAt(element3, [5]), 3, 3);
+        morphs[11] = dom.createMorphAt(dom.childAt(element3, [7]), 3, 3);
+        morphs[12] = dom.createMorphAt(dom.childAt(fragment, [4, 1]), 1, 1);
         return morphs;
       },
-      statements: [["content", "model.title", ["loc", [null, [3, 13], [3, 28]]], 0, 0, 0, 0], ["element", "action", ["cancel"], [], ["loc", [null, [4, 76], [4, 95]]], 0, 0], ["element", "action", ["save"], [], ["loc", [null, [5, 76], [5, 93]]], 0, 0], ["content", "model.item.access", ["loc", [null, [11, 17], [11, 38]]], 0, 0, 0, 0], ["element", "action", ["shareWithGroups"], [], ["loc", [null, [14, 52], [14, 80]]], 0, 0], ["element", "action", ["shareWithOrg"], [], ["loc", [null, [15, 52], [15, 77]]], 0, 0], ["element", "action", ["shareWithEveryone"], [], ["loc", [null, [16, 52], [16, 82]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "itemJson", ["loc", [null, [21, 23], [21, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "itemJson", ["loc", [null, [21, 66], [21, 74]]], 0, 0, 0, 0]], [], ["loc", [null, [21, 61], [21, 75]]], 0, 0]], [], ["loc", [null, [21, 53], [21, 76]]], 0, 0]], ["loc", [null, [21, 4], [21, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "dataJson", ["loc", [null, [25, 23], [25, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "dataJson", ["loc", [null, [25, 66], [25, 74]]], 0, 0, 0, 0]], [], ["loc", [null, [25, 61], [25, 75]]], 0, 0]], [], ["loc", [null, [25, 53], [25, 76]]], 0, 0]], ["loc", [null, [25, 4], [25, 78]]], 0, 0], ["inline", "item-resources", [], ["item", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [30, 26], [30, 36]]], 0, 0, 0, 0]], [], [], 0, 0], "onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [31, 23], [31, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [32, 23], [32, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [33, 19], [33, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [34, 19], [34, 38]]], 0, 0], "onTextUpload", ["subexpr", "action", ["sendText"], [], ["loc", [null, [35, 19], [35, 38]]], 0, 0]], ["loc", [null, [30, 4], [36, 8]]], 0, 0]],
+      statements: [["content", "model.title", ["loc", [null, [3, 13], [3, 28]]], 0, 0, 0, 0], ["element", "action", ["cancel"], [], ["loc", [null, [4, 76], [4, 95]]], 0, 0], ["element", "action", ["save"], [], ["loc", [null, [5, 76], [5, 93]]], 0, 0], ["content", "model.item.access", ["loc", [null, [11, 17], [11, 38]]], 0, 0, 0, 0], ["element", "action", ["shareWithGroups"], [], ["loc", [null, [14, 52], [14, 80]]], 0, 0], ["element", "action", ["shareWithOrg"], [], ["loc", [null, [15, 52], [15, 77]]], 0, 0], ["element", "action", ["shareWithEveryone"], [], ["loc", [null, [16, 52], [16, 82]]], 0, 0], ["content", "model.item.protected", ["loc", [null, [20, 19], [20, 43]]], 0, 0, 0, 0], ["element", "action", ["protectItem"], [], ["loc", [null, [23, 52], [23, 76]]], 0, 0], ["element", "action", ["unprotectItem"], [], ["loc", [null, [24, 52], [24, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [29, 23], [29, 33]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "model.item", ["loc", [null, [29, 68], [29, 78]]], 0, 0, 0, 0]], [], ["loc", [null, [29, 63], [29, 79]]], 0, 0]], [], ["loc", [null, [29, 55], [29, 80]]], 0, 0]], ["loc", [null, [29, 4], [29, 82]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "model.data", ["loc", [null, [33, 23], [33, 33]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "model.data", ["loc", [null, [33, 68], [33, 78]]], 0, 0, 0, 0]], [], ["loc", [null, [33, 63], [33, 79]]], 0, 0]], [], ["loc", [null, [33, 55], [33, 80]]], 0, 0]], ["loc", [null, [33, 4], [33, 82]]], 0, 0], ["inline", "item-resources", [], ["item", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [38, 26], [38, 36]]], 0, 0, 0, 0]], [], [], 0, 0], "onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [39, 23], [39, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [40, 23], [40, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [41, 19], [41, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [42, 19], [42, 38]]], 0, 0], "onTextUpload", ["subexpr", "action", ["sendText"], [], ["loc", [null, [43, 19], [43, 38]]], 0, 0]], ["loc", [null, [38, 4], [44, 8]]], 0, 0]],
       locals: [],
       templates: []
     };
@@ -6540,7 +6845,9 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
     this.route('signin');
 
     this.route('groups', function () {
-      this.route('group', { path: '/:id' });
+      this.route('group', { path: '/:id' }, function () {
+        this.route('edit');
+      });
       this.route('new');
     });
 
@@ -7621,7 +7928,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"0.8.5+9225000b"});
+  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"0.8.8+b62e374f"});
 }
 
 /* jshint ignore:end */

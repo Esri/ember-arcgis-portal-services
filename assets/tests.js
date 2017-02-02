@@ -27,6 +27,15 @@ define('dummy/tests/components/file-input/component.lint-test', ['exports'], fun
     assert.ok(true, 'components/file-input/component.js should pass ESLint.\n');
   });
 });
+define('dummy/tests/components/group-search-form/component.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - components/group-search-form/component.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'components/group-search-form/component.js should pass ESLint.\n');
+  });
+});
 define('dummy/tests/components/item-resources/component.lint-test', ['exports'], function (exports) {
   'use strict';
 
@@ -70,6 +79,24 @@ define('dummy/tests/components/upload-button/component.lint-test', ['exports'], 
   QUnit.test('should pass ESLint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'components/upload-button/component.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/groups/group/edit/route.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - groups/group/edit/route.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'groups/group/edit/route.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/groups/group/index/route.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - groups/group/index/route.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'groups/group/index/route.js should pass ESLint.\n');
   });
 });
 define('dummy/tests/groups/group/route.lint-test', ['exports'], function (exports) {
@@ -377,7 +404,7 @@ define('dummy/tests/router.lint-test', ['exports'], function (exports) {
   QUnit.module('ESLint - router.js');
   QUnit.test('should pass ESLint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'router.js should pass ESLint.\n');
+    assert.ok(false, 'router.js should pass ESLint.\n22:51  - Missing space before function parentheses. (space-before-function-paren)');
   });
 });
 define('dummy/tests/signin/route.lint-test', ['exports'], function (exports) {
