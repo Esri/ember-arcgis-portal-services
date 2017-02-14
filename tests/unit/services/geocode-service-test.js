@@ -6,7 +6,7 @@ moduleFor('service:geocode-service', 'Unit | Service | geocode service', {
 });
 
 // Replace this with your real tests.
-test('it exists', function(assert) {
+test('it exists', function (assert) {
   let service = this.subject();
   assert.ok(service);
 });

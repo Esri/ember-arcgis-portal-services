@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
         } else {
           Ember.debug('Unprotect call failed: ' + JSON.stringify(result));
         }
-      })
+      });
     },
 
     save: function () {
