@@ -25,9 +25,10 @@ module.exports = function (environment) {
       sessionServiceName: 'session',
       providers: {
         'arcgis-oauth-bearer': {
-         // apiKey: 'x3u9xkfpYyYbJu08' // production
-          apiKey: 'VpiQwiuWl7KMTGys', // qaext
-          portalUrl: 'https://qaext.arcgis.com'
+          apiKey: 'x3u9xkfpYyYbJu08', // production
+          // apiKey: 'VpiQwiuWl7KMTGys', // qaext
+          // portalUrl: 'https://qaext.arcgis.com'
+          portalUrl: 'https://www.arcgis.com'
         }
       }
     }
@@ -36,12 +37,15 @@ module.exports = function (environment) {
   // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
 
   if (environment === 'development') {
-    const env = 'dev';
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'ifq94vTWyyZclwNz';
+    // const env = 'dev';
+    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'ifq94vTWyyZclwNz';
     // if you need to test against QA API/data:
-    // const env = 'qa';
-    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
+    const env = 'qa';
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;
+    // PROD
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
   }
 
   if (environment === 'surge') {

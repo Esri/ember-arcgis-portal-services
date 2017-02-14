@@ -5,14 +5,29 @@ export default Ember.Service.extend(serviceMixin, {
   session: Ember.inject.service('session'),
 
   /**
-   * Update an existing item
-   * will update the `/data` if the `.text` value is present
+   * Update the portal
    */
   update (portal) {
-    console.log('Portal Service got update for ' + portal.id);
+    // console.log('Portal Service got update for ' + portal.id);
     let portalRestUrl = this.get('portalRestUrl');
     let url = `${portalRestUrl}/portals/${portal.id}/update?f=json`;
-    return this._post(url, portal);
+    let serializedPortal = this._serializePortal(portal);
+    return this._post(url, serializedPortal);
+  },
+
+  /**
+   * Serialize Portal
+   * There is not much we can actually update on this object, so
+   * we strip it down A LOT.
+   */
+  _serializePortal (portal) {
+    let clone = {};
+    // if more properties are needed, please open a PR on this project
+    if (portal.portalProperties) {
+      clone.portalProperties = JSON.stringify(portal.portalProperties);
+    }
+
+    return clone;
   },
 
   /**

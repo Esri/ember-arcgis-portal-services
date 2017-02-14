@@ -41,7 +41,5 @@ export default Ember.Controller.extend({
     prenuke () {
       this.set('showConfirmation', true);
     },
-    
-
   }
 });

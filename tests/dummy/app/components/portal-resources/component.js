@@ -25,10 +25,11 @@ export default Ember.Component.extend({
 
   actions: {
     destroy (resource) {
-      this.get('onRemoveResource')(resource.key)
-      .then(() => {
-        this._getResources();
-      });
+      alert('Resource Deletion has been disabled.');
+      // this.get('onRemoveResource')(resource.key)
+      // .then(() => {
+      //   this._getResources();
+      // });
     },
     filesChanged (files) {
       Ember.debug('Files changed!'); // files[0]

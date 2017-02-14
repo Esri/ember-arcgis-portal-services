@@ -82,7 +82,6 @@ export default Ember.Service.extend(serviceMixin, {
     return this._post(url, {});
   },
 
-
   /**
    * Upload a resource (file) to an item
    */

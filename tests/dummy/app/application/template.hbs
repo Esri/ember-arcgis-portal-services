@@ -33,5 +33,10 @@
   </div><!--/.container-fluid -->
 </nav>
 <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      Logged in as <strong>{{session.currentUser.username}}</strong> of <strong>{{session.portal.name}}</strong>
+    </div>
+  </div>
     {{outlet}}
 </div>
