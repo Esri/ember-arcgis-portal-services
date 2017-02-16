@@ -102279,14 +102279,29 @@ define('ember-arcgis-portal-services/services/portal-service', ['exports', 'embe
     session: _ember['default'].inject.service('session'),
 
     /**
-     * Update an existing item
-     * will update the `/data` if the `.text` value is present
+     * Update the portal
      */
     update: function update(portal) {
-      console.log('Portal Service got update for ' + portal.id);
-      var portalRestUrl = this.getPortalRestUrl();
+      // console.log('Portal Service got update for ' + portal.id);
+      var portalRestUrl = this.get('portalRestUrl');
       var url = portalRestUrl + '/portals/' + portal.id + '/update?f=json';
-      return this._post(url, portal);
+      var serializedPortal = this._serializePortal(portal);
+      return this._post(url, serializedPortal);
+    },
+
+    /**
+     * Serialize Portal
+     * There is not much we can actually update on this object, so
+     * we strip it down A LOT.
+     */
+    _serializePortal: function _serializePortal(portal) {
+      var clone = {};
+      // if more properties are needed, please open a PR on this project
+      if (portal.portalProperties) {
+        clone.portalProperties = JSON.stringify(portal.portalProperties);
+      }
+
+      return clone;
     },
 
     /**
@@ -102376,51 +102391,153 @@ define('ember-arcgis-portal-services/services/sharing-service', ['exports', 'emb
 
   exports['default'] = _ember['default'].Service.extend(_emberArcgisPortalServicesMixinsServiceMixin['default'], {
 
-    shareItemWithEveryone: function shareItemWithEveryone(owner, itemId) {
+    itemService: _ember['default'].inject.service('items-service'),
+
+    /**
+     * Set access
+     * access options null | org | everyone
+     */
+    setAccess: function setAccess(owner, itemId) {
+      var access = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
+      var portalBaseUrl = this.get('portalRestUrl');
+      var url = portalBaseUrl + '/content/users/' + owner + '/items/' + itemId + '/share';
+      var username = this.get('session.currentUser.username');
+      var isAdmin = this.get('session').isAdmin();
+      // Reject if the current user is neither the owner nor an orgAdmin
+      if (owner !== username && !isAdmin) {
+        return _ember['default'].RSVP.reject('This item can not be shared by ' + username + ' as they are neither the owner, nor an org_admin.');
+      }
       var data = {
-        owner: owner,
         items: itemId,
-        everyone: true,
-        f: 'json'
+        f: 'json',
+        org: false,
+        everyone: false
       };
-      return this.shareItems(data);
+      // handle the access
+      if (access) {
+        if (access === 'org') {
+          data.org = true;
+          data.everyone = false;
+        }
+
+        if (access === 'everyone') {
+          data.everyone = true;
+          data.org = true;
+        }
+      }
+
+      return this._post(url, data);
+    },
+
+    /**
+     * Share an item with a group, optionally with item control
+     * In order to make this more deterministic, we issue a query
+     * to check if the item is already shared to the group. If it is
+     * we short-circuit and do not make the sharing call.
+     */
+    shareWithGroup: function shareWithGroup(owner, itemId, groupId) {
+      var _this = this;
+
+      var confirmItemControl = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
+
+      var portalBaseUrl = this.get('portalRestUrl');
+      var url = portalBaseUrl + '/content/users/' + owner + '/items/' + itemId + '/share';
+      var username = this.get('session.currentUser.username');
+      var isAdmin = this.get('session').isAdmin();
+      // Reject if the current user is neither the owner nor an orgAdmin
+      if (owner !== username && !isAdmin) {
+        return _ember['default'].RSVP.reject('This item can not be shared by ' + username + ' as they are neither the owner, nor an org_admin.');
+      }
+      // create a query to check if the item is already shared w/ the group...
+
+      return this.isItemSharedWithGroup(itemId, groupId).then(function (result) {
+        if (result === false) {
+          // item is not shared with the group
+          var data = {
+            items: itemId,
+            f: 'json',
+            groups: groupId
+          };
+          if (confirmItemControl) {
+            data.confirmItemControl = true;
+          }
+          return _this._post(url, data).then(function (result) {
+            if (result.notSharedWith.length) {
+              var msg = 'Item ' + itemId + ' could not be shared to group ' + groupId + '. This is likely because the owner ' + owner + ' is not a member of this group.';
+              _ember['default'].debug(msg);
+              return _ember['default'].RSVP.reject(msg);
+            } else {
+              // all is well
+              return result;
+            }
+          });
+        } else {
+          // item is shared so we can short-circuit here and send back the same structure ago would
+          return _ember['default'].RSVP.resolve({ itemId: itemId, notSharedWith: [] });
+        }
+      });
+    },
+
+    /**
+     * Means to check if an item is already shard to a group
+     * This *may* give a false-false if the user making the call
+     * does not have access to the group
+     */
+    isItemSharedWithGroup: function isItemSharedWithGroup(itemId, groupId) {
+      var query = {
+        q: 'id: ' + itemId + ' AND group: ' + groupId,
+        start: 1,
+        num: 10,
+        sortField: 'title'
+      };
+      return this.get('itemService').search(query).then(function (searchResult) {
+        if (searchResult.total === 0) {
+          return false;
+        } else {
+          // Check that the item actually was returned
+          var results = _ember['default'].A(searchResult.results);
+          var itm = results.find(function (itm) {
+            return itm.id === itemId;
+          });
+          if (itm) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      });
+    },
+
+    /**
+     * Deprecated but proxy to the new callls
+     */
+    shareItemWithEveryone: function shareItemWithEveryone(owner, itemId) {
+      _ember['default'].deprecate('use .setAccess(owner,itemId, access).', false, { id: 'shareWithEveryoneDeprecation', until: '10.0.0' });
+      return this.setAccess(owner, itemId, 'everyone');
     },
 
     shareItemWithOrg: function shareItemWithOrg(owner, itemId) {
-      var data = {
-        owner: owner,
-        items: itemId,
-        org: true,
-        f: 'json'
-      };
-      return this.shareItems(data);
+      _ember['default'].deprecate('use .setAccess(owner,itemId, access).', false, { id: 'shareWithEveryoneDeprecation', until: '10.0.0' });
+      return this.setAccess(owner, itemId, 'org');
     },
 
+    /**
+     * Deprecated without proxies to new calls
+     */
     shareItemsWithGroups: function shareItemsWithGroups(owner, items, groups) {
-      var data = {
-        owner: owner,
-        items: items.join(','),
-        groups: groups.join(','),
-        f: 'json'
-      };
-      return this.shareItems(data);
+      _ember['default'].deprecate('use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).', false, { id: 'shareItemsWithGroupsDeprecation', until: '10.0.0' });
+      return _ember['default'].RSVP.reject('sharing-service::shareItemsWithGroups is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
     },
-
+    //
     shareItemsWithControl: function shareItemsWithControl(owner, items, groups) {
-      var data = {
-        owner: owner,
-        items: items.join(','),
-        groups: groups.join(','),
-        confirmItemControl: true,
-        f: 'json'
-      };
-      return this.shareItems(data);
+      _ember['default'].deprecate('use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).', false, { id: 'shareItemsWithControlDeprecation', until: '10.0.0' });
+      return _ember['default'].RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
     },
-
+    //
     shareItems: function shareItems(options) {
-      var portalBaseUrl = this.get('portalRestUrl');
-      var url = portalBaseUrl + '/content/users/' + options.owner + '/shareItems';
-      return this._post(url, options);
+      _ember['default'].deprecate('use .shareItemWithGroup(...) or .setAccess(...)', false, { id: 'shareItemsDeprecation', until: '10.0.0' });
+      return _ember['default'].RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(...) or .setAccess(...)');
     },
 
     /**
@@ -121070,6 +121187,20 @@ define('torii-provider-arcgis/mixins/gatekeeper', ['exports', 'ember'], function
   'use strict';
 
   exports['default'] = _ember['default'].Mixin.create({
+
+    /**
+     * Org Admins must have the org_admin role and
+     * NO roleId
+     */
+    isAdmin: function isAdmin() {
+      var user = this.get('currentUser');
+      var val = false;
+      if (user.role === 'org_admin' && !user.roleId) {
+        val = true;
+      }
+      return val;
+    },
+
     /**
      * Check if the current user is in a specific role
      * In ArcGIS Online, users can only have a single role.
@@ -121081,6 +121212,28 @@ define('torii-provider-arcgis/mixins/gatekeeper', ['exports', 'ember'], function
         return user.role === role;
       } else {
         return false;
+      }
+    },
+
+    /**
+     * Check if the user is a member of a group
+     */
+    isGroupMember: function isGroupMember(groupId) {
+      var user = this.get('currentUser');
+      if (!_ember['default'].isArray(user.groups)) {
+        // if the provider has not been configured to load groups, show a warning...
+        _ember['default'].debug('Session.isGroupMember was called, but torii-provider-arcgis has not been configured to fetch user groups. Please see documentation. (https://github.com/dbouwman/torii-provider-arcgis#ember-cli-torii-provider-arcgis)');
+        return false;
+      } else {
+        // look up the group in the groups array by it's Id
+        var group = user.groups.find(function (g) {
+          return g.id === groupId;
+        });
+        if (group) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
 
@@ -121111,6 +121264,22 @@ define('torii-provider-arcgis/mixins/gatekeeper', ['exports', 'ember'], function
         }
       } else {
         _ember['default'].warn('Session.hasAnyPrivilege was not passed an array. Please use .hasPrivilege instead.');
+      }
+      return result;
+    },
+
+    /**
+     * Does the current user have ALL the passed in privileges
+     */
+    hasAllPrivileges: function hasAllPrivileges(privileges) {
+      var result = false;
+      // check that we have an array
+      if (_ember['default'].isArray(privileges)) {
+        var chks = privileges.map(this.hasPrivilege, this);
+        // ensure that all checks return true...
+        result = chks.indexOf(false) === -1;
+      } else {
+        _ember['default'].warn('Session.hasAllPrivileges was not passed an array. Please use .hasPrivilege instead.');
       }
       return result;
     },
@@ -121169,16 +121338,15 @@ define('torii-provider-arcgis/mixins/gatekeeper', ['exports', 'ember'], function
     /**
      * Returns a protocol-less hostname for the Portal
      */
-    portalHostName: _ember['default'].computed('isAuthenticated', function () {
+    portalHostname: _ember['default'].computed('isAuthenticated', function () {
       var result = undefined;
       if (this.get('isAuthenticated')) {
         var portal = this.get('portal');
         var urlKey = portal.urlKey;
-        result = portal.portalHostName;
+        result = portal.portalHostname;
 
         if (urlKey) {
-          var customUrl = portal.customBaseUrl;
-          result = urlKey + '.' + customUrl;
+          result = urlKey + '.' + portal.customBaseUrl;
         }
       } else {
         var config = _ember['default'].getOwner(this).resolveRegistration('config:environment');
@@ -121186,6 +121354,15 @@ define('torii-provider-arcgis/mixins/gatekeeper', ['exports', 'ember'], function
         result = result.replace(/https?:\/\//, '');
       }
       return result;
+    }),
+
+    isLevelOne: _ember['default'].computed.equal('currentUser.level', '1'),
+
+    isLevelTwo: _ember['default'].computed.equal('currentUser.level', '2'),
+
+    portalHostName: _ember['default'].computed.deprecatingAlias('portalHostname', {
+      id: 'torii-provider-arcgis::portalHostName',
+      until: '10.0.0'
     }),
 
     /**

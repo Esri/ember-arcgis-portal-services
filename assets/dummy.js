@@ -620,7 +620,7 @@ define("dummy/application/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 38,
+            "line": 43,
             "column": 0
           }
         },
@@ -754,6 +754,32 @@ define("dummy/application/template", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "container");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "col-sm-12");
+        var el4 = dom.createTextNode("\n      Logged in as ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("strong");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode(" of ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("strong");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
@@ -769,7 +795,9 @@ define("dummy/application/template", ["exports"], function (exports) {
         var element1 = dom.childAt(fragment, [1, 1]);
         var element2 = dom.childAt(element1, [3]);
         var element3 = dom.childAt(element2, [1]);
-        var morphs = new Array(8);
+        var element4 = dom.childAt(fragment, [3]);
+        var element5 = dom.childAt(element4, [1, 1]);
+        var morphs = new Array(10);
         morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 3, 3);
         morphs[1] = dom.createMorphAt(element3, 1, 1);
         morphs[2] = dom.createMorphAt(element3, 3, 3);
@@ -777,10 +805,12 @@ define("dummy/application/template", ["exports"], function (exports) {
         morphs[4] = dom.createMorphAt(element3, 7, 7);
         morphs[5] = dom.createMorphAt(element3, 9, 9);
         morphs[6] = dom.createMorphAt(dom.childAt(element2, [3]), 1, 1);
-        morphs[7] = dom.createMorphAt(dom.childAt(fragment, [3]), 1, 1);
+        morphs[7] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
+        morphs[8] = dom.createMorphAt(dom.childAt(element5, [3]), 0, 0);
+        morphs[9] = dom.createMorphAt(element4, 3, 3);
         return morphs;
       },
-      statements: [["block", "link-to", ["index"], ["class", "navbar-brand"], 0, null, ["loc", [null, [12, 8], [12, 79]]]], ["block", "active-link", [], [], 1, null, ["loc", [null, [17, 8], [17, 66]]]], ["block", "active-link", [], [], 2, null, ["loc", [null, [18, 8], [18, 67]]]], ["block", "active-link", [], [], 3, null, ["loc", [null, [19, 8], [19, 75]]]], ["block", "active-link", [], [], 4, null, ["loc", [null, [20, 8], [20, 67]]]], ["block", "active-link", [], [], 5, null, ["loc", [null, [21, 8], [21, 69]]]], ["block", "if", [["get", "session.isAuthenticated", ["loc", [null, [24, 14], [24, 37]]], 0, 0, 0, 0]], [], 6, 7, ["loc", [null, [24, 8], [28, 15]]]], ["content", "outlet", ["loc", [null, [36, 4], [36, 14]]], 0, 0, 0, 0]],
+      statements: [["block", "link-to", ["index"], ["class", "navbar-brand"], 0, null, ["loc", [null, [12, 8], [12, 79]]]], ["block", "active-link", [], [], 1, null, ["loc", [null, [17, 8], [17, 66]]]], ["block", "active-link", [], [], 2, null, ["loc", [null, [18, 8], [18, 67]]]], ["block", "active-link", [], [], 3, null, ["loc", [null, [19, 8], [19, 75]]]], ["block", "active-link", [], [], 4, null, ["loc", [null, [20, 8], [20, 67]]]], ["block", "active-link", [], [], 5, null, ["loc", [null, [21, 8], [21, 69]]]], ["block", "if", [["get", "session.isAuthenticated", ["loc", [null, [24, 14], [24, 37]]], 0, 0, 0, 0]], [], 6, 7, ["loc", [null, [24, 8], [28, 15]]]], ["content", "session.currentUser.username", ["loc", [null, [38, 27], [38, 59]]], 0, 0, 0, 0], ["content", "session.portal.name", ["loc", [null, [38, 80], [38, 103]]], 0, 0, 0, 0], ["content", "outlet", ["loc", [null, [41, 4], [41, 14]]], 0, 0, 0, 0]],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7]
     };
@@ -2392,7 +2422,7 @@ define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-ser
   QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/items-service.js');
   QUnit.test('should pass ESLint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'modules/ember-arcgis-portal-services/services/items-service.js should pass ESLint.\n84:1  - More than 1 blank line not allowed. (no-multiple-empty-lines)');
+    assert.ok(true, 'modules/ember-arcgis-portal-services/services/items-service.js should pass ESLint.\n');
   });
 });
 define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/oauth-service.lint-test', ['exports'], function (exports) {
@@ -2505,6 +2535,8 @@ define("dummy/groups/group/index/template", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createTextNode("this is index");
+        dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -2513,11 +2545,10 @@ define("dummy/groups/group/index/template", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        dom.insertBoundary(fragment, 0);
+        morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [1, 0], [1, 10]]], 0, 0, 0, 0]],
+      statements: [["content", "outlet", ["loc", [null, [1, 13], [1, 23]]], 0, 0, 0, 0]],
       locals: [],
       templates: []
     };
@@ -2530,7 +2561,10 @@ define('dummy/groups/group/route', ['exports', 'ember'], function (exports, _emb
 
     model: function model(params) {
       this.set('groupId', params.id);
-      return this.get('groupsService').users(params.id);
+      return _ember['default'].RSVP.hash({
+        users: this.get('groupsService').users(params.id),
+        items: this.get('groupsService').getItemsById(params.id)
+      });
     },
 
     actions: {
@@ -2555,11 +2589,148 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 9,
+              "line": 11,
               "column": 8
             },
             "end": {
-              "line": 14,
+              "line": 18,
+              "column": 8
+            }
+          },
+          "moduleName": "dummy/groups/group/template.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("          ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("tr");
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element4 = dom.childAt(fragment, [1]);
+          var morphs = new Array(4);
+          morphs[0] = dom.createMorphAt(dom.childAt(element4, [1]), 0, 0);
+          morphs[1] = dom.createMorphAt(dom.childAt(element4, [3]), 0, 0);
+          morphs[2] = dom.createMorphAt(dom.childAt(element4, [5]), 0, 0);
+          morphs[3] = dom.createMorphAt(dom.childAt(element4, [7]), 0, 0);
+          return morphs;
+        },
+        statements: [["content", "item.title", ["loc", [null, [13, 16], [13, 30]]], 0, 0, 0, 0], ["content", "item.id", ["loc", [null, [14, 16], [14, 27]]], 0, 0, 0, 0], ["content", "item.type", ["loc", [null, [15, 16], [15, 29]]], 0, 0, 0, 0], ["content", "item.owner", ["loc", [null, [16, 16], [16, 30]]], 0, 0, 0, 0]],
+        locals: ["item"],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "revision": "Ember@2.8.2",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 29,
+              "column": 8
+            },
+            "end": {
+              "line": 34,
+              "column": 8
+            }
+          },
+          "moduleName": "dummy/groups/group/template.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("          ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("tr");
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n            ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createElement("button");
+          dom.setAttribute(el3, "type", "button");
+          dom.setAttribute(el3, "class", "btn btn-danger");
+          var el4 = dom.createTextNode(" ");
+          dom.appendChild(el3, el4);
+          var el4 = dom.createElement("span");
+          dom.setAttribute(el4, "class", "glyphicon glyphicon-trash");
+          dom.setAttribute(el4, "aria-hidden", "true");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element2 = dom.childAt(fragment, [1]);
+          var element3 = dom.childAt(element2, [3, 0]);
+          var morphs = new Array(2);
+          morphs[0] = dom.createMorphAt(dom.childAt(element2, [1]), 0, 0);
+          morphs[1] = dom.createElementMorph(element3);
+          return morphs;
+        },
+        statements: [["content", "user", ["loc", [null, [31, 16], [31, 24]]], 0, 0, 0, 0], ["element", "action", ["remove", ["get", "user", ["loc", [null, [32, 79], [32, 83]]], 0, 0, 0, 0]], [], ["loc", [null, [32, 61], [32, 85]]], 0, 0]],
+        locals: ["user"],
+        templates: []
+      };
+    })();
+    var child2 = (function () {
+      return {
+        meta: {
+          "revision": "Ember@2.8.2",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 35,
+              "column": 8
+            },
+            "end": {
+              "line": 40,
               "column": 8
             }
           },
@@ -2609,7 +2780,7 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
           morphs[1] = dom.createElementMorph(element1);
           return morphs;
         },
-        statements: [["content", "user", ["loc", [null, [11, 16], [11, 24]]], 0, 0, 0, 0], ["element", "action", ["remove", ["get", "user", ["loc", [null, [12, 79], [12, 83]]], 0, 0, 0, 0]], [], ["loc", [null, [12, 61], [12, 85]]], 0, 0]],
+        statements: [["content", "user", ["loc", [null, [37, 16], [37, 24]]], 0, 0, 0, 0], ["element", "action", ["remove", ["get", "user", ["loc", [null, [38, 79], [38, 83]]], 0, 0, 0, 0]], [], ["loc", [null, [38, 61], [38, 85]]], 0, 0]],
         locals: ["user"],
         templates: []
       };
@@ -2624,7 +2795,7 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 19,
+            "line": 47,
             "column": 0
           }
         },
@@ -2638,6 +2809,60 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("div");
         dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("table");
+        dom.setAttribute(el3, "class", "table table-striped");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("thead");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("th");
+        var el6 = dom.createTextNode("Item Title");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("th");
+        var el6 = dom.createTextNode("Id");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("th");
+        var el6 = dom.createTextNode("Type");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("th");
+        var el6 = dom.createTextNode("Owner");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("tbody");
+        var el5 = dom.createTextNode("\n");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -2671,6 +2896,8 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
         var el5 = dom.createTextNode("      ");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
@@ -2680,7 +2907,7 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
+        var el2 = dom.createTextNode("\n\n\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -2688,13 +2915,17 @@ define("dummy/groups/group/template", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1, 1, 3]), 1, 1);
+        var element5 = dom.childAt(fragment, [0]);
+        var element6 = dom.childAt(element5, [3, 1, 3]);
+        var morphs = new Array(3);
+        morphs[0] = dom.createMorphAt(dom.childAt(element5, [1, 1, 3]), 1, 1);
+        morphs[1] = dom.createMorphAt(element6, 1, 1);
+        morphs[2] = dom.createMorphAt(element6, 2, 2);
         return morphs;
       },
-      statements: [["block", "each", [["get", "model.users", ["loc", [null, [9, 16], [9, 27]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [9, 8], [14, 17]]]]],
+      statements: [["block", "each", [["get", "model.items.items", ["loc", [null, [11, 16], [11, 33]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [11, 8], [18, 17]]]], ["block", "each", [["get", "model.users.users", ["loc", [null, [29, 16], [29, 33]]], 0, 0, 0, 0]], [], 1, null, ["loc", [null, [29, 8], [34, 17]]]], ["block", "each", [["get", "model.users.admins", ["loc", [null, [35, 16], [35, 34]]], 0, 0, 0, 0]], [], 2, null, ["loc", [null, [35, 8], [40, 17]]]]],
       locals: [],
-      templates: [child0]
+      templates: [child0, child1, child2]
     };
   })());
 });
@@ -4178,7 +4409,6 @@ define('dummy/items/bulk/controller', ['exports', 'ember'], function (exports, _
       prenuke: function prenuke() {
         this.set('showConfirmation', true);
       }
-
     }
   });
 });
@@ -5942,32 +6172,38 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
 
     sharingService: _ember['default'].inject.service('sharing-service'),
 
-    itemJson: _ember['default'].computed('model', function () {
-      _ember['default'].debug('ItemJson being reset...');
+    itemJson: _ember['default'].computed('model.item', function () {
       return this.get('model.item');
-    }).volatile(),
+    }),
 
-    dataJson: _ember['default'].computed('model', function () {
-      _ember['default'].debug('DataJson being reset...');
+    dataJson: _ember['default'].computed('model.data', function () {
       return this.get('model.data');
-    }).volatile(),
-    // itemJson: Ember.computed.reads('model.item').volatile,
-    // datason: Ember.computed.reads('model.data').volatile,
-
-    dataJsonString: _ember['default'].computed('model', function () {
-      return JSON.stringify(this.get('dataJson'), null, ' ');
     }),
 
     actions: {
-
-      protectItem: function protectItem() {
+      shareToGroup: function shareToGroup() {
         var _this = this;
+
+        if (this.get('groupId')) {
+          this.set('sharingMessage', 'Making sharing request');
+          var item = this.get('model.item');
+          this.get('sharingService').shareWithGroup(item.owner, item.id, this.get('groupId'), true).then(function (result) {
+            _this.set('sharingMessage', 'Successful sharing.');
+          })['catch'](function (err) {
+            _this.set('sharingMessage', err);
+          });
+        } else {
+          this.set('sharingMessage', 'No Group Id Provided!');
+        }
+      },
+      protectItem: function protectItem() {
+        var _this2 = this;
 
         var itemId = this.get('model.item.id');
         var owner = this.get('model.item.owner');
         return this.get('itemsService').protect(itemId, owner).then(function (result) {
           if (result.success) {
-            _this.set('model.item.protected', true);
+            _this2.set('model.item.protected', true);
           } else {
             _ember['default'].debug('Protect call failed: ' + JSON.stringify(result));
           }
@@ -5975,13 +6211,13 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
       },
 
       unprotectItem: function unprotectItem() {
-        var _this2 = this;
+        var _this3 = this;
 
         var itemId = this.get('model.item.id');
         var owner = this.get('model.item.owner');
         return this.get('itemsService').unprotect(itemId, owner).then(function (result) {
           if (result.success) {
-            _this2.set('model.item.protected', false);
+            _this3.set('model.item.protected', false);
           } else {
             _ember['default'].debug('Unprotect call failed: ' + JSON.stringify(result));
           }
@@ -5989,14 +6225,17 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
       },
 
       save: function save() {
-        var _this3 = this;
+        var _this4 = this;
 
         // get the item
-        var item = this.get('model.item');
-        item.text = JSON.stringify(this.get('model.data'));
+        var item = this.get('itemJson');
+
+        if (this.get('dataJson')) {
+          item.text = JSON.stringify(this.get('dataJson'));
+        }
 
         this.get('itemsService').update(item).then(function (resp) {
-          _this3.transitionToRoute('items.index');
+          _this4.transitionToRoute('items.index');
         });
       },
       cancel: function cancel() {
@@ -6025,23 +6264,23 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
       },
 
       shareWithEveryone: function shareWithEveryone() {
-        var _this4 = this;
-
-        var item = this.get('model.item');
-        this.get('sharingService').shareItemWithEveryone(item.owner, item.id).then(function (result) {
-          _this4.set('model.item.access', 'everyone');
-        });
-      },
-      shareWithOrg: function shareWithOrg() {
         var _this5 = this;
 
         var item = this.get('model.item');
-        this.get('sharingService').shareItemWithOrg(item.owner, item.id).then(function (result) {
-          _this5.set('model.item.access', 'org');
+        this.get('sharingService').setAccess(item.owner, item.id, 'everyone').then(function (result) {
+          _this5.set('model.item.access', 'everyone');
+        });
+      },
+      shareWithOrg: function shareWithOrg() {
+        var _this6 = this;
+
+        var item = this.get('model.item');
+        this.get('sharingService').setAccess(item.owner, item.id, 'org').then(function (result) {
+          _this6.set('model.item.access', 'org');
         });
       },
       shareWithGroups: function shareWithGroups() {
-        var _this6 = this;
+        var _this7 = this;
 
         var item = this.get('model.item');
         var data = {
@@ -6053,7 +6292,7 @@ define('dummy/items/item/edit/controller', ['exports', 'ember'], function (expor
           f: 'json'
         };
         this.get('sharingService').shareItem(data).then(function (result) {
-          _this6.set('model.item.access', 'shared');
+          _this7.set('model.item.access', 'shared');
         });
       }
 
@@ -6066,20 +6305,10 @@ define('dummy/items/item/edit/route', ['exports', 'ember'], function (exports, _
     itemsService: _ember['default'].inject.service('items-service'),
     model: function model(params) {
       var item = this.modelFor('items.item');
-      _ember['default'].debug('Items.item.edit:: item.id ' + item.id);
-      return _ember['default'].RSVP.hashSettled({
+      _ember['default'].debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
+      return _ember['default'].RSVP.hash({
         item: item,
         data: this.get('itemsService').getDataById(item.id)
-      }).then(function (hashResults) {
-        _ember['default'].debug('Items.item.edit route returning model...');
-        var model = {
-          item: hashResults.item.value,
-          data: hashResults.data.value
-        };
-        if (!model.item.title === model.data.values.title) {
-          _ember['default'].debug('Items.item.edit route returning model but item and data do not match!!!!!');
-        }
-        return model;
       });
     }
   });
@@ -6096,7 +6325,7 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 47,
+            "line": 54,
             "column": 0
           }
         },
@@ -6160,12 +6389,6 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var el4 = dom.createTextNode("Sharing: ");
         dom.appendChild(el3, el4);
         var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("p");
-        var el4 = dom.createTextNode("This only handles sharing to the org or everyone");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n    ");
@@ -6302,6 +6525,45 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6 form-inline");
+        var el3 = dom.createTextNode("\n      ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "form-group");
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("label");
+        var el5 = dom.createTextNode("Group to Share To");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode(" ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "class", "btn btn-default");
+        var el5 = dom.createTextNode("Share");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n      ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("br");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n      ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
@@ -6315,7 +6577,7 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var element2 = dom.childAt(element0, [5]);
         var element3 = dom.childAt(fragment, [2]);
         var element4 = dom.childAt(element3, [1]);
-        var element5 = dom.childAt(element4, [5]);
+        var element5 = dom.childAt(element4, [3]);
         var element6 = dom.childAt(element5, [1]);
         var element7 = dom.childAt(element5, [3]);
         var element8 = dom.childAt(element5, [5]);
@@ -6323,7 +6585,11 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var element10 = dom.childAt(element9, [5]);
         var element11 = dom.childAt(element10, [1]);
         var element12 = dom.childAt(element10, [3]);
-        var morphs = new Array(13);
+        var element13 = dom.childAt(fragment, [4]);
+        var element14 = dom.childAt(element13, [3]);
+        var element15 = dom.childAt(element14, [1]);
+        var element16 = dom.childAt(element15, [5]);
+        var morphs = new Array(16);
         morphs[0] = dom.createMorphAt(element0, 1, 1);
         morphs[1] = dom.createElementMorph(element1);
         morphs[2] = dom.createElementMorph(element2);
@@ -6336,10 +6602,13 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         morphs[9] = dom.createElementMorph(element12);
         morphs[10] = dom.createMorphAt(dom.childAt(element3, [5]), 3, 3);
         morphs[11] = dom.createMorphAt(dom.childAt(element3, [7]), 3, 3);
-        morphs[12] = dom.createMorphAt(dom.childAt(fragment, [4, 1]), 1, 1);
+        morphs[12] = dom.createMorphAt(dom.childAt(element13, [1]), 1, 1);
+        morphs[13] = dom.createMorphAt(element15, 3, 3);
+        morphs[14] = dom.createElementMorph(element16);
+        morphs[15] = dom.createMorphAt(element14, 5, 5);
         return morphs;
       },
-      statements: [["content", "model.title", ["loc", [null, [3, 13], [3, 28]]], 0, 0, 0, 0], ["element", "action", ["cancel"], [], ["loc", [null, [4, 76], [4, 95]]], 0, 0], ["element", "action", ["save"], [], ["loc", [null, [5, 76], [5, 93]]], 0, 0], ["content", "model.item.access", ["loc", [null, [11, 17], [11, 38]]], 0, 0, 0, 0], ["element", "action", ["shareWithGroups"], [], ["loc", [null, [14, 52], [14, 80]]], 0, 0], ["element", "action", ["shareWithOrg"], [], ["loc", [null, [15, 52], [15, 77]]], 0, 0], ["element", "action", ["shareWithEveryone"], [], ["loc", [null, [16, 52], [16, 82]]], 0, 0], ["content", "model.item.protected", ["loc", [null, [20, 19], [20, 43]]], 0, 0, 0, 0], ["element", "action", ["protectItem"], [], ["loc", [null, [23, 52], [23, 76]]], 0, 0], ["element", "action", ["unprotectItem"], [], ["loc", [null, [24, 52], [24, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [29, 23], [29, 33]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "model.item", ["loc", [null, [29, 68], [29, 78]]], 0, 0, 0, 0]], [], ["loc", [null, [29, 63], [29, 79]]], 0, 0]], [], ["loc", [null, [29, 55], [29, 80]]], 0, 0]], ["loc", [null, [29, 4], [29, 82]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "model.data", ["loc", [null, [33, 23], [33, 33]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "model.data", ["loc", [null, [33, 68], [33, 78]]], 0, 0, 0, 0]], [], ["loc", [null, [33, 63], [33, 79]]], 0, 0]], [], ["loc", [null, [33, 55], [33, 80]]], 0, 0]], ["loc", [null, [33, 4], [33, 82]]], 0, 0], ["inline", "item-resources", [], ["item", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [38, 26], [38, 36]]], 0, 0, 0, 0]], [], [], 0, 0], "onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [39, 23], [39, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [40, 23], [40, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [41, 19], [41, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [42, 19], [42, 38]]], 0, 0], "onTextUpload", ["subexpr", "action", ["sendText"], [], ["loc", [null, [43, 19], [43, 38]]], 0, 0]], ["loc", [null, [38, 4], [44, 8]]], 0, 0]],
+      statements: [["content", "model.title", ["loc", [null, [3, 13], [3, 28]]], 0, 0, 0, 0], ["element", "action", ["cancel"], [], ["loc", [null, [4, 76], [4, 95]]], 0, 0], ["element", "action", ["save"], [], ["loc", [null, [5, 76], [5, 93]]], 0, 0], ["content", "model.item.access", ["loc", [null, [11, 17], [11, 38]]], 0, 0, 0, 0], ["element", "action", ["shareWithGroups"], [], ["loc", [null, [13, 52], [13, 80]]], 0, 0], ["element", "action", ["shareWithOrg"], [], ["loc", [null, [14, 52], [14, 77]]], 0, 0], ["element", "action", ["shareWithEveryone"], [], ["loc", [null, [15, 52], [15, 82]]], 0, 0], ["content", "model.item.protected", ["loc", [null, [19, 19], [19, 43]]], 0, 0, 0, 0], ["element", "action", ["protectItem"], [], ["loc", [null, [22, 52], [22, 76]]], 0, 0], ["element", "action", ["unprotectItem"], [], ["loc", [null, [23, 52], [23, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "itemJson", ["loc", [null, [28, 23], [28, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "itemJson", ["loc", [null, [28, 66], [28, 74]]], 0, 0, 0, 0]], [], ["loc", [null, [28, 61], [28, 75]]], 0, 0]], [], ["loc", [null, [28, 53], [28, 76]]], 0, 0]], ["loc", [null, [28, 4], [28, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "dataJson", ["loc", [null, [32, 23], [32, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "dataJson", ["loc", [null, [32, 66], [32, 74]]], 0, 0, 0, 0]], [], ["loc", [null, [32, 61], [32, 75]]], 0, 0]], [], ["loc", [null, [32, 53], [32, 76]]], 0, 0]], ["loc", [null, [32, 4], [32, 78]]], 0, 0], ["inline", "item-resources", [], ["item", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [37, 26], [37, 36]]], 0, 0, 0, 0]], [], [], 0, 0], "onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [38, 23], [38, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [39, 23], [39, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [40, 19], [40, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [41, 19], [41, 38]]], 0, 0], "onTextUpload", ["subexpr", "action", ["sendText"], [], ["loc", [null, [42, 19], [42, 38]]], 0, 0]], ["loc", [null, [37, 4], [43, 8]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "groupId", ["loc", [null, [48, 43], [48, 50]]], 0, 0, 0, 0]], [], [], 0, 0], "placeholder", "Group ID"], ["loc", [null, [48, 8], [48, 75]]], 0, 0], ["element", "action", ["shareToGroup"], [], ["loc", [null, [48, 108], [48, 133]]], 0, 0], ["content", "sharingMessage", ["loc", [null, [51, 6], [51, 24]]], 0, 0, 0, 0]],
       locals: [],
       templates: []
     };
@@ -6726,7 +6995,20 @@ define('dummy/mixins/active-link', ['exports', 'ember-cli-active-link-wrapper/mi
 });
 define('dummy/portal/controller', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Controller.extend({
+    dirty: false,
+
     portalService: _ember['default'].inject.service('portal-service'),
+
+    createDate: _ember['default'].computed('model.portal', function () {
+      return new Date(this.get('model.portal.created')).toISOString();
+    }),
+    modifyDate: _ember['default'].computed('model.portal', function () {
+      return new Date(this.get('model.portal.modified')).toISOString();
+    }),
+    propertiesJson: _ember['default'].computed('model.portal', function () {
+      return this.get('model.portal.portalProperties');
+    }),
+
     actions: {
       removeResource: function removeResource(resourceName) {
         return this.get('portalService').removeResource(resourceName);
@@ -6742,6 +7024,19 @@ define('dummy/portal/controller', ['exports', 'ember'], function (exports, _embe
 
       fetchResources: function fetchResources() {
         return this.get('portalService').getResources();
+      },
+      saveChanges: function saveChanges() {
+        var _this = this;
+
+        var portal = this.get('model.portal');
+        var props = this.get('propertiesJson');
+        portal.portalProperties = props;
+        // save changes back to the portal
+        return this.get('portalService').update(portal).then(function (result) {
+          if (result.success) {
+            _this.set('dirty', false);
+          }
+        });
       }
     }
   });
@@ -6771,7 +7066,7 @@ define("dummy/portal/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 12,
+            "line": 35,
             "column": 0
           }
         },
@@ -6791,10 +7086,124 @@ define("dummy/portal/template", ["exports"], function (exports) {
         dom.setAttribute(el2, "class", "col-sm-12");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h2");
-        var el4 = dom.createComment("");
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "alert alert-danger");
+        dom.setAttribute(el3, "role", "alert");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h4");
+        var el5 = dom.createTextNode("A word of caution...");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      Editing a Portal directly is a very useful and very powerful, but like table saws and\n      wood-chippers, things can go really badly if you are not careful.\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("strong");
+        var el5 = dom.createTextNode("Please...");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode(" do not make ANY changes here if you are not 100% sure about what you are doing.\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Portal Settings ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("ul");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("Name: ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("Id: ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("Access: ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("All SSL: ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("Created: ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("Modified: ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Portal Properties Json ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "class", "btn btn-primary pull-right");
+        var el5 = dom.createTextNode("Save");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-12");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
@@ -6810,13 +7219,23 @@ define("dummy/portal/template", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [0, 1]);
-        var morphs = new Array(2);
-        morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
-        morphs[1] = dom.createMorphAt(element0, 3, 3);
+        var element0 = dom.childAt(fragment, [0]);
+        var element1 = dom.childAt(element0, [3, 3]);
+        var element2 = dom.childAt(element0, [5]);
+        var element3 = dom.childAt(element2, [1, 1]);
+        var morphs = new Array(9);
+        morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 1, 1);
+        morphs[1] = dom.createMorphAt(dom.childAt(element1, [3]), 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element1, [5]), 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element1, [7]), 1, 1);
+        morphs[4] = dom.createMorphAt(dom.childAt(element1, [9]), 1, 1);
+        morphs[5] = dom.createMorphAt(dom.childAt(element1, [11]), 1, 1);
+        morphs[6] = dom.createElementMorph(element3);
+        morphs[7] = dom.createMorphAt(element2, 3, 3);
+        morphs[8] = dom.createMorphAt(dom.childAt(element0, [7]), 1, 1);
         return morphs;
       },
-      statements: [["content", "model.portal.name", ["loc", [null, [3, 8], [3, 29]]], 0, 0, 0, 0], ["inline", "portal-resources", [], ["onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [5, 23], [5, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [6, 23], [6, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [7, 19], [7, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [8, 19], [8, 38]]], 0, 0]], ["loc", [null, [4, 4], [9, 8]]], 0, 0]],
+      statements: [["content", "model.portal.name", ["loc", [null, [14, 16], [14, 37]]], 0, 0, 0, 0], ["content", "model.portal.id", ["loc", [null, [15, 14], [15, 33]]], 0, 0, 0, 0], ["content", "model.portal.access", ["loc", [null, [16, 18], [16, 41]]], 0, 0, 0, 0], ["content", "model.portal.allSSL", ["loc", [null, [17, 19], [17, 42]]], 0, 0, 0, 0], ["content", "createDate", ["loc", [null, [18, 19], [18, 33]]], 0, 0, 0, 0], ["content", "modifyDate", ["loc", [null, [19, 20], [19, 34]]], 0, 0, 0, 0], ["element", "action", ["saveChanges"], [], ["loc", [null, [23, 74], [23, 98]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "propertiesJson", ["loc", [null, [24, 23], [24, 37]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "propertiesJson", ["loc", [null, [24, 72], [24, 86]]], 0, 0, 0, 0]], [], ["loc", [null, [24, 67], [24, 87]]], 0, 0]], [], ["loc", [null, [24, 59], [24, 88]]], 0, 0]], ["loc", [null, [24, 4], [24, 90]]], 0, 0], ["inline", "portal-resources", [], ["onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [28, 23], [28, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [29, 23], [29, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [30, 19], [30, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [31, 19], [31, 38]]], 0, 0]], ["loc", [null, [27, 4], [32, 8]]], 0, 0]],
       locals: [],
       templates: []
     };
@@ -6863,14 +7282,6 @@ define('dummy/services/ajax', ['exports', 'ember-ajax/services/ajax'], function 
     enumerable: true,
     get: function get() {
       return _emberAjaxServicesAjax['default'];
-    }
-  });
-});
-define('dummy/services/arcgis-ajax', ['exports', 'ember-arcgis-portal-services/services/arcgis-ajax'], function (exports, _emberArcgisPortalServicesServicesArcgisAjax) {
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function get() {
-      return _emberArcgisPortalServicesServicesArcgisAjax['default'];
     }
   });
 });
@@ -7222,6 +7633,27 @@ define('dummy/torii-adapters/arcgis-oauth-bearer', ['exports', 'ember', 'dummy/c
     },
 
     /**
+     * Promisified getJson
+     */
+    _getJson: function _getJson(url) {
+      return new _ember['default'].RSVP.Promise(function (resolve, reject) {
+        _ember['default'].$.ajax({
+          url: url,
+          dataType: 'json',
+          success: _ember['default'].run.bind(null, function (data) {
+            if (data.error) {
+              _ember['default'].debug('torii:adapter:arcgis-oauth-bearer:open portals/self call shows token was not valid.');
+              reject(data);
+            } else {
+              resolve(data);
+            }
+          }),
+          error: _ember['default'].run.bind(null, reject)
+        });
+      });
+    },
+
+    /**
      * Open a session by fetching portal/self from
      * the portal
      */
@@ -7239,28 +7671,28 @@ define('dummy/torii-adapters/arcgis-oauth-bearer', ['exports', 'ember', 'dummy/c
       // now use the token to call portal self
       // TODO: If we have a cookie but the token is invalid (i.e. for a different portal)
       // then this call will return a 499-in-a-200.
-      return new _ember['default'].RSVP.Promise(function (resolve, reject) {
-        // Ember.debug('torii:adapter:arcgis-oauth-bearer:open making portal/self call...');
-        _ember['default'].$.ajax({
-          url: portalSelfUrl,
-          dataType: 'json',
-          success: _ember['default'].run.bind(null, function (data) {
-            // Ember.debug('torii:adapter:arcgis-oauth-bearer:open portals/self call returned: ' + JSON.stringify(data));
-            if (data.error) {
-              _ember['default'].debug('torii:adapter:arcgis-oauth-bearer:open portals/self call shows token was not valid.');
-              reject(data);
-            } else {
-              resolve(data);
-            }
-          }),
-          error: _ember['default'].run.bind(null, reject)
-        });
-      }).then(function (portal) {
-        // Ember.debug('torii:adapter:arcgis-oauth-bearer:open got response from portal/self & assigning to session');
-        // The returned object is merged onto the session (basically).
+      return this._getJson(portalSelfUrl).then(function (portal) {
+        _ember['default'].debug('torii:adapter:arcgis-oauth-bearer:open got response from portal/self & assigning to session');
 
+        if (_dummyConfigEnvironment['default'].torii.providers['arcgis-oauth-bearer'].loadGroups) {
+          // make a request to get user's groups
+          var username = portal.user.username;
+          var userUrl = _this.get('portalBaseUrl') + '/sharing/rest/community/users/' + username + '?f=json&token=' + token;
+          return _ember['default'].RSVP.hash({
+            portalResponse: portal,
+            userResponse: _this._getJson(userUrl)
+          });
+        } else {
+          return {
+            portalResponse: portal,
+            userResponse: portal.user
+          };
+        }
+      }).then(function (result) {
         // separate the portal and user so they are separate props on the session object
-        var user = portal.user;
+        var user = result.userResponse;
+        var portal = result.portalResponse;
+        // drop the user node from the portalSelf response
         delete portal.user;
 
         // TODO find a cleaner means to handle this iframe jiggery pokery
@@ -7928,7 +8360,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"0.8.8+b62e374f"});
+  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"v0.10.0"});
 }
 
 /* jshint ignore:end */
