@@ -44,8 +44,8 @@ module.exports = function (environment) {
     ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;
     // PROD
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
-    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
+    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
+    // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
   }
 
   if (environment === 'surge') {
