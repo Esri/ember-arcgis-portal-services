@@ -41,6 +41,8 @@
     "ember-load-initializers": "^0.5.1",
     "ember-network": "0.3.0",
     "ember-resolver": "^2.0.3",
+    "ember-sinon": "0.6.0",
+    "ember-sinon-qunit": "1.4.1",
     "eslint-config-semistandard": "~7.0.0",
     "eslint-config-standard": "~6.0.0",
     "eslint-plugin-promise": "^2.0.1",
@@ -48,7 +50,7 @@
     "eslint-plugin-standard": "^2.0.0",
     "jsoneditor": "5.5.6",
     "loader.js": "^4.0.1",
-    "torii-provider-arcgis": "0.4.1"
+    "torii-provider-arcgis": "0.6.1"
   },
   "keywords": [
     "ember-addon"

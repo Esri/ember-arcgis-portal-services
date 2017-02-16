@@ -38,7 +38,7 @@ All the services expose a set of shared helper properties and methods:
 | `getDataById(id)` | `promise` | Returns the Item-Data (`/data`). |
 | `update(item)` |  `promise` | Updates an existing item. The `.owner` property must be set. |
 | `create(item)` |  `promise` | Creates an item. The `.owner` property must be set. |
-| `destroy(itemId, owner)` |  `promise` | Delete the item. |
+| `remove(itemId, owner)` |  `promise` | Delete the item. |
 | `protect(itemId, owner)` |  `promise` | Protect the item. |
 | `unprotect(itemId, owner)` |  `promise` | Unprotect the item. |
 
@@ -52,7 +52,7 @@ All the services expose a set of shared helper properties and methods:
 | `save(group)` |  `promise` | Creates or Updates a group.  |
 | `update(group)` |  `promise` | Updates an existing group.  |
 | `create(group)` |  `promise` | Creates an item. The `.owner` property must be set. |
-| `destroy(id)` |  `promise` | Delete the Group. |
+| `remove(id)` |  `promise` | Delete the Group. |
 | `users(id)` |  `promise` | Return array of users that are members of the Group. [Documentation](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Group_Users/02r30000006p000000/) |
 | `addUsers(id, users)` |  `promise` | Adds users to the Group. Expects an array of usernames. |
 | `reassign(id, username)` | `promise` | Reassign ownership of the group |
@@ -61,11 +61,9 @@ All the services expose a set of shared helper properties and methods:
 
 | Method |  Returns |Description |
 | --- | --- | --- |
-| `shareItemWithEveryone(owner, itemId)` | `promise` | Shares an item with everyone |
-| `shareItemWithOrg(owner, itemId)` | `promise` | Shares an item with the Organization |
-| `shareItemsWithGroups(owner, items, groups)` | `promise` | Shares a list of items with a list of groups. Both are arrays of ids. Owner must own all items |
-| `shareItemsWithControl(owner,  items, groups)` | `promise` | Similar to `shareItemsWithGroups` except it confirms `itemControl` (aka edit permission conferred via group membership) |
-| `shareItems(options)` | `promise` | Used internally by the other methods, but could be useful in some cases |
+| `setAccess(owner, itemId, access)` | `promise` |  where access is null | 'org' | 'everyone' |
+| `shareWithGroup(owner, itemId, groupId, confirmItemControl)` | `promise` | Shares an item with a group. `confirmItemControl` defaults to `false`. If set to `true` then `itemControl` (aka edit permission) is conferred via group membership |
+| `isItemSharedWithGroup(itemId, groupId)` | `promise` | Checks to see if an item has already been shared with a group |
 
 ## User Service
 

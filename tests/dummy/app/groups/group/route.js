@@ -6,7 +6,10 @@ export default Ember.Route.extend({
 
   model: function (params) {
     this.set('groupId', params.id);
-    return this.get('groupsService').users(params.id);
+    return Ember.RSVP.hash({
+      users: this.get('groupsService').users(params.id),
+      items: this.get('groupsService').getItemsById(params.id)
+    });
   },
 
   actions: {

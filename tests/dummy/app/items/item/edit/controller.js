@@ -14,7 +14,21 @@ export default Ember.Controller.extend({
   }),
 
   actions: {
-
+    shareToGroup: function () {
+      if (this.get('groupId')) {
+        this.set('sharingMessage', 'Making sharing request');
+        const item = this.get('model.item');
+        this.get('sharingService').shareWithGroup(item.owner, item.id, this.get('groupId'), true)
+        .then((result) => {
+          this.set('sharingMessage', 'Successful sharing.');
+        })
+        .catch((err) => {
+          this.set('sharingMessage', err);
+        });
+      } else {
+        this.set('sharingMessage', 'No Group Id Provided!');
+      }
+    },
     protectItem: function () {
       const itemId = this.get('model.item.id');
       const owner = this.get('model.item.owner');
@@ -81,14 +95,14 @@ export default Ember.Controller.extend({
 
     shareWithEveryone () {
       let item = this.get('model.item');
-      this.get('sharingService').shareItemWithEveryone(item.owner, item.id)
+      this.get('sharingService').setAccess(item.owner, item.id, 'everyone')
       .then((result) => {
         this.set('model.item.access', 'everyone');
       });
     },
     shareWithOrg () {
       let item = this.get('model.item');
-      this.get('sharingService').shareItemWithOrg(item.owner, item.id)
+      this.get('sharingService').setAccess(item.owner, item.id, 'org')
       .then((result) => {
         this.set('model.item.access', 'org');
       });

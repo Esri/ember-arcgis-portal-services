@@ -1,6 +1,29 @@
 <div class="row">
   <div class="col-sm-12">
-    <h2>{{model.portal.name}}</h2>
+    <div class="alert alert-danger" role="alert">
+      <h4>A word of caution...</h4>
+      Editing a Portal directly is a very useful and very powerful, but like table saws and
+      wood-chippers, things can go really badly if you are not careful.
+      <br>
+      <strong>Please...</strong> do not make ANY changes here if you are not 100% sure about what you are doing.
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <h3>Portal Settings </h3>
+    <ul>
+      <li>Name: {{model.portal.name}}</li>
+      <li>Id: {{model.portal.id}}</li>
+      <li>Access: {{model.portal.access}}</li>
+      <li>All SSL: {{model.portal.allSSL}}</li>
+      <li>Created: {{createDate}}</li>
+      <li>Modified: {{modifyDate}}</li>
+    </ul>
+  </div>
+  <div class="col-sm-6">
+    <h3>Portal Properties Json <button class="btn btn-primary pull-right" {{action 'saveChanges'}}>Save</button></h3>
+    {{json-editor json=propertiesJson mode="code" onChange=(action (mut propertiesJson))}}
+  </div>
+  <div class="col-sm-12">
     {{portal-resources
       onFetchResources=(action 'fetchResources')
       onRemoveResource=(action 'removeResource')

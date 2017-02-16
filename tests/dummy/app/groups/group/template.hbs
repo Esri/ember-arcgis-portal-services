@@ -2,11 +2,37 @@
   <div class="col-sm-12">
     <table class="table table-striped">
       <thead>
+        <th>Item Title</th>
+        <th>Id</th>
+        <th>Type</th>
+        <th>Owner</th>
+      </thead>
+      <tbody>
+        {{#each model.items.items as |item|}}
+          <tr>
+            <td>{{item.title}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.owner}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-12">
+    <table class="table table-striped">
+      <thead>
         <th>Username</th>
         <th>Revoke Access</th>
       </thead>
       <tbody>
-        {{#each model.users as |user|}}
+        {{#each model.users.users as |user|}}
+          <tr>
+            <td>{{user}}</td>
+            <td><button type="button" class="btn btn-danger" {{action "remove" user}}> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+          </tr>
+        {{/each}}
+        {{#each model.users.admins as |user|}}
           <tr>
             <td>{{user}}</td>
             <td><button type="button" class="btn btn-danger" {{action "remove" user}}> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
@@ -15,4 +41,6 @@
       </tbody>
     </table>
   </div>
+
+
 </div>
