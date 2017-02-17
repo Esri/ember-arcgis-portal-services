@@ -31,7 +31,7 @@ export default Ember.Service.extend(serviceMixin, {
         data.everyone = false;
       }
 
-      if (access === 'everyone') {
+      if (access === 'everyone' || access === 'public') {
         data.everyone = true;
         data.org = true;
       }
