@@ -121,7 +121,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Reassign ownership of the group
    */
-  reassign (id, username) {
+  reassign (/* id, username */) {
     Ember.debug('group-service.reassign not implemented!');
   },
 
