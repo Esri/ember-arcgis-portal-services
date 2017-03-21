@@ -10,9 +10,9 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:each",
-    "deploy-dev": "ember surge --environment=surge",
-    "deploy-qa": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
-    "deploy-prod" : "ember surge --new-domain='eaps.surge.sh' --environment=production"
+    "deploy:dev": "ember surge --environment=surge",
+    "deploy:qa": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
+    "deploy:prod" : "ember surge --new-domain='eaps.surge.sh' --environment=production"
   },
   "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
   "engines": {
