@@ -134,17 +134,17 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Deprecated without proxies to new calls
    */
-  shareItemsWithGroups (owner, items, groups) {
+  shareItemsWithGroups (/* owner, items, groups */) {
     Ember.deprecate('use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithGroupsDeprecation', until: '10.0.0'});
     return Ember.RSVP.reject('sharing-service::shareItemsWithGroups is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
   },
   //
-  shareItemsWithControl (owner, items, groups) {
+  shareItemsWithControl (/* owner, items, groups */) {
     Ember.deprecate('use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithControlDeprecation', until: '10.0.0'});
     return Ember.RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
   },
   //
-  shareItems (options) {
+  shareItems (/* options */) {
     Ember.deprecate('use .shareItemWithGroup(...) or .setAccess(...)', false, {id: 'shareItemsDeprecation', until: '10.0.0'});
     return Ember.RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(...) or .setAccess(...)');
   },
