@@ -8,11 +8,11 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * User Search
    */
-  search (form, portalOpts) {
+  search (form, portalOpts = {}) {
     const qs = this.encodeForm(form);
     const portalRestUrl = this.getPortalRestUrl(portalOpts);
     var url;
-    if (this.get('session.isAuthenticated')) {
+    if (this.get('session.isAuthenticated') || portalOpts.portalHostname) {
       url = `${portalRestUrl}/portals/self/users?${qs}&f=json`;
     } else {
       url = `${portalRestUrl}/community/users?${qs}&f=json`;

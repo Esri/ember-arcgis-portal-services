@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 
   session: Ember.inject.service(),
 
-  queryParams: [ 'start', 'num', 'q' ],
+  queryParams: [ 'start', 'num', 'q', 'token', 'portalHostname' ],
 
   start: 1,
 
@@ -15,6 +15,14 @@ export default Ember.Controller.extend({
   query: '*',
 
   num: 10,
+
+  portalHostname: '',
+
+  portalHostnameCopy: Ember.computed.reads('portalHostname'),
+
+  token: '',
+
+  tokenCopy: Ember.computed.reads('token'),
 
   totalCount: Ember.computed('model.total', function () {
     return this.get('model.total');
@@ -35,7 +43,14 @@ export default Ember.Controller.extend({
       this.set('q', this.get('query'));
       // reset the page
       this.set('start', 1);
-      this.transitionToRoute('items.index');
+      const queryParams = {
+        q: this.get('query'),
+        start: 1,
+        num: this.get('num'),
+        portalHostname: this.get('portalHostnameCopy'),
+        token: this.get('tokenCopy')
+      };
+      this.transitionToRoute('users', { queryParams: queryParams });
     }
 
   }
