@@ -10,20 +10,18 @@ export default Ember.Service.extend(serviceMixin, {
    */
   search (form, portalOpts = {}) {
     const qs = this.encodeForm(form);
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    var url;
+    let urlPath;
     if (this.get('session.isAuthenticated') || portalOpts.portalHostname) {
-      url = `${portalRestUrl}/portals/self/users?${qs}&f=json`;
+      urlPath = `/portals/self/users?${qs}&f=json`;
     } else {
-      url = `${portalRestUrl}/community/users?${qs}&f=json`;
+      urlPath = `/community/users?${qs}&f=json`;
     }
-    return this.request(url, null, portalOpts);
+    return this.request(urlPath, null, portalOpts);
   },
 
   getByName (username, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/community/users/${username}?f=json`;
-    return this.request(url, null, portalOpts);
+    const urlPath = `/community/users/${username}?f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
 });

@@ -75,8 +75,9 @@ export default Ember.Mixin.create({
   /**
    * Fetch based request method
    */
-  request (url, options, portalOpts = {}) {
+  request (urlPath, options, portalOpts = {}) {
     let opts = options || {};
+    let url = `${this.getPortalRestUrl(portalOpts)}${urlPath}`;
 
     if (opts.method && opts.method === 'POST') {
       // if we are POSTing, we need to manually set the content-type because AGO

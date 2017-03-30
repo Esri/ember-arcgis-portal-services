@@ -5,9 +5,8 @@ export default Ember.Service.extend(serviceMixin, {
 
   // register an application for OAuth access
   registerApp (itemId, redirectUris, appType = 'browser', portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/oauth2/registerApp?f=json`;
-    let options = {
+    const urlPath = `/oauth2/registerApp?f=json`;
+    const options = {
       method: 'POST',
       data: {
         itemId,
@@ -15,21 +14,20 @@ export default Ember.Service.extend(serviceMixin, {
         redirect_uris: JSON.stringify(redirectUris)
       }
     };
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   },
 
   // update an app's OAuth registration
   // TODO: have this take other params that can be updated as options
   updateApp (clientId, redirectUris, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/oauth2/apps/${clientId}/update?f=json`;
-    let options = {
+    const urlPath = `/oauth2/apps/${clientId}/update?f=json`;
+    const options = {
       method: 'POST',
       data: {
         client_id: clientId,
         redirect_uris: JSON.stringify(redirectUris)
       }
     };
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   }
 });

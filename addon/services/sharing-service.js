@@ -10,10 +10,9 @@ export default Ember.Service.extend(serviceMixin, {
    * access options null | org | everyone
    */
   setAccess (owner, itemId, access = null, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/share`;
-    let username = this.get('session.currentUser.username');
-    let isAdmin = this.get('session').isAdmin();
+    const urlPath = `/content/users/${owner}/items/${itemId}/share`;
+    const username = this.get('session.currentUser.username');
+    const isAdmin = this.get('session').isAdmin();
     // Reject if the current user is neither the owner nor an orgAdmin
     if (owner !== username && !isAdmin) {
       return Ember.RSVP.reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
@@ -37,7 +36,7 @@ export default Ember.Service.extend(serviceMixin, {
       }
     }
 
-    return this._post(url, data, portalOpts);
+    return this._post(urlPath, data, portalOpts);
   },
 
   /**
@@ -47,10 +46,9 @@ export default Ember.Service.extend(serviceMixin, {
    * we short-circuit and do not make the sharing call.
    */
   shareWithGroup (owner, itemId, groupId, confirmItemControl = false, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/share`;
-    let username = this.get('session.currentUser.username');
-    let isAdmin = this.get('session').isAdmin();
+    const urlPath = `/content/users/${owner}/items/${itemId}/share`;
+    const username = this.get('session.currentUser.username');
+    const isAdmin = this.get('session').isAdmin();
     // Reject if the current user is neither the owner nor an orgAdmin
     if (owner !== username && !isAdmin) {
       return Ember.RSVP.reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
@@ -69,7 +67,7 @@ export default Ember.Service.extend(serviceMixin, {
         if (confirmItemControl) {
           data.confirmItemControl = true;
         }
-        return this._post(url, data)
+        return this._post(urlPath, data)
         .then((result) => {
           if (result.notSharedWith.length) {
             let msg = `Item ${itemId} could not be shared to group ${groupId}. This is likely because the owner ${owner} is not a member of this group.`;
@@ -93,7 +91,7 @@ export default Ember.Service.extend(serviceMixin, {
    * does not have access to the group
    */
   isItemSharedWithGroup (itemId, groupId, portalOpts) {
-    let query = {
+    const query = {
       q: `id: ${itemId} AND group: ${groupId}`,
       start: 1,
       num: 10,
@@ -152,13 +150,13 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post (url, data, portalOpts) {
-    let options = {
+  _post (urlPath, data, portalOpts) {
+    const options = {
       method: 'POST',
       data: data
     };
 
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   },
 
 });

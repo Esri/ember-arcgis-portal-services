@@ -15,9 +15,8 @@ export default Ember.Service.extend(serviceMixin, {
    */
   search (form, portalOpts) {
     const qs = this.encodeForm(form);
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    const url = `${portalRestUrl}/search?${qs}&f=json`;
-    return this.request(url, null, portalOpts);
+    const urlPath = `/search?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
@@ -25,9 +24,8 @@ export default Ember.Service.extend(serviceMixin, {
    */
   getById (itemId, portalOpts) {
     const qs = this.encodeForm({});
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    const url = `${portalRestUrl}/content/items/${itemId}?${qs}&f=json`;
-    return this.request(url, null, portalOpts);
+    const urlPath = `/content/items/${itemId}?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
@@ -36,9 +34,8 @@ export default Ember.Service.extend(serviceMixin, {
    */
   getDataById (itemId, portalOpts) {
     const qs = this.encodeForm({});
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    const url = `${portalRestUrl}/content/items/${itemId}/data?${qs}&f=json`;
-    return this.request(url, null, portalOpts);
+    const urlPath = `/content/items/${itemId}/data?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
@@ -46,9 +43,8 @@ export default Ember.Service.extend(serviceMixin, {
    * will update the `/data` if the `.text` value is present
    */
   update (item, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    const url = `${portalRestUrl}/content/users/${item.owner}/items/${item.id}/update?f=json`;
-    return this._post(url, item, portalOpts);
+    const urlPath = `/content/users/${item.owner}/items/${item.id}/update?f=json`;
+    return this._post(urlPath, item, portalOpts);
   },
 
   /**
@@ -56,30 +52,26 @@ export default Ember.Service.extend(serviceMixin, {
    * will create the `/data` if the `.text` value is present
    */
   create (item, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    const url = `${portalRestUrl}/content/users/${item.owner}/addItem?f=json`;
-    return this._post(url, item, portalOpts);
+    const urlPath = `/content/users/${item.owner}/addItem?f=json`;
+    return this._post(urlPath, item, portalOpts);
   },
 
   /**
    * Delete an item from AGO
    */
   remove (itemId, owner, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    const url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
-    return this._post(url, {}, portalOpts);
+    const urlPath = `/content/users/${owner}/items/${itemId}/delete?f=json`;
+    return this._post(urlPath, {}, portalOpts);
   },
 
   protect (itemId, owner, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/protect?f=json`;
-    return this._post(url, {}, portalOpts);
+    const urlPath = `/content/users/${owner}/items/${itemId}/protect?f=json`;
+    return this._post(urlPath, {}, portalOpts);
   },
 
   unprotect (itemId, owner, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/unprotect?f=json`;
-    return this._post(url, {}, portalOpts);
+    const urlPath = `/content/users/${owner}/items/${itemId}/unprotect?f=json`;
+    return this._post(urlPath, {}, portalOpts);
   },
 
   /**
@@ -89,13 +81,12 @@ export default Ember.Service.extend(serviceMixin, {
     // Valid types
     // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
     // TODO: Check type
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
     let action = 'addResources';
     if (replace) {
       action = 'updateResources';
     }
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/${action}?f=json`;
-    let options = {};
+    const urlPath = `/content/users/${owner}/items/${itemId}/${action}?f=json`;
+    const options = {};
     options.body = new FormData();
     // stuff the file into the formData...
     if (filename) {
@@ -104,57 +95,53 @@ export default Ember.Service.extend(serviceMixin, {
       options.body.append('file', file);
     }
     options.method = 'POST';
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Add a resource
    */
   addResource (itemId, owner, name, content, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
-    let options = {
+    const urlPath = `/content/users/${owner}/items/${itemId}/addResources?f=json`;
+    const options = {
       method: 'POST',
       data: {
         fileName: name,
         text: content
       }
     };
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Update a resource
    */
   updateResource (itemId, owner, name, content, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/updateResources?f=json`;
-    let options = {
+    const urlPath = `/content/users/${owner}/items/${itemId}/updateResources?f=json`;
+    const options = {
       method: 'POST',
       data: {
         fileName: name,
         text: content
       }
     };
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Get the resources associated with an Item
    */
   getResources (itemId, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/items/${itemId}/resources?f=json`;
-    return this.request(url, null, portalOpts);
+    const urlPath = `/content/items/${itemId}/resources?f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Remove a resource
    */
   removeResource (itemId, owner, resource, portalOpts) {
-    const portalRestUrl = this.getPortalRestUrl(portalOpts);
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/removeResources?f=json`;
-    return this.request(url, { method: 'POST', data: { resource: resource } }, portalOpts);
+    const urlPath = `/content/users/${owner}/items/${itemId}/removeResources?f=json`;
+    return this.request(urlPath, { method: 'POST', data: { resource: resource } }, portalOpts);
   },
 
   /**
@@ -183,14 +170,14 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post (url, item, portalOpts) {
-    let serializedItem = this._serializeItem(item);
+  _post (urlPath, item, portalOpts) {
+    const serializedItem = this._serializeItem(item);
 
-    let options = {
+    const options = {
       method: 'POST',
       data: serializedItem
     };
-    return this.request(url, options, portalOpts);
+    return this.request(urlPath, options, portalOpts);
   }
 
 });
