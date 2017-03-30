@@ -6,116 +6,108 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Group Search
    */
-  search (form) {
-    let qs = this.encodeForm(form);
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/community/groups?${qs}&f=json`;
-    return this.request(url);
+  search (form, portalOpts) {
+    const qs = this.encodeForm(form);
+    const urlPath = `/community/groups?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Get the item json
    */
-  getById (id) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/community/groups/${id}?f=json`;
-    return this.request(url);
+  getById (id, portalOpts) {
+    const urlPath = `/community/groups/${id}?f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Get items in a group, by Group Id
    * TODO: Add Paging
    */
-  getItemsById (id) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    const url = `${portalBaseUrl}/content/groups/${id}?f=json`;
-    return this.request(url);
+  getItemsById (id, portalOpts) {
+    const urlPath = `/content/groups/${id}?f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Create a group
    */
-  create (group) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/community/createGroup?f=json`;
-    return this._post(url, group);
+  create (group, portalOpts) {
+    const urlPath = `/community/createGroup?f=json`;
+    return this._post(urlPath, group, portalOpts);
   },
 
   /**
    * Update an existing group
    */
-  update (group) {
-    let portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/community/groups/${group.id}/update?f=json`;
-    return this._post(url, group);
+  update (group, portalOpts) {
+    const urlPath = `/community/groups/${group.id}/update?f=json`;
+    return this._post(urlPath, group, portalOpts);
   },
 
   /**
    * Create a new group or update an existing one if it has an id
    */
-  save (group) {
+  save (group, portalOpts) {
     if (group.id) {
-      return this.update(group).then((response) => {
+      return this.update(group, portalOpts).then((response) => {
         // normalize response to include group like create() does
         response.group = group;
         response.group.id = response.groupId;
         return response;
       });
     } else {
-      return this.create(group);
+      return this.create(group, portalOpts);
     }
   },
 
   /**
    * Shared logic for POST operations
    */
-  _post (url, group) {
-    let options = {
+  _post (urlPath, group, portalOpts) {
+    const options = {
       method: 'POST',
       data: group
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Get the users that are members of a group
    */
-  users (id) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    const url = `${portalBaseUrl}/community/groups/${id}/users?f=json`;
-    return this.request(url);
+  users (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/users?f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Add users to a group
    */
-  addUsers (id, users) {
-    let data = {
+  addUsers (id, users, portalOpts) {
+    const data = {
       users: users.join(',')
     };
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/community/groups/${id}/addUsers?f=json`;
-    let options = {
+    const urlPath = `/community/groups/${id}/addUsers?f=json`;
+    const options = {
       method: 'POST',
       data: data
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Remove users to a group
    */
-  removeUsers (id, users) {
-    let data = {
+  removeUsers (id, users, portalOpts) {
+    const data = {
       users: users.join(',')
     };
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/community/groups/${id}/removeUsers?f=json`;
-    let options = {
+    const urlPath = `/community/groups/${id}/removeUsers?f=json`;
+    const options = {
       method: 'POST',
       data: data
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
@@ -128,12 +120,11 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Delete a group from AGO
    */
-  remove (id) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/community/groups/${id}/delete?f=json`;
-    let options = {
+  remove (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/delete?f=json`;
+    const options = {
       method: 'POST'
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   }
 });

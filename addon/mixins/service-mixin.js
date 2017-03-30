@@ -12,21 +12,32 @@ export default Ember.Mixin.create({
     f: 'json'
   },
 
+  portalRestUrl: Ember.computed('session.portalHostName', function () {
+    Ember.deprecate('use .getPortalRestUrl()', false, {id: 'portalRestUrlDeprecation', until: '10.0.0'});
+    return this.getPortalRestUrl();
+  }),
+
   /**
    * Return the ArcGIS Portal Rest base url
    */
-  portalRestUrl: Ember.computed('session.portalHostName', function () {
-    let baseUrl = this.get('portalUrl');
-    return baseUrl + '/sharing/rest';
+  getPortalRestUrl (portalOptions = {}) {
+    const baseUrl = this.getPortalUrl(portalOptions);
+    return `${baseUrl}/sharing/rest`;
+  },
+
+  portalUrl: Ember.computed('session.portalHostName', function () {
+    Ember.deprecate('use .getPortalUrl()', false, {id: 'portalUrlDeprecation', until: '10.0.0'});
+    return this.getPortalUrl();
   }),
 
   /**
    * Return the ArcGIS Portal base url (for visiting pages etc)
    * Defaults to https because there is no negative to using it
    */
-  portalUrl: Ember.computed('session.portalHostName', function () {
-    return 'https://' + this.get('session.portalHostName');
-  }),
+  getPortalUrl (portalOptions = {}) {
+    const portalHostname = portalOptions.portalHostname || this.get('session.portalHostName');
+    return `https://${portalHostname}`;
+  },
 
   encodeForm (form = {}) {
     // Ember.merge(form, this.get('defaultParams'));
@@ -64,8 +75,9 @@ export default Ember.Mixin.create({
   /**
    * Fetch based request method
    */
-  request (url, options) {
+  request (urlPath, options, portalOpts = {}) {
     let opts = options || {};
+    let url = `${this.getPortalRestUrl(portalOpts)}${urlPath}`;
 
     if (opts.method && opts.method === 'POST') {
       // if we are POSTing, we need to manually set the content-type because AGO
@@ -89,8 +101,8 @@ export default Ember.Mixin.create({
     }
 
     // append in the token
-    if (this.get('session') && this.get('session.token')) {
-      let token = this.get('session.token');
+    const token = portalOpts.token || this.get('session.token');
+    if (token) {
       // add a token
       if (url.indexOf('?') > -1) {
         url = url + '&token=' + token;
