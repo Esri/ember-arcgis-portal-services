@@ -12,19 +12,29 @@ export default Ember.Mixin.create({
     f: 'json'
   },
 
+  portalRestUrl: Ember.computed('session.portalHostName', function () {
+    Ember.deprecate('use .getPortalRestUrl()', false, {id: 'portalRestUrlDeprecation', until: '10.0.0'});
+    return this.getPortalRestUrl();
+  }),
+
   /**
    * Return the ArcGIS Portal Rest base url
    */
-  getPortalRestUrl (portalOptions) {
+  getPortalRestUrl (portalOptions = {}) {
     const baseUrl = this.getPortalUrl(portalOptions);
     return `${baseUrl}/sharing/rest`;
   },
+
+  portalUrl: Ember.computed('session.portalHostName', function () {
+    Ember.deprecate('use .getPortalUrl()', false, {id: 'portalUrlDeprecation', until: '10.0.0'});
+    return this.getPortalUrl();
+  }),
 
   /**
    * Return the ArcGIS Portal base url (for visiting pages etc)
    * Defaults to https because there is no negative to using it
    */
-  getPortalUrl (portalOptions) {
+  getPortalUrl (portalOptions = {}) {
     const portalHostname = portalOptions.portalHostname || this.get('session.portalHostName');
     return `https://${portalHostname}`;
   },
@@ -65,7 +75,7 @@ export default Ember.Mixin.create({
   /**
    * Fetch based request method
    */
-  request (url, options, portalOpts) {
+  request (url, options, portalOpts = {}) {
     let opts = options || {};
 
     if (opts.method && opts.method === 'POST') {
