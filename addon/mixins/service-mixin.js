@@ -15,18 +15,19 @@ export default Ember.Mixin.create({
   /**
    * Return the ArcGIS Portal Rest base url
    */
-  portalRestUrl: Ember.computed('session.portalHostName', function () {
-    let baseUrl = this.get('portalUrl');
-    return baseUrl + '/sharing/rest';
-  }),
+  getPortalRestUrl (portalOptions) {
+    const baseUrl = this.getPortalUrl(portalOptions);
+    return `${baseUrl}/sharing/rest`;
+  },
 
   /**
    * Return the ArcGIS Portal base url (for visiting pages etc)
    * Defaults to https because there is no negative to using it
    */
-  portalUrl: Ember.computed('session.portalHostName', function () {
-    return 'https://' + this.get('session.portalHostName');
-  }),
+  getPortalUrl (portalOptions) {
+    const portalHostname = portalOptions.portalHostname || this.get('session.portalHostName');
+    return `https://${portalHostname}`;
+  },
 
   encodeForm (form = {}) {
     // Ember.merge(form, this.get('defaultParams'));
@@ -64,7 +65,7 @@ export default Ember.Mixin.create({
   /**
    * Fetch based request method
    */
-  request (url, options) {
+  request (url, options, portalOpts) {
     let opts = options || {};
 
     if (opts.method && opts.method === 'POST') {
@@ -89,8 +90,8 @@ export default Ember.Mixin.create({
     }
 
     // append in the token
-    if (this.get('session') && this.get('session.token')) {
-      let token = this.get('session.token');
+    const token = portalOpts.token || this.get('session.token');
+    if (token) {
       // add a token
       if (url.indexOf('?') > -1) {
         url = url + '&token=' + token;

@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Changed
+- all public functions take an optional `portalOpts` parameter
+
 ## [0.10.2]
 ### Fixed
 - jshint errors

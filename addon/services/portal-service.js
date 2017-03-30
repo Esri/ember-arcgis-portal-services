@@ -7,12 +7,12 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Update the portal
    */
-  update (portal) {
+  update (portal, portalOpts) {
     // console.log('Portal Service got update for ' + portal.id);
-    let portalRestUrl = this.get('portalRestUrl');
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
     let url = `${portalRestUrl}/portals/${portal.id}/update?f=json`;
     let serializedPortal = this._serializePortal(portal);
-    return this._post(url, serializedPortal);
+    return this._post(url, serializedPortal, portalOpts);
   },
 
   /**
@@ -33,23 +33,23 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post (url, obj) {
+  _post (url, obj, portalOpts) {
     let options = {
       method: 'POST',
       data: obj
     };
-    return this.request(url, options);
+    return this.request(url, options, portalOpts);
   },
 
   /**
    * Upload a resource (file) to an item
    */
-  uploadResource (file) {
+  uploadResource (file, portalOpts) {
     // Valid types
     // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
     // TODO: Check type
     // const portalId = this.get('session.portal.id');
-    let portalRestUrl = this.get('portalRestUrl');
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
     let url = `${portalRestUrl}/portals/self/addresource?f=json`;
     let options = {};
     options.body = new FormData();
@@ -58,15 +58,15 @@ export default Ember.Service.extend(serviceMixin, {
     options.body.append('text', null);
     options.body.append('key', file.name);
     options.method = 'POST';
-    return this.request(url, options);
+    return this.request(url, options, portalOpts);
   },
 
   /**
    * Add a resource
    */
-  addResource (name, content) {
+  addResource (name, content, portalOpts) {
     // const portalId = this.get('session.portal.id');
-    let portalRestUrl = this.get('portalRestUrl');
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
     let url = `${portalRestUrl}/portals/self/addresource?f=json`;
     let options = {
       method: 'POST',
@@ -75,36 +75,35 @@ export default Ember.Service.extend(serviceMixin, {
         text: content
       }
     };
-    return this.request(url, options);
+    return this.request(url, options, portalOpts);
   },
 
   /**
    * Get the resources associated with an Item
    */
-  getResources () {
+  getResources (portalOpts) {
     // const portalId = this.get('session.portal.id');
-    let portalRestUrl = this.get('portalRestUrl');
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
     let url = `${portalRestUrl}/portals/self/resources?f=json`;
-    return this.request(url);
+    return this.request(url, null, portalOpts);
   },
 
   /**
    * Remove a resource
    */
-  removeResource (resourceName) {
-    // const portalId = this.get('session.portal.id');
-    let portalRestUrl = this.get('portalRestUrl');
+  removeResource (resourceName, portalOpts) {
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
     let url = `${portalRestUrl}/portals/self/removeresource?f=json`;
-    return this.request(url, {method: 'POST', data: {key: resourceName}});
+    return this.request(url, { method: 'POST', data: { key: resourceName } }, portalOpts);
   },
 
   /**
   * Paged access to users in a portal
   */
-  users (portalId, start = 1, num = 100) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/portals/${portalId}/users/?f=json&start=${start}&num=${num}`;
-    return this.request(url);
+  users (portalId, start = 1, num = 100, portalOpts) {
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
+    let url = `${portalRestUrl}/portals/${portalId}/users/?f=json&start=${start}&num=${num}`;
+    return this.request(url, null, portalOpts);
   }
 
 });

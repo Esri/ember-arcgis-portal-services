@@ -9,9 +9,9 @@ export default Ember.Service.extend(serviceMixin, {
    * Set access
    * access options null | org | everyone
    */
-  setAccess (owner, itemId, access = null) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/content/users/${owner}/items/${itemId}/share`;
+  setAccess (owner, itemId, access = null, portalOpts) {
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/share`;
     let username = this.get('session.currentUser.username');
     let isAdmin = this.get('session').isAdmin();
     // Reject if the current user is neither the owner nor an orgAdmin
@@ -37,7 +37,7 @@ export default Ember.Service.extend(serviceMixin, {
       }
     }
 
-    return this._post(url, data);
+    return this._post(url, data, portalOpts);
   },
 
   /**
@@ -46,9 +46,9 @@ export default Ember.Service.extend(serviceMixin, {
    * to check if the item is already shared to the group. If it is
    * we short-circuit and do not make the sharing call.
    */
-  shareWithGroup (owner, itemId, groupId, confirmItemControl = false) {
-    const portalBaseUrl = this.get('portalRestUrl');
-    let url = `${portalBaseUrl}/content/users/${owner}/items/${itemId}/share`;
+  shareWithGroup (owner, itemId, groupId, confirmItemControl = false, portalOpts) {
+    const portalRestUrl = this.getPortalRestUrl(portalOpts);
+    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/share`;
     let username = this.get('session.currentUser.username');
     let isAdmin = this.get('session').isAdmin();
     // Reject if the current user is neither the owner nor an orgAdmin
@@ -57,7 +57,7 @@ export default Ember.Service.extend(serviceMixin, {
     }
     // create a query to check if the item is already shared w/ the group...
 
-    return this.isItemSharedWithGroup(itemId, groupId)
+    return this.isItemSharedWithGroup(itemId, groupId, portalOpts)
     .then((result) => {
       if (result === false) {
         // item is not shared with the group
@@ -92,14 +92,14 @@ export default Ember.Service.extend(serviceMixin, {
    * This *may* give a false-false if the user making the call
    * does not have access to the group
    */
-  isItemSharedWithGroup (itemId, groupId) {
+  isItemSharedWithGroup (itemId, groupId, portalOpts) {
     let query = {
       q: `id: ${itemId} AND group: ${groupId}`,
       start: 1,
       num: 10,
       sortField: 'title'
     };
-    return this.get('itemService').search(query)
+    return this.get('itemService').search(query, portalOpts)
     .then((searchResult) => {
       if (searchResult.total === 0) {
         return false;
@@ -121,14 +121,14 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Deprecated but proxy to the new callls
    */
-  shareItemWithEveryone (owner, itemId) {
+  shareItemWithEveryone (owner, itemId, portalOpts) {
     Ember.deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
-    return this.setAccess(owner, itemId, 'everyone');
+    return this.setAccess(owner, itemId, 'everyone', portalOpts);
   },
 
-  shareItemWithOrg (owner, itemId) {
+  shareItemWithOrg (owner, itemId, portalOpts) {
     Ember.deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
-    return this.setAccess(owner, itemId, 'org');
+    return this.setAccess(owner, itemId, 'org', portalOpts);
   },
 
   /**
@@ -152,13 +152,13 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post (url, data) {
+  _post (url, data, portalOpts) {
     let options = {
       method: 'POST',
       data: data
     };
 
-    return this.request(url, options);
+    return this.request(url, options, portalOpts);
   },
 
 });
