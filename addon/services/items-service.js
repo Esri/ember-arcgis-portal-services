@@ -7,7 +7,7 @@ export default Ember.Service.extend(serviceMixin, {
    * Get the url for item page
    */
   getItemPageUrl (id, portalOpts) {
-    return `${this.getPortalUrl()}/home/item.html?id=${id}`;
+    return `${this.getPortalUrl(portalOpts)}/home/item.html?id=${id}`;
   },
 
   /**
