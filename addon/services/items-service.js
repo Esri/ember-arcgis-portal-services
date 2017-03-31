@@ -51,9 +51,15 @@ export default Ember.Service.extend(serviceMixin, {
    * Create a new item
    * will create the `/data` if the `.text` value is present
    */
-  create (item, portalOpts) {
-    const urlPath = `/content/users/${item.owner}/addItem?f=json`;
-    return this._post(urlPath, item, portalOpts);
+  create (item, folderId) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url;
+    if (folderId) {
+      url = `${portalRestUrl}/content/users/${item.owner}/${folderId}/addItem?f=json`;
+    } else {
+      url = `${portalRestUrl}/content/users/${item.owner}/addItem?f=json`;
+    }
+    return this._post(url, item);
   },
 
   /**
@@ -142,6 +148,16 @@ export default Ember.Service.extend(serviceMixin, {
   removeResource (itemId, owner, resource, portalOpts) {
     const urlPath = `/content/users/${owner}/items/${itemId}/removeResources?f=json`;
     return this.request(urlPath, { method: 'POST', data: { resource: resource } }, portalOpts);
+  },
+
+  addRelationship (username, originItemId, destinationItemId, relationshipType) {
+    let portalRestUrl = this.get('portalRestUrl');
+    let url = `${portalRestUrl}/content/users/${username}/addRelationship?f=json`;
+    return this._post(url, {
+      relationshipType: relationshipType,
+      originItemId: originItemId,
+      destinationItemId: destinationItemId
+    });
   },
 
   /**
