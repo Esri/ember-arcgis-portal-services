@@ -6,7 +6,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Create a hosted service
    */
-  create (service, username, folderId) {
+  create (createParameters, username, folderId) {
     let portalRestUrl = this.get('portalRestUrl');
     let url;
     if (folderId) {
@@ -14,17 +14,22 @@ export default Ember.Service.extend(serviceMixin, {
     } else {
       url = `${portalRestUrl}/content/users/${username}/createService?f=json`;
     }
-    return this._post(url, service);
+    return this._post(url, {
+      outputType: 'featureService',
+      createParameters: JSON.stringify(createParameters)
+    });
   },
 
   addToDefinition (featureServiceUrl, definition, layerId) {
     let url;
     if (layerId) {
-      url = featureServiceUrl.replace('/arcgis/rest/services/i', '/arcgis/rest/admin/services/') + layerId + '/addToDefinition';
+      url = featureServiceUrl.replace(/\/arcgis\/rest\/services\//i, '\/arcgis\/rest\/admin\/services\/') + layerId + '/addToDefinition?f=json';
     } else {
-      url = featureServiceUrl.replace('/arcgis/rest/services/i', '/arcgis/rest/admin/services/') + '/addToDefinition';
+      url = featureServiceUrl.replace(/\/arcgis\/rest\/services\//i, '\/arcgis\/rest\/admin\/services\/') + '/addToDefinition?f=json';
     }
-    return this._post(url, definition);
+    return this._post(url, {
+      'addToDefinition': JSON.stringify(definition)
+    });
   },
 
   update (username, folderId, featureServiceItemId, metadata) {
