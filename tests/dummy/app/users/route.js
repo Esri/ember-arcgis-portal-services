@@ -8,6 +8,8 @@ export default Ember.Route.extend({
     'start': {refreshModel: true},
     'num': {refreshModel: true},
     'q': {refreshModel: true},
+    portalHostname: { refreshModel: true },
+    token: { refreshModel: true }
   },
 
   lastAgoQuery: '',
@@ -40,7 +42,13 @@ export default Ember.Route.extend({
       // reset paging
       agoParams.start = 1;
     }
-    return this.get('userService').search(agoParams);
+
+    const portalOpts = {
+      portalHostname: params.portalHostname,
+      token: params.token
+    };
+
+    return this.get('userService').search(agoParams, portalOpts);
   },
 
 });
