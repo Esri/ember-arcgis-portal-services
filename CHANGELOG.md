@@ -4,8 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Added
-- user-service::allUsers
-- user-service:searchUsers
+- user-service::searchCommunityUsers
+- user-service:searchPortalUsers
 
 ### Changed
 - deprecated userService.search

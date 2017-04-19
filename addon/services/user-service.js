@@ -9,16 +9,16 @@ export default Ember.Service.extend(serviceMixin, {
    * User Search
    */
   search (form, portalOpts = {}) {
-    Ember.deprecate('use .allUsers(...) or .searchUsers(...)', false, {id: 'searchDeprecation', until: '10.0.0'});
+    Ember.deprecate('use .searchPortalUsers(...) or .searchCommunityUsers(...)', false, {id: 'searchDeprecation', until: '10.0.0'});
 
     if (this.get('session.isAuthenticated') || portalOpts.portalHostname) {
-      return this.allUsers(...arguments);
+      return this.searchPortalUsers(...arguments);
     } else {
-      return this.searchUsers(...arguments);
+      return this.searchCommunityUsers(...arguments);
     }
   },
 
-  allUsers (form, portalOpts = {}) {
+  searchPortalUsers (form, portalOpts = {}) {
     // all users in the org
     // q is ignored!
     // but you can do things like firstname=
@@ -27,7 +27,7 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
-  searchUsers (form, portalOpts = {}) {
+  searchCommunityUsers (form, portalOpts = {}) {
     // all users in the portal
     // q works and you can do q=orgid:...
     // but you get less info than with allUsers
