@@ -49,7 +49,6 @@ export default Ember.Route.extend({
     };
 
     return this.get('userService').search(agoParams, portalOpts);
-    // return this.get('userService').search(agoParams, { portalHostname: 'flying6114.mapsdevext.arcgis.com', token: 'wNy4_35Sgj84dIOeqTk0weAhm7oOW-imUP_HG2UriBr5A-ZEZXppQzoXWDR4-SjZ3GpWHQjae0QM4h6X-aKQagmtHHQq5K2y60XiF5IL17Dt8j6d63Z6o4QgC3w7oJKGd-BVT8dBmNFWYCczGdd2NtGJHdPFmynM9mAWNSdm3ANRBIUjDwAWvs_F4qT2fs43' });
   },
 
 });
