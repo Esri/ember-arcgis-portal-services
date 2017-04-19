@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Added
+- user-service::allUsers
+- user-service:searchUsers
+
+### Changed
+- deprecated userService.search
+
+## [0.10.3]
+### Added
 - all public functions take an optional `portalOpts` parameter
 
 ## [0.10.2]
