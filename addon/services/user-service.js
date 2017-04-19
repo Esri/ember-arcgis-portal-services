@@ -9,13 +9,30 @@ export default Ember.Service.extend(serviceMixin, {
    * User Search
    */
   search (form, portalOpts = {}) {
-    const qs = this.encodeForm(form);
-    let urlPath;
+    Ember.deprecate('use .allUsers(...) or .searchUsers(...)', false, {id: 'searchDeprecation', until: '10.0.0'});
+
     if (this.get('session.isAuthenticated') || portalOpts.portalHostname) {
-      urlPath = `/portals/self/users?${qs}&f=json`;
+      return this.allUsers(...arguments);
     } else {
-      urlPath = `/community/users?${qs}&f=json`;
+      return this.searchUsers(...arguments);
     }
+  },
+
+  allUsers (form, portalOpts = {}) {
+    // all users in the org
+    // q is ignored!
+    // but you can do things like firstname=
+    const qs = this.encodeForm(form);
+    let urlPath = `/portals/self/users?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
+  searchUsers (form, portalOpts = {}) {
+    // all users in the portal
+    // q works and you can do q=orgid:...
+    // but you get less info than with allUsers
+    const qs = this.encodeForm(form);
+    let urlPath = `/community/users?${qs}&f=json`;
     return this.request(urlPath, null, portalOpts);
   },
 
