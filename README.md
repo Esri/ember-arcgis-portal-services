@@ -12,8 +12,9 @@ We expect this project to have many releases before the 1.0.0 "Public API" stabi
 After adding this to your project, you will have a number of services available for injection into your routes/controllers/services.
 
 ## Dependencies
-This project is now using `ember-network/fetch` to enable fastboot compatibility. Please also `ember install ember-network`
-- `torii-provider-arcgis` install via `npm i torii-provider-arcgis`
+This project is now using `ember-network/fetch`, which is included in dependencies, to enable fastboot compatibility.
+If you're using `torii` for oauth management, please also `npm install torii-provider-arcgis`. More information [here](https://github.com/dbouwman/torii-provider-arcgis).
+Otherwise, you can use the `portalOpts` parameter described below, but you need a service named `session` in your app or addon. You can generate a dummy service using `ember generate service session`. *TODO: there's probably a better way to do this...*
 
 ### Shared Methods
 All the services expose a set of shared helper properties and methods:
