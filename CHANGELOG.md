@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Changed
+- refactor of `group-service::shareWithGroup` to call `changeGroupSharing`
+
+### Added
+- added `group-service::changeGroupSharing` which can share/unshare, and has better handling of membership / rights to share/unshare
+- added `group-service::unShareWithGroup` which calls `changeGroupSharing`
+
 ## [0.10.4]
 ### Added
 - user-service::searchCommunityUsers

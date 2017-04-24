@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Hack Page</h2>
+    <p>This is a temp place to hack/test various things in the api. Feel free to add whatever here...</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Group Experiments</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <h4>Group Sharing</h4>
+    <div class="form-horizontal">
+      <fieldset>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="itemId">Current User</label>
+          <div class="col-md-9">
+            {{input value=currentUser class="form-control input-md"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="itemId">Item Id</label>
+          <div class="col-md-9">
+            {{input value=itemId class="form-control input-md"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="itemId">Owner</label>
+          <div class="col-md-9">
+            {{input value=owner class="form-control input-md"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="groupId">Group Id</label>
+          <div class="col-md-9">
+          {{input value=groupId class="form-control input-md"}}
+          </div>
+        </div>
+      <div class="form-group">
+        <div class="col-md-4">
+          <button id="singlebutton" name="singlebutton" class="btn btn-primary" {{action 'shareItem'}}>Share!</button>
+          <button id="singlebutton" name="singlebutton" class="btn btn-primary" {{action 'unShareItem'}}>Un-Share!</button>
+        </div>
+      </div>
+      </fieldset>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <h4>Response</h4>
+    <pre><code>{{sharingResponse}}</code></pre>
+  </div>
+</div>

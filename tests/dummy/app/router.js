@@ -28,6 +28,7 @@ Router.map(function () {
   this.route('users');
 
   this.route('portal');
+  this.route('hack');
 });
 
 export default Router;
