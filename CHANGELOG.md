@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - added `group-service::changeGroupSharing` which can share/unshare, and has better handling of membership / rights to share/unshare
 - added `group-service::unShareWithGroup` which calls `changeGroupSharing`
+- added `/hack` route to dummy where we can add various test harnesses
 
 ## [0.10.4]
 ### Added
