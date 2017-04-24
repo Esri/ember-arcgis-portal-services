@@ -147,10 +147,10 @@ export default Ember.Service.extend(serviceMixin, {
         if (response.owner === username) {
           result = 'owner';
         }
-        if (response.admins.indexOf(username) > -1) {
+        if (response.admins.includes(username)) {
           result = 'admin';
         }
-        if (response.users.indexOf(username) > -1) {
+        if (response.users.includes(username)) {
           result = 'user';
         }
         return result;

@@ -51,12 +51,18 @@
   </div>
   <div class="col-sm-4">
     <h4>SharingService</h4>
+    <p>We separate the concept of access (private/org/everyone) from group sharing to ensure deterministic responses.</p>
     <ul>
-      <li>shareItemWithEveryone</li>
-      <li>shareItemWithOrg</li>
-      <li>shareItemsWithGroups</li>
-      <li>shareItemsWithControl</li>
-      <li>shareItems</li>
+      <li>setAccess</li>
+      <li>shareWithGroup</li>
+      <li>unShareWithGroup</li>
+      <li>changeGroupSharing</li>
+      <li>isItemSharedWithGroup</li>
+      <li>shareItemWithEveryone (deprecated: use setAccess)</li>
+      <li>shareItemWithOrg (deprecated: use setAccess)</li>
+      <li>shareItemsWithGroups (deprecated: use shareWithGroup)</li>
+      <li>shareItemsWithControl (deprecated: use shareWithGroup)</li>
+      <li>shareItems (deprecated: use other methods)</li>
     </ul>
 
     <h4>PortalService</h4>

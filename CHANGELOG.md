@@ -4,11 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Changed
-- refactor of `group-service::shareWithGroup` to call `changeGroupSharing`
+- refactor of `sharing-service::shareWithGroup` to call `changeGroupSharing`
 
 ### Added
-- added `group-service::changeGroupSharing` which can share/unshare, and has better handling of membership / rights to share/unshare
-- added `group-service::unShareWithGroup` which calls `changeGroupSharing`
+- added `sharing-service::changeGroupSharing` which can share/unshare, and has better handling of membership / rights to share/unshare
+- added `sharing-service::unShareWithGroup` which calls `changeGroupSharing`
 - added `/hack` route to dummy where we can add various test harnesses
 
 ## [0.10.4]

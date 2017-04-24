@@ -122,103 +122,6 @@ export default Ember.Service.extend(serviceMixin, {
     }); // then
   },
 
-  // /**
-  //  * Share and item with a group as a group admin
-  //  */
-  // shareWithGroupOld (owner, itemId, groupId, confirmItemControl = false, portalOpts) {
-  //   const urlPath = `/content/users/${owner}/items/${itemId}/share`;
-  //   const username = this.get('session.currentUser.username');
-  //   const isAdmin = this.get('session').isAdmin();
-  //   // Reject if attempting to share with itemControm, and current user is neither the owner nor an orgAdmin
-  //   if (confirmItemControl && owner !== username && !isAdmin) {
-  //     return Ember.RSVP.reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
-  //   }
-  //   // create a query to check if the item is already shared w/ the group...
-  //
-  //   return this.isItemSharedWithGroup(itemId, groupId, portalOpts)
-  //   .then((result) => {
-  //     if (result === false) {
-  //       // item is not shared with the group
-  //       let data = {
-  //         items: itemId,
-  //         f: 'json',
-  //         groups: groupId
-  //       };
-  //       if (confirmItemControl) {
-  //         data.confirmItemControl = true;
-  //       }
-  //       return this._post(urlPath, data)
-  //       .then((result) => {
-  //         if (result.notSharedWith.length) {
-  //           let msg = `Item ${itemId} could not be shared to group ${groupId}. This is likely because the owner ${owner} is not a member of this group.`;
-  //           Ember.debug(msg);
-  //           return Ember.RSVP.reject(msg);
-  //         } else {
-  //           // all is well
-  //           return result;
-  //         }
-  //       });
-  //     } else {
-  //       // item is shared so we can short-circuit here and send back the same structure ago would
-  //       return Ember.RSVP.resolve({itemId: itemId, notSharedWith: []});
-  //     }
-  //   });
-  // },
-
-  /**
-   * Unshare an item with a group.
-   * In order to make this more deterministic, we issue a query
-   * to check if the item is already shared to the group. If it is not
-   * we short-circuit and do not make the unsharing call.
-   */
-  // unShareWithGroup (owner, itemId, groupId, portalOpts) {
-  //   const urlPath = `/content/users/${owner}/items/${itemId}/unshare`;
-  //   const username = this.get('session.currentUser.username');
-  //   const isAdmin = this.get('session').isAdmin();
-  //   // Reject if the current user is neither the owner nor an orgAdmin
-  //   if (owner !== username && !isAdmin) {
-  //     return Ember.RSVP.reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
-  //   }
-  //   // create a query to check if the item is already shared w/ the group...
-  //   return this.isItemSharedWithGroup(itemId, groupId, portalOpts)
-  //   .then((result) => {
-  //     if (result === false) {
-  //       // item is not shared so we can short-circuit here and send back the same structure ago would
-  //       return Ember.RSVP.resolve({itemId: itemId, notSharedWith: []});
-  //     } else {
-  //       // see if the current user CAN unshare it...
-  //       if (owner === username || isAdmin) {
-  //         // they can!
-  //       } else {
-  //         // need to check if they are groupAdmin in the group
-  //       }
-  //
-  //     }
-  //     if (result === true) {
-  //       // item is not shared with the group
-  //       let data = {
-  //         items: itemId,
-  //         f: 'json',
-  //         groups: groupId
-  //       };
-  //       return this._post(urlPath, data)
-  //       .then((result) => {
-  //         if (result.notUnSharedWith.length) {
-  //           let msg = `Item ${itemId} could not be unshared to group ${groupId}. This is likely because the owner ${owner} is not a member of this group.`;
-  //           Ember.debug(msg);
-  //           return Ember.RSVP.reject(msg);
-  //         } else {
-  //           // all is well
-  //           return result;
-  //         }
-  //       });
-  //     } else {
-  //       // item is not shared so we can short-circuit here and send back the same structure ago would
-  //       return Ember.RSVP.resolve({itemId: itemId, notSharedWith: []});
-  //     }
-  //   });
-  // },
-
   /**
    * Means to check if an item is already shard to a group
    * This *may* give a false-false if the user making the call
@@ -267,12 +170,12 @@ export default Ember.Service.extend(serviceMixin, {
    * Deprecated without proxies to new calls
    */
   shareItemsWithGroups (/* owner, items, groups */) {
-    Ember.deprecate('use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithGroupsDeprecation', until: '10.0.0'});
+    Ember.deprecate('use .shareWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithGroupsDeprecation', until: '10.0.0'});
     return Ember.RSVP.reject('sharing-service::shareItemsWithGroups is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
   },
   //
   shareItemsWithControl (/* owner, items, groups */) {
-    Ember.deprecate('use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithControlDeprecation', until: '10.0.0'});
+    Ember.deprecate('use .shareWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithControlDeprecation', until: '10.0.0'});
     return Ember.RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
   },
   //
