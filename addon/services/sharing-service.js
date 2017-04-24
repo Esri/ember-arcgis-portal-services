@@ -83,10 +83,10 @@ export default Ember.Service.extend(serviceMixin, {
             } else {
               // user is a member of the group - now we figure out if/how they can share it...
               // if user is the owner, or orgAdmin, they can share to the group using the item-owner url...
-              if (owner === username || isAdmin) {
+              if (owner === username) {
                 urlPathPromise = Ember.RSVP.resolve(`/content/users/${owner}/items/${itemId}/${action}`);
               } else {
-                if (membership === 'admin') {
+                if (membership === 'admin' || isAdmin) {
                   urlPathPromise = Ember.RSVP.resolve(`/content/items/${itemId}/${action}`);
                 } else {
                   // user can not share item to group b/c they don't own the item
