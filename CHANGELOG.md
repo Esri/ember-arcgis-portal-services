@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Changed
+- refactor of `sharing-service::shareWithGroup` to call `changeGroupSharing`
+
+### Added
+- added `sharing-service::changeGroupSharing` which can share/unshare, and has better handling of membership / rights to share/unshare
+- added `sharing-service::unShareWithGroup` which calls `changeGroupSharing`
+- added `/hack` route to dummy where we can add various test harnesses
+
 ## [0.10.4]
 ### Added
 - user-service::searchCommunityUsers

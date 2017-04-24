@@ -57,8 +57,7 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
     "ember-cli-htmlbars": "^1.0.3",
-    "ember-ajax": "2.4.1",
-    "ember-network": "0.3.0",
+    "ember-network": "0.3.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

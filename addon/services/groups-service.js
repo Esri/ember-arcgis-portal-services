@@ -126,5 +126,38 @@ export default Ember.Service.extend(serviceMixin, {
       method: 'POST'
     };
     return this.request(urlPath, options, portalOpts);
+  },
+  /**
+   * Is the user a group admin?
+   */
+  isUserGroupAdmin (id, username, portalOpts) {
+    this.getUserMembership(id, username, portalOpts)
+      .then((result) => {
+        return result === 'admin';
+      });
+  },
+  /**
+   * Return the type of group membership of a user
+   */
+  getUserMembership (id, username, portalOpts) {
+    let result = 'nonmember';
+    return this.users(id, portalOpts)
+      .then((response) => {
+        // check if username is in the admin hash...
+        if (response.owner === username) {
+          result = 'owner';
+        }
+        if (response.admins.includes(username)) {
+          result = 'admin';
+        }
+        if (response.users.includes(username)) {
+          result = 'user';
+        }
+        return result;
+      })
+      .catch((err) => {
+        Ember.debug(`GroupService:getUserMembership ${id} for ${username} errored: ${err}`);
+        return result;
+      });
   }
 });
