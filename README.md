@@ -69,10 +69,14 @@ All the services expose a set of shared helper properties and methods:
 
 ## Sharing Service
 
+The sharing service separates setting Access (private/shared/org/everyone) from sharing with a group. This allows the methods to be more deterministic.
+
 | Method |  Returns | Description |
 | --- | --- | --- |
 | `setAccess(owner, itemId, access, portalOpts)` | `promise` |  where access is null | 'org' | 'everyone' |
 | `shareWithGroup(owner, itemId, groupId, confirmItemControl, portalOpts)` | `promise` | Shares an item with a group. `confirmItemControl` defaults to `false`. If set to `true` then `itemControl` (aka edit permission) is conferred via group membership |
+| `unShareWithGroup(owner, itemId, groupId, portalOpts)` | `promise` | Un-Share an item with a group. |
+| `changeGroupSharing(action, owner, itemId, groupId, portalOpts)` | `promise` | Actual implementation of the sharing. Action can be 'share' or 'unshare' |
 | `isItemSharedWithGroup(itemId, groupId, portalOpts)` | `promise` | Checks to see if an item has already been shared with a group |
 
 ## User Service
