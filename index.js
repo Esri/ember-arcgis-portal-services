@@ -4,6 +4,6 @@
 module.exports = {
   name: 'ember-arcgis-portal-services',
   isDevelopingAddon: function() {
-    return true;
+    return false;
   }
 };
