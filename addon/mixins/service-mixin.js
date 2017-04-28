@@ -75,7 +75,7 @@ export default Ember.Mixin.create({
   /**
    * Fetch based request method
    */
-  request (urlPath, options, portalOpts = {}) {
+  request (urlPath, options, portalOpts) {
     let opts = options || {};
     let url = `${this.getPortalRestUrl(portalOpts)}${urlPath}`;
 
@@ -101,7 +101,9 @@ export default Ember.Mixin.create({
     }
 
     // append in the token
-    const token = portalOpts.token || this.get('session.token');
+    // if portalOpts was provided use it even if it is undefined
+    // this is so we can make unauthenticated requests by passing portalOpts without a token
+    const token = portalOpts ? portalOpts.token : this.get('session.token');
     if (token) {
       // add a token
       if (url.indexOf('?') > -1) {
