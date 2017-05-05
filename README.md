@@ -87,6 +87,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `searchCommunityUsers(form, portalOpts)` | `promise` | Executes via `/sharing/rest/community/users`. The form is an object properties matching the [search params](http://resources.arcgis.com/en/help/arcgis-rest-api/#/User_Search/02r3000000m6000000/) |
 | `searchPortalUsers(form, portalOpts)` | `promise` | Executes via `/sharing/rest/portals/self/users`. The form is an object properties matching the [search params](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Users/02r30000009q000000/) |
 | `getByName(username, portalOpts)` | `promise` | Get a user object by name. |
+| `update(user, portalOpts)` | `promise` | Update a user |
 
 
 

@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- `update` method on user-service
+
 ## 0.12.0
 ### Changed
 - If `portalOpts` is provided use the token specified on it (even if undefined).

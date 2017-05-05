@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-  itemsService: Ember.inject.service('items-service'),
+  userService: Ember.inject.service(),
 
   session: Ember.inject.service(),
 
@@ -52,6 +52,4 @@ export default Ember.Controller.extend({
       };
       this.transitionToRoute('users', { queryParams: queryParams });
     }
-
-  }
 });
