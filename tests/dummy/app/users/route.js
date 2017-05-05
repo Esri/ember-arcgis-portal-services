@@ -43,10 +43,13 @@ export default Ember.Route.extend({
       agoParams.start = 1;
     }
 
-    const portalOpts = {
-      portalHostname: params.portalHostname,
-      token: params.token
-    };
+    let portalOpts;
+    if (params.portalHostname) {
+      portalOpts.portalHostname = params.portalHostname;
+    }
+    if (params.token) {
+      portalOpts.token = params.token;
+    }
 
     return this.get('userService').search(agoParams, portalOpts);
   },

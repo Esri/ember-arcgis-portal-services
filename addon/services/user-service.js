@@ -10,7 +10,6 @@ export default Ember.Service.extend(serviceMixin, {
    */
   search (form, portalOpts) {
     Ember.deprecate('use .searchPortalUsers(...) or .searchCommunityUsers(...)', false, {id: 'searchDeprecation', until: '10.0.0'});
-
     if (this.get('session.isAuthenticated') || (portalOpts && portalOpts.portalHostname)) {
       return this.searchPortalUsers(...arguments);
     } else {
@@ -40,5 +39,45 @@ export default Ember.Service.extend(serviceMixin, {
     const urlPath = `/community/users/${username}?f=json`;
     return this.request(urlPath, null, portalOpts);
   },
+
+  /**
+   * Update an existing user
+   * will update the `/data` if the `.text` value is present
+   */
+  update (user, portalOpts) {
+    const urlPath = `/community/users/${user.username}/update?f=json`;
+    return this._post(urlPath, user, portalOpts);
+  },
+
+  /**
+   * Extra logic to transform the item prior to POSTing it
+   */
+  _serializeItem (item) {
+    let clone = Ember.copy(item, true);
+
+    // Array items need to become comma delim strings
+    if (clone.groups) {
+      clone.groups = item.groups.join(', ');
+    }
+
+    if (clone.tags) {
+      clone.tags = item.tags.join(', ');
+    }
+
+    return clone;
+  },
+
+  /**
+   * Shared logic for POST operations
+   */
+  _post (urlPath, item, portalOpts) {
+    const serializedItem = this._serializeItem(item);
+
+    const options = {
+      method: 'POST',
+      data: serializedItem
+    };
+    return this.request(urlPath, options, portalOpts);
+  }
 
 });
