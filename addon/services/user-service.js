@@ -52,16 +52,15 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Extra logic to transform the item prior to POSTing it
    */
-  _serializeItem (item) {
-    let clone = Ember.copy(item, true);
+  _serializeUser (user) {
+    let clone = Ember.copy(user, true);
+
+    // groups are ignored
+    delete clone.groups;
 
     // Array items need to become comma delim strings
-    if (clone.groups) {
-      clone.groups = item.groups.join(', ');
-    }
-
     if (clone.tags) {
-      clone.tags = item.tags.join(', ');
+      clone.tags = user.tags.join(', ');
     }
 
     return clone;
@@ -71,7 +70,7 @@ export default Ember.Service.extend(serviceMixin, {
    * Shared logic for POST operations
    */
   _post (urlPath, item, portalOpts) {
-    const serializedItem = this._serializeItem(item);
+    const serializedItem = this._serializeUser(item);
 
     const options = {
       method: 'POST',
