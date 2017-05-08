@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <h2>Edit {{model.title}}
+    <h2>{{model.item.title}}
       <button type="button" name="button" class="btn btn-default pull-right"{{action 'cancel'}}>Cancel</button>
       <button type="button" name="button" class="btn btn-primary pull-right"{{action 'save'}}>Save</button></h2>
   </div>
@@ -25,11 +25,11 @@
   </div>
   <div class="col-sm-6">
       <h3>Item Json</h3>
-    {{json-editor json=itemJson mode="code" onChange=(action (mut itemJson))}}
+    {{json-editor json=model.item mode="code" onChange=(action (mut model.item))}}
   </div>
   <div class="col-sm-6">
     <h3>Data Json</h3>
-    {{json-editor json=dataJson mode="code" onChange=(action (mut dataJson))}}
+    {{json-editor json=model.data mode="code" onChange=(action (mut model.data))}}
   </div>
 </div>
 <div class="row">
