@@ -51,7 +51,7 @@ export default Ember.Route.extend({
       portalOpts.token = params.token;
     }
 
-    return this.get('userService').search(agoParams, portalOpts);
+    return this.get('userService').searchPortalUsers(agoParams, portalOpts);
   },
 
 });
