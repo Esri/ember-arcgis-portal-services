@@ -52,4 +52,5 @@ export default Ember.Controller.extend({
       };
       this.transitionToRoute('users', { queryParams: queryParams });
     }
+  }
 });
