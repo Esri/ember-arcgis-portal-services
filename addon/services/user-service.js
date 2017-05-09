@@ -59,8 +59,14 @@ export default Ember.Service.extend(serviceMixin, {
     delete clone.groups;
 
     // Array items need to become comma delim strings
-    if (clone.tags) {
+    if (user.tags && user.tags.join) {
       clone.tags = user.tags.join(', ');
+      if (clone.tags === '') {
+        // NOTE: you can't currently reset the tags to an empty array
+        // despite what the docs say here:
+        // http://resources.arcgis.com/en/help/arcgis-rest-api/#/Update_User/02r3000000m0000000/
+        clone.tags = 'user';
+      }
     }
 
     return clone;
