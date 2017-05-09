@@ -52,9 +52,9 @@ export default Ember.Service.extend(serviceMixin, {
    * will create the `/data` if the `.text` value is present
    */
   createInFolder (item, folderId, portalOpts) {
-    let urlPath = `$/content/users/${item.owner}/addItem?f=json`;
+    let urlPath = `/content/users/${item.owner}/addItem?f=json`;
     if (folderId) {
-      urlPath = `$/content/users/${item.owner}/${folderId}/addItem?f=json`;
+      urlPath = `/content/users/${item.owner}/${folderId}/addItem?f=json`;
     }
     return this._post(urlPath, item, portalOpts);
   },
