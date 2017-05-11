@@ -177,6 +177,16 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Get related items
+   */
+  getRelatedItems (itemId, relationshipType, direction, portalOpts) {
+    let urlPath = `/content/items/${itemId}/relatedItems?f=json&relationshipType=${relationshipType}&direction=${direction}`;
+    return this.request(urlPath, {
+      method: 'GET'
+    }, portalOpts);
+  },
+
+  /**
    * Extra logic to transform the item prior to POSTing it
    */
   _serializeItem (item) {

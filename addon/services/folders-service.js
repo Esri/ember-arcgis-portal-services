@@ -36,7 +36,10 @@ export default Ember.Service.extend(serviceMixin, {
    */
   create (folderTitle, username, portalOpts) {
     let urlPath = `/content/users/${username}/createFolder?f=json`;
-    return this._post(urlPath, {title: folderTitle}, portalOpts);
+    return this._post(urlPath, {title: folderTitle}, portalOpts)
+      .then((response) => {
+        return response.folder;
+      });
   },
 
   /**

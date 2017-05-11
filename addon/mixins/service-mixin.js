@@ -76,9 +76,17 @@ export default Ember.Mixin.create({
    * Fetch based request method
    */
   request (urlPath, options, portalOpts) {
-    let opts = options || {};
     let url = `${this.getPortalRestUrl(portalOpts)}${urlPath}`;
+    return this.requestUrl(url, options, portalOpts);
+  },
 
+  /**
+   * Make a request using a fully-formed url. This was added to allow
+   * the hosted-fs-service to make calls to the hosted service using
+   * its fully qualifed url.
+   */
+  requestUrl (url, options, portalOpts) {
+    let opts = options || {};
     if (opts.method && opts.method === 'POST') {
       // if we are POSTing, we need to manually set the content-type because AGO
       // actually does care about this header
@@ -112,7 +120,7 @@ export default Ember.Mixin.create({
         url = url + '?token=' + token;
       }
     }
-    Ember.debug('Portal Services making request to: ' + url);
+    // Ember.debug('Portal Services making request to: ' + url);
     return fetch(url, opts)
       .then(this.checkStatusAndParseJson);
   }
