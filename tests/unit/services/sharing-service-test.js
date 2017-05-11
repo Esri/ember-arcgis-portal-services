@@ -140,6 +140,12 @@ test('owner share to group', function (assert) {
     }
   });
   this.register('service:session', session);
+  let groupSvc = Ember.Service.extend({
+    getUserMembership (id, username) {
+      return Ember.RSVP.resolve('member');
+    }
+  });
+  this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
@@ -239,6 +245,12 @@ test('owner share to group with itemControl', function (assert) {
     }
   });
   this.register('service:session', session);
+  let groupSvc = Ember.Service.extend({
+    getUserMembership (id, username) {
+      return Ember.RSVP.resolve('member');
+    }
+  });
+  this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
@@ -276,6 +288,12 @@ test('owner share to group message response', function (assert) {
     }
   });
   this.register('service:session', session);
+  let groupSvc = Ember.Service.extend({
+    getUserMembership (id, username) {
+      return Ember.RSVP.resolve('member');
+    }
+  });
+  this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
@@ -294,7 +312,7 @@ test('owner share to group message response', function (assert) {
       assert.notOk(data.org, 'org should be falsy');
       assert.equal(data.items, '3efakeId');
       assert.equal(data.groups, '4efakeGroupId');
-      assert.ok(service._post.calledOnce);
+      assert.ok(service._post.calledOnce, 'service _post should be called once');
       assert.ok(err.indexOf('could not be shared to group 4efakeGroupId'));
     });
 });
@@ -309,12 +327,20 @@ test('non-owner can not share item to group', function (assert) {
     }
   });
   this.register('service:session', session);
+  let groupSvc = Ember.Service.extend({
+    getUserMembership (id, username) {
+      return Ember.RSVP.resolve('member');
+    }
+  });
+  this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
     return Ember.RSVP.resolve({'itemId': '3efakeId'});
   });
-
+  this.stub(service, 'isItemSharedWithGroup', function (q) {
+    return Ember.RSVP.resolve(false);
+  });
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
     .catch((err) => {
       assert.ok(err.indexOf('otherfakeuser') > -1, 'Error should include current username');
