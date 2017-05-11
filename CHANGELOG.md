@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - `folder-service` and dummy/users/user route which allows you to CRD folders
-- added `hosted-fs-service` - debatable about where this should live, but it allows you to create a hosted service item, and add layers/tables, and check if a service name exists
+- added `hosted-service` - create a hosted service item, and add layers/tables, and check if a service name exists
 - added `items-service.getRelatedItems(itemId, relationshipType, direction, portalOpts)`
 - added `items-service.addRelationship (username, itemId, destItemId, relType, portalOpts)`
 - added `requestUrl(url)` to `service-mixin`
