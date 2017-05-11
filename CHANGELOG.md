@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - added `hosted-fs-service` - debatable about where this should live, but it allows you to create a hosted service item, and add layers/tables, and check if a service name exists
 - added `items-service.getRelatedItems(itemId, relationshipType, direction, portalOpts)`
 - added `items-service.addRelationship (username, itemId, destItemId, relType, portalOpts)`
+- added `requestUrl(url)` to `service-mixin`
 
 ### Changed
 - removed debugging message echoing the url of all requests

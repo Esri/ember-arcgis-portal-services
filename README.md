@@ -126,6 +126,14 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `create (folderTitle, username, portalOpts)` | `promise` | Creates a folder |
 | `remove (folderId, username, portalOpts)` | `promise` | Removes a folder |
 
+### Hosted Service
+Used to create/manage hosted feature services. Use the `feature-service` in `ember-arcgis-server-services` to work with features/records in the service.
+
+| Method |  Returns | Description |
+| --- | --- | --- |
+| `serviceExists (serviceName, orgId, portalOpts)` | `promise` | Check if a service exists |
+| `create (svcParams, username, folderId, portalOpts)` | `promise` | Create a Service + Item |
+| `addToDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Add/Edit a layer or table to the service |
 
 ### environment.js
 
