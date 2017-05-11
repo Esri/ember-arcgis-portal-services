@@ -132,7 +132,7 @@ export default Ember.Service.extend(serviceMixin, {
    * Get the resources associated with an Item
    */
   getResources (itemId, portalOpts) {
-    const urlPath = `/content/items/${itemId}/resources?f=json`;
+    const urlPath = `/content/items/${itemId}/resources?f=json&num=1000`;
     return this.request(urlPath, null, portalOpts);
   },
 
