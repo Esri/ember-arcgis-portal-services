@@ -151,6 +151,24 @@ define('dummy/tests/groups/new/route.lint-test', ['exports'], function (exports)
     assert.ok(true, 'groups/new/route.js should pass ESLint.\n');
   });
 });
+define('dummy/tests/hack/controller.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - hack/controller.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'hack/controller.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/hack/route.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - hack/route.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'hack/route.js should pass ESLint.\n');
+  });
+});
 define('dummy/tests/helpers/destroy-app', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = destroyApp;
 
@@ -680,6 +698,12 @@ define('dummy/tests/unit/services/sharing-service-test', ['exports', 'ember', 'e
       }
     });
     this.register('service:session', session);
+    var groupSvc = _ember['default'].Service.extend({
+      getUserMembership: function getUserMembership(id, username) {
+        return _ember['default'].RSVP.resolve('member');
+      }
+    });
+    this.register('service:groups-service', groupSvc);
     var service = this.subject();
     // stub the ._post so we can inspect things
     this.stub(service, '_post', function (url, data) {
@@ -776,6 +800,12 @@ define('dummy/tests/unit/services/sharing-service-test', ['exports', 'ember', 'e
       }
     });
     this.register('service:session', session);
+    var groupSvc = _ember['default'].Service.extend({
+      getUserMembership: function getUserMembership(id, username) {
+        return _ember['default'].RSVP.resolve('member');
+      }
+    });
+    this.register('service:groups-service', groupSvc);
     var service = this.subject();
     // stub the ._post so we can inspect things
     this.stub(service, '_post', function (url, data) {
@@ -812,6 +842,12 @@ define('dummy/tests/unit/services/sharing-service-test', ['exports', 'ember', 'e
       }
     });
     this.register('service:session', session);
+    var groupSvc = _ember['default'].Service.extend({
+      getUserMembership: function getUserMembership(id, username) {
+        return _ember['default'].RSVP.resolve('member');
+      }
+    });
+    this.register('service:groups-service', groupSvc);
     var service = this.subject();
     // stub the ._post so we can inspect things
     this.stub(service, '_post', function (url, data) {
@@ -829,7 +865,7 @@ define('dummy/tests/unit/services/sharing-service-test', ['exports', 'ember', 'e
       assert.notOk(data.org, 'org should be falsy');
       assert.equal(data.items, '3efakeId');
       assert.equal(data.groups, '4efakeGroupId');
-      assert.ok(service._post.calledOnce);
+      assert.ok(service._post.calledOnce, 'service _post should be called once');
       assert.ok(err.indexOf('could not be shared to group 4efakeGroupId'));
     });
   });
@@ -844,12 +880,20 @@ define('dummy/tests/unit/services/sharing-service-test', ['exports', 'ember', 'e
       }
     });
     this.register('service:session', session);
+    var groupSvc = _ember['default'].Service.extend({
+      getUserMembership: function getUserMembership(id, username) {
+        return _ember['default'].RSVP.resolve('member');
+      }
+    });
+    this.register('service:groups-service', groupSvc);
     var service = this.subject();
     // stub the ._post so we can inspect things
     this.stub(service, '_post', function (url, data) {
       return _ember['default'].RSVP.resolve({ 'itemId': '3efakeId' });
     });
-
+    this.stub(service, 'isItemSharedWithGroup', function (q) {
+      return _ember['default'].RSVP.resolve(false);
+    });
     return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')['catch'](function (err) {
       assert.ok(err.indexOf('otherfakeuser') > -1, 'Error should include current username');
       assert.notOk(service._post.called);
@@ -899,22 +943,68 @@ define('dummy/tests/unit/services/sharing-service-test.lint-test', ['exports'], 
     assert.ok(true, 'unit/services/sharing-service-test.js should pass ESLint.\n');
   });
 });
-define('dummy/tests/users/controller.lint-test', ['exports'], function (exports) {
-  'use strict';
+define('dummy/tests/unit/services/user-service-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
 
-  QUnit.module('ESLint - users/controller.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'users/controller.js should pass ESLint.\n');
+  (0, _emberQunit.moduleFor)('service:user-service', 'Unit | Service | user service', {
+    // Specify the other units that are required for this test.
+    // needs: ['service:foo']
+  });
+
+  // Replace this with your real tests.
+  (0, _emberQunit.test)('it serializes tags', function (assert) {
+    var service = this.subject();
+    var user = {
+      username: 'tomwayson',
+      tags: ['test', 'test1']
+    };
+    assert.equal(service._serializeUser(user).tags, user.tags.join(', '), 'should return comma delimited list');
+    user.tags = [];
+    assert.equal(service._serializeUser(user).tags, 'user', 'should return default tag for empty array');
   });
 });
-define('dummy/tests/users/route.lint-test', ['exports'], function (exports) {
+define('dummy/tests/unit/services/user-service-test.lint-test', ['exports'], function (exports) {
   'use strict';
 
-  QUnit.module('ESLint - users/route.js');
+  QUnit.module('ESLint - unit/services/user-service-test.js');
   QUnit.test('should pass ESLint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'users/route.js should pass ESLint.\n');
+    assert.ok(true, 'unit/services/user-service-test.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/users/index/controller.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - users/index/controller.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'users/index/controller.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/users/index/route.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - users/index/route.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'users/index/route.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/users/user/controller.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - users/user/controller.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'users/user/controller.js should pass ESLint.\n');
+  });
+});
+define('dummy/tests/users/user/route.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('ESLint - users/user/route.js');
+  QUnit.test('should pass ESLint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'users/user/route.js should pass ESLint.\n');
   });
 });
 /* jshint ignore:start */

@@ -449,6 +449,41 @@ define("dummy/application/template", ["exports"], function (exports) {
       };
     })();
     var child6 = (function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            "revision": "Ember@2.8.2",
+            "loc": {
+              "source": null,
+              "start": {
+                "line": 24,
+                "column": 24
+              },
+              "end": {
+                "line": 24,
+                "column": 49
+              }
+            },
+            "moduleName": "dummy/application/template.hbs"
+          },
+          isEmpty: false,
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode("Hack");
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
       return {
         meta: {
           "revision": "Ember@2.8.2",
@@ -459,7 +494,46 @@ define("dummy/application/template", ["exports"], function (exports) {
               "column": 8
             },
             "end": {
-              "line": 26,
+              "line": 24,
+              "column": 49
+            }
+          },
+          "moduleName": "dummy/application/template.hbs"
+        },
+        isEmpty: false,
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [["block", "link-to", ["hack"], [], 0, null, ["loc", [null, [24, 24], [24, 49]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })();
+    var child7 = (function () {
+      return {
+        meta: {
+          "revision": "Ember@2.8.2",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 25,
+              "column": 8
+            },
+            "end": {
+              "line": 27,
               "column": 8
             }
           },
@@ -490,12 +564,12 @@ define("dummy/application/template", ["exports"], function (exports) {
           morphs[0] = dom.createElementMorph(element0);
           return morphs;
         },
-        statements: [["element", "action", ["signout"], [], ["loc", [null, [25, 24], [25, 44]]], 0, 0]],
+        statements: [["element", "action", ["signout"], [], ["loc", [null, [26, 24], [26, 44]]], 0, 0]],
         locals: [],
         templates: []
       };
     })();
-    var child7 = (function () {
+    var child8 = (function () {
       var child0 = (function () {
         var child0 = (function () {
           return {
@@ -504,11 +578,11 @@ define("dummy/application/template", ["exports"], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 27,
+                  "line": 28,
                   "column": 24
                 },
                 "end": {
-                  "line": 27,
+                  "line": 28,
                   "column": 54
                 }
               },
@@ -538,11 +612,11 @@ define("dummy/application/template", ["exports"], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 27,
+                "line": 28,
                 "column": 8
               },
               "end": {
-                "line": 27,
+                "line": 28,
                 "column": 54
               }
             },
@@ -565,7 +639,7 @@ define("dummy/application/template", ["exports"], function (exports) {
             dom.insertBoundary(fragment, null);
             return morphs;
           },
-          statements: [["block", "link-to", ["signin"], [], 0, null, ["loc", [null, [27, 24], [27, 54]]]]],
+          statements: [["block", "link-to", ["signin"], [], 0, null, ["loc", [null, [28, 24], [28, 54]]]]],
           locals: [],
           templates: [child0]
         };
@@ -576,11 +650,11 @@ define("dummy/application/template", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 26,
+              "line": 27,
               "column": 8
             },
             "end": {
-              "line": 28,
+              "line": 29,
               "column": 8
             }
           },
@@ -605,7 +679,7 @@ define("dummy/application/template", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
           return morphs;
         },
-        statements: [["block", "active-link", [], [], 0, null, ["loc", [null, [27, 8], [27, 70]]]]],
+        statements: [["block", "active-link", [], [], 0, null, ["loc", [null, [28, 8], [28, 70]]]]],
         locals: [],
         templates: [child0]
       };
@@ -620,7 +694,7 @@ define("dummy/application/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 43,
+            "line": 44,
             "column": 0
           }
         },
@@ -721,6 +795,10 @@ define("dummy/application/template", ["exports"], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("ul");
         dom.setAttribute(el4, "class", "nav navbar-nav navbar-right");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
         var el5 = dom.createTextNode("\n");
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
@@ -795,24 +873,26 @@ define("dummy/application/template", ["exports"], function (exports) {
         var element1 = dom.childAt(fragment, [1, 1]);
         var element2 = dom.childAt(element1, [3]);
         var element3 = dom.childAt(element2, [1]);
-        var element4 = dom.childAt(fragment, [3]);
-        var element5 = dom.childAt(element4, [1, 1]);
-        var morphs = new Array(10);
+        var element4 = dom.childAt(element2, [3]);
+        var element5 = dom.childAt(fragment, [3]);
+        var element6 = dom.childAt(element5, [1, 1]);
+        var morphs = new Array(11);
         morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]), 3, 3);
         morphs[1] = dom.createMorphAt(element3, 1, 1);
         morphs[2] = dom.createMorphAt(element3, 3, 3);
         morphs[3] = dom.createMorphAt(element3, 5, 5);
         morphs[4] = dom.createMorphAt(element3, 7, 7);
         morphs[5] = dom.createMorphAt(element3, 9, 9);
-        morphs[6] = dom.createMorphAt(dom.childAt(element2, [3]), 1, 1);
-        morphs[7] = dom.createMorphAt(dom.childAt(element5, [1]), 0, 0);
-        morphs[8] = dom.createMorphAt(dom.childAt(element5, [3]), 0, 0);
-        morphs[9] = dom.createMorphAt(element4, 3, 3);
+        morphs[6] = dom.createMorphAt(element4, 1, 1);
+        morphs[7] = dom.createMorphAt(element4, 3, 3);
+        morphs[8] = dom.createMorphAt(dom.childAt(element6, [1]), 0, 0);
+        morphs[9] = dom.createMorphAt(dom.childAt(element6, [3]), 0, 0);
+        morphs[10] = dom.createMorphAt(element5, 3, 3);
         return morphs;
       },
-      statements: [["block", "link-to", ["index"], ["class", "navbar-brand"], 0, null, ["loc", [null, [12, 8], [12, 79]]]], ["block", "active-link", [], [], 1, null, ["loc", [null, [17, 8], [17, 66]]]], ["block", "active-link", [], [], 2, null, ["loc", [null, [18, 8], [18, 67]]]], ["block", "active-link", [], [], 3, null, ["loc", [null, [19, 8], [19, 75]]]], ["block", "active-link", [], [], 4, null, ["loc", [null, [20, 8], [20, 67]]]], ["block", "active-link", [], [], 5, null, ["loc", [null, [21, 8], [21, 69]]]], ["block", "if", [["get", "session.isAuthenticated", ["loc", [null, [24, 14], [24, 37]]], 0, 0, 0, 0]], [], 6, 7, ["loc", [null, [24, 8], [28, 15]]]], ["content", "session.currentUser.username", ["loc", [null, [38, 27], [38, 59]]], 0, 0, 0, 0], ["content", "session.portal.name", ["loc", [null, [38, 80], [38, 103]]], 0, 0, 0, 0], ["content", "outlet", ["loc", [null, [41, 4], [41, 14]]], 0, 0, 0, 0]],
+      statements: [["block", "link-to", ["index"], ["class", "navbar-brand"], 0, null, ["loc", [null, [12, 8], [12, 79]]]], ["block", "active-link", [], [], 1, null, ["loc", [null, [17, 8], [17, 66]]]], ["block", "active-link", [], [], 2, null, ["loc", [null, [18, 8], [18, 67]]]], ["block", "active-link", [], [], 3, null, ["loc", [null, [19, 8], [19, 75]]]], ["block", "active-link", [], [], 4, null, ["loc", [null, [20, 8], [20, 67]]]], ["block", "active-link", [], [], 5, null, ["loc", [null, [21, 8], [21, 69]]]], ["block", "active-link", [], [], 6, null, ["loc", [null, [24, 8], [24, 65]]]], ["block", "if", [["get", "session.isAuthenticated", ["loc", [null, [25, 14], [25, 37]]], 0, 0, 0, 0]], [], 7, 8, ["loc", [null, [25, 8], [29, 15]]]], ["content", "session.currentUser.username", ["loc", [null, [39, 27], [39, 59]]], 0, 0, 0, 0], ["content", "session.portal.name", ["loc", [null, [39, 80], [39, 103]]], 0, 0, 0, 0], ["content", "outlet", ["loc", [null, [42, 4], [42, 14]]], 0, 0, 0, 0]],
       locals: [],
-      templates: [child0, child1, child2, child3, child4, child5, child6, child7]
+      templates: [child0, child1, child2, child3, child4, child5, child6, child7, child8]
     };
   })());
 });
@@ -2397,62 +2477,6 @@ define("dummy/components/upload-button/template", ["exports"], function (exports
     };
   })());
 });
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/mixins/service-mixin.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/mixins/service-mixin.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/mixins/service-mixin.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/geocode-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/geocode-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/geocode-service.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/groups-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/groups-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/groups-service.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/items-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/items-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/items-service.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/oauth-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/oauth-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/oauth-service.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/portal-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/portal-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/portal-service.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/sharing-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/sharing-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/sharing-service.js should pass ESLint.\n');
-  });
-});
-define('dummy/ember-arcgis-portal-services/tests/modules/ember-arcgis-portal-services/services/user-service.lint-test', ['exports'], function (exports) {
-  QUnit.module('ESLint - modules/ember-arcgis-portal-services/services/user-service.js');
-  QUnit.test('should pass ESLint', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'modules/ember-arcgis-portal-services/services/user-service.js should pass ESLint.\n');
-  });
-});
 define('dummy/ext/torii-provider-arcgis', ['exports', 'torii/services/torii-session', 'torii-provider-arcgis/mixins/gatekeeper'], function (exports, _toriiServicesToriiSession, _toriiProviderArcgisMixinsGatekeeper) {
 
   _toriiServicesToriiSession['default'].reopen(_toriiProviderArcgisMixinsGatekeeper['default']);
@@ -3019,6 +3043,7 @@ define('dummy/groups/index/route', ['exports', 'ember'], function (exports, _emb
       };
 
       return this.get('groupsService').search(agoParams);
+      // return this.get('groupsService').search(agoParams, { portalHostname: 'flying6114.mapsdevext.arcgis.com', token: 'wNy4_35Sgj84dIOeqTk0weAhm7oOW-imUP_HG2UriBr5A-ZEZXppQzoXWDR4-SjZ3GpWHQjae0QM4h6X-aKQagmtHHQq5K2y60XiF5IL17Dt8j6d63Z6o4QgC3w7oJKGd-BVT8dBmNFWYCczGdd2NtGJHdPFmynM9mAWNSdm3ANRBIUjDwAWvs_F4qT2fs43' });
     },
     actions: {
       destroy: function destroy(group) {
@@ -3698,6 +3723,326 @@ define("dummy/groups/new/template", ["exports"], function (exports) {
     };
   })());
 });
+define('dummy/hack/controller', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Controller.extend({
+    sharingService: _ember['default'].inject.service('sharing-service'),
+    itemId: '86c14c971d864b7887c89e3cd39f94b1', // Collisions Data Indicator for Development
+    groupId: '5a55a1dc809741a698df35f97106e3bc', // DEVEXT AAA Test Sharing
+    owner: 'dcadmin',
+    currentUser: _ember['default'].computed.reads('session.currentUser.username'),
+    sharingResult: {},
+    actions: {
+      shareItem: function shareItem() {
+        var _this = this;
+
+        var svc = this.get('sharingService');
+        return svc.shareWithGroup(this.get('owner'), this.get('itemId'), this.get('groupId')).then(function (response) {
+          _this.set('sharingResponse', JSON.stringify(response, null, 4));
+        })['catch'](function (err) {
+          _this.set('sharingResponse', JSON.stringify(err, null, 4));
+        });
+      },
+      unShareItem: function unShareItem() {
+        var _this2 = this;
+
+        var svc = this.get('sharingService');
+        return svc.unShareWithGroup(this.get('owner'), this.get('itemId'), this.get('groupId')).then(function (response) {
+          _this2.set('sharingResponse', JSON.stringify(response, null, 4));
+        })['catch'](function (err) {
+          _this2.set('sharingResponse', JSON.stringify(err, null, 4));
+        });
+      }
+    }
+
+  });
+});
+define('dummy/hack/route', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Route.extend({});
+});
+define("dummy/hack/template", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    return {
+      meta: {
+        "revision": "Ember@2.8.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 55,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/hack/template.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h2");
+        var el4 = dom.createTextNode("Hack Page");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("p");
+        var el4 = dom.createTextNode("This is a temp place to hack/test various things in the api. Feel free to add whatever here...");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Group Experiments");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h4");
+        var el4 = dom.createTextNode("Group Sharing");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3, "class", "form-horizontal");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("fieldset");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "form-group");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("label");
+        dom.setAttribute(el6, "class", "col-md-3 control-label");
+        dom.setAttribute(el6, "for", "itemId");
+        var el7 = dom.createTextNode("Current User");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("div");
+        dom.setAttribute(el6, "class", "col-md-9");
+        var el7 = dom.createTextNode("\n            ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createComment("");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "form-group");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("label");
+        dom.setAttribute(el6, "class", "col-md-3 control-label");
+        dom.setAttribute(el6, "for", "itemId");
+        var el7 = dom.createTextNode("Item Id");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("div");
+        dom.setAttribute(el6, "class", "col-md-9");
+        var el7 = dom.createTextNode("\n            ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createComment("");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "form-group");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("label");
+        dom.setAttribute(el6, "class", "col-md-3 control-label");
+        dom.setAttribute(el6, "for", "itemId");
+        var el7 = dom.createTextNode("Owner");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("div");
+        dom.setAttribute(el6, "class", "col-md-9");
+        var el7 = dom.createTextNode("\n            ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createComment("");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "form-group");
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("label");
+        dom.setAttribute(el6, "class", "col-md-3 control-label");
+        dom.setAttribute(el6, "for", "groupId");
+        var el7 = dom.createTextNode("Group Id");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n          ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("div");
+        dom.setAttribute(el6, "class", "col-md-9");
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createComment("");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("div");
+        dom.setAttribute(el5, "class", "form-group");
+        var el6 = dom.createTextNode("\n        ");
+        dom.appendChild(el5, el6);
+        var el6 = dom.createElement("div");
+        dom.setAttribute(el6, "class", "col-md-4");
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createElement("button");
+        dom.setAttribute(el7, "id", "singlebutton");
+        dom.setAttribute(el7, "name", "singlebutton");
+        dom.setAttribute(el7, "class", "btn btn-primary");
+        var el8 = dom.createTextNode("Share!");
+        dom.appendChild(el7, el8);
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n          ");
+        dom.appendChild(el6, el7);
+        var el7 = dom.createElement("button");
+        dom.setAttribute(el7, "id", "singlebutton");
+        dom.setAttribute(el7, "name", "singlebutton");
+        dom.setAttribute(el7, "class", "btn btn-primary");
+        var el8 = dom.createTextNode("Un-Share!");
+        dom.appendChild(el7, el8);
+        dom.appendChild(el6, el7);
+        var el7 = dom.createTextNode("\n        ");
+        dom.appendChild(el6, el7);
+        dom.appendChild(el5, el6);
+        var el6 = dom.createTextNode("\n      ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h4");
+        var el4 = dom.createTextNode("Response");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("pre");
+        var el4 = dom.createElement("code");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [4]);
+        var element1 = dom.childAt(element0, [1, 3, 1]);
+        var element2 = dom.childAt(element1, [9, 1]);
+        var element3 = dom.childAt(element2, [1]);
+        var element4 = dom.childAt(element2, [3]);
+        var morphs = new Array(7);
+        morphs[0] = dom.createMorphAt(dom.childAt(element1, [1, 3]), 1, 1);
+        morphs[1] = dom.createMorphAt(dom.childAt(element1, [3, 3]), 1, 1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element1, [5, 3]), 1, 1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element1, [7, 3]), 1, 1);
+        morphs[4] = dom.createElementMorph(element3);
+        morphs[5] = dom.createElementMorph(element4);
+        morphs[6] = dom.createMorphAt(dom.childAt(element0, [3, 3, 0]), 0, 0);
+        return morphs;
+      },
+      statements: [["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "currentUser", ["loc", [null, [20, 26], [20, 37]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control input-md", "disabled", true], ["loc", [null, [20, 12], [20, 83]]], 0, 0], ["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "itemId", ["loc", [null, [26, 26], [26, 32]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control input-md"], ["loc", [null, [26, 12], [26, 64]]], 0, 0], ["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "owner", ["loc", [null, [32, 26], [32, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control input-md"], ["loc", [null, [32, 12], [32, 63]]], 0, 0], ["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "groupId", ["loc", [null, [38, 24], [38, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "class", "form-control input-md"], ["loc", [null, [38, 10], [38, 63]]], 0, 0], ["element", "action", ["shareItem"], [], ["loc", [null, [43, 80], [43, 102]]], 0, 0], ["element", "action", ["unShareItem"], [], ["loc", [null, [44, 80], [44, 104]]], 0, 0], ["content", "sharingResponse", ["loc", [null, [52, 15], [52, 34]]], 0, 0, 0, 0]],
+      locals: [],
+      templates: []
+    };
+  })());
+});
 define('dummy/helpers/pluralize', ['exports', 'ember-inflector/lib/helpers/pluralize'], function (exports, _emberInflectorLibHelpersPluralize) {
   exports['default'] = _emberInflectorLibHelpersPluralize['default'];
 });
@@ -3719,7 +4064,7 @@ define("dummy/index/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 75,
+            "line": 81,
             "column": 0
           }
         },
@@ -3982,35 +4327,71 @@ define("dummy/index/template", ["exports"], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
+        var el3 = dom.createElement("p");
+        var el4 = dom.createTextNode("We separate the concept of access (private/org/everyone) from group sharing to ensure deterministic responses.");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
         var el3 = dom.createElement("ul");
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
-        var el5 = dom.createTextNode("shareItemWithEveryone");
+        var el5 = dom.createTextNode("setAccess");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
-        var el5 = dom.createTextNode("shareItemWithOrg");
+        var el5 = dom.createTextNode("shareWithGroup");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
-        var el5 = dom.createTextNode("shareItemsWithGroups");
+        var el5 = dom.createTextNode("unShareWithGroup");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
-        var el5 = dom.createTextNode("shareItemsWithControl");
+        var el5 = dom.createTextNode("changeGroupSharing");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
-        var el5 = dom.createTextNode("shareItems");
+        var el5 = dom.createTextNode("isItemSharedWithGroup");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("shareItemWithEveryone (deprecated: use setAccess)");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("shareItemWithOrg (deprecated: use setAccess)");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("shareItemsWithGroups (deprecated: use shareWithGroup)");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("shareItemsWithControl (deprecated: use shareWithGroup)");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createTextNode("shareItems (deprecated: use other methods)");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n    ");
@@ -4090,7 +4471,7 @@ define("dummy/index/template", ["exports"], function (exports) {
         morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [74, 0], [74, 10]]], 0, 0, 0, 0]],
+      statements: [["content", "outlet", ["loc", [null, [80, 0], [80, 10]]], 0, 0, 0, 0]],
       locals: [],
       templates: []
     };
@@ -5435,6 +5816,7 @@ define('dummy/items/index/route', ['exports', 'ember'], function (exports, _embe
         agoParams.start = 1;
       }
       return this.get('itemsService').search(agoParams);
+      // return this.get('itemsService').search(agoParams, { portalHostname: 'flying6114.mapsdevext.arcgis.com', token: 'wNy4_35Sgj84dIOeqTk0weAhm7oOW-imUP_HG2UriBr5A-ZEZXppQzoXWDR4-SjZ3GpWHQjae0QM4h6X-aKQagmtHHQq5K2y60XiF5IL17Dt8j6d63Z6o4QgC3w7oJKGd-BVT8dBmNFWYCczGdd2NtGJHdPFmynM9mAWNSdm3ANRBIUjDwAWvs_F4qT2fs43' });
     },
 
     actions: {
@@ -6306,10 +6688,20 @@ define('dummy/items/item/edit/route', ['exports', 'ember'], function (exports, _
     model: function model(params) {
       var item = this.modelFor('items.item');
       _ember['default'].debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
-      return _ember['default'].RSVP.hash({
-        item: item,
-        data: this.get('itemsService').getDataById(item.id)
-      });
+
+      // only get the data if this is a type with data!
+      var validTypes = ['Web Mapping Application', 'Web Map'];
+      if (validTypes.includes(item.type)) {
+        return _ember['default'].RSVP.hash({
+          item: item,
+          data: this.get('itemsService').getDataById(item.id)
+        });
+      } else {
+        return _ember['default'].RSVP.resolve({
+          item: item,
+          data: {}
+        });
+      }
     }
   });
 });
@@ -6346,8 +6738,6 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("h2");
-        var el4 = dom.createTextNode("Edit ");
-        dom.appendChild(el3, el4);
         var el4 = dom.createComment("");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n      ");
@@ -6573,8 +6963,8 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [0, 1, 1]);
-        var element1 = dom.childAt(element0, [3]);
-        var element2 = dom.childAt(element0, [5]);
+        var element1 = dom.childAt(element0, [2]);
+        var element2 = dom.childAt(element0, [4]);
         var element3 = dom.childAt(fragment, [2]);
         var element4 = dom.childAt(element3, [1]);
         var element5 = dom.childAt(element4, [3]);
@@ -6590,7 +6980,7 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         var element15 = dom.childAt(element14, [1]);
         var element16 = dom.childAt(element15, [5]);
         var morphs = new Array(16);
-        morphs[0] = dom.createMorphAt(element0, 1, 1);
+        morphs[0] = dom.createMorphAt(element0, 0, 0);
         morphs[1] = dom.createElementMorph(element1);
         morphs[2] = dom.createElementMorph(element2);
         morphs[3] = dom.createMorphAt(dom.childAt(element4, [1]), 1, 1);
@@ -6608,7 +6998,7 @@ define("dummy/items/item/edit/template", ["exports"], function (exports) {
         morphs[15] = dom.createMorphAt(element14, 5, 5);
         return morphs;
       },
-      statements: [["content", "model.title", ["loc", [null, [3, 13], [3, 28]]], 0, 0, 0, 0], ["element", "action", ["cancel"], [], ["loc", [null, [4, 76], [4, 95]]], 0, 0], ["element", "action", ["save"], [], ["loc", [null, [5, 76], [5, 93]]], 0, 0], ["content", "model.item.access", ["loc", [null, [11, 17], [11, 38]]], 0, 0, 0, 0], ["element", "action", ["shareWithGroups"], [], ["loc", [null, [13, 52], [13, 80]]], 0, 0], ["element", "action", ["shareWithOrg"], [], ["loc", [null, [14, 52], [14, 77]]], 0, 0], ["element", "action", ["shareWithEveryone"], [], ["loc", [null, [15, 52], [15, 82]]], 0, 0], ["content", "model.item.protected", ["loc", [null, [19, 19], [19, 43]]], 0, 0, 0, 0], ["element", "action", ["protectItem"], [], ["loc", [null, [22, 52], [22, 76]]], 0, 0], ["element", "action", ["unprotectItem"], [], ["loc", [null, [23, 52], [23, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "itemJson", ["loc", [null, [28, 23], [28, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "itemJson", ["loc", [null, [28, 66], [28, 74]]], 0, 0, 0, 0]], [], ["loc", [null, [28, 61], [28, 75]]], 0, 0]], [], ["loc", [null, [28, 53], [28, 76]]], 0, 0]], ["loc", [null, [28, 4], [28, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "dataJson", ["loc", [null, [32, 23], [32, 31]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "dataJson", ["loc", [null, [32, 66], [32, 74]]], 0, 0, 0, 0]], [], ["loc", [null, [32, 61], [32, 75]]], 0, 0]], [], ["loc", [null, [32, 53], [32, 76]]], 0, 0]], ["loc", [null, [32, 4], [32, 78]]], 0, 0], ["inline", "item-resources", [], ["item", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [37, 26], [37, 36]]], 0, 0, 0, 0]], [], [], 0, 0], "onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [38, 23], [38, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [39, 23], [39, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [40, 19], [40, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [41, 19], [41, 38]]], 0, 0], "onTextUpload", ["subexpr", "action", ["sendText"], [], ["loc", [null, [42, 19], [42, 38]]], 0, 0]], ["loc", [null, [37, 4], [43, 8]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "groupId", ["loc", [null, [48, 43], [48, 50]]], 0, 0, 0, 0]], [], [], 0, 0], "placeholder", "Group ID"], ["loc", [null, [48, 8], [48, 75]]], 0, 0], ["element", "action", ["shareToGroup"], [], ["loc", [null, [48, 108], [48, 133]]], 0, 0], ["content", "sharingMessage", ["loc", [null, [51, 6], [51, 24]]], 0, 0, 0, 0]],
+      statements: [["content", "model.item.title", ["loc", [null, [3, 8], [3, 28]]], 0, 0, 0, 0], ["element", "action", ["cancel"], [], ["loc", [null, [4, 76], [4, 95]]], 0, 0], ["element", "action", ["save"], [], ["loc", [null, [5, 76], [5, 93]]], 0, 0], ["content", "model.item.access", ["loc", [null, [11, 17], [11, 38]]], 0, 0, 0, 0], ["element", "action", ["shareWithGroups"], [], ["loc", [null, [13, 52], [13, 80]]], 0, 0], ["element", "action", ["shareWithOrg"], [], ["loc", [null, [14, 52], [14, 77]]], 0, 0], ["element", "action", ["shareWithEveryone"], [], ["loc", [null, [15, 52], [15, 82]]], 0, 0], ["content", "model.item.protected", ["loc", [null, [19, 19], [19, 43]]], 0, 0, 0, 0], ["element", "action", ["protectItem"], [], ["loc", [null, [22, 52], [22, 76]]], 0, 0], ["element", "action", ["unprotectItem"], [], ["loc", [null, [23, 52], [23, 78]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [28, 23], [28, 33]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "model.item", ["loc", [null, [28, 68], [28, 78]]], 0, 0, 0, 0]], [], ["loc", [null, [28, 63], [28, 79]]], 0, 0]], [], ["loc", [null, [28, 55], [28, 80]]], 0, 0]], ["loc", [null, [28, 4], [28, 82]]], 0, 0], ["inline", "json-editor", [], ["json", ["subexpr", "@mut", [["get", "model.data", ["loc", [null, [32, 23], [32, 33]]], 0, 0, 0, 0]], [], [], 0, 0], "mode", "code", "onChange", ["subexpr", "action", [["subexpr", "mut", [["get", "model.data", ["loc", [null, [32, 68], [32, 78]]], 0, 0, 0, 0]], [], ["loc", [null, [32, 63], [32, 79]]], 0, 0]], [], ["loc", [null, [32, 55], [32, 80]]], 0, 0]], ["loc", [null, [32, 4], [32, 82]]], 0, 0], ["inline", "item-resources", [], ["item", ["subexpr", "@mut", [["get", "model.item", ["loc", [null, [37, 26], [37, 36]]], 0, 0, 0, 0]], [], [], 0, 0], "onFetchResources", ["subexpr", "action", ["fetchResources"], [], ["loc", [null, [38, 23], [38, 48]]], 0, 0], "onRemoveResource", ["subexpr", "action", ["removeResource"], [], ["loc", [null, [39, 23], [39, 48]]], 0, 0], "onUploadFile", ["subexpr", "action", ["uploadFile"], [], ["loc", [null, [40, 19], [40, 40]]], 0, 0], "onJsonUpload", ["subexpr", "action", ["sendJson"], [], ["loc", [null, [41, 19], [41, 38]]], 0, 0], "onTextUpload", ["subexpr", "action", ["sendText"], [], ["loc", [null, [42, 19], [42, 38]]], 0, 0]], ["loc", [null, [37, 4], [43, 8]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "groupId", ["loc", [null, [48, 43], [48, 50]]], 0, 0, 0, 0]], [], [], 0, 0], "placeholder", "Group ID"], ["loc", [null, [48, 8], [48, 75]]], 0, 0], ["element", "action", ["shareToGroup"], [], ["loc", [null, [48, 108], [48, 133]]], 0, 0], ["content", "sharingMessage", ["loc", [null, [51, 6], [51, 24]]], 0, 0, 0, 0]],
       locals: [],
       templates: []
     };
@@ -7270,18 +7660,21 @@ define('dummy/router', ['exports', 'ember', 'dummy/config/environment'], functio
       this.route('new');
     });
 
-    this.route('users');
+    this.route('users', function () {
+      this.route('user', { path: '/:username' });
+    });
 
     this.route('portal');
+    this.route('hack');
   });
 
   exports['default'] = Router;
 });
-define('dummy/services/ajax', ['exports', 'ember-ajax/services/ajax'], function (exports, _emberAjaxServicesAjax) {
+define('dummy/services/folders-service', ['exports', 'ember-arcgis-portal-services/services/folders-service'], function (exports, _emberArcgisPortalServicesServicesFoldersService) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberAjaxServicesAjax['default'];
+      return _emberArcgisPortalServicesServicesFoldersService['default'];
     }
   });
 });
@@ -7298,6 +7691,14 @@ define('dummy/services/groups-service', ['exports', 'ember-arcgis-portal-service
     enumerable: true,
     get: function get() {
       return _emberArcgisPortalServicesServicesGroupsService['default'];
+    }
+  });
+});
+define('dummy/services/hosted-fs-service', ['exports', 'ember-arcgis-portal-services/services/hosted-fs-service'], function (exports, _emberArcgisPortalServicesServicesHostedFsService) {
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function get() {
+      return _emberArcgisPortalServicesServicesHostedFsService['default'];
     }
   });
 });
@@ -7966,14 +8367,14 @@ define('dummy/torii-providers/arcgis-oauth-bearer', ['exports', 'torii/providers
  *
  * torii provider that works with ArcGIS.com oauth
  */
-define('dummy/users/controller', ['exports', 'ember'], function (exports, _ember) {
+define('dummy/users/index/controller', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Controller.extend({
 
-    itemsService: _ember['default'].inject.service('items-service'),
+    userService: _ember['default'].inject.service(),
 
     session: _ember['default'].inject.service(),
 
-    queryParams: ['start', 'num', 'q'],
+    queryParams: ['start', 'num', 'q', 'token', 'portalHostname'],
 
     start: 1,
 
@@ -7982,6 +8383,14 @@ define('dummy/users/controller', ['exports', 'ember'], function (exports, _ember
     query: '*',
 
     num: 10,
+
+    portalHostname: '',
+
+    portalHostnameCopy: _ember['default'].computed.reads('portalHostname'),
+
+    token: '',
+
+    tokenCopy: _ember['default'].computed.reads('token'),
 
     totalCount: _ember['default'].computed('model.total', function () {
       return this.get('model.total');
@@ -8002,13 +8411,19 @@ define('dummy/users/controller', ['exports', 'ember'], function (exports, _ember
         this.set('q', this.get('query'));
         // reset the page
         this.set('start', 1);
-        this.transitionToRoute('items.index');
+        var queryParams = {
+          q: this.get('query'),
+          start: 1,
+          num: this.get('num'),
+          portalHostname: this.get('portalHostnameCopy'),
+          token: this.get('tokenCopy')
+        };
+        this.transitionToRoute('users', { queryParams: queryParams });
       }
-
     }
   });
 });
-define('dummy/users/route', ['exports', 'ember'], function (exports, _ember) {
+define('dummy/users/index/route', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
 
     userService: _ember['default'].inject.service(),
@@ -8016,7 +8431,9 @@ define('dummy/users/route', ['exports', 'ember'], function (exports, _ember) {
     queryParams: {
       'start': { refreshModel: true },
       'num': { refreshModel: true },
-      'q': { refreshModel: true }
+      'q': { refreshModel: true },
+      portalHostname: { refreshModel: true },
+      token: { refreshModel: true }
     },
 
     lastAgoQuery: '',
@@ -8049,30 +8466,78 @@ define('dummy/users/route', ['exports', 'ember'], function (exports, _ember) {
         // reset paging
         agoParams.start = 1;
       }
-      return this.get('userService').search(agoParams);
+
+      var portalOpts = undefined;
+      if (params.portalHostname) {
+        portalOpts.portalHostname = params.portalHostname;
+      }
+      if (params.token) {
+        portalOpts.token = params.token;
+      }
+
+      return this.get('userService').searchPortalUsers(agoParams, portalOpts);
     }
 
   });
 });
-define("dummy/users/template", ["exports"], function (exports) {
+define("dummy/users/index/template", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template((function () {
     var child0 = (function () {
       var child0 = (function () {
+        var child0 = (function () {
+          return {
+            meta: {
+              "revision": "Ember@2.8.2",
+              "loc": {
+                "source": null,
+                "start": {
+                  "line": 37,
+                  "column": 16
+                },
+                "end": {
+                  "line": 37,
+                  "column": 72
+                }
+              },
+              "moduleName": "dummy/users/index/template.hbs"
+            },
+            isEmpty: false,
+            arity: 0,
+            cachedFragment: null,
+            hasRendered: false,
+            buildFragment: function buildFragment(dom) {
+              var el0 = dom.createDocumentFragment();
+              var el1 = dom.createComment("");
+              dom.appendChild(el0, el1);
+              return el0;
+            },
+            buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+              var morphs = new Array(1);
+              morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+              dom.insertBoundary(fragment, 0);
+              dom.insertBoundary(fragment, null);
+              return morphs;
+            },
+            statements: [["content", "item.fullName", ["loc", [null, [37, 55], [37, 72]]], 0, 0, 0, 0]],
+            locals: [],
+            templates: []
+          };
+        })();
         return {
           meta: {
             "revision": "Ember@2.8.2",
             "loc": {
               "source": null,
               "start": {
-                "line": 22,
+                "line": 35,
                 "column": 10
               },
               "end": {
-                "line": 27,
+                "line": 40,
                 "column": 10
               }
             },
-            "moduleName": "dummy/users/template.hbs"
+            "moduleName": "dummy/users/index/template.hbs"
           },
           isEmpty: false,
           arity: 1,
@@ -8109,9 +8574,9 @@ define("dummy/users/template", ["exports"], function (exports) {
             morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 0, 0);
             return morphs;
           },
-          statements: [["content", "item.fullName", ["loc", [null, [24, 16], [24, 33]]], 0, 0, 0, 0], ["content", "item.email", ["loc", [null, [25, 16], [25, 30]]], 0, 0, 0, 0]],
+          statements: [["block", "link-to", ["users.user", ["get", "item.username", ["loc", [null, [37, 40], [37, 53]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [37, 16], [37, 84]]]], ["content", "item.email", ["loc", [null, [38, 16], [38, 30]]], 0, 0, 0, 0]],
           locals: ["item"],
-          templates: []
+          templates: [child0]
         };
       })();
       return {
@@ -8120,15 +8585,15 @@ define("dummy/users/template", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 14,
+              "line": 27,
               "column": 4
             },
             "end": {
-              "line": 31,
+              "line": 44,
               "column": 4
             }
           },
-          "moduleName": "dummy/users/template.hbs"
+          "moduleName": "dummy/users/index/template.hbs"
         },
         isEmpty: false,
         arity: 0,
@@ -8143,7 +8608,9 @@ define("dummy/users/template", ["exports"], function (exports) {
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode(" Items");
+          var el2 = dom.createTextNode(" Items; searched for ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n      ");
@@ -8190,13 +8657,15 @@ define("dummy/users/template", ["exports"], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(3);
-          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
-          morphs[1] = dom.createMorphAt(dom.childAt(fragment, [3, 3]), 1, 1);
-          morphs[2] = dom.createMorphAt(fragment, 5, 5, contextualElement);
+          var element1 = dom.childAt(fragment, [1]);
+          var morphs = new Array(4);
+          morphs[0] = dom.createMorphAt(element1, 1, 1);
+          morphs[1] = dom.createMorphAt(element1, 3, 3);
+          morphs[2] = dom.createMorphAt(dom.childAt(fragment, [3, 3]), 1, 1);
+          morphs[3] = dom.createMorphAt(fragment, 5, 5, contextualElement);
           return morphs;
         },
-        statements: [["content", "totalCount", ["loc", [null, [15, 16], [15, 30]]], 0, 0, 0, 0], ["block", "each", [["get", "model.users", ["loc", [null, [22, 18], [22, 29]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [22, 10], [27, 19]]]], ["inline", "list-pager", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [30, 25], [30, 30]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [30, 6], [30, 32]]], 0, 0]],
+        statements: [["content", "totalCount", ["loc", [null, [28, 16], [28, 30]]], 0, 0, 0, 0], ["content", "q", ["loc", [null, [28, 51], [28, 56]]], 0, 0, 0, 0], ["block", "each", [["get", "model.users", ["loc", [null, [35, 18], [35, 29]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [35, 10], [40, 19]]]], ["inline", "list-pager", [], ["model", ["subexpr", "@mut", [["get", "model", ["loc", [null, [43, 25], [43, 30]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [43, 6], [43, 32]]], 0, 0]],
         locals: [],
         templates: [child0]
       };
@@ -8208,15 +8677,15 @@ define("dummy/users/template", ["exports"], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 31,
+              "line": 44,
               "column": 4
             },
             "end": {
-              "line": 33,
+              "line": 46,
               "column": 4
             }
           },
-          "moduleName": "dummy/users/template.hbs"
+          "moduleName": "dummy/users/index/template.hbs"
         },
         isEmpty: false,
         arity: 0,
@@ -8244,7 +8713,7 @@ define("dummy/users/template", ["exports"], function (exports) {
           morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 1, 1);
           return morphs;
         },
-        statements: [["content", "q", ["loc", [null, [32, 62], [32, 67]]], 0, 0, 0, 0]],
+        statements: [["content", "q", ["loc", [null, [45, 62], [45, 67]]], 0, 0, 0, 0]],
         locals: [],
         templates: []
       };
@@ -8259,11 +8728,11 @@ define("dummy/users/template", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 36,
+            "line": 49,
             "column": 0
           }
         },
-        "moduleName": "dummy/users/template.hbs"
+        "moduleName": "dummy/users/index/template.hbs"
       },
       isEmpty: false,
       arity: 0,
@@ -8285,7 +8754,62 @@ define("dummy/users/template", ["exports"], function (exports) {
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n");
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("  ");
+        var el3 = dom.createTextNode("      ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("form");
+        dom.setAttribute(el3, "class", "form-inline");
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "form-group");
+        var el5 = dom.createTextNode("\n          ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("label");
+        var el6 = dom.createTextNode("Portal Host Name: ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n          ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("div");
+        dom.setAttribute(el4, "class", "form-group");
+        var el5 = dom.createTextNode("\n          ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("label");
+        var el6 = dom.createTextNode("Token: ");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n          ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n        ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4, "class", "btn btn-primary");
+        dom.setAttribute(el4, "type", "submit");
+        var el5 = dom.createTextNode("\n          ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("span");
+        dom.setAttribute(el5, "class", "glyphicon glyphicon-search");
+        dom.setAttribute(el5, "aria-hidden", "true");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
@@ -8314,13 +8838,304 @@ define("dummy/users/template", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
+        var element2 = dom.childAt(fragment, [0, 1, 4]);
+        var morphs = new Array(4);
+        morphs[0] = dom.createElementMorph(element2);
+        morphs[1] = dom.createMorphAt(dom.childAt(element2, [1]), 3, 3);
+        morphs[2] = dom.createMorphAt(dom.childAt(element2, [3]), 3, 3);
+        morphs[3] = dom.createMorphAt(dom.childAt(fragment, [2, 1]), 1, 1);
         return morphs;
       },
-      statements: [["block", "if", [["get", "totalCount", ["loc", [null, [14, 10], [14, 20]]], 0, 0, 0, 0]], [], 0, 1, ["loc", [null, [14, 4], [33, 11]]]]],
+      statements: [["element", "action", ["filter", ["get", "portalHostnameCopy", ["loc", [null, [10, 50], [10, 68]]], 0, 0, 0, 0], ["get", "tokenCopy", ["loc", [null, [10, 69], [10, 78]]], 0, 0, 0, 0]], ["on", "submit"], ["loc", [null, [10, 32], [10, 92]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "portalHostnameCopy", ["loc", [null, [13, 45], [13, 63]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [13, 10], [13, 65]]], 0, 0], ["inline", "input", [], ["class", "form-control", "value", ["subexpr", "@mut", [["get", "tokenCopy", ["loc", [null, [17, 45], [17, 54]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [17, 10], [17, 56]]], 0, 0], ["block", "if", [["get", "totalCount", ["loc", [null, [27, 10], [27, 20]]], 0, 0, 0, 0]], [], 0, 1, ["loc", [null, [27, 4], [46, 11]]]]],
       locals: [],
       templates: [child0, child1]
+    };
+  })());
+});
+define('dummy/users/user/controller', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Controller.extend({
+    folderExists: false,
+    session: _ember['default'].inject.service('session'),
+    folderService: _ember['default'].inject.service('folders-service'),
+    actions: {
+      checkFolderExists: function checkFolderExists(folderName) {
+        var _this = this;
+
+        var username = this.get('session.currentUser.username');
+        this.get('folderService').folderExists(folderName, username).then(function (result) {
+          _this.set('folderExists', result);
+        });
+      },
+
+      addFolder: function addFolder(folderName) {
+        var _this2 = this;
+
+        var username = this.get('session.currentUser.username');
+        this.get('folderService').folderExists(folderName, username).then(function (result) {
+          if (!result) {
+            // add the folder...
+            return _this2.get('folderService').create(folderName, username);
+          } else {
+            alert('Folder Exists!');
+            return {};
+          }
+        }).then(function (result) {
+          _this2.get('model.folders').pushObject(result.folder);
+        });
+      },
+
+      removeFolder: function removeFolder(folder) {
+        var _this3 = this;
+
+        return this.get('folderService').remove(folder.id, folder.username).then(function (result) {
+          // remove it from the model list...
+          _this3.get('model.folders').without(folder);
+        });
+      }
+    }
+  });
+});
+define('dummy/users/user/route', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Route.extend({
+    userService: _ember['default'].inject.service('user-service'),
+    folderService: _ember['default'].inject.service('folders-service'),
+    model: function model(params) {
+      // get the user info...
+      return _ember['default'].RSVP.hashSettled({
+        user: this.get('userService').getByName(params.username),
+        folders: this.get('folderService').getUserFolders(params.username)
+      }).then(function (result) {
+        return {
+          user: result.user.value,
+          folders: result.folders.value
+        };
+      });
+    }
+  });
+});
+define("dummy/users/user/template", ["exports"], function (exports) {
+  exports["default"] = Ember.HTMLBars.template((function () {
+    var child0 = (function () {
+      return {
+        meta: {
+          "revision": "Ember@2.8.2",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 22,
+              "column": 8
+            },
+            "end": {
+              "line": 28,
+              "column": 8
+            }
+          },
+          "moduleName": "dummy/users/user/template.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("tr");
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n          ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("td");
+          var el3 = dom.createElement("button");
+          dom.setAttribute(el3, "class", "btn btn-sm btn-danger");
+          var el4 = dom.createTextNode("Delete");
+          dom.appendChild(el3, el4);
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n        ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(element0, [5, 0]);
+          var morphs = new Array(3);
+          morphs[0] = dom.createMorphAt(dom.childAt(element0, [1]), 0, 0);
+          morphs[1] = dom.createMorphAt(dom.childAt(element0, [3]), 0, 0);
+          morphs[2] = dom.createElementMorph(element1);
+          return morphs;
+        },
+        statements: [["content", "f.title", ["loc", [null, [24, 14], [24, 25]]], 0, 0, 0, 0], ["content", "f.id", ["loc", [null, [25, 14], [25, 22]]], 0, 0, 0, 0], ["element", "action", ["removeFolder", ["get", "f", ["loc", [null, [26, 76], [26, 77]]], 0, 0, 0, 0]], [], ["loc", [null, [26, 52], [26, 79]]], 0, 0]],
+        locals: ["f"],
+        templates: []
+      };
+    })();
+    return {
+      meta: {
+        "revision": "Ember@2.8.2",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 35,
+            "column": 0
+          }
+        },
+        "moduleName": "dummy/users/user/template.hbs"
+      },
+      isEmpty: false,
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "class", "row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h2");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("p");
+        var el4 = dom.createTextNode("This is really really basic - the check / add / delete stuff works, but the list does not update.");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("button");
+        dom.setAttribute(el3, "class", "btn btn-default");
+        var el4 = dom.createTextNode("Check Exists");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-6");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("button");
+        dom.setAttribute(el3, "class", "btn btn-default");
+        var el4 = dom.createTextNode("Add Folder");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2, "class", "col-sm-12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("table");
+        dom.setAttribute(el3, "class", "table table-striped");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("thead");
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("th");
+        var el6 = dom.createTextNode("Folder Name");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n        ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("th");
+        var el6 = dom.createTextNode("Id");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("tbody");
+        var el5 = dom.createTextNode("\n");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element2 = dom.childAt(fragment, [1]);
+        var element3 = dom.childAt(element2, [3]);
+        var element4 = dom.childAt(element3, [3]);
+        var element5 = dom.childAt(element2, [5, 1]);
+        var element6 = dom.childAt(element2, [7]);
+        var morphs = new Array(7);
+        morphs[0] = dom.createMorphAt(dom.childAt(element2, [1, 1]), 0, 0);
+        morphs[1] = dom.createMorphAt(element3, 1, 1);
+        morphs[2] = dom.createElementMorph(element4);
+        morphs[3] = dom.createElementMorph(element5);
+        morphs[4] = dom.createMorphAt(element6, 1, 1);
+        morphs[5] = dom.createMorphAt(dom.childAt(element6, [3, 3]), 1, 1);
+        morphs[6] = dom.createMorphAt(fragment, 3, 3, contextualElement);
+        return morphs;
+      },
+      statements: [["content", "model.user.username", ["loc", [null, [4, 8], [4, 31]]], 0, 0, 0, 0], ["inline", "input", [], ["value", ["subexpr", "@mut", [["get", "folderName", ["loc", [null, [8, 18], [8, 28]]], 0, 0, 0, 0]], [], [], 0, 0]], ["loc", [null, [8, 4], [8, 30]]], 0, 0], ["element", "action", ["checkFolderExists", ["get", "folderName", ["loc", [null, [9, 65], [9, 75]]], 0, 0, 0, 0]], [], ["loc", [null, [9, 36], [9, 77]]], 0, 0], ["element", "action", ["addFolder", ["get", "folderName", ["loc", [null, [12, 57], [12, 67]]], 0, 0, 0, 0]], [], ["loc", [null, [12, 36], [12, 69]]], 0, 0], ["content", "folder", ["loc", [null, [15, 4], [15, 14]]], 0, 0, 0, 0], ["block", "each", [["get", "model.folders", ["loc", [null, [22, 16], [22, 29]]], 0, 0, 0, 0]], [], 0, null, ["loc", [null, [22, 8], [28, 17]]]], ["content", "outlet", ["loc", [null, [34, 0], [34, 10]]], 0, 0, 0, 0]],
+      locals: [],
+      templates: [child0]
     };
   })());
 });
@@ -8360,7 +9175,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"v0.10.0"});
+  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"v0.13.2"});
 }
 
 /* jshint ignore:end */
