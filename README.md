@@ -51,6 +51,8 @@ All the services expose a set of shared helper properties and methods:
 | `remove(itemId, owner, portalOpts)` |  `promise` | Delete the item. |
 | `protect(itemId, owner, portalOpts)` |  `promise` | Protect the item. |
 | `unprotect(itemId, owner, portalOpts)` |  `promise` | Unprotect the item. |
+| `getRelatedItems(itemId, relationshipType, direction, portalOpts)` | `promise` | Related Items |
+| `addRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Add a relationship between items |
 
 ### Groups Service
 
@@ -115,6 +117,23 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `getResources () ` | `promise` | Get list of portal resources |
 | `removeResource (resourceName, portalOpts)` | `promise` | Remove a resource from a porta |
 | `users(portalId, start = 1, num = 100, portalOpts)` | `promise` | Get a portal users. |
+
+### Folders Service
+| Method |  Returns | Description |
+| --- | --- | --- |
+| `getUserFolders (username, portalOpts)` | `promise` | Resolves with an array of folders |
+| `folderExists (folderTitle, username, portalOpts)` | `promise` | Resolves with bool |
+| `create (folderTitle, username, portalOpts)` | `promise` | Creates a folder |
+| `remove (folderId, username, portalOpts)` | `promise` | Removes a folder |
+
+### Hosted Service
+Used to create/manage hosted feature services. Use the `feature-service` in `ember-arcgis-server-services` to work with features/records in the service.
+
+| Method |  Returns | Description |
+| --- | --- | --- |
+| `serviceExists (serviceName, orgId, portalOpts)` | `promise` | Check if a service exists |
+| `create (svcParams, username, folderId, portalOpts)` | `promise` | Create a Service + Item |
+| `addToDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Add/Edit a layer or table to the service |
 
 ### environment.js
 

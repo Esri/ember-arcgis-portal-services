@@ -34,7 +34,7 @@
         <tbody>
           {{#each model.users as |item|}}
           <tr>
-            <td>{{item.fullName}}</td>
+            <td>{{#link-to 'users.user' item.username}}{{item.fullName}}{{/link-to}}</td>
             <td>{{item.email}}</td>
           </tr>
           {{/each}}

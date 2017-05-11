@@ -48,12 +48,24 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Create a new item in a particular folder
+   * will create the `/data` if the `.text` value is present
+   */
+  createInFolder (item, folderId, portalOpts) {
+    let urlPath = `/content/users/${item.owner}/addItem?f=json`;
+    if (folderId) {
+      urlPath = `/content/users/${item.owner}/${folderId}/addItem?f=json`;
+    }
+    return this._post(urlPath, item, portalOpts);
+  },
+
+  /**
    * Create a new item
    * will create the `/data` if the `.text` value is present
    */
   create (item, portalOpts) {
-    const urlPath = `/content/users/${item.owner}/addItem?f=json`;
-    return this._post(urlPath, item, portalOpts);
+    // just call createInFolder with null folderId
+    return this.createInFolder(item, null, portalOpts);
   },
 
   /**
@@ -141,7 +153,37 @@ export default Ember.Service.extend(serviceMixin, {
    */
   removeResource (itemId, owner, resource, portalOpts) {
     const urlPath = `/content/users/${owner}/items/${itemId}/removeResources?f=json`;
-    return this.request(urlPath, { method: 'POST', data: { resource: resource } }, portalOpts);
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        resource: resource
+      }
+    }, portalOpts);
+  },
+
+  /**
+   * Add a relationship between two items
+   */
+  addRelationship (username, originItemId, destinationItemId, relationshipType, portalOpts) {
+    let urlPath = `/content/users/${username}/addRelationship?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        relationshipType: relationshipType,
+        originItemId: originItemId,
+        destinationItemId: destinationItemId
+      }
+    }, portalOpts);
+  },
+
+  /**
+   * Get related items
+   */
+  getRelatedItems (itemId, relationshipType, direction, portalOpts) {
+    let urlPath = `/content/items/${itemId}/relatedItems?f=json&relationshipType=${relationshipType}&direction=${direction}`;
+    return this.request(urlPath, {
+      method: 'GET'
+    }, portalOpts);
   },
 
   /**

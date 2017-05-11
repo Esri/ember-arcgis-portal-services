@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Added
+- `folder-service` and dummy/users/user route which allows you to CRD folders
+- added `hosted-service` - create a hosted service item, and add layers/tables, and check if a service name exists
+- added `items-service.getRelatedItems(itemId, relationshipType, direction, portalOpts)`
+- added `items-service.addRelationship (username, itemId, destItemId, relType, portalOpts)`
+- added `requestUrl(url)` to `service-mixin`
+
+### Changed
+- removed debugging message echoing the url of all requests
+
 ## 0.13.0
 ### Added
 - `update` method on user-service
