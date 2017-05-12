@@ -32,6 +32,21 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Create a hosted service view
+   */
+  createView (createParameters, username, folderId, portalOpts) {
+    let urlPath = `/content/users/${username}/createService?f=json`;
+    if (folderId) {
+      urlPath = `/content/users/${username}/${folderId}/createService?f=json`;
+    }
+    return this._post(urlPath, {
+      outputType: 'featureService',
+      isView: true,
+      createParameters: JSON.stringify(createParameters)
+    }, portalOpts);
+  },
+
+  /**
    * Add to the service definition
    */
   addToDefinition (featureServiceUrl, definition, layerId, portalOpts) {
