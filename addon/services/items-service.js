@@ -177,6 +177,20 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Remove a relationship
+   */
+  removeRelationship (username, originItemId, destinationItemId, relationshipType, portalOpts) {
+    let urlPath = `/content/users/${username}/deleteRelationship?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        originItemId: originItemId,
+        destinationItemId: destinationItemId,
+        relationshipType: relationshipType
+      }
+    }, portalOpts);
+  },
+  /**
    * Get related items
    */
   getRelatedItems (itemId, relationshipType, direction, portalOpts) {

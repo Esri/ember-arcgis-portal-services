@@ -53,6 +53,7 @@ All the services expose a set of shared helper properties and methods:
 | `unprotect(itemId, owner, portalOpts)` |  `promise` | Unprotect the item. |
 | `getRelatedItems(itemId, relationshipType, direction, portalOpts)` | `promise` | Related Items |
 | `addRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Add a relationship between items |
+| `removeRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Delete a relationship between items |
 
 ### Groups Service
 
