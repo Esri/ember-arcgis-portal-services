@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
 ## 0.13.5
 ### Added
 - added `items-service.removeRelationship (username, itemId, destItemId, relType, portalOpts)`
