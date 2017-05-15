@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 0.13.5
+### Added
+- added `items-service.removeRelationship (username, itemId, destItemId, relType, portalOpts)`
 
+
+## 0.13.4
 ### Added
 - `folder-service` and dummy/users/user route which allows you to CRD folders
 - added `hosted-service` - create a hosted service item, and add layers/tables, and check if a service name exists
@@ -14,6 +18,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - removed debugging message echoing the url of all requests
+
+## 0.13.1, 0.13.2, 0.13.3
+### Yanked
 
 ## 0.13.0
 ### Added
