@@ -101011,6 +101011,21 @@ define('ember-arcgis-portal-services/services/hosted-service', ['exports', 'embe
     },
 
     /**
+     * Create a hosted service view
+     */
+    createView: function createView(createParameters, username, folderId, portalOpts) {
+      var urlPath = '/content/users/' + username + '/createService?f=json';
+      if (folderId) {
+        urlPath = '/content/users/' + username + '/' + folderId + '/createService?f=json';
+      }
+      return this._post(urlPath, {
+        outputType: 'featureService',
+        isView: true,
+        createParameters: JSON.stringify(createParameters)
+      }, portalOpts);
+    },
+
+    /**
      * Add to the service definition
      */
     addToDefinition: function addToDefinition(featureServiceUrl, definition, layerId, portalOpts) {
@@ -101189,7 +101204,7 @@ define('ember-arcgis-portal-services/services/items-service', ['exports', 'ember
      * Get the resources associated with an Item
      */
     getResources: function getResources(itemId, portalOpts) {
-      var urlPath = '/content/items/' + itemId + '/resources?f=json';
+      var urlPath = '/content/items/' + itemId + '/resources?f=json&num=1000';
       return this.request(urlPath, null, portalOpts);
     },
 
@@ -101221,6 +101236,20 @@ define('ember-arcgis-portal-services/services/items-service', ['exports', 'ember
       }, portalOpts);
     },
 
+    /**
+     * Remove a relationship
+     */
+    removeRelationship: function removeRelationship(username, originItemId, destinationItemId, relationshipType, portalOpts) {
+      var urlPath = '/content/users/' + username + '/deleteRelationship?f=json';
+      return this.request(urlPath, {
+        method: 'POST',
+        data: {
+          originItemId: originItemId,
+          destinationItemId: destinationItemId,
+          relationshipType: relationshipType
+        }
+      }, portalOpts);
+    },
     /**
      * Get related items
      */

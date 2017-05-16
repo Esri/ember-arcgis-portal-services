@@ -6690,7 +6690,7 @@ define('dummy/items/item/edit/route', ['exports', 'ember'], function (exports, _
       _ember['default'].debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
 
       // only get the data if this is a type with data!
-      var validTypes = ['Web Mapping Application', 'Web Map'];
+      var validTypes = ['Web Mapping Application', 'Web Map', 'Hub Site Application', 'Hub Page', 'Hub Initiative'];
       if (validTypes.includes(item.type)) {
         return _ember['default'].RSVP.hash({
           item: item,
@@ -7694,11 +7694,11 @@ define('dummy/services/groups-service', ['exports', 'ember-arcgis-portal-service
     }
   });
 });
-define('dummy/services/hosted-fs-service', ['exports', 'ember-arcgis-portal-services/services/hosted-fs-service'], function (exports, _emberArcgisPortalServicesServicesHostedFsService) {
+define('dummy/services/hosted-service', ['exports', 'ember-arcgis-portal-services/services/hosted-service'], function (exports, _emberArcgisPortalServicesServicesHostedService) {
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function get() {
-      return _emberArcgisPortalServicesServicesHostedFsService['default'];
+      return _emberArcgisPortalServicesServicesHostedService['default'];
     }
   });
 });
@@ -9175,7 +9175,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"v0.13.2"});
+  require("dummy/app")["default"].create({"name":"ember-arcgis-portal-services","version":"0.13.5+a20ee085"});
 }
 
 /* jshint ignore:end */
