@@ -7,7 +7,7 @@ export default Ember.Route.extend({
     Ember.debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
 
     // only get the data if this is a type with data!
-    let validTypes = ['Web Mapping Application', 'Web Map'];
+    let validTypes = ['Web Mapping Application', 'Web Map', 'Hub Site Application', 'Hub Page', 'Hub Initiative'];
     if (validTypes.includes(item.type)) {
       return Ember.RSVP.hash({
         item: item,
