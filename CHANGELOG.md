@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+## Changed
+- `hosted-service.serviceExists` now works
+- changed calls to `session.portalHostName` to `session.portalHostname`
+
 
 ## 0.13.5
 ### Added
