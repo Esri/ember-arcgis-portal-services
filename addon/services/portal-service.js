@@ -4,6 +4,11 @@ import serviceMixin from '../mixins/service-mixin';
 export default Ember.Service.extend(serviceMixin, {
   session: Ember.inject.service('session'),
 
+  getById (id, portalOpts) {
+    const urlPath = `/portals/${id}?f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
   /**
    * Update the portal
    */
