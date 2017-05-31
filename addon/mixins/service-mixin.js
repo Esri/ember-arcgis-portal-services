@@ -40,6 +40,8 @@ export default Ember.Mixin.create({
   },
 
   encodeForm (form = {}) {
+    if (typeof form === 'string') { return form; }
+
     // Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
       return [key, form[key]].map(encodeURIComponent).join('=');
@@ -122,6 +124,9 @@ export default Ember.Mixin.create({
     }
     // Ember.debug('Portal Services making request to: ' + url);
     return fetch(url, opts)
-      .then(this.checkStatusAndParseJson);
+    // we need the => here, just .then(this.checkStatusAndParseJson) causes problems with rejection
+    .then((resp) => {
+      return this.checkStatusAndParseJson(resp);
+    });
   }
 });
