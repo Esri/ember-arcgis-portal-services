@@ -2,7 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 0.14.0
+### Added
+- portal service getById method
+
+### Fixed
+- serviceMixin::returnUrl handles rejections better
+
+### Changed
+- If a string is passed to serviceMixin::encodeForm it simply returns a string
 
 ## 0.13.5
 ### Added
