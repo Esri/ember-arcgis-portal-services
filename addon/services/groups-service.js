@@ -127,6 +127,29 @@ export default Ember.Service.extend(serviceMixin, {
     };
     return this.request(urlPath, options, portalOpts);
   },
+
+  /**
+   * request for current user to join a group
+   */
+  join (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/join?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * request for current user to leave a group
+   */
+  leave (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/leave?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
   /**
    * Is the user a group admin?
    */
