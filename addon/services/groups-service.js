@@ -192,7 +192,7 @@ export default Ember.Service.extend(serviceMixin, {
       data.users = users;
     } else {
       let error = new Error(`Please pass in a type (user or admin) for ${users} when updating memberships`);
-      Ember.RSVP.reject(error);
+      return Ember.RSVP.reject(error);
     }
     const urlPath = `/community/groups/${id}/updateUsers?f=json`;
     const options = {
