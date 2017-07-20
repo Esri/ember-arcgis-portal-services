@@ -182,5 +182,23 @@ export default Ember.Service.extend(serviceMixin, {
         Ember.debug(`GroupService:getUserMembership ${id} for ${username} errored: ${err}`);
         return result;
       });
+  },
+
+  updateUserMemberships (id, username, type, portalOpts) {
+    let data = {};
+    if (type === 'user') {
+      data.admins = username;
+    } else if (type === 'admin') {
+      data.users = username;
+    } else {
+      let error = new Error(`Please pass in a type (user or admin) for ${username} when updating the user's membership`);
+      throw error;
+    }
+    const urlPath = `/community/groups/${id}/updateUsers?f=json`;
+    const options = {
+      method: 'POST',
+      data: data
+    };
+    return this.request(urlPath, options, portalOpts);
   }
 });
