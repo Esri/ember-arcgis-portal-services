@@ -184,15 +184,15 @@ export default Ember.Service.extend(serviceMixin, {
       });
   },
 
-  updateUserMemberships (id, username, type, portalOpts) {
+  updateUserMemberships (id, users, type, portalOpts) {
     let data = {};
     if (type === 'user') {
-      data.admins = username;
+      data.admins = users;
     } else if (type === 'admin') {
-      data.users = username;
+      data.users = users;
     } else {
-      let error = new Error(`Please pass in a type (user or admin) for ${username} when updating the user's membership`);
-      throw error;
+      let error = new Error(`Please pass in a type (user or admin) for ${users} when updating memberships`);
+      Ember.RSVP.reject(error);
     }
     const urlPath = `/community/groups/${id}/updateUsers?f=json`;
     const options = {
