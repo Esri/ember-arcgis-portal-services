@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.17.0
+
+### Added
+- groupsService::updateUserMemberships
+
 ## 0.16.0
 
 ### Added
