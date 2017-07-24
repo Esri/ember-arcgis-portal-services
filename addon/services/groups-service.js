@@ -151,7 +151,7 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
-   * Is the user a group admin?
+   * Returns a boolean of user's group admin status
    */
   isUserGroupAdmin (id, username, portalOpts) {
     this.getUserMembership(id, username, portalOpts)
@@ -184,6 +184,9 @@ export default Ember.Service.extend(serviceMixin, {
       });
   },
 
+  /**
+   * Update membership(s) from user to admin or admin to user
+   */
   updateUserMemberships (id, users, type, portalOpts) {
     let data = {};
     if (type === 'user') {
