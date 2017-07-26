@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- portalService::self
+- portalService::configureSocialProviders
+
+### Changed
+- portalService::update now updates a few more properties besides portalProperties
+
 ## 0.17.0
 
 ### Added
