@@ -120,12 +120,15 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 
 | Method |  Returns | Description |
 | --- | --- | --- |
+| `getById (id, portalOpts)` | `promise` | Get portal info by Id |
+| `self (portalOpts)` | `promise` | Perform a portals/self call |
 | `update(portal, portalOpts)` | `promise` | Update a portal. Lots of rules apply to what can be changed |
 | `uploadResource (file)` | `promise` | Upload a file as a portal resource |
 | `addResource (name, content, portalOpts)` | `promise` | Add a resource to a portal |
 | `getResources () ` | `promise` | Get list of portal resources |
 | `removeResource (resourceName, portalOpts)` | `promise` | Remove a resource from a porta |
 | `users(portalId, start = 1, num = 100, portalOpts)` | `promise` | Get a portal users. |
+| `configureSocialProviders (opts, portalOpts)` | `promise` | Configure social logins. |
 
 ### Folders Service
 | Method |  Returns | Description |
