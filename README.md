@@ -61,6 +61,7 @@ All the services expose a set of shared helper properties and methods:
 | --- | --- | --- |
 | `search(form, portalOpts)` | `promise` | Executes via `/sharing/rest/community/groups`. The form is an object properties matching the [search params](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Group_Search/02r3000000m1000000/) |
 | `getById(id, portalOpts)` | `promise` | Returns the Group. |
+| `getBulk(ids, portalOpts)` | `promise` | Returns an array of Groups. |
 | `getItemsById(id, portalOpts)` | `promise` | Returns Items in the group. **Note:** Does not currently support paging. |
 | `save(group, portalOpts)` |  `promise` | Creates or Updates a group.  |
 | `update(group, portalOpts)` |  `promise` | Updates an existing group.  |
