@@ -68,6 +68,7 @@ All the services expose a set of shared helper properties and methods:
 | `create(group, portalOpts)` |  `promise` | Creates an item. The `.owner` property must be set. |
 | `remove(id, portalOpts)` |  `promise` | Delete the Group. |
 | `protect(id, portalOpts)` |  `promise` | Protect the Group from deletion. |
+| `unprotect(id, portalOpts)` |  `promise` | Unprotect the Group from deletion. |
 | `users(id, portalOpts)` |  `promise` | Return array of users that are members of the Group. [Documentation](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Group_Users/02r30000006p000000/) |
 | `addUsers(id, users, portalOpts)` |  `promise` | Adds users to the Group. Expects an array of usernames. |
 | `reassign(id, username, portalOpts)` | `promise` | Reassign ownership of the group |

@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ## Added
 - groupsService::protect
+- groupsService::unprotect
 
 ## [0.19.0]
 ### Added
