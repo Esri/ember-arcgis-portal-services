@@ -118,6 +118,17 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Protect a group in AGO from deletion
+   */
+  protect (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/protect?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
    * Delete a group from AGO
    */
   remove (id, portalOpts) {

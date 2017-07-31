@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+## Added
+- groupsService::protect
+
 ## 0.18.0
 ### Added
 - portalService::self
