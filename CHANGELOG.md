@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Added
 - groupsService::protect
 
+## [0.19.0]
+### Added
+- `getBulk` gets an array of groups by their ids
+
 ## 0.18.0
 ### Added
 - portalService::self

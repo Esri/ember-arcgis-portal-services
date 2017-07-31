@@ -13,11 +13,34 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
-   * Get the item json
+   * Get group by id
    */
   getById (id, portalOpts) {
     const urlPath = `/community/groups/${id}?f=json`;
     return this.request(urlPath, null, portalOpts);
+  },
+
+  /**
+   * Get an array of groups by their id
+   * will not return collaborationInfo or userMembership
+   */
+  getBulk (ids = [], portalOpts, start = 1, previous = []) {
+    const q = ids.reduce((qString, id, i) => {
+      if (i + 1 < ids.length) {
+        return `${qString}${id} OR`;
+      } else {
+        return `${qString}${id}`;
+      }
+    }, '');
+
+    const searchOpts = { q, start };
+
+    return this.search(searchOpts, portalOpts)
+      .then(res => {
+        const allResults = res.results.concat(previous);
+        if (res.nextStart > 0) return this.getBulk(ids, portalOpts, res.nextStart, allResults);
+        else return allResults;
+      });
   },
 
   /**
