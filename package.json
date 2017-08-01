@@ -10,7 +10,9 @@
     "start": "ember server",
     "test": "ember try:each",
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
-    "deployProd": "ember surge -d eaps.surge.sh"
+    "deploy:dev": "ember surge --environment=surge",
+    "deploy:prod" : "ember surge --new-domain='eaps.surge.sh' --environment=production"
+
   },
   "repository": {
     "type": "git",
