@@ -63,14 +63,25 @@ All the services expose a set of shared helper properties and methods:
 | --- | --- | --- |
 | `search(form, portalOpts)` | `promise` | Executes via `/sharing/rest/community/groups`. The form is an object properties matching the [search params](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Group_Search/02r3000000m1000000/) |
 | `getById(id, portalOpts)` | `promise` | Returns the Group. |
+| `getBulk(ids, portalOpts)` | `promise` | Returns an array of Groups. |
 | `getItemsById(id, portalOpts)` | `promise` | Returns Items in the group. **Note:** Does not currently support paging. |
 | `save(group, portalOpts)` |  `promise` | Creates or Updates a group.  |
 | `update(group, portalOpts)` |  `promise` | Updates an existing group.  |
 | `create(group, portalOpts)` |  `promise` | Creates an item. The `.owner` property must be set. |
 | `remove(id, portalOpts)` |  `promise` | Delete the Group. |
+| `protect(id, portalOpts)` |  `promise` | Protect the Group from deletion. |
+| `unprotect(id, portalOpts)` |  `promise` | Unprotect the Group from deletion. |
 | `users(id, portalOpts)` |  `promise` | Return array of users that are members of the Group. [Documentation](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Group_Users/02r30000006p000000/) |
 | `addUsers(id, users, portalOpts)` |  `promise` | Adds users to the Group. Expects an array of usernames. |
 | `reassign(id, username, portalOpts)` | `promise` | Reassign ownership of the group |
+| `remove(id, portalOpts)` |  `promise` | Deletes a group from AGO |
+| `join(id, portalOpts)` |  `promise` | Request for current user to join a group |
+
+| `leave (id, portalOpts)` |  `promise` | Request for current user to leave a group |
+| `isUserGroupAdmin (id, username, portalOpts)` |  `boolean` | User's group admin status |
+| `getUserMembership (id, username, portalOpts)` |  `promise` | Return the type of group membership of a user |
+| `updateUserMemberships (id, users, type, portalOpts)` |  `promise` | Updates membership(s) from user to admin or admin to user |
+
 
 ## Sharing Service
 
@@ -114,12 +125,15 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 
 | Method |  Returns | Description |
 | --- | --- | --- |
+| `getById (id, portalOpts)` | `promise` | Get portal info by Id |
+| `self (portalOpts)` | `promise` | Perform a portals/self call |
 | `update(portal, portalOpts)` | `promise` | Update a portal. Lots of rules apply to what can be changed |
 | `uploadResource (file)` | `promise` | Upload a file as a portal resource |
 | `addResource (name, content, portalOpts)` | `promise` | Add a resource to a portal |
 | `getResources () ` | `promise` | Get list of portal resources |
 | `removeResource (resourceName, portalOpts)` | `promise` | Remove a resource from a porta |
 | `users(portalId, start = 1, num = 100, portalOpts)` | `promise` | Get a portal users. |
+| `configureSocialProviders (opts, portalOpts)` | `promise` | Configure social logins. |
 
 ### Folders Service
 | Method |  Returns | Description |
@@ -137,6 +151,7 @@ Used to create/manage hosted feature services. Use the `feature-service` in `emb
 | `serviceExists (serviceName, orgId, portalOpts)` | `promise` | Check if a service exists |
 | `create (svcParams, username, folderId, portalOpts)` | `promise` | Create a Service + Item |
 | `addToDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Add/Edit a layer or table to the service |
+| `updateDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Update a service/layer's definition |
 
 ### environment.js
 

@@ -2,6 +2,54 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+
+## Changed
+- `hosted-service.serviceExists` now works
+- changed calls to `session.portalHostName` to `session.portalHostname`
+
+### Changes
+- added npm script to deploy a prod version @ surge.sh.
+
+
+## Added
+
+## 0.20.0
+## Added
+- groupsService::protect
+- groupsService::unprotect
+
+## 0.19.0
+### Added
+- `getBulk` gets an array of groups by their ids
+
+## 0.18.0
+### Added
+- portalService::self
+- portalService::configureSocialProviders
+
+### Changed
+- portalService::update now updates a few more properties besides portalProperties
+
+## 0.17.0
+
+### Added
+- groupsService::updateUserMemberships
+
+## 0.16.0
+
+### Added
+- group service methods to join/leave a group
+
+## 0.15.0
+
+### Added
+- hosted feature service updateDefinition method
+
+### Fixed
+- hosted feature service addToDefinition works for layer id 0
+
 ## 0.14.0
 ### Added
 - portal service getById method
@@ -11,6 +59,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - If a string is passed to serviceMixin::encodeForm it simply returns a string
+
 
 ## 0.13.5
 ### Added
@@ -64,6 +113,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.10.3]
 ### Added
 - all public functions take an optional `portalOpts` parameter
+
 
 ## [0.10.2]
 ### Fixed
