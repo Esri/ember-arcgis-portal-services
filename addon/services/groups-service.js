@@ -13,11 +13,34 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
-   * Get the item json
+   * Get group by id
    */
   getById (id, portalOpts) {
     const urlPath = `/community/groups/${id}?f=json`;
     return this.request(urlPath, null, portalOpts);
+  },
+
+  /**
+   * Get an array of groups by their id
+   * will not return collaborationInfo or userMembership
+   */
+  getBulk (ids = [], portalOpts, start = 1, previous = []) {
+    const q = ids.reduce((qString, id, i) => {
+      if (i + 1 < ids.length) {
+        return `${qString}${id} OR`;
+      } else {
+        return `${qString}${id}`;
+      }
+    }, '');
+
+    const searchOpts = { q, start };
+
+    return this.search(searchOpts, portalOpts)
+      .then(res => {
+        const allResults = res.results.concat(previous);
+        if (res.nextStart > 0) return this.getBulk(ids, portalOpts, res.nextStart, allResults);
+        else return allResults;
+      });
   },
 
   /**
@@ -118,6 +141,28 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Protect a group in AGO from deletion
+   */
+  protect (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/protect?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Unprotect a group in AGO from deletion
+   */
+  unprotect (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/unprotect?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
    * Delete a group from AGO
    */
   remove (id, portalOpts) {
@@ -127,8 +172,31 @@ export default Ember.Service.extend(serviceMixin, {
     };
     return this.request(urlPath, options, portalOpts);
   },
+
   /**
-   * Is the user a group admin?
+   * request for current user to join a group
+   */
+  join (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/join?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * request for current user to leave a group
+   */
+  leave (id, portalOpts) {
+    const urlPath = `/community/groups/${id}/leave?f=json`;
+    const options = {
+      method: 'POST'
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Returns a boolean of user's group admin status
    */
   isUserGroupAdmin (id, username, portalOpts) {
     this.getUserMembership(id, username, portalOpts)
@@ -159,5 +227,26 @@ export default Ember.Service.extend(serviceMixin, {
         Ember.debug(`GroupService:getUserMembership ${id} for ${username} errored: ${err}`);
         return result;
       });
+  },
+
+  /**
+   * Update membership(s) from user to admin or admin to user
+   */
+  updateUserMemberships (id, users, type, portalOpts) {
+    let data = {};
+    if (type === 'user') {
+      data.admins = users;
+    } else if (type === 'admin') {
+      data.users = users;
+    } else {
+      let error = new Error(`Please pass in a type (user or admin) for ${users} when updating memberships`);
+      return Ember.RSVP.reject(error);
+    }
+    const urlPath = `/community/groups/${id}/updateUsers?f=json`;
+    const options = {
+      method: 'POST',
+      data: data
+    };
+    return this.request(urlPath, options, portalOpts);
   }
 });

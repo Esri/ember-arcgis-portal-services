@@ -1,9 +1,8 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.13.5",
+  "version": "0.20.0",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -13,7 +12,10 @@
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
     "deployProd": "ember surge -d eaps.surge.sh"
   },
-  "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArcGIS/ember-arcgis-portal-services.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -31,7 +33,7 @@
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jsoneditor": "0.1.2",
     "ember-cli-qunit": "^2.1.0",
-    "ember-cli-release": "^0.2.9",
+    "ember-cli-release": "1.0.0-beta.2",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-surge": "1.1.16",
     "ember-cli-test-loader": "^1.1.0",
@@ -62,5 +64,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/ArcGIS/ember-arcgis-portal-services/issues"
+  },
+  "homepage": "https://github.com/ArcGIS/ember-arcgis-portal-services#readme",
+  "main": "index.js"
 }
