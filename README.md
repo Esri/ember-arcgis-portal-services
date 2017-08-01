@@ -190,6 +190,17 @@ torii: {
 
 For more information on using ember-cli, visit [http://ember-cli.com/" target="_blank" class="rg-linkified-code">http://ember-cli.com/](http://ember-cli.com/).
 
+## Resources
+
+* [ArcGIS Hub](http://doc.arcgis.com/en/hub/)
+* [ArcGIS for Developers](https://developers.arcgis.com/)
+* [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
+* [twitter@esri](http://twitter.com/esri)
+
+## Issues
+
+Find a bug or want to request a new feature?  Please let us know by submitting an issue.
+
 ### Contributing
 
 Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/Esri/contributing/blob/master/CONTRIBUTING.md).
