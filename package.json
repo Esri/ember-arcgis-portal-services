@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArcGIS/ember-arcgis-portal-services.git"
+    "url": "git+https://github.com/Esri/ember-arcgis-portal-services.git"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6"
   },
   "author": "Dave Bouwman <dbouwman@esri.com>",
   "license": "Apache-2.0",
@@ -67,9 +67,9 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
+  "main": "index.js",
   "bugs": {
-    "url": "https://github.com/ArcGIS/ember-arcgis-portal-services/issues"
+    "url": "https://github.com/Esri/ember-arcgis-portal-services/issues"
   },
-  "homepage": "https://github.com/ArcGIS/ember-arcgis-portal-services#readme",
-  "main": "index.js"
+  "homepage": "https://github.com/Esri/ember-arcgis-portal-services#readme"
 }
