@@ -7,9 +7,9 @@ export default Ember.Service.extend(serviceMixin, {
    * Feature Service names must be unique within an organization
    */
   serviceExists (serviceName, orgId, portalOpts) {
-    let urlPath = `/${orgId}/isServiceNameAvailable?f=json`;
-    return this.requestUrl(urlPath, {
-      method: 'GET',
+    let urlPath = `/portals/${orgId}/isServiceNameAvailable?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
       data: {
         name: serviceName,
         type: 'Feature Service'

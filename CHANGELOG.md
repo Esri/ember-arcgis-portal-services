@@ -4,8 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+
+## Changed
+- `hosted-service.serviceExists` now works
+- changed calls to `session.portalHostName` to `session.portalHostname`
+
 ### Changes
 - added npm script to deploy a prod version @ surge.sh.
+
 
 ## Added
 
@@ -53,6 +59,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - If a string is passed to serviceMixin::encodeForm it simply returns a string
+
 
 ## 0.13.5
 ### Added

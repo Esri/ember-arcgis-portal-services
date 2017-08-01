@@ -35,7 +35,7 @@ export default Ember.Mixin.create({
    * Defaults to https because there is no negative to using it
    */
   getPortalUrl (portalOptions = {}) {
-    const portalHostname = portalOptions.portalHostname || this.get('session.portalHostName');
+    const portalHostname = portalOptions.portalHostname || this.get('session.portalHostname');
     return `https://${portalHostname}`;
   },
 
