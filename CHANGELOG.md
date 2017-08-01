@@ -3,8 +3,110 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+
 ### Changes
 - added npm script to deploy a prod version @ surge.sh.
+
+## Added
+
+## 0.20.0
+## Added
+- groupsService::protect
+- groupsService::unprotect
+
+## 0.19.0
+### Added
+- `getBulk` gets an array of groups by their ids
+
+## 0.18.0
+### Added
+- portalService::self
+- portalService::configureSocialProviders
+
+### Changed
+- portalService::update now updates a few more properties besides portalProperties
+
+## 0.17.0
+
+### Added
+- groupsService::updateUserMemberships
+
+## 0.16.0
+
+### Added
+- group service methods to join/leave a group
+
+## 0.15.0
+
+### Added
+- hosted feature service updateDefinition method
+
+### Fixed
+- hosted feature service addToDefinition works for layer id 0
+
+## 0.14.0
+### Added
+- portal service getById method
+
+### Fixed
+- serviceMixin::returnUrl handles rejections better
+
+### Changed
+- If a string is passed to serviceMixin::encodeForm it simply returns a string
+
+## 0.13.5
+### Added
+- added `items-service.removeRelationship (username, itemId, destItemId, relType, portalOpts)`
+
+
+## 0.13.4
+### Added
+- `folder-service` and dummy/users/user route which allows you to CRD folders
+- added `hosted-service` - create a hosted service item, and add layers/tables, and check if a service name exists
+- added `hosted-service.createView`
+- added `items-service.getRelatedItems(itemId, relationshipType, direction, portalOpts)`
+- added `items-service.addRelationship (username, itemId, destItemId, relType, portalOpts)`
+- added `requestUrl(url)` to `service-mixin`
+
+### Changed
+- removed debugging message echoing the url of all requests
+
+## 0.13.1, 0.13.2, 0.13.3
+### Yanked
+
+## 0.13.0
+### Added
+- `update` method on user-service
+
+## 0.12.0
+### Changed
+- If `portalOpts` is provided use the token specified on it (even if undefined).
+
+## [0.11.1]
+### Changed
+- update README
+
+## [0.11.0]
+### Changed
+- refactor of `sharing-service::shareWithGroup` to call `changeGroupSharing`
+
+### Added
+- added `sharing-service::changeGroupSharing` which can share/unshare, and has better handling of membership / rights to share/unshare
+- added `sharing-service::unShareWithGroup` which calls `changeGroupSharing`
+- added `/hack` route to dummy where we can add various test harnesses
+
+## [0.10.4]
+### Added
+- user-service::searchCommunityUsers
+- user-service:searchPortalUsers
+
+### Changed
+- deprecated userService.search
+
+## [0.10.3]
+### Added
+- all public functions take an optional `portalOpts` parameter
+
 
 ## [0.10.2]
 ### Fixed

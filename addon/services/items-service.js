@@ -6,96 +6,99 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Get the url for item page
    */
-  getItemPageUrl (id) {
-    return `${this.get('portalUrl')}/home/item.html?id=${id}`;
+  getItemPageUrl (id, portalOpts) {
+    return `${this.getPortalUrl(portalOpts)}/home/item.html?id=${id}`;
   },
 
   /**
    * Item Search
    */
-  search (form) {
-    let qs = this.encodeForm(form);
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/search?${qs}&f=json`;
-    return this.request(url);
+  search (form, portalOpts) {
+    const qs = this.encodeForm(form);
+    const urlPath = `/search?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Get the item json
    */
-  getById (itemId) {
-    let qs = this.encodeForm({});
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/items/${itemId}?${qs}&f=json`;
-    return this.request(url);
+  getById (itemId, portalOpts) {
+    const qs = this.encodeForm({});
+    const urlPath = `/content/items/${itemId}?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Get the `/data` as json. If nothing is returned by AGO
    * and empty object (`{}`) will be returned by this call
    */
-  getDataById (itemId) {
-    let qs = this.encodeForm({});
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/items/${itemId}/data?${qs}&f=json`;
-    return this.request(url);
+  getDataById (itemId, portalOpts) {
+    const qs = this.encodeForm({});
+    const urlPath = `/content/items/${itemId}/data?${qs}&f=json`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Update an existing item
    * will update the `/data` if the `.text` value is present
    */
-  update (item) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${item.owner}/items/${item.id}/update?f=json`;
-    return this._post(url, item);
+  update (item, portalOpts) {
+    const urlPath = `/content/users/${item.owner}/items/${item.id}/update?f=json`;
+    return this._post(urlPath, item, portalOpts);
+  },
+
+  /**
+   * Create a new item in a particular folder
+   * will create the `/data` if the `.text` value is present
+   */
+  createInFolder (item, folderId, portalOpts) {
+    let urlPath = `/content/users/${item.owner}/addItem?f=json`;
+    if (folderId) {
+      urlPath = `/content/users/${item.owner}/${folderId}/addItem?f=json`;
+    }
+    return this._post(urlPath, item, portalOpts);
   },
 
   /**
    * Create a new item
    * will create the `/data` if the `.text` value is present
    */
-  create (item) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${item.owner}/addItem?f=json`;
-    return this._post(url, item);
+  create (item, portalOpts) {
+    // just call createInFolder with null folderId
+    return this.createInFolder(item, null, portalOpts);
   },
 
   /**
    * Delete an item from AGO
    */
-  remove (itemId, owner) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/delete?f=json`;
-    return this._post(url, {});
+  remove (itemId, owner, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/delete?f=json`;
+    return this._post(urlPath, {}, portalOpts);
   },
 
-  protect (itemId, owner) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/protect?f=json`;
-    return this._post(url, {});
+  protect (itemId, owner, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/protect?f=json`;
+    return this._post(urlPath, {}, portalOpts);
   },
 
-  unprotect (itemId, owner) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/unprotect?f=json`;
-    return this._post(url, {});
+  unprotect (itemId, owner, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/unprotect?f=json`;
+    return this._post(urlPath, {}, portalOpts);
   },
 
   /**
    * Upload a resource (file) to an item
    */
-  uploadResource (itemId, owner, file, filename, replace = false) {
+  uploadResource (itemId, owner, file, filename, replace = false, portalOpts) {
     // Valid types
     // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
     // TODO: Check type
-    let portalRestUrl = this.get('portalRestUrl');
     let action = 'addResources';
     if (replace) {
       action = 'updateResources';
     }
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/${action}?f=json`;
-    let options = {};
+    const urlPath = `/content/users/${owner}/items/${itemId}/${action}?f=json`;
+    const options = {};
     options.body = new FormData();
     // stuff the file into the formData...
     if (filename) {
@@ -104,57 +107,97 @@ export default Ember.Service.extend(serviceMixin, {
       options.body.append('file', file);
     }
     options.method = 'POST';
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Add a resource
    */
-  addResource (itemId, owner, name, content) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/addResources?f=json`;
-    let options = {
+  addResource (itemId, owner, name, content, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/addResources?f=json`;
+    const options = {
       method: 'POST',
       data: {
         fileName: name,
         text: content
       }
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Update a resource
    */
-  updateResource (itemId, owner, name, content) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/updateResources?f=json`;
-    let options = {
+  updateResource (itemId, owner, name, content, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/updateResources?f=json`;
+    const options = {
       method: 'POST',
       data: {
         fileName: name,
         text: content
       }
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   },
 
   /**
    * Get the resources associated with an Item
    */
-  getResources (itemId) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/items/${itemId}/resources?f=json`;
-    return this.request(url);
+  getResources (itemId, portalOpts) {
+    const urlPath = `/content/items/${itemId}/resources?f=json&num=1000`;
+    return this.request(urlPath, null, portalOpts);
   },
 
   /**
    * Remove a resource
    */
-  removeResource (itemId, owner, resource) {
-    let portalRestUrl = this.get('portalRestUrl');
-    let url = `${portalRestUrl}/content/users/${owner}/items/${itemId}/removeResources?f=json`;
-    return this.request(url, {method: 'POST', data: {resource: resource}});
+  removeResource (itemId, owner, resource, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/removeResources?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        resource: resource
+      }
+    }, portalOpts);
+  },
+
+  /**
+   * Add a relationship between two items
+   */
+  addRelationship (username, originItemId, destinationItemId, relationshipType, portalOpts) {
+    let urlPath = `/content/users/${username}/addRelationship?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        relationshipType: relationshipType,
+        originItemId: originItemId,
+        destinationItemId: destinationItemId
+      }
+    }, portalOpts);
+  },
+
+  /**
+   * Remove a relationship
+   */
+  removeRelationship (username, originItemId, destinationItemId, relationshipType, portalOpts) {
+    let urlPath = `/content/users/${username}/deleteRelationship?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        originItemId: originItemId,
+        destinationItemId: destinationItemId,
+        relationshipType: relationshipType
+      }
+    }, portalOpts);
+  },
+  /**
+   * Get related items
+   */
+  getRelatedItems (itemId, relationshipType, direction, portalOpts) {
+    let urlPath = `/content/items/${itemId}/relatedItems?f=json&relationshipType=${relationshipType}&direction=${direction}`;
+    return this.request(urlPath, {
+      method: 'GET'
+    }, portalOpts);
   },
 
   /**
@@ -183,14 +226,14 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Shared logic for POST operations
    */
-  _post (url, item) {
-    let serializedItem = this._serializeItem(item);
+  _post (urlPath, item, portalOpts) {
+    const serializedItem = this._serializeItem(item);
 
-    let options = {
+    const options = {
       method: 'POST',
       data: serializedItem
     };
-    return this.request(url, options);
+    return this.request(urlPath, options, portalOpts);
   }
 
 });

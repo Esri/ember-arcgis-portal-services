@@ -21,6 +21,7 @@
         {{#active-link}}{{link-to "Portal" "portal"}}{{/active-link}}
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        {{#active-link}}{{link-to "Hack" "hack"}}{{/active-link}}
         {{#if session.isAuthenticated}}
         <li><a href="#" {{action 'signout'}}>Sign Out</a></li>
         {{else}}

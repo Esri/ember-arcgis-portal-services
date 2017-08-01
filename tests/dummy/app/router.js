@@ -25,9 +25,12 @@ Router.map(function () {
     this.route('new');
   });
 
-  this.route('users');
+  this.route('users', function () {
+    this.route('user', { path: '/:username' });
+  });
 
   this.route('portal');
+  this.route('hack');
 });
 
 export default Router;

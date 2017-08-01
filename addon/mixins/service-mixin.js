@@ -12,23 +12,36 @@ export default Ember.Mixin.create({
     f: 'json'
   },
 
+  portalRestUrl: Ember.computed('session.portalHostName', function () {
+    Ember.deprecate('use .getPortalRestUrl()', false, {id: 'portalRestUrlDeprecation', until: '10.0.0'});
+    return this.getPortalRestUrl();
+  }),
+
   /**
    * Return the ArcGIS Portal Rest base url
    */
-  portalRestUrl: Ember.computed('session.portalHostName', function () {
-    let baseUrl = this.get('portalUrl');
-    return baseUrl + '/sharing/rest';
+  getPortalRestUrl (portalOptions = {}) {
+    const baseUrl = this.getPortalUrl(portalOptions);
+    return `${baseUrl}/sharing/rest`;
+  },
+
+  portalUrl: Ember.computed('session.portalHostName', function () {
+    Ember.deprecate('use .getPortalUrl()', false, {id: 'portalUrlDeprecation', until: '10.0.0'});
+    return this.getPortalUrl();
   }),
 
   /**
    * Return the ArcGIS Portal base url (for visiting pages etc)
    * Defaults to https because there is no negative to using it
    */
-  portalUrl: Ember.computed('session.portalHostName', function () {
-    return 'https://' + this.get('session.portalHostName');
-  }),
+  getPortalUrl (portalOptions = {}) {
+    const portalHostname = portalOptions.portalHostname || this.get('session.portalHostName');
+    return `https://${portalHostname}`;
+  },
 
   encodeForm (form = {}) {
+    if (typeof form === 'string') { return form; }
+
     // Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
       return [key, form[key]].map(encodeURIComponent).join('=');
@@ -64,9 +77,18 @@ export default Ember.Mixin.create({
   /**
    * Fetch based request method
    */
-  request (url, options) {
-    let opts = options || {};
+  request (urlPath, options, portalOpts) {
+    let url = `${this.getPortalRestUrl(portalOpts)}${urlPath}`;
+    return this.requestUrl(url, options, portalOpts);
+  },
 
+  /**
+   * Make a request using a fully-formed url. This was added to allow
+   * the hosted-fs-service to make calls to the hosted service using
+   * its fully qualifed url.
+   */
+  requestUrl (url, options, portalOpts) {
+    let opts = options || {};
     if (opts.method && opts.method === 'POST') {
       // if we are POSTing, we need to manually set the content-type because AGO
       // actually does care about this header
@@ -89,8 +111,10 @@ export default Ember.Mixin.create({
     }
 
     // append in the token
-    if (this.get('session') && this.get('session.token')) {
-      let token = this.get('session.token');
+    // if portalOpts was provided use it even if it is undefined
+    // this is so we can make unauthenticated requests by passing portalOpts without a token
+    const token = portalOpts ? portalOpts.token : this.get('session.token');
+    if (token) {
       // add a token
       if (url.indexOf('?') > -1) {
         url = url + '&token=' + token;
@@ -98,8 +122,11 @@ export default Ember.Mixin.create({
         url = url + '?token=' + token;
       }
     }
-    Ember.debug('Portal Services making request to: ' + url);
+    // Ember.debug('Portal Services making request to: ' + url);
     return fetch(url, opts)
-      .then(this.checkStatusAndParseJson);
+    // we need the => here, just .then(this.checkStatusAndParseJson) causes problems with rejection
+    .then((resp) => {
+      return this.checkStatusAndParseJson(resp);
+    });
   }
 });
