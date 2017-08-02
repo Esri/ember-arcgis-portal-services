@@ -8,12 +8,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Changed
 - `hosted-service.serviceExists` now works
 - changed calls to `session.portalHostName` to `session.portalHostname`
-
-### Changes
 - added npm script to deploy a prod version @ surge.sh.
 
-
-## Added
+## Fixed
+- relative portal url is respected
 
 ## 0.20.0
 ## Added
