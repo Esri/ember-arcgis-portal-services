@@ -36,7 +36,11 @@ export default Ember.Mixin.create({
    */
   getPortalUrl (portalOptions = {}) {
     const portalHostname = portalOptions.portalHostname || this.get('session.portalHostname');
-    return `https://${portalHostname}`;
+    if (/^\./.test(portalHostname)) {
+      return portalHostname;
+    } else {
+      return `https://${portalHostname}`;
+    }
   },
 
   encodeForm (form = {}) {
