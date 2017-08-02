@@ -2,13 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
-
+## 0.20.1
+## Added
+- npm script to deploy a prod version @ surge.sh.
 
 ## Changed
 - `hosted-service.serviceExists` now works
 - changed calls to `session.portalHostName` to `session.portalHostname`
-- added npm script to deploy a prod version @ surge.sh.
 
 ## Fixed
 - relative portal url is respected
