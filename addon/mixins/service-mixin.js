@@ -38,6 +38,8 @@ export default Ember.Mixin.create({
     const portalHostname = portalOptions.portalHostname || this.get('session.portalHostname');
     if (/^\./.test(portalHostname)) {
       return portalHostname;
+    } else if (/^https?:\/\//.test(portalHostname)) {
+      return portalHostname;
     } else {
       return `https://${portalHostname}`;
     }

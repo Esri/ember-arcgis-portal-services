@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.20.2
+### Fixed
+- Don't add protocol to portal url if it already has one
+
 ## 0.20.1
-## Added
+### Added
 - npm script to deploy a prod version @ surge.sh.
 
 ## Changed
