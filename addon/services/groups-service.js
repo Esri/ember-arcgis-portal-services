@@ -27,7 +27,7 @@ export default Ember.Service.extend(serviceMixin, {
   getBulk (ids = [], portalOpts, start = 1, previous = []) {
     const q = ids.reduce((qString, id, i) => {
       if (i + 1 < ids.length) {
-        return `${qString}${id} OR`;
+        return `${qString}${id} OR `;
       } else {
         return `${qString}${id}`;
       }
