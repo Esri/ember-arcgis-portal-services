@@ -1,9 +1,8 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.14.0",
+  "version": "0.20.3",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -11,11 +10,16 @@
     "start": "ember server",
     "test": "ember try:each",
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
-    "deployProd": "ember surge -d eaps.surge.sh"
+    "deploy:dev": "ember surge --environment=surge",
+    "deploy:prod" : "ember surge --new-domain='eaps.surge.sh' --environment=production"
+
   },
-  "repository": "https://github.com/ArcGIS/ember-arcgis-portal-services",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Esri/ember-arcgis-portal-services.git"
+  },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6"
   },
   "author": "Dave Bouwman <dbouwman@esri.com>",
   "license": "Apache-2.0",
@@ -31,7 +35,7 @@
     "ember-cli-inject-live-reload": "^1.4.0",
     "ember-cli-jsoneditor": "0.1.2",
     "ember-cli-qunit": "^2.1.0",
-    "ember-cli-release": "^0.2.9",
+    "ember-cli-release": "1.0.0-beta.2",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-surge": "1.1.16",
     "ember-cli-test-loader": "^1.1.0",
@@ -62,5 +66,10 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  }
+  },
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/Esri/ember-arcgis-portal-services/issues"
+  },
+  "homepage": "https://github.com/Esri/ember-arcgis-portal-services#readme"
 }

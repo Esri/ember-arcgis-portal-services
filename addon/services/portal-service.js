@@ -9,6 +9,11 @@ export default Ember.Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
+  self (portalOpts) {
+    const urlPath = `/portals/self?f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
   /**
    * Update the portal
    */
@@ -25,13 +30,20 @@ export default Ember.Service.extend(serviceMixin, {
    * we strip it down A LOT.
    */
   _serializePortal (portal) {
-    let clone = {};
-    // if more properties are needed, please open a PR on this project
+    const allowedProperties = [ 'access', 'creditAssignments' ];
+
+    let result = allowedProperties.reduce((acc, property) => {
+      if (portal.hasOwnProperty(property)) {
+        acc[property] = portal[property];
+      }
+      return acc;
+    }, {});
+
     if (portal.portalProperties) {
-      clone.portalProperties = JSON.stringify(portal.portalProperties);
+      result.portalProperties = JSON.stringify(portal.portalProperties);
     }
 
-    return clone;
+    return result;
   },
 
   /**
@@ -100,6 +112,21 @@ export default Ember.Service.extend(serviceMixin, {
   users (portalId, start = 1, num = 100, portalOpts) {
     const urlPath = `/portals/${portalId}/users/?f=json&start=${start}&num=${num}`;
     return this.request(urlPath, null, portalOpts);
+  },
+
+  configureSocialProviders (opts, portalOpts) {
+    /*
+      portalOpts: {
+        signUpMode: Automatic | ???
+        providers: facebook,google
+        level: 1 | 2
+        role (optional): org_user (default) | org_publisher | id of custom role
+        userCreditAssignment (optional): <number>
+        groups (optional): groupId1, groupId2, ...
+      }
+    */
+    const urlPath = `/portals/self/socialProviders/configure?f=json`;
+    return this._post(urlPath, opts, portalOpts);
   }
 
 });

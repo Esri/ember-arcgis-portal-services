@@ -7,9 +7,9 @@ export default Ember.Service.extend(serviceMixin, {
    * Feature Service names must be unique within an organization
    */
   serviceExists (serviceName, orgId, portalOpts) {
-    let urlPath = `/${orgId}/isServiceNameAvailable?f=json`;
-    return this.requestUrl(urlPath, {
-      method: 'GET',
+    let urlPath = `/portals/${orgId}/isServiceNameAvailable?f=json`;
+    return this.request(urlPath, {
+      method: 'POST',
       data: {
         name: serviceName,
         type: 'Feature Service'
@@ -52,7 +52,7 @@ export default Ember.Service.extend(serviceMixin, {
   addToDefinition (featureServiceUrl, definition, layerId, portalOpts) {
     let adminUrl = featureServiceUrl.replace(/\/arcgis\/rest\/services\//i, '/arcgis/rest/admin/services/');
     let url = `${adminUrl}/addToDefinition?f=json`;
-    if (layerId) {
+    if (layerId || layerId === 0) {
       url = `${adminUrl}/${layerId}/addToDefinition?f=json`;
     }
     // since the fs has it's own url we use the requestUrl method
@@ -60,6 +60,24 @@ export default Ember.Service.extend(serviceMixin, {
       method: 'POST',
       data: {
         'addToDefinition': JSON.stringify(definition)
+      }
+    }, portalOpts);
+  },
+
+  /**
+   * Add to the service definition
+   */
+  updateDefinition (featureServiceUrl, definition, layerId, portalOpts) {
+    let adminUrl = featureServiceUrl.replace(/\/arcgis\/rest\/services\//i, '/arcgis/rest/admin/services/');
+    let url = `${adminUrl}/updateDefinition?f=json`;
+    if (layerId || layerId === 0) {
+      url = `${adminUrl}/${layerId}/updateDefinition?f=json`;
+    }
+    // since the fs has it's own url we use the requestUrl method
+    return this.requestUrl(url, {
+      method: 'POST',
+      data: {
+        'updateDefinition': JSON.stringify(definition)
       }
     }, portalOpts);
   },

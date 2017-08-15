@@ -37,15 +37,20 @@ module.exports = function (environment) {
   // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = ENV.APP.portalBaseUrl;
 
   if (environment === 'development') {
-    const env = 'dev';
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'ifq94vTWyyZclwNz';
+    // if you need to test against dev API/data:
+    // const env = 'dev';
+    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'ifq94vTWyyZclwNz';
+
     // if you need to test against QA API/data:
     // const env = 'qa';
     // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
-    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;
+
+    // set dev/qa portalUrl
+    // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;
+
     // PROD
-    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
-    // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
   }
 
   if (environment === 'surge') {
@@ -72,8 +77,10 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    // ENV.locationType = 'hash';
-    // ENV.rootURL = '/ember-arcgis-portal-services/';
+    ENV.locationType = 'hash';
+    ENV.rootURL = '/';
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://www.arcgis.com';
   }
 
   return ENV;
