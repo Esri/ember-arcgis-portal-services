@@ -58,6 +58,11 @@ module.exports = function (environment) {
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://devext.arcgis.com';
   }
 
+  if (environment === 'koopernetes') {
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'arcgisonline';
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://gis.koopernetes.com/portal';
+  }
+
   if (environment === 'github') {
     ENV.locationType = 'hash';
     ENV.rootURL = '/ember-arcgis-portal-services/';

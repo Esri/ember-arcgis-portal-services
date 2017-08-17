@@ -8,6 +8,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
+    "start:portal": "ember s --env=koopernetes",
     "test": "ember try:each",
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
     "deploy:dev": "ember surge --environment=surge",
