@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - don't trust session.portalHostname :(
 
+## 0.20.3
+### Fixed
+- GetBulk works with more than one group
+
+
 ## 0.20.2
 ### Fixed
 - Don't add protocol to portal url if it already has one
