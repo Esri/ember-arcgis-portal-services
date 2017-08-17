@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "0.20.3",
+  "version": "0.20.1",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "directories": {
     "test": "tests"
@@ -12,8 +12,7 @@
     "test": "ember try:each",
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
     "deploy:dev": "ember surge --environment=surge",
-    "deploy:prod" : "ember surge --new-domain='eaps.surge.sh' --environment=production"
-
+    "deploy:prod": "ember surge --new-domain='eaps.surge.sh' --environment=production"
   },
   "repository": {
     "type": "git",
