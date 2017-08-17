@@ -36,13 +36,30 @@ export default Ember.Mixin.create({
    */
   getPortalUrl (portalOptions = {}) {
     const portalHostname = portalOptions.portalHostname || this.get('session.portalHostname');
+    let host;
     if (/^\./.test(portalHostname)) {
-      return portalHostname;
+      host = portalHostname;
     } else if (/^https?:\/\//.test(portalHostname)) {
-      return portalHostname;
+      host = portalHostname;
     } else {
-      return `https://${portalHostname}`;
+      host = `https://${portalHostname}`;
     }
+
+    if (this.get('session.portal.isPortal')) {
+      return this.fixPort(host, this.get('session.portal'), location.protocol);
+    } else {
+      return host;
+    }
+  },
+
+  fixUrl (url, portal, currentProtocol) {
+    const parser = document.createElement('a');
+    parser.href = url;
+    if (currentProtocol === 'https:' && parser.port) {
+      parser.protocol = 'https:';
+      parser.port = portal.httpsPort;
+    }
+    return parser.href;
   },
 
   encodeForm (form = {}) {

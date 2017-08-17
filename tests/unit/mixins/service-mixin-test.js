@@ -5,8 +5,9 @@ import { module, test } from 'qunit';
 module('Unit | Mixin | service mixin');
 
 // Replace this with your real tests.
-test('it works', function (assert) {
+test('fixing a jacked up portal url', function (assert) {
   let ServiceMixinObject = Ember.Object.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
-  assert.ok(subject);
+  const url = subject.fixUrl('https://LINUX1.ESRI.COM:7080/arcgis', {httpsPort: 7443}, 'https:');
+  assert.equal(url, 'https://linux1.esri.com:7443/arcgis');
 });
