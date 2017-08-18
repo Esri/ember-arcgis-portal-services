@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 0.21.1
+### Fixed
+- rename incorrect function call
+
+## 0.21.0
 ### Fixed
 - don't trust session.portalHostname :(
 
