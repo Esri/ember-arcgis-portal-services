@@ -46,13 +46,16 @@ export default Ember.Mixin.create({
     }
 
     if (this.get('session.portal.isPortal')) {
-      return this.fixPort(host, this.get('session.portal'), location.protocol);
+      return this.fixUrl(host, this.get('session.portal'), location.protocol);
     } else {
       return host;
     }
   },
 
   fixUrl (url, portal, currentProtocol) {
+    // So portal self is stupid and only knows its http hostname
+    // there might be no web adapter enabled so standard ports may not apply
+    // therefore we have to reconstitute the url with the https port from portal self
     const parser = document.createElement('a');
     parser.href = url;
     if (currentProtocol === 'https:' && parser.port) {
