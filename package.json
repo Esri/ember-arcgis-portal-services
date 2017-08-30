@@ -11,8 +11,9 @@
     "start:portal": "ember s --env=koopernetes",
     "test": "ember try:each",
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
-    "deploy:dev": "ember surge --environment=surge",
-    "deploy:prod": "ember surge --new-domain='eaps.surge.sh' --environment=production"
+    "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh'--environment=devext",
+    "deploy:qaext": "ember surge --new-domain='eapsqa.surge.sh' --environment=qaext",
+    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,10 @@
     "node": ">= 6"
   },
   "author": "Dave Bouwman <dbouwman@esri.com>",
+  "contributors": [
+    "Mike Juniper <mjuniper@esri.com>",
+    "Tom Wayson <twayson@esri.com>"
+  ],
   "license": "Apache-2.0",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",

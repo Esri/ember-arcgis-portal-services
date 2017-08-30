@@ -53,7 +53,8 @@ module.exports = function (environment) {
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
   }
 
-  if (environment === 'surge') {
+  if (environment === 'devext') {
+    // DEV App Item c1e1128849684e05a18f211ef0c61633
     ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'dis8Iu8I0bACZOba';
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://devext.arcgis.com';
   }
@@ -63,9 +64,8 @@ module.exports = function (environment) {
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://gis.koopernetes.com/portal';
   }
 
-  if (environment === 'github') {
-    ENV.locationType = 'hash';
-    ENV.rootURL = '/ember-arcgis-portal-services/';
+  if (environment === 'qaext') {
+    // QA App Item: 1452439af4af473ea3c133b7edf0a147
     ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://qaext.arcgis.com';
   }
@@ -82,6 +82,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
+    // PROD App Item: 2ef3c71bc5414f8b951c370cea132bf0
     ENV.locationType = 'hash';
     ENV.rootURL = '/';
     ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
