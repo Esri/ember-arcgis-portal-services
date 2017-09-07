@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- itemsService.addImageFromUrlAsResource
+
+### Fixed
+- issue deploying to dev
+
 ## 0.21.1
 ### Fixed
 - rename incorrect function call

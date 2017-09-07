@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import serviceMixin from '../mixins/service-mixin';
+import getImageAsBlob from 'ember-arcgis-portal-services/utils/get-image-as-blob';
 
 export default Ember.Service.extend(serviceMixin, {
 
@@ -108,6 +109,17 @@ export default Ember.Service.extend(serviceMixin, {
     }
     options.method = 'POST';
     return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Fetch an image from a url, and upload it as a resource to an existing item
+   */
+  addImageFromUrlAsResource (itemId, owner, filename, url) {
+    return getImageAsBlob(url)
+      .then((blob) => {
+        //  upload as a resources
+        return this.uploadResource(itemId, owner, blob, filename);
+      });
   },
 
   /**
