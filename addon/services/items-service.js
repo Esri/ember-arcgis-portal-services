@@ -114,7 +114,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Fetch an image from a url, and upload it as a resource to an existing item
    */
-  addImageFromUrlAsResource (itemId, owner, filename, url) {
+  addImageResourceFromUrl (itemId, owner, filename, url) {
     return getImageAsBlob(url)
       .then((blob) => {
         //  upload as a resources

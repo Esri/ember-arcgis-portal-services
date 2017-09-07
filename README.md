@@ -56,7 +56,7 @@ All the services expose a set of shared helper properties and methods:
 | `getRelatedItems(itemId, relationshipType, direction, portalOpts)` | `promise` | Related Items |
 | `addRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Add a relationship between items |
 | `removeRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Delete a relationship between items |
-| `addImageFromUrlAsResource (itemId, owner, filename, url)` | `promise` | Add an image at the specified url to the item as a resource |
+| `addImageResourceFromUrl (itemId, owner, filename, url)` | `promise` | Add an image at the specified url to the item as a resource |
 
 ### Groups Service
 
