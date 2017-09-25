@@ -77,7 +77,6 @@ All the services expose a set of shared helper properties and methods:
 | `reassign(id, username, portalOpts)` | `promise` | Reassign ownership of the group |
 | `remove(id, portalOpts)` |  `promise` | Deletes a group from AGO |
 | `join(id, portalOpts)` |  `promise` | Request for current user to join a group |
-
 | `leave (id, portalOpts)` |  `promise` | Request for current user to leave a group |
 | `isUserGroupAdmin (id, username, portalOpts)` |  `boolean` | User's group admin status |
 | `getUserMembership (id, username, portalOpts)` |  `promise` | Return the type of group membership of a user |
