@@ -16,7 +16,7 @@ Otherwise, you can use the `portalOpts` parameter described below, but you need 
 
 ### Installation
 To consume this library in any ember application:
-* `ember install ember-arcgis-server-services`
+* `ember install ember-arcgis-portal-services`
 
 ### Shared Methods
 All the services expose a set of shared helper properties and methods:
