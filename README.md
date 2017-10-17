@@ -16,7 +16,7 @@ Otherwise, you can use the `portalOpts` parameter described below, but you need 
 
 ### Installation
 To consume this library in any ember application:
-* `ember install ember-arcgis-server-services`
+* `ember install ember-arcgis-portal-services`
 
 ### Shared Methods
 All the services expose a set of shared helper properties and methods:
@@ -77,7 +77,6 @@ All the services expose a set of shared helper properties and methods:
 | `reassign(id, username, portalOpts)` | `promise` | Reassign ownership of the group |
 | `remove(id, portalOpts)` |  `promise` | Deletes a group from AGO |
 | `join(id, portalOpts)` |  `promise` | Request for current user to join a group |
-
 | `leave (id, portalOpts)` |  `promise` | Request for current user to leave a group |
 | `isUserGroupAdmin (id, username, portalOpts)` |  `boolean` | User's group admin status |
 | `getUserMembership (id, username, portalOpts)` |  `promise` | Return the type of group membership of a user |
