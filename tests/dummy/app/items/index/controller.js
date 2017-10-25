@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
   tags: null,
   typeKeywords: null,
   type: null,
+  properties: null,
 
   totalCount: Ember.computed('model.total', function () {
     return this.get('model.total');

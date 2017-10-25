@@ -6,6 +6,7 @@ export default Ember.Route.extend({
     'start': {refreshModel: true},
     'num': {refreshModel: true},
     'q': {refreshModel: true},
+    'properties': {refreshModel: true},
     'owner': {refreshModel: true},
     'tags': {refreshModel: true},
     'typeKeywords': {refreshModel: true},
@@ -14,7 +15,7 @@ export default Ember.Route.extend({
 
   lastAgoQuery: '',
 
-  createAgoQuery: function (query, owner, tags, type, typeKeywords) {
+  createAgoQuery: function (query, owner, tags, type, typeKeywords, properties) {
     console.log(`Query ${query} owner ${owner} tags ${tags} type ${type} typeKeywords ${typeKeywords}`);
     let parts = [];
     if (query) {
@@ -23,6 +24,10 @@ export default Ember.Route.extend({
 
     if (owner) {
       parts.push('owner:' + owner);
+    }
+
+    if (properties) {
+      parts.push('properties:' + properties);
     }
 
     if (tags) {
@@ -58,7 +63,7 @@ export default Ember.Route.extend({
   },
 
   model (params) {
-    let agoQuery = this.createAgoQuery(params.q, params.owner, params.tags, params.type, params.typeKeywords);
+    let agoQuery = this.createAgoQuery(params.q, params.owner, params.tags, params.type, params.typeKeywords, params.properties);
     let agoParams = {
       q: agoQuery,
       start: params.start,

@@ -38,24 +38,25 @@ module.exports = function (environment) {
 
   if (environment === 'development') {
     // if you need to test against dev API/data:
-    // const env = 'dev';
-    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'ifq94vTWyyZclwNz';
+    const env = 'dev';
+    // dev item id: 015965c7e6b94a6e9b52b78ae95c0bce
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = '2Luiwqujuz7qQwo5';
 
     // if you need to test against QA API/data:
     // const env = 'qa';
     // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
 
     // set dev/qa portalUrl
-    // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;
 
     // PROD
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
-    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
+    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
+    // ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://www.arcgis.com`;
   }
 
   if (environment === 'devext') {
-    // DEV App Item c1e1128849684e05a18f211ef0c61633
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'dis8Iu8I0bACZOba';
+    // DEV App Item 015965c7e6b94a6e9b52b78ae95c0bce
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = '2Luiwqujuz7qQwo5';
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://devext.arcgis.com';
   }
 
