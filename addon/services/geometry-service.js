@@ -57,15 +57,19 @@ export default Ember.Service.extend(serviceMixin, {
       geometryType: geometryType,
       geometries: geometries
     };
-    var params = {
-      geometries: JSON.stringify(gparam),
-      transformForward: false,
-      transformation: '',
-      inSR: inSR,
-      outSR: outSR,
-      f: 'json'
+    var options = {
+      method: 'POST',
+      data: {
+        geometries: JSON.stringify(gparam),
+        transformForward: false,
+        transformation: '',
+        inSR: inSR,
+        outSR: outSR,
+        f: 'json'
+      }
     };
 
-    return this.requestUrl(projectUrl, params);
+    // we dont' want to send a token ever
+    return this.requestUrl(projectUrl, options, {token: ''});
   }
 });

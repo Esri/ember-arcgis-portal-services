@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.23.1
+### Fixed
+- bad params in `project` function
+
 ## 0.23.0
 ### Added
 - added `geometry-service` that will use the Portal's configured geom service OR the main AGO one.
