@@ -44,7 +44,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Return the portal's Geometry Service base url if it exists, if not use default
    */
-  geometryServerUrl: Ember.computed('hostAppConfig.geocodeUrl', function () {
+  geometryServerUrl: Ember.computed('session.portal', function () {
     return this.getWithDefault('session.portal.helperServices.geometry.url', 'https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer');
   }),
 
