@@ -84,7 +84,6 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     // PROD App Item: 2ef3c71bc5414f8b951c370cea132bf0
-    ENV.locationType = 'hash';
     ENV.rootURL = '/';
     ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'x3u9xkfpYyYbJu08';
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://www.arcgis.com';
