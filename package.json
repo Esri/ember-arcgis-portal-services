@@ -13,7 +13,7 @@
     "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
     "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",
     "deploy:qaext": "ember surge --new-domain='eapsqa.surge.sh' --environment=qaext",
-    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production"
+    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production && ember surge --new-domain='eaps.surge.sh' --environment=production"
   },
   "repository": {
     "type": "git",
