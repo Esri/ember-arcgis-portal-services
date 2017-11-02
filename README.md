@@ -81,7 +81,8 @@ All the services expose a set of shared helper properties and methods:
 | `isUserGroupAdmin (id, username, portalOpts)` |  `boolean` | User's group admin status |
 | `getUserMembership (id, username, portalOpts)` |  `promise` | Return the type of group membership of a user |
 | `updateUserMemberships (id, users, type, portalOpts)` |  `promise` | Updates membership(s) from user to admin or admin to user |
-
+| `ensureUniqueGroupName (title, step, portalOpts)` |  `promise` | Return a group name guaranteed to be unique in the org |
+| `doesGroupExist` (title, portalOpts) | `promise` | Return a boolean indicating whether the group exists in the org |
 
 ## Sharing Service
 

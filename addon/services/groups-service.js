@@ -3,6 +3,8 @@ import serviceMixin from '../mixins/service-mixin';
 
 export default Ember.Service.extend(serviceMixin, {
 
+  portalService: Ember.inject.service(),
+
   /**
    * Group Search
    */
@@ -248,5 +250,47 @@ export default Ember.Service.extend(serviceMixin, {
       data: data
     };
     return this.request(urlPath, options, portalOpts);
+  },
+
+  ensureUniqueGroupName (title, step = 0, portalOpts) {
+    let combinedName = title;
+
+    if (step) {
+      combinedName = `${title} ${step}`;
+    }
+
+    return this.doesGroupExist(combinedName, portalOpts)
+    .then((result) => {
+      // if result === true, then we need to step the name...
+      if (result) {
+        step++;
+        return this.ensureUniqueGroupName(title, step, portalOpts);
+      }
+      return combinedName;
+    });
+  },
+
+  /**
+   * Check if a group exists with a specific name
+   */
+  doesGroupExist (title, portalOpts) {
+    let orgIdPromise;
+    if (portalOpts && portalOpts.portalHostname) {
+      orgIdPromise = this.get('portalService').self(portalOpts)
+      .then(portalResp => portalResp.id);
+    } else {
+      orgIdPromise = Ember.RSVP.resolve(this.get('session.portal.id'));
+    }
+
+    return orgIdPromise
+    .then(orgId => ({ q: `(${title} accountid:${orgId})` }))
+    .then(query => {
+      return this.search(query, portalOpts);
+    })
+    .then((searchResponse) => searchResponse.results.length > 0)
+    .catch((err) => {
+      Ember.debug('Error checking if group exists: ' + JSON.stringify(err));
+    });
   }
+
 });
