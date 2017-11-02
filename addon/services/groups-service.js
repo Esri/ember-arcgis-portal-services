@@ -287,7 +287,7 @@ export default Ember.Service.extend(serviceMixin, {
     .then(query => {
       return this.search(query, portalOpts);
     })
-    .then((searchResponse) => searchResponse.results.length > 0)
+    .then(searchResponse => searchResponse.results.length > 0)
     .catch((err) => {
       Ember.debug('Error checking if group exists: ' + JSON.stringify(err));
     });
