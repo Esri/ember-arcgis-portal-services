@@ -70,7 +70,11 @@ export default Ember.Mixin.create({
 
     // Ember.merge(form, this.get('defaultParams'));
     return Object.keys(form).map((key) => {
-      return [key, form[key]].map(encodeURIComponent).join('=');
+      // don't convert null props into fields
+      // https://github.com/emberjs/ember.js/blob/3b60016c2b6b38646d954014d10f74fcfe1a3d54/packages/ember-runtime/lib/core.js#L82-84
+      if (!Ember.isNone(form[key])) {
+        return [key, form[key]].map(encodeURIComponent).join('=');
+      }
     }).join('&');
   },
 

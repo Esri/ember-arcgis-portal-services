@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+
+## 0.24.1
+### Changed
+- `service-mixin::encodeForm` no longer sends field for null properties, thus avoiding `"null"` values in items
+
 ## 0.24.0
 ### Added
 - `groups-service` `ensureUniqueGroupName` & `doesGroupExist` methods
