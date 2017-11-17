@@ -135,6 +135,8 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `removeResource (resourceName, portalOpts)` | `promise` | Remove a resource from a porta |
 | `users(portalId, start = 1, num = 100, portalOpts)` | `promise` | Get a portal users. |
 | `configureSocialProviders (opts, portalOpts)` | `promise` | Configure social logins. |
+| `checkUsername (username, portalOpts)` | `promise` | Checks whether the specified username is available |
+| `checkUrlKey (urlKey, portalOpts)` | `promise` | Checks whether the specified urlKey is available |
 
 ### Folders Service
 | Method |  Returns | Description |

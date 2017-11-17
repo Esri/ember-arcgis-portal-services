@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- `portal-service` `checkUsername` & `checkUrlKey` methods
+
 ## 0.24.0
 ### Added
 - `groups-service` `ensureUniqueGroupName` & `doesGroupExist` methods
