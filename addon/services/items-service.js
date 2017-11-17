@@ -233,6 +233,10 @@ export default Ember.Service.extend(serviceMixin, {
     if (clone.properties) {
       clone.properties = JSON.stringify(clone.properties);
     }
+
+    if (clone.serviceProxyParams) {
+      clone.serviceProxyParams = JSON.stringify(clone.serviceProxyParams);
+    }
     return clone;
   },
   /**

@@ -68,10 +68,12 @@ export default Ember.Mixin.create({
   encodeForm (form = {}) {
     if (typeof form === 'string') { return form; }
 
-    // Ember.merge(form, this.get('defaultParams'));
-    return Object.keys(form).map((key) => {
-      return [key, form[key]].map(encodeURIComponent).join('=');
-    }).join('&');
+    return Object.keys(form).reduce((acc, key) => {
+      if (!Ember.isNone(form[key])) {
+        acc.push([key, form[key]].map(encodeURIComponent).join('='));
+      }
+      return acc;
+    }, []).join('&');
   },
 
   /**
