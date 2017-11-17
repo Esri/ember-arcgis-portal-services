@@ -127,6 +127,16 @@ export default Ember.Service.extend(serviceMixin, {
     */
     const urlPath = `/portals/self/socialProviders/configure?f=json`;
     return this._post(urlPath, opts, portalOpts);
-  }
+  },
+
+  checkUsername (username, portalOpts) {
+    const urlPath = `/community/checkUsernames?f=json&usernames=${username}`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
+  checkUrlKey (urlKey, portalOpts) {
+    const urlPath = `/portals/isUrlKeyAvailable?urlKey=${urlKey}&f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
 
 });
