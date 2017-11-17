@@ -12,6 +12,13 @@ test('fixing a jacked up portal url', function (assert) {
   assert.equal(url, 'https://linux1.esri.com:7443/arcgis');
 });
 
+function includes (str, target) {
+  let included = false;
+  if (str.indexOf(target) > -1) {
+    included = true;
+  }
+  return included;
+}
 test('drop nulls from form when encoding', function (assert) {
   let ServiceMixinObject = Ember.Object.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
@@ -27,10 +34,11 @@ test('drop nulls from form when encoding', function (assert) {
     nullyProp: null
   };
   const encoded = subject.encodeForm(form);
-  assert.equal(encoded.includes('nully'), false, 'nullyProp should not be included');
-  assert.ok(encoded.includes('tags'), 'tags should be included');
-  assert.ok(encoded.includes('falseyProp'), 'falseyProp should be included');
-  assert.ok(encoded.includes('truthyProp'), 'truthyProp should be included');
-  assert.ok(encoded.includes('typeKeywords'), 'typeKeywords should be included');
-  assert.ok(encoded.includes('properties'), 'properties should be included');
+  // had been using .includes in the tests, but that would fail in phantom...
+  assert.notOk(includes(encoded, 'nully'), 'nullyProp should not be included');
+  assert.ok(includes(encoded, 'tags'), 'tags should be included');
+  assert.ok(includes(encoded, 'falseyProp'), 'falseyProp should be included');
+  assert.ok(includes(encoded, 'truthyProp'), 'truthyProp should be included');
+  assert.ok(includes(encoded, 'typeKeywords'), 'typeKeywords should be included');
+  assert.ok(includes(encoded, 'properties'), 'properties should be included');
 });
