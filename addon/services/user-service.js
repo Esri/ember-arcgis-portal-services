@@ -49,6 +49,11 @@ export default Ember.Service.extend(serviceMixin, {
     return this._post(urlPath, user, portalOpts);
   },
 
+  signup (user, portalOpts) {
+    const urlPath = `/community/signup?f=json`;
+    return this._post(urlPath, user, portalOpts);
+  },
+
   /**
    * Extra logic to transform the item prior to POSTing it
    */

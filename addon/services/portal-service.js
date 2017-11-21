@@ -19,7 +19,7 @@ export default Ember.Service.extend(serviceMixin, {
    */
   update (portal, portalOpts) {
     // console.log('Portal Service got update for ' + portal.id);
-    const urlPath = `/portals/${portal.id}/update?f=json`;
+    const urlPath = `/portals/${portal.id || 'self'}/update?f=json`;
     const serializedPortal = this._serializePortal(portal);
     return this._post(urlPath, serializedPortal, portalOpts);
   },
@@ -138,5 +138,10 @@ export default Ember.Service.extend(serviceMixin, {
     const urlPath = `/portals/isUrlKeyAvailable?urlKey=${urlKey}&f=json`;
     return this.request(urlPath, null, portalOpts);
   },
+
+  activate (opts, portalOpts) {
+    const urlPath = `/portals/activate?f=json`;
+    return this._post(urlPath, opts, portalOpts);
+  }
 
 });
