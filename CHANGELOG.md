@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- `portal-service` `activate` method
+- `user-service` `signup` method
+
+### Changed
+- `portal-service::update` will now update `urlKey` and `name`
 
 ## 0.25.1
 ### Changed
