@@ -105,6 +105,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `searchPortalUsers(form, portalOpts)` | `promise` | Executes via `/sharing/rest/portals/self/users`. The form is an object properties matching the [search params](http://resources.arcgis.com/en/help/arcgis-rest-api/index.html#/Users/02r30000009q000000/) |
 | `getByName(username, portalOpts)` | `promise` | Get a user object by name. |
 | `update(user, portalOpts)` | `promise` | Update a user |
+| `signup (user, portalOpts)` | `promise` | Signs the user up to the organization |
 
 
 
@@ -137,6 +138,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `configureSocialProviders (opts, portalOpts)` | `promise` | Configure social logins. |
 | `checkUsername (username, portalOpts)` | `promise` | Checks whether the specified username is available |
 | `checkUrlKey (urlKey, portalOpts)` | `promise` | Checks whether the specified urlKey is available |
+| `activate (opts, portalOpts)` | `promise` | Activates the organization |
 
 ### Folders Service
 | Method |  Returns | Description |
