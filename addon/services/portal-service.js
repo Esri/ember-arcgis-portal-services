@@ -30,7 +30,7 @@ export default Ember.Service.extend(serviceMixin, {
    * we strip it down A LOT.
    */
   _serializePortal (portal) {
-    const allowedProperties = [ 'access', 'creditAssignments' ];
+    const allowedProperties = [ 'access', 'creditAssignments', 'name', 'urlKey' ];
 
     let result = allowedProperties.reduce((acc, property) => {
       if (portal.hasOwnProperty(property)) {
