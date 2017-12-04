@@ -13,7 +13,25 @@ export default Ember.Controller.extend({
     return this.get('model.data');
   }),
 
+  thumbnailUrl: Ember.computed('model.item.thumbnail', function () {
+    let portalHostname = this.get('session.portalHostName');
+    let item = this.get('model.item');
+    let url = `https://${portalHostname}/sharing/rest/content/items/${item.id}/info/${item.thumbnail}?w=400`;
+    if (item.access !== 'public') {
+      url = url + '&token=' + this.get('session.token');
+    }
+    return url;
+  }),
+
   actions: {
+    uploadThumbnail: function (files) {
+      let file = files[0];
+      let item = this.get('model.item');
+      this.get('itemsService').uploadThumbnail(item.id, item.owner, file, file.name)
+      .then((response) => {
+        this.set('model.item.thumbnail', `thumbnail/${file.name}`);
+      });
+    },
     shareToGroup: function () {
       if (this.get('groupId')) {
         this.set('sharingMessage', 'Making sharing request');
@@ -76,7 +94,8 @@ export default Ember.Controller.extend({
       const item = this.get('model.item');
       return this.get('itemsService').removeResource(item.id, item.owner, resource.resource);
     },
-    uploadFile (file) {
+    uploadFile (files, thing) {
+      const file = files[0];
       const item = this.get('model.item');
       return this.get('itemsService').uploadResource(item.id, item.owner, file);
     },

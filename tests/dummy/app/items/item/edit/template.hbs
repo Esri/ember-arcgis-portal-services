@@ -14,8 +14,6 @@
       <button type="button" class="btn btn-default" {{action 'shareWithOrg'}}>Org</button>
       <button type="button" class="btn btn-default" {{action 'shareWithEveryone'}}>Everyone</button>
     </div>
-  </div>
-  <div class="col-sm-6">
     <h4>Protected: {{model.item.protected}}</h4>
     <p>Set Delete Protection</p>
     <div class="btn-group" role="group" aria-label="...">
@@ -23,6 +21,17 @@
       <button type="button" class="btn btn-default" {{action 'unprotectItem'}}>Unprotect</button>
     </div>
   </div>
+  <div class="col-sm-6 form-inline">
+    <h4>Share to Group</h4>
+    <div class="form-group">
+      <label>Group to Share To</label>
+      {{input class="form-control" value=groupId placeholder="Group ID"}} <button class="btn btn-default" {{action 'shareToGroup'}}>Share</button>
+    </div>
+    <br>
+    {{sharingMessage}}
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-6">
       <h3>Item Json</h3>
     {{json-editor json=model.item mode="code" onChange=(action (mut model.item))}}
@@ -33,7 +42,16 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-5">
+    <h3>Thumbnail</h3>
+    <img src="{{thumbnailUrl}}">
+    <div>
+      {{file-input onFileSelected=(action 'uploadThumbnail') name='thumbnail' id='thumbnail' }}
+      <label for="thumbnail"><span class="glyphicon glyphicon-cloud-upload"></span>Upload Thumbnail</label>
+    </div>
+
+  </div>
+  <div class="col-sm-7">
     {{item-resources item=model.item
       onFetchResources=(action 'fetchResources')
       onRemoveResource=(action 'removeResource')
@@ -42,12 +60,7 @@
       onTextUpload=(action 'sendText')
       }}
   </div>
-  <div class="col-sm-6 form-inline">
-      <div class="form-group">
-        <label>Group to Share To</label>
-        {{input class="form-control" value=groupId placeholder="Group ID"}} <button class="btn btn-default" {{action 'shareToGroup'}}>Share</button>
-      </div>
-      <br>
-      {{sharingMessage}}
-  </div>
+</div>
+<div class="row">
+
 </div>

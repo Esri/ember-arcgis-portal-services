@@ -112,6 +112,18 @@ export default Ember.Service.extend(serviceMixin, {
   },
 
   /**
+   * Upload a blob (image) as the thumbnail
+   */
+  uploadThumbnail (itemId, owner, blob, filename, portalOpts) {
+    const urlPath = `/content/users/${owner}/items/${itemId}/update?f=json`;
+    const options = {};
+    options.body = new FormData();
+    options.body.append('thumbnail', blob, filename);
+    options.method = 'POST';
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
    * Fetch an image from a url, and upload it as a resource to an existing item
    */
   addImageResourceFromUrl (itemId, owner, filename, url) {

@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## 0.27.0
+### Added
+- `item-service` `uploadThumbnail` method
+- upload thumbnail in dummy app
+
 ## 0.26.0
 ### Added
 - `portal-service` `activate` method

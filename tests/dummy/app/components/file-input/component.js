@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend(Ember.Evented, {
+export default Ember.Component.extend({
   tagName: 'input',
   type: 'file',
   classNames: ['inputfile'],
@@ -9,9 +9,8 @@ export default Ember.Component.extend(Ember.Evented, {
   change (event) {
     const input = event.target;
     if (!Ember.isEmpty(input.files)) {
-      if (this.get('onChange')) {
-        this.get('onChange')(input.files);
-      }
+      this.get('onFileSelected')(input.files);
     }
+    return false;
   }
 });
