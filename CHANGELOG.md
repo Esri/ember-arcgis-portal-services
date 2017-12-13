@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Fixed
+- invalid querystring on `items-service` `getById` & `getDataById`
 
 ## 0.27.0
 ### Added

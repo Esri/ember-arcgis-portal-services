@@ -24,8 +24,8 @@ export default Ember.Service.extend(serviceMixin, {
    * Get the item json
    */
   getById (itemId, portalOpts) {
-    const qs = this.encodeForm({});
-    const urlPath = `/content/items/${itemId}?${qs}&f=json`;
+    const qs = this.encodeForm(this.get('defaultParams'));
+    const urlPath = `/content/items/${itemId}?${qs}`;
     return this.request(urlPath, null, portalOpts);
   },
 
@@ -34,8 +34,8 @@ export default Ember.Service.extend(serviceMixin, {
    * and empty object (`{}`) will be returned by this call
    */
   getDataById (itemId, portalOpts) {
-    const qs = this.encodeForm({});
-    const urlPath = `/content/items/${itemId}/data?${qs}&f=json`;
+    const qs = this.encodeForm(this.get('defaultParams'));
+    const urlPath = `/content/items/${itemId}/data?${qs}`;
     return this.request(urlPath, null, portalOpts);
   },
 
