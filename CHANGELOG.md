@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## 0.28.0
 ### Added
 - `sendGroupMessage` method in group-service and added message submit form on groups
 
