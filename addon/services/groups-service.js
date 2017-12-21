@@ -291,6 +291,24 @@ export default Ember.Service.extend(serviceMixin, {
     .catch((err) => {
       Ember.debug('Error checking if group exists: ' + JSON.stringify(err));
     });
+  },
+
+  sendGroupMessage (groupId, subject, message, users = [], notificationChannelType = 'email', portalOpts) {
+    const notifyAll = !users.length;
+    const data = {
+      subject,
+      message,
+      users: users.join(','),
+      notificationChannelType,
+      notifyAll
+    };
+    console.log(data);
+    const urlPath = `/community/groups/${groupId}/createNotification?f=json`;
+    const options = {
+      method: 'POST',
+      data: data
+    };
+    return this.request(urlPath, options, portalOpts);
   }
 
 });
