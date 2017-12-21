@@ -7,12 +7,19 @@ export default Ember.Controller.extend({
   actions: {
     sendMessage (groupId, messageModel) {
       const groupsService = this.get('groupsService');
+
       groupsService.sendGroupMessage(groupId, messageModel.subject, messageModel.message)
       .then(resp => {
-        // debugger;
+        this.set('msg', {
+          message: 'Message Sent',
+          class: 'success'
+        });
       })
       .catch(e => {
-        // debugger;
+        this.set('msg', {
+          message: 'Message Failed!',
+          class: 'danger'
+        });
       });
     }
   }
