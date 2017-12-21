@@ -8,7 +8,12 @@ export default Ember.Route.extend({
     this.set('groupId', params.id);
     return Ember.RSVP.hash({
       users: this.get('groupsService').users(params.id),
-      items: this.get('groupsService').getItemsById(params.id)
+      items: this.get('groupsService').getItemsById(params.id),
+      groupId: params.id,
+      messageModel: {
+        subject: '',
+        message: ''
+      }
     });
   },
 
