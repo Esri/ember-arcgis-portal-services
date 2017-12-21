@@ -302,7 +302,6 @@ export default Ember.Service.extend(serviceMixin, {
       notificationChannelType,
       notifyAll
     };
-    console.log(data);
     const urlPath = `/community/groups/${groupId}/createNotification?f=json`;
     const options = {
       method: 'POST',
