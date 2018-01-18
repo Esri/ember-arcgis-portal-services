@@ -12,7 +12,7 @@ export default Ember.Mixin.create({
     f: 'json'
   },
 
-  portalRestUrl: Ember.computed('session.portalHostName', function () {
+  portalRestUrl: Ember.computed('session.portalHostname', function () {
     Ember.deprecate('use .getPortalRestUrl()', false, {id: 'portalRestUrlDeprecation', until: '10.0.0'});
     return this.getPortalRestUrl();
   }),
@@ -25,7 +25,7 @@ export default Ember.Mixin.create({
     return `${baseUrl}/sharing/rest`;
   },
 
-  portalUrl: Ember.computed('session.portalHostName', function () {
+  portalUrl: Ember.computed('session.portalHostname', function () {
     Ember.deprecate('use .getPortalUrl()', false, {id: 'portalUrlDeprecation', until: '10.0.0'});
     return this.getPortalUrl();
   }),
