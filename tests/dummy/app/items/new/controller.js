@@ -24,14 +24,14 @@ export default Controller.extend({
       }
 
       this.get('itemsService').create(item)
-        .then((resp) => {
-          this.transitionToRoute('items.index');
-        }, (error) => {
-          alert('Error Creating Item: ' + error.message);
-        })
-        .catch((error) => {
-          alert('Error Creating Item 2: ' + error.message);
-        });
+      .then((resp) => {
+        this.transitionToRoute('items.index');
+      }, (error) => {
+        alert('Error Creating Item: ' + error.message);
+      })
+      .catch((error) => {
+        alert('Error Creating Item 2: ' + error.message);
+      });
     },
     cancel: function () {
       // return to the item list

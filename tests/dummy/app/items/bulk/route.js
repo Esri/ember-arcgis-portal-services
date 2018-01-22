@@ -97,9 +97,9 @@ export default Route.extend({
       let batchPromises = [];
       response.results.forEach((item) => {
         let prms = this.get('itemsService').remove(item.id, item.owner)
-          .then((result) => {
-            ctl.incrementProperty('percent', increment);
-          });
+        .then((result) => {
+          ctl.incrementProperty('percent', increment);
+        });
         batchPromises.push(prms);
       });
       return allSettled(batchPromises);
@@ -129,13 +129,13 @@ export default Route.extend({
 
     destroy (item) {
       this.get('itemsService').remove(item.id, item.owner)
-        .then(() => {
-          // need to transition to the route so we pick up new entries
-          debug('Item Deleted... transitioning route to get new results...');
-          later(this, function () {
-            this.refresh();
-          }, 100);
-        });
+      .then(() => {
+        // need to transition to the route so we pick up new entries
+        debug('Item Deleted... transitioning route to get new results...');
+        later(this, function () {
+          this.refresh();
+        }, 100);
+      });
     }
   }
 });

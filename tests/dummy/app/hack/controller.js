@@ -4,11 +4,10 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   sharingService: service('sharing-service'),
-  itemId: '86c14c971d864b7887c89e3cd39f94b1',  // Collisions Data Indicator for Development
+  itemId: '86c14c971d864b7887c89e3cd39f94b1', // Collisions Data Indicator for Development
   groupId: '5a55a1dc809741a698df35f97106e3bc', // DEVEXT AAA Test Sharing
   owner: 'dcadmin',
   currentUser: reads('session.currentUser.username'),
-  sharingResult: {},
   actions: {
     shareItem () {
       const svc = this.get('sharingService');

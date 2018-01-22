@@ -39,11 +39,11 @@ export default Controller.extend({
       portal.portalProperties = props;
       // save changes back to the portal
       return this.get('portalService').update(portal)
-        .then((result) => {
-          if (result.success) {
-            this.set('dirty', false);
-          }
-        });
+      .then((result) => {
+        if (result.success) {
+          this.set('dirty', false);
+        }
+      });
     }
   }
 });

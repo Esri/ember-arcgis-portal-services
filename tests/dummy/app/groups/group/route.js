@@ -22,11 +22,11 @@ export default Route.extend({
   actions: {
     remove (user) {
       this.get('groupsService').removeUsers(this.get('groupId'), [user])
-        .then((resp) => {
-          this.refresh();
-        }, (err) => {
-          alert(err);
-        });
+      .then((resp) => {
+        this.refresh();
+      }, (err) => {
+        alert(err);
+      });
     }
   }
 });

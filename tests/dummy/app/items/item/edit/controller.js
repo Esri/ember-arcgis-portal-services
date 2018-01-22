@@ -85,9 +85,9 @@ export default Controller.extend({
       }
 
       this.get('itemsService').update(item)
-        .then((resp) => {
-          this.transitionToRoute('items.index');
-        });
+      .then((resp) => {
+        this.transitionToRoute('items.index');
+      });
     },
     cancel: function () {
       // return to the item list

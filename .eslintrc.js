@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 2017,
+    ecmaVersion: 6,
     sourceType: 'module'
   },
   extends: [
@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     "comma-dangle": [2, "only-multiline"],
     "no-console": 0,
+    "indent": [2, 2, { "SwitchCase": 1, "MemberExpression": "off" }],
   },
   // plugins: [
   //   'ember'

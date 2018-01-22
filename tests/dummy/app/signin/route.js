@@ -13,14 +13,14 @@ export default Route.extend({
   actions: {
     signin: function () {
       this.get('session').open('arcgis-oauth-bearer')
-        .then((authorization) => {
-          debug('AUTH SUCCESS: ', authorization);
-          // transition to some secured route or... so whatever is needed
-          this.controller.transitionToRoute('index');
-        })
-        .catch((err) => {
-          debug('AUTH ERROR: ', err);
-        });
+      .then((authorization) => {
+        debug('AUTH SUCCESS: ', authorization);
+        // transition to some secured route or... so whatever is needed
+        this.controller.transitionToRoute('index');
+      })
+      .catch((err) => {
+        debug('AUTH ERROR: ', err);
+      });
     },
 
     /**
@@ -34,14 +34,14 @@ export default Route.extend({
         // --- USE THIS BLOCK IN YOUR APP --
         schedule('afterRender', this, function () {
           this.get('session').open('arcgis-oauth-bearer')
-            .then((authorization) => {
-              debug('AUTH SUCCESS: ', authorization);
-              // transition to secured route
-              this.controller.transitionToRoute('secure');
-            })
-            .catch((err) => {
-              debug('AUTH ERROR: ' + JSON.stringify(err));
-            });
+          .then((authorization) => {
+            debug('AUTH SUCCESS: ', authorization);
+            // transition to secured route
+            this.controller.transitionToRoute('secure');
+          })
+          .catch((err) => {
+            debug('AUTH ERROR: ' + JSON.stringify(err));
+          });
         });
       // -----------------------------------
       }

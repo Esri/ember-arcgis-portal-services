@@ -15,15 +15,15 @@ export default Route.extend({
       return hash({
         item: item,
         data: this.get('itemsService').getDataById(item.id)
-          .then((result) => {
-            if (result) {
-              return result;
-            } else {
-              return {};
-            }
-          }, () => {
+        .then((result) => {
+          if (result) {
+            return result;
+          } else {
             return {};
-          })
+          }
+        }, () => {
+          return {};
+        })
       });
     } else {
       return resolve({

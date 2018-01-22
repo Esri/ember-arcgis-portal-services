@@ -1,8 +1,15 @@
+import Service from '@ember/service';
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('service:user-service', 'Unit | Service | user service', {
   // Specify the other units that are required for this test.
-  // needs: ['service:foo']
+  // needs: [ 'service:items-service', 'service:groups-service' ],
+  beforeEach () {
+    const session = Service.extend({
+      // implement stuff that gets called in your tests here
+    });
+    this.register('service:session', session);
+  }
 });
 
 // Replace this with your real tests.

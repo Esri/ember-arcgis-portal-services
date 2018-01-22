@@ -90,13 +90,13 @@ export default Route.extend({
   actions: {
     destroy (item) {
       this.get('itemsService').remove(item.id, item.owner)
-        .then(() => {
-          // need to transition to the route so we pick up new entries
-          debug('Item Deleted... transitioning route to get new results...');
-          later(this, function () {
-            this.refresh();
-          }, 100);
-        });
+      .then(() => {
+        // need to transition to the route so we pick up new entries
+        debug('Item Deleted... transitioning route to get new results...');
+        later(this, function () {
+          this.refresh();
+        }, 100);
+      });
     }
   }
 });

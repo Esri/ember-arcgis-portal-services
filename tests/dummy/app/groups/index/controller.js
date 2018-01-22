@@ -12,7 +12,6 @@ export default Controller.extend({
   tags: null,
   start: 1,
   num: 10,
-  filtered: {},
 
   hasResults: computed('model.results', function () {
     let result = false;

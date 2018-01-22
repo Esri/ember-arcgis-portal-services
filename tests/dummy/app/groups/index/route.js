@@ -58,13 +58,13 @@ export default Route.extend({
   actions: {
     destroy (group) {
       this.get('groupsService').remove(group.id)
-        .then(() => {
-          // need to transition to the route so we pick up new entries
-          debug('Group Deleted... transitioning route to get new results...');
-          later(this, function () {
-            this.refresh();
-          }, 500);
-        });
+      .then(() => {
+        // need to transition to the route so we pick up new entries
+        debug('Group Deleted... transitioning route to get new results...');
+        later(this, function () {
+          this.refresh();
+        }, 500);
+      });
     }
   }
 });
