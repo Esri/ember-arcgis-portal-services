@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
 
   /**
    * Feature Service names must be unique within an organization

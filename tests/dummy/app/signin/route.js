@@ -1,24 +1,26 @@
-import Ember from 'ember';
+import { schedule } from '@ember/runloop';
+import { debug } from '@ember/debug';
+import Route from '@ember/routing/route';
 import ENV from '../config/environment';
-export default Ember.Route.extend({
+export default Route.extend({
   deactivate: function () {
     // if you are using iframes, you will need to remove the
     // iframe from the DOM here so torii gets notified that the
     // auth attempt was cancelled.
-    Ember.debug('route:signin:deactivate fired...');
+    debug('route:signin:deactivate fired...');
   },
 
   actions: {
     signin: function () {
       this.get('session').open('arcgis-oauth-bearer')
-        .then((authorization) => {
-          Ember.debug('AUTH SUCCESS: ', authorization);
-          // transition to some secured route or... so whatever is needed
-          this.controller.transitionToRoute('index');
-        })
-        .catch((err) => {
-          Ember.debug('AUTH ERROR: ', err);
-        });
+      .then((authorization) => {
+        debug('AUTH SUCCESS: ', authorization);
+        // transition to some secured route or... so whatever is needed
+        this.controller.transitionToRoute('index');
+      })
+      .catch((err) => {
+        debug('AUTH ERROR: ', err);
+      });
     },
 
     /**
@@ -30,16 +32,16 @@ export default Ember.Route.extend({
       // only do this if we are using iframe style
       if (ENV.torii.providers['arcgis-oauth-bearer'].display && ENV.torii.providers['arcgis-oauth-bearer'].display === 'iframe') {
         // --- USE THIS BLOCK IN YOUR APP --
-        Ember.run.schedule('afterRender', this, function () {
+        schedule('afterRender', this, function () {
           this.get('session').open('arcgis-oauth-bearer')
-            .then((authorization) => {
-              Ember.debug('AUTH SUCCESS: ', authorization);
-              // transition to secured route
-              this.controller.transitionToRoute('secure');
-            })
-            .catch((err) => {
-              Ember.debug('AUTH ERROR: ' + JSON.stringify(err));
-            });
+          .then((authorization) => {
+            debug('AUTH SUCCESS: ', authorization);
+            // transition to secured route
+            this.controller.transitionToRoute('secure');
+          })
+          .catch((err) => {
+            debug('AUTH ERROR: ' + JSON.stringify(err));
+          });
         });
       // -----------------------------------
       }

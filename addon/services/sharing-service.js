@@ -1,10 +1,14 @@
-import Ember from 'ember';
+import { deprecate } from '@ember/application/deprecations';
+import { A } from '@ember/array';
+import { debug } from '@ember/debug';
+import { reject, resolve } from 'rsvp';
+import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
 
-  itemService: Ember.inject.service('items-service'),
-  groupService: Ember.inject.service('groups-service'),
+  itemService: service('items-service'),
+  groupService: service('groups-service'),
 
   /**
    * Set access
@@ -16,7 +20,7 @@ export default Ember.Service.extend(serviceMixin, {
     const isAdmin = this.get('session').isAdmin();
     // Reject if the current user is neither the owner nor an orgAdmin
     if (owner !== username && !isAdmin) {
-      return Ember.RSVP.reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
+      return reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
     }
     let data = {
       items: itemId,
@@ -71,7 +75,7 @@ export default Ember.Service.extend(serviceMixin, {
         // item is shared so we can short-circuit here and send back the same structure ago would
         let obj = {itemId: itemId, shortcut: true};
         obj[resultProp] = [];
-        return Ember.RSVP.resolve(obj);
+        return resolve(obj);
       } else {
         // is the user a member of the group?
         return this.get('groupService').getUserMembership(groupId, username)
@@ -79,18 +83,18 @@ export default Ember.Service.extend(serviceMixin, {
             let urlPathPromise = null;
             if (!membership) {
               // reject the whole thing...
-              urlPathPromise = Ember.RSVP.reject(`This item can not be shared by ${username} as they are not a member of the specified group ${groupId}.`);
+              urlPathPromise = reject(`This item can not be shared by ${username} as they are not a member of the specified group ${groupId}.`);
             } else {
               // user is a member of the group - now we figure out if/how they can share it...
               // if user is the owner, or orgAdmin, they can share to the group using the item-owner url...
               if (owner === username) {
-                urlPathPromise = Ember.RSVP.resolve(`/content/users/${owner}/items/${itemId}/${action}`);
+                urlPathPromise = resolve(`/content/users/${owner}/items/${itemId}/${action}`);
               } else {
                 if (membership === 'admin' || isAdmin) {
-                  urlPathPromise = Ember.RSVP.resolve(`/content/items/${itemId}/${action}`);
+                  urlPathPromise = resolve(`/content/items/${itemId}/${action}`);
                 } else {
                   // user can not share item to group b/c they don't own the item
-                  urlPathPromise = Ember.RSVP.reject(`This item can not be ${action} by ${username} as they are neither the owner, a groupAdmin of ${groupId}, nor an org_admin.`);
+                  urlPathPromise = reject(`This item can not be ${action} by ${username} as they are neither the owner, a groupAdmin of ${groupId}, nor an org_admin.`);
                 }
               }
             }
@@ -111,8 +115,8 @@ export default Ember.Service.extend(serviceMixin, {
           .then((result) => {
             if (result[resultProp].length) {
               let msg = `Item ${itemId} could not be ${action} to group ${groupId}.`;
-              Ember.debug(msg);
-              return Ember.RSVP.reject(msg);
+              debug(msg);
+              return reject(msg);
             } else {
               // all is well
               return result;
@@ -140,7 +144,7 @@ export default Ember.Service.extend(serviceMixin, {
         return false;
       } else {
         // Check that the item actually was returned
-        let results = Ember.A(searchResult.results);
+        let results = A(searchResult.results);
         let itm = results.find((itm) => {
           return itm.id === itemId;
         });
@@ -157,12 +161,12 @@ export default Ember.Service.extend(serviceMixin, {
    * Deprecated but proxy to the new callls
    */
   shareItemWithEveryone (owner, itemId, portalOpts) {
-    Ember.deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
+    deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
     return this.setAccess(owner, itemId, 'everyone', portalOpts);
   },
 
   shareItemWithOrg (owner, itemId, portalOpts) {
-    Ember.deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
+    deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
     return this.setAccess(owner, itemId, 'org', portalOpts);
   },
 
@@ -170,18 +174,18 @@ export default Ember.Service.extend(serviceMixin, {
    * Deprecated without proxies to new calls
    */
   shareItemsWithGroups (/* owner, items, groups */) {
-    Ember.deprecate('use .shareWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithGroupsDeprecation', until: '10.0.0'});
-    return Ember.RSVP.reject('sharing-service::shareItemsWithGroups is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
+    deprecate('use .shareWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithGroupsDeprecation', until: '10.0.0'});
+    return reject('sharing-service::shareItemsWithGroups is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
   },
   //
   shareItemsWithControl (/* owner, items, groups */) {
-    Ember.deprecate('use .shareWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithControlDeprecation', until: '10.0.0'});
-    return Ember.RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
+    deprecate('use .shareWithGroup(owner,itemId, groupId, confirmItemControl).', false, {id: 'shareItemsWithControlDeprecation', until: '10.0.0'});
+    return reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(owner,itemId, groupId, confirmItemControl).');
   },
   //
   shareItems (/* options */) {
-    Ember.deprecate('use .shareItemWithGroup(...) or .setAccess(...)', false, {id: 'shareItemsDeprecation', until: '10.0.0'});
-    return Ember.RSVP.reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(...) or .setAccess(...)');
+    deprecate('use .shareItemWithGroup(...) or .setAccess(...)', false, {id: 'shareItemsDeprecation', until: '10.0.0'});
+    return reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(...) or .setAccess(...)');
   },
 
   /**

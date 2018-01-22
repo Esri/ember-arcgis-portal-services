@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { computed, observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  groupsService: Ember.inject.service('groups-service'),
-  session: Ember.inject.service(),
+export default Controller.extend({
+  groupsService: service('groups-service'),
+  session: service(),
   queryParams: ['start', 'num', 'q', 'owner', 'tags'],
   q: '*',
   query: '*',
@@ -10,9 +12,8 @@ export default Ember.Controller.extend({
   tags: null,
   start: 1,
   num: 10,
-  filtered: {},
 
-  hasResults: Ember.computed('model.results', function () {
+  hasResults: computed('model.results', function () {
     let result = false;
     if (this.get('model.results.length')) {
       result = true;
@@ -20,11 +21,11 @@ export default Ember.Controller.extend({
     return result;
   }),
 
-  agoGroupsBaseUrl: Ember.computed('session', function () {
+  agoGroupsBaseUrl: computed('session', function () {
     return `https://${this.get('session.portalHostName')}/home/group.html`;
   }),
 
-  queryChanged: Ember.observer('q', function () {
+  queryChanged: observer('q', function () {
     this.set('query', this.get('q'));
   }),
 

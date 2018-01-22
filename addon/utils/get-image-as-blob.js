@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import { Promise as EmberPromise } from 'rsvp';
 /**
  * Fetch an image from a url, and return it as a blob that can
  * then be uploaded to an item as a resource
  */
 export default function getImageAsBlob (sourceUrl) {
   // promisify this...
-  return new Ember.RSVP.Promise((resolve, reject) => {
+  return new EmberPromise((resolve, reject) => {
     var img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');
     // when the image loads...

@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { debug } from '@ember/debug';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  itemsService: Ember.inject.service('items-service'),
+export default Route.extend({
+  itemsService: service('items-service'),
   queryParams: {
     'start': {refreshModel: true},
     'num': {refreshModel: true},
@@ -87,13 +90,13 @@ export default Ember.Route.extend({
   actions: {
     destroy (item) {
       this.get('itemsService').remove(item.id, item.owner)
-        .then(() => {
-          // need to transition to the route so we pick up new entries
-          Ember.debug('Item Deleted... transitioning route to get new results...');
-          Ember.run.later(this, function () {
-            this.refresh();
-          }, 100);
-        });
+      .then(() => {
+        // need to transition to the route so we pick up new entries
+        debug('Item Deleted... transitioning route to get new results...');
+        later(this, function () {
+          this.refresh();
+        }, 100);
+      });
     }
   }
 });

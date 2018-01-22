@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 import ENV from '../config/environment';
-const { Controller } = Ember;
 
 export default Controller.extend({
-  env: Ember.computed(function () {
+  env: computed(function () {
     return ENV.environment;
   }),
 });

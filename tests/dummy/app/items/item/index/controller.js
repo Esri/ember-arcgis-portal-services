@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  jsonString: Ember.computed('model', function () {
+export default Controller.extend({
+  jsonString: computed('model', function () {
     return JSON.stringify(this.get('model'), null, ' ');
   })
 });

@@ -2,73 +2,75 @@
   "name": "ember-arcgis-portal-services",
   "version": "0.28.0",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
+  "keywords": [
+    "ember-addon"
+  ],
+  "license": "Apache-2.0",
+  "author": "Dave Bouwman <dbouwman@esri.com>",
   "directories": {
     "test": "tests"
-  },
-  "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "start:portal": "ember s --env=koopernetes",
-    "test": "ember try:each",
-    "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
-    "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",
-    "deploy:qaext": "ember surge --new-domain='eapsqa.surge.sh' --environment=qaext",
-    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Esri/ember-arcgis-portal-services.git"
   },
-  "engines": {
-    "node": ">= 6"
+  "scripts": {
+    "build": "ember build",
+    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
+    "start": "ember serve",
+    "test": "ember try:each",
+    "start:portal": "ember s --env=koopernetes",
+    "deploy": "ember github-pages:commit --environment=github --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\";",
+    "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",
+    "deploy:qaext": "ember surge --new-domain='eapsqa.surge.sh' --environment=qaext",
+    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production"
   },
-  "author": "Dave Bouwman <dbouwman@esri.com>",
-  "contributors": [
-    "Mike Juniper <mjuniper@esri.com>",
-    "Tom Wayson <twayson@esri.com>"
-  ],
-  "license": "Apache-2.0",
+  "dependencies": {
+    "ember-cli-babel": "^6.6.0",
+    "ember-cli-htmlbars": "^1.0.3",
+    "ember-network": "0.3.0"
+  },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.2",
-    "ember-cli": "2.8.0",
+    "broccoli-asset-rev": "^2.4.5",
+    "ember-cli": "~2.18.0",
     "ember-cli-active-link-wrapper": "0.3.2",
-    "ember-cli-app-version": "^1.0.0",
-    "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-eslint": "3.0.0",
+    "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.2.1",
     "ember-cli-github-pages": "0.1.2",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.1",
-    "ember-cli-inject-live-reload": "^1.4.0",
+    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+    "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-jsoneditor": "0.1.2",
-    "ember-cli-qunit": "^2.1.0",
-    "ember-cli-release": "1.0.0-beta.2",
+    "ember-cli-qunit": "^4.1.1",
+    "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-surge": "1.1.16",
-    "ember-cli-test-loader": "^1.1.0",
-    "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.8.0",
-    "ember-disable-prototype-extensions": "^1.1.0",
-    "ember-export-application-global": "^1.0.5",
-    "ember-load-initializers": "^0.5.1",
-    "ember-resolver": "^2.0.3",
+    "ember-cli-uglify": "^2.0.0",
+    "ember-cli-update": "0.13.3",
+    "ember-disable-prototype-extensions": "^1.1.2",
+    "ember-export-application-global": "^2.0.0",
+    "ember-load-initializers": "^1.0.0",
+    "ember-resolver": "^4.0.0",
     "ember-sinon": "0.6.0",
     "ember-sinon-qunit": "1.4.1",
+    "ember-source": "~2.18.0",
     "eslint-config-semistandard": "~7.0.0",
     "eslint-config-standard": "~6.0.0",
+    "eslint-plugin-ember": "^5.0.0",
+    "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-react": "^6.2.0",
     "eslint-plugin-standard": "^2.0.0",
     "jsoneditor": "5.5.6",
-    "loader.js": "^4.0.1",
-    "torii-provider-arcgis": "0.6.1"
+    "loader.js": "^4.2.3",
+    "torii-provider-arcgis": "0.12.0"
   },
-  "keywords": [
-    "ember-addon"
+  "engines": {
+    "node": "^4.5 || 6.* || >= 7.*"
+  },
+  "contributors": [
+    "Mike Juniper <mjuniper@esri.com>",
+    "Tom Wayson <twayson@esri.com>"
   ],
-  "dependencies": {
-    "ember-cli-babel": "^5.1.6",
-    "ember-cli-htmlbars": "^1.0.3",
-    "ember-network": "0.3.0"
-  },
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },

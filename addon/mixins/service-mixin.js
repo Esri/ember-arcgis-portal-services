@@ -1,19 +1,25 @@
-import Ember from 'ember';
+import { debug } from '@ember/debug';
+import { isNone } from '@ember/utils';
+import { deprecate } from '@ember/application/deprecations';
+import { getOwner } from '@ember/application';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 import fetch from 'ember-network/fetch';
 
-export default Ember.Mixin.create({
-  session: Ember.inject.service('session'),
+export default Mixin.create({
+  session: service('session'),
 
-  hostAppConfig: Ember.computed(function () {
-    return Ember.getOwner(this).resolveRegistration('config:environment');
+  hostAppConfig: computed(function () {
+    return getOwner(this).resolveRegistration('config:environment');
   }),
 
   defaultParams: {
     f: 'json'
   },
 
-  portalRestUrl: Ember.computed('session.portalHostName', function () {
-    Ember.deprecate('use .getPortalRestUrl()', false, {id: 'portalRestUrlDeprecation', until: '10.0.0'});
+  portalRestUrl: computed('session.portalHostname', function () {
+    deprecate('use .getPortalRestUrl()', false, {id: 'portalRestUrlDeprecation', until: '10.0.0'});
     return this.getPortalRestUrl();
   }),
 
@@ -25,8 +31,8 @@ export default Ember.Mixin.create({
     return `${baseUrl}/sharing/rest`;
   },
 
-  portalUrl: Ember.computed('session.portalHostName', function () {
-    Ember.deprecate('use .getPortalUrl()', false, {id: 'portalUrlDeprecation', until: '10.0.0'});
+  portalUrl: computed('session.portalHostname', function () {
+    deprecate('use .getPortalUrl()', false, {id: 'portalUrlDeprecation', until: '10.0.0'});
     return this.getPortalUrl();
   }),
 
@@ -69,7 +75,7 @@ export default Ember.Mixin.create({
     if (typeof form === 'string') { return form; }
 
     return Object.keys(form).reduce((acc, key) => {
-      if (!Ember.isNone(form[key])) {
+      if (!isNone(form[key])) {
         acc.push([key, form[key]].map(encodeURIComponent).join('='));
       }
       return acc;
@@ -89,7 +95,7 @@ export default Ember.Mixin.create({
           error = new Error(json.error.message);
           error.code = json.error.code || 404;
           error.response = response;
-          Ember.debug('Error in response:  ' + json.error.message);
+          debug('Error in response:  ' + json.error.message);
           throw error;
         } else {
           return json;

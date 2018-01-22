@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
-  session: Ember.inject.service('session'),
+export default Service.extend(serviceMixin, {
+  session: service('session'),
 
   getById (id, portalOpts) {
     const urlPath = `/portals/${id}?f=json`;

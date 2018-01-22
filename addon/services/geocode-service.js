@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { computed } from '@ember/object';
+import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
   /**
    * Return the ArcGIS Geocode base url if it exists, if not use default
    */
-  geocodeUrl: Ember.computed('hostAppConfig.geocodeUrl', function () {
+  geocodeUrl: computed('hostAppConfig.geocodeUrl', function () {
     return this.get('hostAppConfig').APP.geocodeUrl || `https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/`;
   }),
 
@@ -16,7 +18,7 @@ export default Ember.Service.extend(serviceMixin, {
       maxLocations: 1,
       bbox: null
     };
-    let ops = Ember.$.extend({}, defaults, options);
+    let ops = $.extend({}, defaults, options);
     let url = `${geocodeUrl}findAddressCandidates?f=json&singleLine=${inputString}&maxLocations=${ops.maxLocations}&outSR=${ops.outSR}`;
 
     if (ops.bbox) {

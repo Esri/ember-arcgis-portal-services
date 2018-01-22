@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = Ember.Router.extend({
+const Router = EmberRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL
 });
@@ -15,10 +15,10 @@ Router.map(function () {
     });
     this.route('new');
   });
-  this.authenticatedRoute('groups');
+
   this.route('signin');
 
-  this.route('groups', function () {
+  this.authenticatedRoute('groups', function () {
     this.route('group', { path: '/:id' }, function () {
       this.route('edit');
     });

@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'input',
   type: 'file',
   classNames: ['inputfile'],
@@ -8,7 +9,7 @@ export default Ember.Component.extend({
   multiple: false,
   change (event) {
     const input = event.target;
-    if (!Ember.isEmpty(input.files)) {
+    if (!isEmpty(input.files)) {
       this.get('onFileSelected')(input.files);
     }
     return false;

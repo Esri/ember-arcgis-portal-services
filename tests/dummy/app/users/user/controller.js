@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   folderExists: false,
-  session: Ember.inject.service('session'),
-  folderService: Ember.inject.service('folders-service'),
+  session: service('session'),
+  folderService: service('folders-service'),
   actions: {
     checkFolderExists (folderName) {
       let username = this.get('session.currentUser.username');

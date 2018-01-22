@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { reject, resolve } from 'rsvp';
+import { debug } from '@ember/debug';
+import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
 
-  portalService: Ember.inject.service(),
+  portalService: service(),
 
   /**
    * Group Search
@@ -139,7 +141,7 @@ export default Ember.Service.extend(serviceMixin, {
    * Reassign ownership of the group
    */
   reassign (/* id, username */) {
-    Ember.debug('group-service.reassign not implemented!');
+    debug('group-service.reassign not implemented!');
   },
 
   /**
@@ -226,7 +228,7 @@ export default Ember.Service.extend(serviceMixin, {
         return result;
       })
       .catch((err) => {
-        Ember.debug(`GroupService:getUserMembership ${id} for ${username} errored: ${err}`);
+        debug(`GroupService:getUserMembership ${id} for ${username} errored: ${err}`);
         return result;
       });
   },
@@ -242,7 +244,7 @@ export default Ember.Service.extend(serviceMixin, {
       data.users = users;
     } else {
       let error = new Error(`Please pass in a type (user or admin) for ${users} when updating memberships`);
-      return Ember.RSVP.reject(error);
+      return reject(error);
     }
     const urlPath = `/community/groups/${id}/updateUsers?f=json`;
     const options = {
@@ -279,7 +281,7 @@ export default Ember.Service.extend(serviceMixin, {
       orgIdPromise = this.get('portalService').self(portalOpts)
       .then(portalResp => portalResp.id);
     } else {
-      orgIdPromise = Ember.RSVP.resolve(this.get('session.portal.id'));
+      orgIdPromise = resolve(this.get('session.portal.id'));
     }
 
     return orgIdPromise
@@ -289,7 +291,7 @@ export default Ember.Service.extend(serviceMixin, {
     })
     .then(searchResponse => searchResponse.results.length > 0)
     .catch((err) => {
-      Ember.debug('Error checking if group exists: ' + JSON.stringify(err));
+      debug('Error checking if group exists: ' + JSON.stringify(err));
     });
   },
 

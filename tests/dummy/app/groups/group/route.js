@@ -1,12 +1,14 @@
-import Ember from 'ember';
+import { hash } from 'rsvp';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
 
-  groupsService: Ember.inject.service(),
+  groupsService: service(),
 
   model: function (params) {
     this.set('groupId', params.id);
-    return Ember.RSVP.hash({
+    return hash({
       users: this.get('groupsService').users(params.id),
       items: this.get('groupsService').getItemsById(params.id),
       groupId: params.id,
@@ -20,11 +22,11 @@ export default Ember.Route.extend({
   actions: {
     remove (user) {
       this.get('groupsService').removeUsers(this.get('groupId'), [user])
-        .then((resp) => {
-          this.refresh();
-        }, (err) => {
-          alert(err);
-        });
+      .then((resp) => {
+        this.refresh();
+      }, (err) => {
+        alert(err);
+      });
     }
   }
 });
