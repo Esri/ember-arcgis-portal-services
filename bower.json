@@ -1,6 +1,0 @@
-{
-  "name": "ember-arcgis-portal-services",
-  "dependencies": {
-    "components-font-awesome": "^4.6.3"
-  }
-}
