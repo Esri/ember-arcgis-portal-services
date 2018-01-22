@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { debug } from '@ember/debug';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  groupsService: Ember.inject.service('groups-service'),
+export default Route.extend({
+  groupsService: service('groups-service'),
   queryParams: {
     'start': {refreshModel: true},
     'num': {refreshModel: true},
@@ -57,8 +60,8 @@ export default Ember.Route.extend({
       this.get('groupsService').remove(group.id)
         .then(() => {
           // need to transition to the route so we pick up new entries
-          Ember.debug('Group Deleted... transitioning route to get new results...');
-          Ember.run.later(this, function () {
+          debug('Group Deleted... transitioning route to get new results...');
+          later(this, function () {
             this.refresh();
           }, 500);
         });

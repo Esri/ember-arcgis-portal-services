@@ -7,7 +7,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'semistandard',
-    'plugin:ember/recommended'
+    // 'plugin:ember/recommended'
   ],
   env: {
     browser: true
@@ -16,9 +16,9 @@ module.exports = {
     "comma-dangle": [2, "only-multiline"],
     "no-console": 0,
   },
-  plugins: [
-    'ember'
-  ],
+  // plugins: [
+  //   'ember'
+  // ],
   overrides: [
     // node files
     {

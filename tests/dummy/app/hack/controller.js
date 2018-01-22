@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  sharingService: Ember.inject.service('sharing-service'),
+export default Controller.extend({
+  sharingService: service('sharing-service'),
   itemId: '86c14c971d864b7887c89e3cd39f94b1',  // Collisions Data Indicator for Development
   groupId: '5a55a1dc809741a698df35f97106e3bc', // DEVEXT AAA Test Sharing
   owner: 'dcadmin',
-  currentUser: Ember.computed.reads('session.currentUser.username'),
+  currentUser: reads('session.currentUser.username'),
   sharingResult: {},
   actions: {
     shareItem () {

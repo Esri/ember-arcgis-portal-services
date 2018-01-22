@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   dirty: false,
 
-  portalService: Ember.inject.service('portal-service'),
+  portalService: service('portal-service'),
 
-  createDate: Ember.computed('model.portal', function () {
+  createDate: computed('model.portal', function () {
     return new Date(this.get('model.portal.created')).toISOString();
   }),
-  modifyDate: Ember.computed('model.portal', function () {
+  modifyDate: computed('model.portal', function () {
     return new Date(this.get('model.portal.modified')).toISOString();
   }),
-  propertiesJson: Ember.computed('model.portal', function () {
+  propertiesJson: computed('model.portal', function () {
     return this.get('model.portal.portalProperties');
   }),
 

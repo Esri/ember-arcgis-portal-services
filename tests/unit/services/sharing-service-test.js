@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { resolve } from 'rsvp';
+import Service from '@ember/service';
 import { moduleFor } from 'ember-qunit';
 import test from 'ember-sinon-qunit/test-support/test';
 
@@ -15,7 +16,7 @@ test('it exists', function (assert) {
 
 // Replace this with your real tests.
 test('owner setAccess to everyone', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeuser'
     },
@@ -27,7 +28,7 @@ test('owner setAccess to everyone', function (assert) {
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   return service.setAccess('fakeuser', '3efakeId', 'everyone')
@@ -46,7 +47,7 @@ test('owner setAccess to everyone', function (assert) {
 });
 
 test('owner setAccess to no one', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeuser'
     },
@@ -58,7 +59,7 @@ test('owner setAccess to no one', function (assert) {
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   return service.setAccess('fakeuser', '3efakeId')
@@ -77,7 +78,7 @@ test('owner setAccess to no one', function (assert) {
 });
 
 test('admin setAccess to everyone', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeadmin'
     },
@@ -89,7 +90,7 @@ test('admin setAccess to everyone', function (assert) {
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   return service.setAccess('fakeuser', '3efakeId', 'everyone')
@@ -108,7 +109,7 @@ test('admin setAccess to everyone', function (assert) {
 });
 
 test('non-owner can not share item to the world', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'otherfakeuser'
     },
@@ -120,7 +121,7 @@ test('non-owner can not share item to the world', function (assert) {
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId'});
+    return resolve({'itemId': '3efakeId'});
   });
 
   return service.setAccess('fakeuser', '3efakeId', 'everyone')
@@ -131,7 +132,7 @@ test('non-owner can not share item to the world', function (assert) {
 });
 
 test('owner share to group', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeuser'
     },
@@ -140,20 +141,20 @@ test('owner share to group', function (assert) {
     }
   });
   this.register('service:session', session);
-  let groupSvc = Ember.Service.extend({
+  let groupSvc = Service.extend({
     getUserMembership (id, username) {
-      return Ember.RSVP.resolve('member');
+      return resolve('member');
     }
   });
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   this.stub(service, 'isItemSharedWithGroup', function (q) {
-    return Ember.RSVP.resolve(false);
+    return resolve(false);
   });
 
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
@@ -176,7 +177,7 @@ test('owner share to group', function (assert) {
 });
 
 test('owner re-share to group', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeuser'
     },
@@ -188,11 +189,11 @@ test('owner re-share to group', function (assert) {
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   this.stub(service, 'isItemSharedWithGroup', function (q) {
-    return Ember.RSVP.resolve(true);
+    return resolve(true);
   });
 
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
@@ -206,7 +207,7 @@ test('owner re-share to group', function (assert) {
 });
 
 test('admin re-share to group', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeadmin'
     },
@@ -218,11 +219,11 @@ test('admin re-share to group', function (assert) {
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   this.stub(service, 'isItemSharedWithGroup', function (q) {
-    return Ember.RSVP.resolve(true);
+    return resolve(true);
   });
 
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
@@ -236,7 +237,7 @@ test('admin re-share to group', function (assert) {
 });
 
 test('owner share to group with itemControl', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeuser'
     },
@@ -245,20 +246,20 @@ test('owner share to group with itemControl', function (assert) {
     }
   });
   this.register('service:session', session);
-  let groupSvc = Ember.Service.extend({
+  let groupSvc = Service.extend({
     getUserMembership (id, username) {
-      return Ember.RSVP.resolve('member');
+      return resolve('member');
     }
   });
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: []});
+    return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
   this.stub(service, 'isItemSharedWithGroup', function (q) {
-    return Ember.RSVP.resolve(false);
+    return resolve(false);
   });
 
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId', true)
@@ -279,7 +280,7 @@ test('owner share to group with itemControl', function (assert) {
 });
 
 test('owner share to group message response', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'fakeuser'
     },
@@ -288,19 +289,19 @@ test('owner share to group message response', function (assert) {
     }
   });
   this.register('service:session', session);
-  let groupSvc = Ember.Service.extend({
+  let groupSvc = Service.extend({
     getUserMembership (id, username) {
-      return Ember.RSVP.resolve('member');
+      return resolve('member');
     }
   });
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId', notSharedWith: ['4efakeGroupId']});
+    return resolve({'itemId': '3efakeId', notSharedWith: ['4efakeGroupId']});
   });
   this.stub(service, 'isItemSharedWithGroup', function (q) {
-    return Ember.RSVP.resolve(false);
+    return resolve(false);
   });
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
     .catch((err) => {
@@ -318,7 +319,7 @@ test('owner share to group message response', function (assert) {
 });
 
 test('non-owner can not share item to group', function (assert) {
-  let session = Ember.Service.extend({
+  let session = Service.extend({
     currentUser: {
       username: 'otherfakeuser'
     },
@@ -327,19 +328,19 @@ test('non-owner can not share item to group', function (assert) {
     }
   });
   this.register('service:session', session);
-  let groupSvc = Ember.Service.extend({
+  let groupSvc = Service.extend({
     getUserMembership (id, username) {
-      return Ember.RSVP.resolve('member');
+      return resolve('member');
     }
   });
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
   this.stub(service, '_post', function (url, data) {
-    return Ember.RSVP.resolve({'itemId': '3efakeId'});
+    return resolve({'itemId': '3efakeId'});
   });
   this.stub(service, 'isItemSharedWithGroup', function (q) {
-    return Ember.RSVP.resolve(false);
+    return resolve(false);
   });
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
     .catch((err) => {
@@ -349,9 +350,9 @@ test('non-owner can not share item to group', function (assert) {
 });
 
 test('isItemSharedWithGroup returns false if item not in group search result', function (assert) {
-  let itemService = Ember.Service.extend({
+  let itemService = Service.extend({
     search: function () {
-      return Ember.RSVP.resolve({
+      return resolve({
         total: 0,
         results: []
       });
@@ -367,9 +368,9 @@ test('isItemSharedWithGroup returns false if item not in group search result', f
 });
 
 test('isItemSharedWithGroup returns true if item is in group search result', function (assert) {
-  let itemService = Ember.Service.extend({
+  let itemService = Service.extend({
     search: function (itemId, groupId) {
-      return Ember.RSVP.resolve({
+      return resolve({
         total: 1,
         results: [{id: '3efakeId'}]
       });

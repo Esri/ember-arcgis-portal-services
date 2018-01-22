@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  groupsService: Ember.inject.service('groups-service'),
+export default Controller.extend({
+  groupsService: service('groups-service'),
   isEditable: false,
 
   actions: {

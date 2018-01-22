@@ -1,15 +1,17 @@
-import Ember from 'ember';
+import { copy } from '@ember/object/internals';
+import { deprecate } from '@ember/application/deprecations';
+import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
 
-  session: Ember.inject.service('session'),
+  session: service('session'),
 
   /**
    * User Search
    */
   search (form, portalOpts) {
-    Ember.deprecate('use .searchPortalUsers(...) or .searchCommunityUsers(...)', false, {id: 'searchDeprecation', until: '10.0.0'});
+    deprecate('use .searchPortalUsers(...) or .searchCommunityUsers(...)', false, {id: 'searchDeprecation', until: '10.0.0'});
     if (this.get('session.isAuthenticated') || (portalOpts && portalOpts.portalHostname)) {
       return this.searchPortalUsers(...arguments);
     } else {
@@ -58,7 +60,7 @@ export default Ember.Service.extend(serviceMixin, {
    * Extra logic to transform the item prior to POSTing it
    */
   _serializeUser (user) {
-    let clone = Ember.copy(user, true);
+    let clone = copy(user, true);
 
     // groups are ignored
     delete clone.groups;

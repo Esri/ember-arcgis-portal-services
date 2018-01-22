@@ -1,7 +1,11 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { debug } from '@ember/debug';
+import { allSettled } from 'rsvp';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  itemsService: Ember.inject.service('items-service'),
+export default Route.extend({
+  itemsService: service('items-service'),
   queryParams: {
     'start': {refreshModel: true},
     'num': {refreshModel: true},
@@ -98,7 +102,7 @@ export default Ember.Route.extend({
           });
         batchPromises.push(prms);
       });
-      return Ember.RSVP.allSettled(batchPromises);
+      return allSettled(batchPromises);
     });
   },
 
@@ -114,10 +118,10 @@ export default Ember.Route.extend({
       for (let start = 0; start <= total; start = start + 100) {
         promises.push(this.deletePage(agoQuery, start, ctl, increment));
       }
-      return Ember.RSVP.allSettled(promises)
+      return allSettled(promises)
       .then((results) => {
-        Ember.debug('DONE!');
-        Ember.run.later(this, function () {
+        debug('DONE!');
+        later(this, function () {
           this.refresh();
         }, 100);
       });
@@ -127,8 +131,8 @@ export default Ember.Route.extend({
       this.get('itemsService').remove(item.id, item.owner)
         .then(() => {
           // need to transition to the route so we pick up new entries
-          Ember.debug('Item Deleted... transitioning route to get new results...');
-          Ember.run.later(this, function () {
+          debug('Item Deleted... transitioning route to get new results...');
+          later(this, function () {
             this.refresh();
           }, 100);
         });

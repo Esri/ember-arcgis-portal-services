@@ -1,15 +1,18 @@
-import Ember from 'ember';
+import { hash, resolve } from 'rsvp';
+import { debug } from '@ember/debug';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  itemsService: Ember.inject.service('items-service'),
+export default Route.extend({
+  itemsService: service('items-service'),
   model (params) {
     let item = this.modelFor('items.item');
-    Ember.debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
+    debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
 
     // only get the data if this is a type with data!
     let validTypes = ['Web Mapping Application', 'Web Map', 'Dashboard', 'Hub Site Application', 'Hub Page', 'Hub Initiative', 'Map Service'];
     if (validTypes.includes(item.type)) {
-      return Ember.RSVP.hash({
+      return hash({
         item: item,
         data: this.get('itemsService').getDataById(item.id)
           .then((result) => {
@@ -23,7 +26,7 @@ export default Ember.Route.extend({
           })
       });
     } else {
-      return Ember.RSVP.resolve({
+      return resolve({
         item: item,
         data: {}
       });

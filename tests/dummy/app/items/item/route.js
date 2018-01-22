@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { debug } from '@ember/debug';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  itemsService: Ember.inject.service('items-service'),
+export default Route.extend({
+  itemsService: service('items-service'),
 
   model (params) {
-    Ember.debug('Items.item route got id: ' + params.id);
+    debug('Items.item route got id: ' + params.id);
     return this.get('itemsService').getById(params.id);
   }
 });

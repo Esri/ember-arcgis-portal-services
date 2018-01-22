@@ -1,19 +1,22 @@
-import Ember from 'ember';
+import { debug } from '@ember/debug';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  itemsService: Ember.inject.service('items-service'),
+export default Controller.extend({
+  itemsService: service('items-service'),
 
-  sharingService: Ember.inject.service('sharing-service'),
+  sharingService: service('sharing-service'),
 
-  itemJson: Ember.computed('model.item', function () {
+  itemJson: computed('model.item', function () {
     return this.get('model.item');
   }),
 
-  dataJson: Ember.computed('model.data', function () {
+  dataJson: computed('model.data', function () {
     return this.get('model.data');
   }),
 
-  thumbnailUrl: Ember.computed('model.item.thumbnail', function () {
+  thumbnailUrl: computed('model.item.thumbnail', function () {
     let portalHostname = this.get('session.portalHostName');
     let item = this.get('model.item');
     let url = `https://${portalHostname}/sharing/rest/content/items/${item.id}/info/${item.thumbnail}?w=400`;
@@ -55,7 +58,7 @@ export default Ember.Controller.extend({
         if (result.success) {
           this.set('model.item.protected', true);
         } else {
-          Ember.debug('Protect call failed: ' + JSON.stringify(result));
+          debug('Protect call failed: ' + JSON.stringify(result));
         }
       });
     },
@@ -68,7 +71,7 @@ export default Ember.Controller.extend({
         if (result.success) {
           this.set('model.item.protected', false);
         } else {
-          Ember.debug('Unprotect call failed: ' + JSON.stringify(result));
+          debug('Unprotect call failed: ' + JSON.stringify(result));
         }
       });
     },

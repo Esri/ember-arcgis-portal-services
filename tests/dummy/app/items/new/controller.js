@@ -1,13 +1,15 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  itemsService: Ember.inject.service('items-service'),
+export default Controller.extend({
+  itemsService: service('items-service'),
 
-  itemJson: Ember.computed('model.item', function () {
+  itemJson: computed('model.item', function () {
     return this.get('model.item');
   }),
 
-  dataJson: Ember.computed('model.data', function () {
+  dataJson: computed('model.data', function () {
     return this.get('model.data');
   }),
 

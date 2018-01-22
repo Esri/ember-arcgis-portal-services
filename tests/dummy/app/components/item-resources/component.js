@@ -1,20 +1,24 @@
-import Ember from 'ember';
+import { debug } from '@ember/debug';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import layout from './template';
 import fetch from 'ember-network/fetch';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
-  itemsService: Ember.inject.service('items-service'),
+  itemsService: service('items-service'),
 
-  session: Ember.inject.service(),
-  token: Ember.computed.alias('session.token'),
+  session: service(),
+  token: alias('session.token'),
   isLoading: true,
   urlToResource: 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
   // Lazy load the resources
   didInsertElement () {
     this._getResources();
   },
-  resourceBaseUrl: Ember.computed('session', 'item', function () {
+  resourceBaseUrl: computed('session', 'item', function () {
     let portalHostName = this.get('session.portalHostName');
     let item = this.get('item');
     return `//${portalHostName}/sharing/rest/content/items/${item.id}/resources/`;
@@ -22,7 +26,6 @@ export default Ember.Component.extend({
   _getResources () {
     this.set('isLoading', true);
     this.get('onFetchResources')()
-
     .then((resources) => {
       this.set('model', resources);
       this.set('isLoading', false);
@@ -37,7 +40,7 @@ export default Ember.Component.extend({
       });
     },
     filesChanged (files) {
-      Ember.debug('Files changed!'); // files[0]
+      debug('Files changed!'); // files[0]
       this.get('onUploadFile')(files[0])
       .then(() => {
         this._getResources();

@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { computed, observer } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
 
-  userService: Ember.inject.service(),
+  userService: service(),
 
-  session: Ember.inject.service(),
+  session: service(),
 
   queryParams: [ 'start', 'num', 'q', 'token', 'portalHostname' ],
 
@@ -18,17 +21,17 @@ export default Ember.Controller.extend({
 
   portalHostname: '',
 
-  portalHostnameCopy: Ember.computed.reads('portalHostname'),
+  portalHostnameCopy: reads('portalHostname'),
 
   token: '',
 
-  tokenCopy: Ember.computed.reads('token'),
+  tokenCopy: reads('token'),
 
-  totalCount: Ember.computed('model.total', function () {
+  totalCount: computed('model.total', function () {
     return this.get('model.total');
   }),
 
-  queryChanged: Ember.observer('q', function () {
+  queryChanged: observer('q', function () {
     this.set('query', this.get('q'));
   }),
 

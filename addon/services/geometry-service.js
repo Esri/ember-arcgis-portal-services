@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { Promise as EmberPromise } from 'rsvp';
+import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
 
   projectAjax (inSR, outSR, geometryType, geometries) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new EmberPromise((resolve, reject) => {
       // var serviceUrl = PrincipalService.portal().helperServices.geometry.url
 
       var serviceUrl = 'https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer/project';
@@ -35,7 +37,7 @@ export default Ember.Service.extend(serviceMixin, {
           resolve(json);
         }
       }, (json, status, headers) => {
-        Ember.Logger.error(json, status, headers());
+        console.error(json, status, headers());
         reject(status);
       });
     });
@@ -44,7 +46,7 @@ export default Ember.Service.extend(serviceMixin, {
   /**
    * Return the portal's Geometry Service base url if it exists, if not use default
    */
-  geometryServerUrl: Ember.computed('session.portal', function () {
+  geometryServerUrl: computed('session.portal', function () {
     return this.getWithDefault('session.portal.helperServices.geometry.url', 'https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer');
   }),
 

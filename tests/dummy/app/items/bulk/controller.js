@@ -1,8 +1,11 @@
-import Ember from 'ember';
+import { htmlSafe } from '@ember/string';
+import { computed, observer } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  itemsService: Ember.inject.service('items-service'),
-  session: Ember.inject.service(),
+export default Controller.extend({
+  itemsService: service('items-service'),
+  session: service(),
   queryParams: ['start', 'num', 'q', 'owner', 'tags', 'type'],
   start: 1,
   q: null,
@@ -13,19 +16,19 @@ export default Ember.Controller.extend({
   typeKeywords: null,
   type: null,
   showConfirmation: false,
-  totalCount: Ember.computed('model.total', function () {
+  totalCount: computed('model.total', function () {
     return this.get('model.total');
   }),
   percent: 0,
-  progressStyle: Ember.computed('percent', function () {
-    return Ember.String.htmlSafe(`width:${this.get('percent')}%;`);
+  progressStyle: computed('percent', function () {
+    return htmlSafe(`width:${this.get('percent')}%;`);
   }),
 
-  queryChanged: Ember.observer('q', function () {
+  queryChanged: observer('q', function () {
     this.set('query', this.get('q'));
   }),
 
-  portalItemUrl: Ember.computed('session.portal', function () {
+  portalItemUrl: computed('session.portal', function () {
     let cbu = this.get('session.portal.customBaseUrl');
     let urlKey = this.get('session.portal.urlKey');
     return `https://${urlKey}.${cbu}/home/item.html?id=`;

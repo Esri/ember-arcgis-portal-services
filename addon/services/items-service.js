@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { copy } from '@ember/object/internals';
+import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import getImageAsBlob from 'ember-arcgis-portal-services/utils/get-image-as-blob';
 
-export default Ember.Service.extend(serviceMixin, {
+export default Service.extend(serviceMixin, {
 
   /**
    * Get the url for item page
@@ -228,7 +229,7 @@ export default Ember.Service.extend(serviceMixin, {
    * Extra logic to transform the item prior to POSTing it
    */
   _serializeItem (item) {
-    let clone = Ember.copy(item, true);
+    let clone = copy(item, true);
     // Array items need to become comma delim strings
     if (clone.typeKeywords) {
       clone.typeKeywords = item.typeKeywords.join(', ');

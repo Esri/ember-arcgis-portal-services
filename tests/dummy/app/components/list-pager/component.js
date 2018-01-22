@@ -1,37 +1,40 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { alias, gt, equal } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from './template';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: 'nav',
-  totalCount: Ember.computed('model.total', function () {
+  totalCount: computed('model.total', function () {
     return this.get('model.total');
   }),
 
-  totalPages: Ember.computed('totalCount', function () {
+  totalPages: computed('totalCount', function () {
     let totalPages = Math.ceil(this.get('totalCount') / this.get('model.num'));
     return totalPages;
   }),
-  lastPage: Ember.computed.alias('totalPages'),
+  lastPage: alias('totalPages'),
 
-  showPagination: Ember.computed.gt('totalPages', 1),
+  showPagination: gt('totalPages', 1),
 
-  prevStart: Ember.computed('model.start', function () {
+  prevStart: computed('model.start', function () {
     return this.get('model.start') - this.get('model.num');
   }),
 
-  nextStart: Ember.computed('model.start', function () {
+  nextStart: computed('model.start', function () {
     return this.get('model.nextStart');
   }),
 
-  isFirstPage: Ember.computed.equal('model.start', 1),
+  isFirstPage: equal('model.start', 1),
 
-  isLastPage: Ember.computed('model.start', 'totalPages', function () {
+  isLastPage: computed('model.start', 'totalPages', function () {
     return (this.get('model.start') * this.get('model.num')) >= this.get('totalPages');
   }),
 
-  pageRange: Ember.computed('model.num', 'totalPages', function () {
-    let result = Ember.A();
+  pageRange: computed('model.num', 'totalPages', function () {
+    let result = A();
 
     let currentPage = Math.ceil(this.get('model.start') / this.get('model.num'));
     let totalPages = this.get('totalPages');
@@ -48,7 +51,7 @@ export default Ember.Component.extend({
     return result;
   }),
 
-  range: Ember.computed('model.meta.queryParameters.page.number', 'isLastPage', function () {
+  range: computed('model.meta.queryParameters.page.number', 'isLastPage', function () {
     let range = {'start': 1, 'end': 10};
     let perPage = this.get('model.num');
     range.start = (perPage * this.get('page')) - perPage + 1;

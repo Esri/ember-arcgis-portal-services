@@ -1,15 +1,18 @@
-import Ember from 'ember';
+import { debug } from '@ember/debug';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import layout from './template';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   isLoading: true,
-  session: Ember.inject.service(),
+  session: service(),
   // Lazy load the resources
   didInsertElement () {
     this._getResources();
   },
-  resourceBaseUrl: Ember.computed('session', 'item', function () {
+  resourceBaseUrl: computed('session', 'item', function () {
     let portalHostName = this.get('session.portalHostName');
     let portalId = this.get('session.portal.id');
     return `//${portalHostName}/sharing/rest/portals/${portalId}/resources/`;
@@ -31,7 +34,7 @@ export default Ember.Component.extend({
       });
     },
     filesChanged (files) {
-      Ember.debug('Files changed!'); // files[0]
+      debug('Files changed!'); // files[0]
       this.get('onUploadFile')(files)
       .then(() => {
         this._getResources();
