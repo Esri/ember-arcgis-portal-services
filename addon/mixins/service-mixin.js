@@ -5,7 +5,8 @@ import { getOwner } from '@ember/application';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Mixin from '@ember/object/mixin';
-import fetch from 'ember-network/fetch';
+import fetch from 'fetch';
+
 
 export default Mixin.create({
   session: service('session'),

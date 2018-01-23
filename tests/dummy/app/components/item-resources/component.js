@@ -4,7 +4,7 @@ import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import layout from './template';
-import fetch from 'ember-network/fetch';
+import fetch from 'fetch';
 
 export default Component.extend({
   layout,
