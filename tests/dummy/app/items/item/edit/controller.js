@@ -4,8 +4,8 @@ import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  itemsService: Ember.inject.service('items-service'),
-  sharingService: Ember.inject.service('sharing-service'),
+  itemsService: service('items-service'),
+  sharingService: service('sharing-service'),
 
 
   itemJson: computed('model.item', function () {
