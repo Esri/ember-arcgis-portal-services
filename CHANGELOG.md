@@ -6,6 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - swapped the deprecated `ember-network` for `ember-fetch`
 
+### Removed
+- unused `geometry-service.projectAjax` fn which could not work as the ajax service was not included
+
 ## 0.29.0
 ### Changed
 - upgrade to ember 2.18
