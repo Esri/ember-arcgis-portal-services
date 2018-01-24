@@ -5,8 +5,8 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   itemsService: service('items-service'),
-
   sharingService: service('sharing-service'),
+
 
   itemJson: computed('model.item', function () {
     return this.get('model.item');
@@ -85,9 +85,13 @@ export default Controller.extend({
       }
 
       this.get('itemsService').update(item)
-      .then((resp) => {
-        this.transitionToRoute('items.index');
-      });
+        .then((resp) => {
+          this.transitionToRoute('items.index');
+        })
+        .catch((err) => {
+          alert(`Error saving changes! ${JSON.stringify(err)}`);
+        });
+
     },
     cancel: function () {
       // return to the item list

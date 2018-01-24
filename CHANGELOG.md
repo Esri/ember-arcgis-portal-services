@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.30.0
+### Changed
+- swapped the deprecated `ember-network` for `ember-fetch`
+
 ## 0.29.0
 ### Changed
 - upgrade to ember 2.18
