@@ -1,47 +1,8 @@
 import { computed } from '@ember/object';
-import { Promise as EmberPromise } from 'rsvp';
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
 export default Service.extend(serviceMixin, {
-
-  projectAjax (inSR, outSR, geometryType, geometries) {
-    return new EmberPromise((resolve, reject) => {
-      // var serviceUrl = PrincipalService.portal().helperServices.geometry.url
-
-      var serviceUrl = 'https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer/project';
-
-      var gparam = {
-        geometryType: geometryType,
-        geometries: geometries
-      };
-      var params = {
-        geometries: JSON.stringify(gparam),
-        transformForward: false,
-        transformation: '',
-        inSR: inSR,
-        outSR: outSR,
-        f: 'json'
-      };
-
-      this.get('ajax').request(serviceUrl, {
-        data: params
-      }).then((json /* ,status,headers */) => {
-        // xhr may have returned a 200, but
-        // there could be an error payload...
-        if (json.error) {
-          // reject with the message
-          reject(json.error.message);
-        } else {
-          // all good - resolve with json
-          resolve(json);
-        }
-      }, (json, status, headers) => {
-        console.error(json, status, headers());
-        reject(status);
-      });
-    });
-  },
 
   /**
    * Return the portal's Geometry Service base url if it exists, if not use default

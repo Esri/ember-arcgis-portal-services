@@ -4,13 +4,14 @@ Ember Services for working with ArcGIS Portal/Online
 
 **Note**  This is still a very nascent project, and things will change.
 
-Be sure to lock to a specific version in your own `package.json`. We expect many breaking changes before a stable `v1.0.0` public API is released.
+We recommend locking to a specific version in your own `package.json` - although we try to avoid breaking changes,
 
 ### ArcGIS Portal Services
 After adding this to your project, you will have a number of services available for injection into your routes/controllers/services.
 
 ### Dependencies
-This project is now using `ember-network/fetch`, which is included in dependencies, to enable fastboot compatibility.
+This project is now using `ember-fetch`, which is included in dependencies.
+
 If you're using `torii` for oauth management, please also `npm install torii-provider-arcgis`. More information [here](https://github.com/dbouwman/torii-provider-arcgis).
 Otherwise, you can use the `portalOpts` parameter described below, but you need a service named `session` in your app or addon. You can generate a dummy service using `ember generate service session`. *TODO: there's probably a better way to do this...*
 
@@ -23,16 +24,14 @@ All the services expose a set of shared helper properties and methods:
 
 | Property | Returns | Description |
 | --- | --- | --- |
-| `portalRestUrl` (deprecated) | `string` | Return the ArcGIS Portal Rest base url |
-| `portalUrl` (deprecated) | `string` | Return the ArcGIS Portal base url (for visiting pages etc) |
 | `geocodeUrl` | `string` | Return the geocode base url |
 
 **NOTE: Most public methods take an optional portalOpts parameter. This takes the form:**
 
 ```
 {
-  portalHostname
-  token
+  portalHostname: 'https://some.portal.com',
+  token: 'BZSOMETOKENQJ'
 }
 ```
 
@@ -40,6 +39,8 @@ All the services expose a set of shared helper properties and methods:
 | --- | --- | --- |
 | `encodeForm` | `string` | This is used internally. Formats an object into a html form. In most cases, not necessary to call this.|
 | `request (url, options, portalOpts)` | `promise` | This is used internally. Promisified xhr that does basic handling of Portal's 400-in-a-200 errors |
+| `getPortalUrl()` | `string` | Get the portal url i.e. `https://org.maps.arcgis.com` |
+| `getPortalRestUrl()` | `string` | Get the portal rest url i.e. `https://org.maps.arcgis.com/sharing/rest` |
 
 ### Items Service
 

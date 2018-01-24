@@ -2,9 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 0.30.0
+## 1.0.0
 ### Changed
 - swapped the deprecated `ember-network` for `ember-fetch`
+### Removed
+- unused `geometry-service.projectAjax` fn which could not work as the ajax service was not included
 
 ## 0.29.0
 ### Changed

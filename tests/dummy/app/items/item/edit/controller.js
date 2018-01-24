@@ -7,7 +7,6 @@ export default Controller.extend({
   itemsService: service('items-service'),
   sharingService: service('sharing-service'),
 
-
   itemJson: computed('model.item', function () {
     return this.get('model.item');
   }),
