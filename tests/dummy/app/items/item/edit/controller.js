@@ -90,7 +90,6 @@ export default Controller.extend({
         .catch((err) => {
           alert(`Error saving changes! ${JSON.stringify(err)}`);
         });
-
     },
     cancel: function () {
       // return to the item list

@@ -41,7 +41,7 @@ export default Component.extend({
     },
     filesChanged (files) {
       debug('Files changed!'); // files[0]
-      this.get('onUploadFile')(files[0])
+      this.get('onUploadFile')(files)
       .then(() => {
         this._getResources();
       });
