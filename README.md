@@ -1,5 +1,14 @@
 # ember-arcgis-portal-services
 
+[![npm version][npm-img]][npm-url]
+[![build status][travis-img]][travis-url]
+[![apache licensed](https://img.shields.io/badge/license-Apache-green.svg?style=flat-square)](https://raw.githubusercontent.com/Esri/ember-arcgis-portal-services/master/LICENSE)
+
+[npm-img]: https://img.shields.io/npm/v/ember-arcgis-portal-services.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/ember-arcgis-portal-services
+[travis-img]: https://img.shields.io/travis/Esri/ember-arcgis-portal-services/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/Esri/ember-arcgis-portal-services
+
 Ember Services for working with ArcGIS Portal/Online
 
 **Note**  This is still a very nascent project, and things will change.
