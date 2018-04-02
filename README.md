@@ -93,6 +93,7 @@ All the services expose a set of shared helper properties and methods:
 | `updateUserMemberships (id, users, type, portalOpts)` |  `promise` | Updates membership(s) from user to admin or admin to user |
 | `ensureUniqueGroupName (title, step, portalOpts)` |  `promise` | Return a group name guaranteed to be unique in the org |
 | `doesGroupExist` (title, portalOpts) | `promise` | Return a boolean indicating whether the group exists in the org |
+| `sendGroupMessage (groupId, subject, message, users, notificationChannelType, portalOpts)` | `promise` | Sends a notification to the group. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
 
 ## Sharing Service
 
@@ -149,6 +150,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `checkUsername (username, portalOpts)` | `promise` | Checks whether the specified username is available |
 | `checkUrlKey (urlKey, portalOpts)` | `promise` | Checks whether the specified urlKey is available |
 | `activate (opts, portalOpts)` | `promise` | Activates the organization |
+| `sendMessage (subject, message, users, notificationChannelType, portalOpts)` | `promise` | Sends a notification to the specified users. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
 
 ### Folders Service
 | Method |  Returns | Description |
