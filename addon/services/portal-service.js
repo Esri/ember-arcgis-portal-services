@@ -142,6 +142,17 @@ export default Service.extend(serviceMixin, {
   activate (opts, portalOpts) {
     const urlPath = `/portals/activate?f=json`;
     return this._post(urlPath, opts, portalOpts);
+  },
+
+  sendMessage (subject, message, users = [], notificationChannelType = 'email', portalOpts) {
+    const opts = {
+      subject,
+      message,
+      users: users.join(','),
+      notificationChannelType
+    };
+    const urlPath = `/portals/self/createNotification?f=json`;
+    return this._post(urlPath, opts, portalOpts);
   }
 
 });
