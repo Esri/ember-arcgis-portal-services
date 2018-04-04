@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- `portal-services:addImageResourceFromUrl` method
+- `portal-services:addApprovedApp` method
+- `portal-services:getApprovedApps` method
+
 ## 1.0.0
 ### Added
 - `sendNotification` method on portal service

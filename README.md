@@ -142,6 +142,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `self (portalOpts)` | `promise` | Perform a portals/self call |
 | `update(portal, portalOpts)` | `promise` | Update a portal. Lots of rules apply to what can be changed |
 | `uploadResource (file)` | `promise` | Upload a file as a portal resource |
+| `addImageResourceFromUrl (url, filename)` | `promise` | Upload a file as a portal resource, from a url |
 | `addResource (name, content, portalOpts)` | `promise` | Add a resource to a portal |
 | `getResources () ` | `promise` | Get list of portal resources |
 | `removeResource (resourceName, portalOpts)` | `promise` | Remove a resource from a porta |
@@ -150,6 +151,8 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `checkUsername (username, portalOpts)` | `promise` | Checks whether the specified username is available |
 | `checkUrlKey (urlKey, portalOpts)` | `promise` | Checks whether the specified urlKey is available |
 | `activate (opts, portalOpts)` | `promise` | Activates the organization |
+| `addApprovedApp (itemId, properties, portalOpts)` | `promise` | Adds an approved app to the portal. Used to create App Launcher entries |
+| `getApprovedApps (portalOpts)` | `promise` | Gets all approved apps to the portal. |
 | `sendMessage (subject, message, users, notificationChannelType, portalOpts)` | `promise` | Sends a notification to the specified users. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
 
 ### Folders Service
