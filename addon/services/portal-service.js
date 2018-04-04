@@ -18,7 +18,6 @@ export default Service.extend(serviceMixin, {
    * Update the portal
    */
   update (portal, portalOpts) {
-    // console.log('Portal Service got update for ' + portal.id);
     const urlPath = `/portals/${portal.id || 'self'}/update?f=json`;
     const serializedPortal = this._serializePortal(portal);
     return this._post(urlPath, serializedPortal, portalOpts);
@@ -60,32 +59,77 @@ export default Service.extend(serviceMixin, {
   /**
    * Upload a resource (file) to an item
    */
-  uploadResource (file, portalOpts) {
-    // Valid types
-    // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
-    // TODO: Check type
-    const urlPath = `/portals/self/addresource?f=json`;
+  uploadResource (file, key = null, portalOpts) {
+    const urlPath = `/portals/self/addResource?f=json`;
     let options = {};
     options.body = new FormData();
     // stuff the file into the formData...
     options.body.append('file', file);
-    options.body.append('text', null);
-    options.body.append('key', file.name);
+    options.body.append('text', '');
+    if (key) {
+      options.body.append('key', key);
+    } else {
+      options.body.append('key', file.name);
+    }
     options.method = 'POST';
+
     return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Fetch an image from a url, and upload it as a resource to an existing item
+   */
+  addImageResourceFromUrl (url, filename) {
+    // get the image from the url...
+    return fetch(url)
+      .then((response) => {
+        // get the blob...
+        return response.blob();
+      })
+      .then((blob) => {
+        //  upload as a resource
+        return this.uploadResource(blob, filename);
+      });
   },
 
   /**
    * Add a resource
    */
   addResource (name, content, portalOpts) {
-    const urlPath = `/portals/self/addresource?f=json`;
+    const urlPath = `/portals/self/addResource?f=json`;
     const options = {
       method: 'POST',
       data: {
         key: name,
         text: content
       }
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Add an approved app to the portal.
+   * This is used to create app launcher short-cuts
+   */
+  addApprovedApp (itemId, properties, portalOpts) {
+    const urlPath = `/portals/self/addApprovedApp?f=json`;
+    const options = {
+      method: 'POST',
+      data: {
+        itemId: itemId,
+        appProperties: JSON.stringify(properties),
+      }
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Get the list of approved apps
+   */
+  getApprovedApps (portalOpts) {
+    const urlPath = `/portals/self/approvedApps?returnAllApps=true&f=json`;
+    const options = {
+      method: 'GET'
     };
     return this.request(urlPath, options, portalOpts);
   },
