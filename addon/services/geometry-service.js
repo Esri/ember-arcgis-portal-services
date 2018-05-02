@@ -14,7 +14,7 @@ export default Service.extend(serviceMixin, {
   /**
    * Project some geometries
    */
-  project (inSR, outSR, geometryType, geometries) {
+  project (inSR, outSR, geometryType, geometries, portalOpts) {
     let projectUrl = `${this.get('geometryServerUrl')}/project`;
     var gparam = {
       geometryType: geometryType,
@@ -31,8 +31,10 @@ export default Service.extend(serviceMixin, {
         f: 'json'
       }
     };
-
-    // we dont' want to send a token ever
-    return this.requestUrl(projectUrl, options, {token: ''});
+    // we dont' want to send any tokens ever if we are using the default server...
+    if (projectUrl.indexOf('arcgisonline') > -1 && portalOpts) {
+      portalOpts.token = '';
+    }
+    return this.requestUrl(projectUrl, options, portalOpts);
   }
 });

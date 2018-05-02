@@ -94,5 +94,19 @@ module.exports = function (environment) {
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://www.arcgis.com';
   }
 
+  if (environment === 'portalqa') {
+    // PORTALQA App Item: 8c70a15951af474a85fdc90dc0eabe68
+    ENV.rootURL = '/';
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'sdjz46sRw9Tcjx4n';
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://portal.hubqa.arcgis.com/portal';
+  }
+
+  if (environment === 'portaldev') {
+    // App Item:
+    ENV.rootURL = '/';
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'di8zkURhC6XuxY9F';
+    ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = 'https://portal.hubdev.arcgis.com/portal';
+  }
+
   return ENV;
 };

@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.0
+### Added
+- `geometry-service:project` now takes portalOpts and will send tokens to non `arcgisonline.com` services if provided.
+
 ## 1.1.0
 ### Added
 - `portal-services:addImageResourceFromUrl` method
