@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.1
+### Fixed
+- typo in `fetch` when setting credentials
+
 ## 1.3.0
 ### Added
 - `fetch` now defaults to `credentials: 'same-origin'` for all requests, enabling web-tier authentication
