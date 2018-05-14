@@ -148,8 +148,8 @@ export default Mixin.create({
     // This is needed to allow credentials to be send in the scenario
     // where a Portal is configured for web-tier authentication
     // There is no downside to having this as a default.
-    if (!options.credentials) {
-      options.credentials = 'same-origin';
+    if (!opts.credentials) {
+      opts.credentials = 'same-origin';
     }
 
     // append in the token
