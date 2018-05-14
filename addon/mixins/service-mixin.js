@@ -143,6 +143,14 @@ export default Mixin.create({
         opts.body = form;
       }
     }
+    // if we have not overridden credentials, set it to same-origin
+    // which replicates the same behavior as XMLHttpRequest
+    // This is needed to allow credentials to be send in the scenario
+    // where a Portal is configured for web-tier authentication
+    // There is no downside to having this as a default.
+    if (!options.credentials) {
+      options.credentials = 'same-origin';
+    }
 
     // append in the token
     // if portalOpts was provided use it even if it is undefined
