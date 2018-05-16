@@ -4,7 +4,7 @@ import { Promise as EmberPromise } from 'rsvp';
  * then be uploaded to an item as a resource
  */
 export default function getImageAsBlob (sourceUrl) {
-  console.error(`DEPREACTION: getImageAsBlob utility is deprecated! Please use fetchImageAsBlob instead as it will work with web-tier authentication.`);
+  console.error(`DEPRECATION: getImageAsBlob utility is deprecated! Please use fetchImageAsBlob instead as it will work with web-tier authentication.`);
   // promisify this...
   return new EmberPromise((resolve, reject) => {
     var img = new Image();
