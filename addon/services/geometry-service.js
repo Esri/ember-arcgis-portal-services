@@ -32,8 +32,15 @@ export default Service.extend(serviceMixin, {
       }
     };
     // we dont' want to send any tokens ever if we are using the default server...
-    if (projectUrl.indexOf('arcgisonline') > -1 && portalOpts) {
-      portalOpts.token = '';
+    if (projectUrl.indexOf('arcgisonline') > -1) {
+      if (portalOpts) {
+        portalOpts.token = '';
+      } else {
+        // create a portalOpts so the session token does not get sent
+        portalOpts = {
+          token: ''
+        };
+      }
     }
     return this.requestUrl(projectUrl, options, portalOpts);
   }
