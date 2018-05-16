@@ -1,7 +1,7 @@
 import { copy } from '@ember/object/internals';
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
-import getImageAsBlob from 'ember-arcgis-portal-services/utils/get-image-as-blob';
+import fetchImageAsBlob from 'ember-arcgis-portal-services/utils/fetch-image-as-blob';
 
 export default Service.extend(serviceMixin, {
 
@@ -128,7 +128,7 @@ export default Service.extend(serviceMixin, {
    * Fetch an image from a url, and upload it as a resource to an existing item
    */
   addImageResourceFromUrl (itemId, owner, filename, url) {
-    return getImageAsBlob(url)
+    return fetchImageAsBlob(url)
       .then((blob) => {
         //  upload as a resources
         return this.uploadResource(itemId, owner, blob, filename);
