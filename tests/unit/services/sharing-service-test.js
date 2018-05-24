@@ -47,7 +47,6 @@ test('owner setAccess to everyone', function (assert) {
     assert.ok(url.indexOf('/content/users/fakeuser/items/3efakeId/share') > -1, '<user-item-url>/share should be used');
     assert.ok(data.everyone, 'everyone should be true');
     assert.ok(data.org, 'org should be true');
-    assert.equal(data.items, '3efakeId');
     assert.ok(service._post.calledOnce);
   });
 });
@@ -78,7 +77,6 @@ test('owner setAccess to no one', function (assert) {
     assert.ok(url.indexOf('/content/users/fakeuser/items/3efakeId/share') > -1, '<user-item-url>/share should be used');
     assert.notOk(data.everyone, 'everyone should be false');
     assert.notOk(data.org, 'org should be false');
-    assert.equal(data.items, '3efakeId');
     assert.ok(service._post.calledOnce);
   });
 });
@@ -109,7 +107,6 @@ test('admin setAccess to everyone', function (assert) {
     assert.ok(url.indexOf('/content/users/fakeuser/items/3efakeId/share') > -1, '<user-item-url>/share should be used');
     assert.ok(data.everyone, 'everyone should be true');
     assert.ok(data.org, 'org should be true');
-    assert.equal(data.items, '3efakeId');
     assert.ok(service._post.calledOnce);
   });
 });
@@ -174,7 +171,6 @@ test('owner share to group', function (assert) {
     assert.notOk(data.everyone, 'everyone should be falsy');
     assert.notOk(data.org, 'org should be falsy');
     assert.notOk(data.confirmItemControl, 'confirmItemControl should be falsy');
-    assert.equal(data.items, '3efakeId');
     assert.equal(data.groups, '4efakeGroupId');
     assert.ok(service._post.calledOnce);
     // validate the call to the search
@@ -279,7 +275,6 @@ test('owner share to group with itemControl', function (assert) {
     assert.notOk(data.everyone, 'everyone should be falsy');
     assert.notOk(data.org, 'org should be falsy');
     assert.ok(data.confirmItemControl, 'confirmItemControl should be true');
-    assert.equal(data.items, '3efakeId');
     assert.equal(data.groups, '4efakeGroupId');
     assert.ok(service._post.calledOnce);
   });
@@ -317,7 +312,6 @@ test('owner share to group message response', function (assert) {
     assert.ok(url.indexOf('/content/users/fakeuser/items/3efakeId/share') > -1, '<user-item-url>/share should be used');
     assert.notOk(data.everyone, 'everyone should be falsy');
     assert.notOk(data.org, 'org should be falsy');
-    assert.equal(data.items, '3efakeId');
     assert.equal(data.groups, '4efakeGroupId');
     assert.ok(service._post.calledOnce, 'service _post should be called once');
     assert.ok(err.indexOf('could not be shared to group 4efakeGroupId'));

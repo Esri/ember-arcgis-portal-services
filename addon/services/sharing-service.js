@@ -23,7 +23,6 @@ export default Service.extend(serviceMixin, {
       return reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
     }
     let data = {
-      items: itemId,
       f: 'json',
       org: false,
       everyone: false
@@ -103,7 +102,6 @@ export default Service.extend(serviceMixin, {
           .then((urlPath) => {
             // actuall do the sharing...
             let data = {
-              items: itemId,
               f: 'json',
               groups: groupId
             };
