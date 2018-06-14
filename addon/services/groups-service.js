@@ -130,7 +130,7 @@ export default Service.extend(serviceMixin, {
    * @param {string[]} users Array of usernames
    * @param {Object} portalOpts Portal options
    */
-  inviteUsers (id, users, admin=false, expiration=20160, portalOpts) {
+  inviteUsers (id, users, admin = false, expiration = 20160, portalOpts) {
     const data = {
       users: users.join(','),
       role: admin ? 'group_admin' : 'group_member',
