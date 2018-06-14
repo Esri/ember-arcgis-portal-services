@@ -123,7 +123,29 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
-   * Remove users to a group
+   * Invites users to group
+   * @param {string} id Group id
+   * @param {boolean} string Whether to make the invited user an admin
+   * @param {number} id The time before the invite expires in minutes (only certain values allowed... defaults to 2 weeks)
+   * @param {string[]} users Array of usernames
+   * @param {Object} portalOpts Portal options
+   */
+  inviteUsers (id, users, admin=false, expiration=20160, portalOpts) {
+    const data = {
+      users: users.join(','),
+      role: admin ? 'group_admin' : 'group_member',
+      expiration: expiration
+    };
+    const urlPath = `/community/groups/${id}/invite?f=json`;
+    const options = {
+      method: 'POST',
+      data: data
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Remove users from a group
    */
   removeUsers (id, users, portalOpts) {
     const data = {
