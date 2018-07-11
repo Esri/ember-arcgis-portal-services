@@ -172,6 +172,7 @@ Used to create/manage hosted feature services. Use the `feature-service` in `emb
 | `create (svcParams, username, folderId, portalOpts)` | `promise` | Create a Service + Item |
 | `addToDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Add/Edit a layer or table to the service |
 | `updateDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Update a service/layer's definition |
+| `deleteFromDefinition (fsUrl, definition, layerId, portalOpts)` | `promise` | Delete from a service/layer's definition |
 
 ### environment.js
 
