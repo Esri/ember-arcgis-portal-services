@@ -1,3 +1,4 @@
+import getServiceAdminUrl from 'ember-arcgis-portal-services/utils/get-service-admin-url';
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 
@@ -50,11 +51,7 @@ export default Service.extend(serviceMixin, {
    * Add to the service definition
    */
   addToDefinition (featureServiceUrl, definition, layerId, portalOpts) {
-    let adminUrl = featureServiceUrl.replace(/\/arcgis\/rest\/services\//i, '/arcgis/rest/admin/services/');
-    let url = `${adminUrl}/addToDefinition?f=json`;
-    if (layerId || layerId === 0) {
-      url = `${adminUrl}/${layerId}/addToDefinition?f=json`;
-    }
+    const url = getServiceAdminUrl(featureServiceUrl, 'addToDefinition', layerId);
     // since the fs has it's own url we use the requestUrl method
     return this.requestUrl(url, {
       method: 'POST',
@@ -68,16 +65,26 @@ export default Service.extend(serviceMixin, {
    * Add to the service definition
    */
   updateDefinition (featureServiceUrl, definition, layerId, portalOpts) {
-    let adminUrl = featureServiceUrl.replace(/\/arcgis\/rest\/services\//i, '/arcgis/rest/admin/services/');
-    let url = `${adminUrl}/updateDefinition?f=json`;
-    if (layerId || layerId === 0) {
-      url = `${adminUrl}/${layerId}/updateDefinition?f=json`;
-    }
+    const url = getServiceAdminUrl(featureServiceUrl, 'updateDefinition', layerId);
     // since the fs has it's own url we use the requestUrl method
     return this.requestUrl(url, {
       method: 'POST',
       data: {
         'updateDefinition': JSON.stringify(definition)
+      }
+    }, portalOpts);
+  },
+
+  /**
+   * Delete from the service definition
+   */
+  deleteFromDefinition (featureServiceUrl, definition, layerId, portalOpts) {
+    const url = getServiceAdminUrl(featureServiceUrl, 'deleteFromDefinition', layerId);
+    // since the fs has it's own url we use the requestUrl method
+    return this.requestUrl(url, {
+      method: 'POST',
+      data: {
+        deleteFromDefinition: JSON.stringify(definition)
       }
     }, portalOpts);
   },
