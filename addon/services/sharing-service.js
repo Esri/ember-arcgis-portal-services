@@ -4,6 +4,7 @@ import { debug } from '@ember/debug';
 import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import fetch from 'fetch';
 
 export default Service.extend(serviceMixin, {
 
@@ -14,33 +15,21 @@ export default Service.extend(serviceMixin, {
    * Set access
    * access options null | org | everyone
    */
-  setAccess (owner, itemId, access = null, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/share`;
-    const username = this.get('session.currentUser.username');
-    const isAdmin = this.get('session').isAdmin();
-    // Reject if the current user is neither the owner nor an orgAdmin
-    if (owner !== username && !isAdmin) {
-      return reject(`This item can not be shared by ${username} as they are neither the owner, nor an org_admin.`);
-    }
-    let data = {
-      f: 'json',
-      org: false,
-      everyone: false
-    };
-    // handle the access
-    if (access) {
-      if (access === 'org') {
-        data.org = true;
-        data.everyone = false;
-      }
+  setAccess (owner, itemId, access = null /* portalOpts? */) {
+    const session = this.get('session.authMgr');
 
-      if (access === 'everyone' || access === 'public') {
-        data.everyone = true;
-        data.org = true;
-      }
+    if (access === "everyone") {
+      access = "public"
     }
 
-    return this._post(urlPath, data, portalOpts);
+    return arcgisRest.setItemAccess({
+      id: itemId,
+      owner,
+      access,
+      authentication: session
+      // ,fetch
+      // @esri/arcgis-rest-request doesnt set Headers the way ember-fetch likes them (yet)
+    })
   },
   /**
    * Share an item with a group, optionally with item control
