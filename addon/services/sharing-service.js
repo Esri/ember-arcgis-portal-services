@@ -4,7 +4,7 @@ import { debug } from '@ember/debug';
 import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
-import fetch from 'fetch';
+// import fetch from 'fetch';
 
 export default Service.extend(serviceMixin, {
 
@@ -18,8 +18,8 @@ export default Service.extend(serviceMixin, {
   setAccess (owner, itemId, access = null /* portalOpts? */) {
     const session = this.get('session.authMgr');
 
-    if (access === "everyone") {
-      access = "public"
+    if (access === 'everyone') {
+      access = 'public';
     }
 
     return arcgisRest.setItemAccess({
@@ -29,7 +29,7 @@ export default Service.extend(serviceMixin, {
       authentication: session
       // ,fetch
       // @esri/arcgis-rest-request doesnt set Headers the way ember-fetch likes them (yet)
-    })
+    });
   },
   /**
    * Share an item with a group, optionally with item control
