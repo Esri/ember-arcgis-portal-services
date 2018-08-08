@@ -17,9 +17,6 @@ module.exports = {
     "no-console": 0,
     "indent": [2, 2, { "SwitchCase": 1, "MemberExpression": "off" }],
   },
-  globals: {
-    "arcgisRest": true
-  },
   // plugins: [
   //   'ember'
   // ],

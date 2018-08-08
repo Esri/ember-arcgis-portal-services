@@ -5,6 +5,7 @@ import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import fetch from 'fetch';
+import arcgisRest from 'arcgisRest';
 
 export default Service.extend(serviceMixin, {
 

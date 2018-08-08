@@ -18,6 +18,8 @@ module.exports = {
     this.import('vendor/@esri/arcgis-rest-request/request.umd.js');
     this.import('vendor/@esri/arcgis-rest-auth/auth.umd.js');
     this.import('vendor/@esri/arcgis-rest-sharing/sharing.umd.js');
+    // TODO: use individual shims for each package?
+    this.import('vendor/shims/arcgisRest.js');
   },
 
   treeForVendor (vendorTree) {
@@ -39,7 +41,7 @@ module.exports = {
     var treesToMerge = [arcgisRequestTree, arcgisAuthTree, arcgisSharingTree];
     // if we got a vendorTree, and add it in
     if (vendorTree) {
-      treesToMerge = [vendorTree, arcgisRequestTree, arcgisAuthTree, arcgisSharingTree];
+      treesToMerge.unshift(vendorTree);
     }
 
     return new MergeTrees(treesToMerge);
