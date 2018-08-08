@@ -5,6 +5,7 @@ import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import fetch from 'fetch';
+import { setItemAccess } from '@esri/arcgis-rest-sharing';
 
 export default Service.extend(serviceMixin, {
 
@@ -22,7 +23,7 @@ export default Service.extend(serviceMixin, {
       access = 'public';
     }
 
-    return arcgisRest.setItemAccess({
+    return setItemAccess({
       id: itemId,
       owner,
       access,

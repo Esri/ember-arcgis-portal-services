@@ -28,16 +28,15 @@
     "deploy:portalqa": "ember surge --new-domain='eapsportalqa.surge.sh' --environment=portalqa"
   },
   "dependencies": {
+    "@esri/arcgis-rest-auth": "^1.7.0",
+    "@esri/arcgis-rest-request": "^1.7.0",
+    "@esri/arcgis-rest-sharing": "^1.7.0",
+    "ember-auto-import": "^1.2.8",
     "ember-cli-babel": "^6.7.1",
     "ember-cli-htmlbars": "^1.0.3",
-    "ember-fetch": "3.4.4",
-    "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0"
+    "ember-fetch": "3.4.4"
   },
   "devDependencies": {
-    "@esri/arcgis-rest-request": "^1.7.0",
-    "@esri/arcgis-rest-auth": "^1.7.0",
-    "@esri/arcgis-rest-sharing": "^1.7.0",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~2.18.0",
     "ember-cli-active-link-wrapper": "0.3.2",
