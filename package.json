@@ -35,9 +35,9 @@
     "broccoli-merge-trees": "^2.0.0"
   },
   "devDependencies": {
-    "@esri/arcgis-rest-request": "^1.6.0",
-    "@esri/arcgis-rest-auth": "^1.6.0",
-    "@esri/arcgis-rest-sharing": "^1.6.0",
+    "@esri/arcgis-rest-request": "^1.7.0",
+    "@esri/arcgis-rest-auth": "^1.7.0",
+    "@esri/arcgis-rest-sharing": "^1.7.0",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~2.18.0",
     "ember-cli-active-link-wrapper": "0.3.2",
