@@ -3,8 +3,8 @@
   function vendorModule () {
     'use strict';
 
-    return { 'default': self['arcgisRest'] };
+    return self['arcgisRest'];
   }
 
-  define('arcgisRest', [], vendorModule);
+  define('@esri/arcgis-rest-sharing', [], vendorModule);
 })();

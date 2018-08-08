@@ -18,8 +18,9 @@ module.exports = {
     this.import('vendor/@esri/arcgis-rest-request/request.umd.js');
     this.import('vendor/@esri/arcgis-rest-auth/auth.umd.js');
     this.import('vendor/@esri/arcgis-rest-sharing/sharing.umd.js');
-    // TODO: use individual shims for each package?
-    this.import('vendor/shims/arcgisRest.js');
+    this.import('vendor/shims/@esri/arcgis-rest-auth.js');
+    this.import('vendor/shims/@esri/arcgis-rest-request.js');
+    this.import('vendor/shims/@esri/arcgis-rest-sharing.js');
   },
 
   treeForVendor (vendorTree) {
