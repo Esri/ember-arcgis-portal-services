@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Added
 - `hosted-service:deleteFromDefinition` method
+- in the dummy app, if `fetch` is undefined, use polyfill.io to load it.
 
 ## 1.4.0
 ### Added
