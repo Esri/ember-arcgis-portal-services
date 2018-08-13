@@ -44,7 +44,7 @@ module.exports = function (environment) {
     // if you need to test against dev API/data:
     const env = 'dev';
     // dev item id: b1e048699a6943dfa9a5f1f6b325998c
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = '2Luiwqujuz7qQwo5';
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = '7xJPH3g6bgpP8MNw';
 
     // if you need to test against QA API/data:
     // const env = 'qa';
