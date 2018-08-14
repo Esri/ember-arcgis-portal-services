@@ -8,7 +8,6 @@ import {
   getItem,
   getItemData,
   updateItem,
-  createItem,
   createItemInFolder,
   removeItem,
   protectItem,
@@ -27,38 +26,37 @@ export default Service.extend(serviceMixin, {
   /**
    * Item Search
    */
-  search (form/*, portalOpts*/) {
+  search (form/* ,portalOpts */) {
     const session = this.get('session.authMgr');
     return searchItems({
       searchForm: form,
       authentication: session,
       fetch
     });
-
   },
 
   /**
    * Get the item json
    */
-  getById (itemId/*, portalOpts*/) {
+  getById (itemId/* ,portalOpts */) {
     const session = this.get('session.authMgr');
-    return getItem(itemId, { authentication: session, fetch })
+    return getItem(itemId, { authentication: session, fetch });
   },
 
   /**
    * Get the `/data` as json. If nothing is returned by AGO
    * and empty object (`{}`) will be returned by this call
    */
-  getDataById (itemId/*, portalOpts*/) {
+  getDataById (itemId/* ,portalOpts */) {
     const session = this.get('session.authMgr');
-    return getItemData(itemId, { authentication: session, fetch })
+    return getItemData(itemId, { authentication: session, fetch });
   },
 
   /**
    * Update an existing item
    * will update the `/data` if the `.text` value is present
    */
-  update (item/*, portalOpts*/) {
+  update (item/* ,portalOpts */) {
     const session = this.get('session.authMgr');
     return updateItem({
       item,
@@ -69,10 +67,10 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
-   * Create a new item in a particular folder
+   * Create a new item in a particulnpm run lint:jsar folder
    * will create the `/data` if the `.text` value is present
    */
-  createInFolder (item, folderId/*, portalOpts*/) {
+  createInFolder (item, folderId/* ,portalOpts */) {
     const session = this.get('session.authMgr');
     return createItemInFolder({
       item,
@@ -87,7 +85,7 @@ export default Service.extend(serviceMixin, {
    * Create a new item
    * will create the `/data` if the `.text` value is present
    */
-  create (item/*, portalOpts*/) {
+  create (item/* ,portalOpts */) {
     // just call createInFolder with null folderId
     return this.createInFolder(item, null);
   },
@@ -95,7 +93,7 @@ export default Service.extend(serviceMixin, {
   /**
    * Delete an item from AGO
    */
-  remove (itemId, owner, portalOpts) {
+  remove (itemId, owner/* ,portalOpts */) {
     const session = this.get('session.authMgr');
     return removeItem({
       id: itemId,
@@ -105,7 +103,7 @@ export default Service.extend(serviceMixin, {
     });
   },
 
-  protect (itemId, owner/*, portalOpts*/) {
+  protect (itemId, owner/* ,portalOpts */) {
     const session = this.get('session.authMgr');
     return protectItem({
       id: itemId,
@@ -115,7 +113,7 @@ export default Service.extend(serviceMixin, {
     });
   },
 
-  unprotect (itemId, owner, portalOpts) {
+  unprotect (itemId, owner/* ,portalOpts */) {
     const session = this.get('session.authMgr');
     return unprotectItem({
       id: itemId,
