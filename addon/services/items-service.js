@@ -26,101 +26,88 @@ export default Service.extend(serviceMixin, {
   /**
    * Item Search
    */
-  search (form/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return searchItems({
-      searchForm: form,
-      authentication: session,
-      fetch
-    });
+  search (form, portalOpts) {
+    const args = this.addOpts({ searchForm: form }, portalOpts);
+    return searchItems(args);
   },
 
   /**
    * Get the item json
    */
-  getById (itemId/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return getItem(itemId, { authentication: session, fetch });
+  getById (itemId, portalOpts) {
+    const args = this.addOpts({}, portalOpts);
+    return getItem(itemId, args);
   },
 
   /**
    * Get the `/data` as json. If nothing is returned by AGO
    * and empty object (`{}`) will be returned by this call
    */
-  getDataById (itemId/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return getItemData(itemId, { authentication: session, fetch });
+  getDataById (itemId, portalOpts) {
+    const args = this.addOpts({}, portalOpts);
+    return getItemData(itemId, args);
   },
 
   /**
    * Update an existing item
    * will update the `/data` if the `.text` value is present
    */
-  update (item/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return updateItem({
-      item,
-      owner: item.owner,
-      authentication: session,
-      fetch
-    });
+  update (item, portalOpts) {
+    const args = this.addOpts({ item, owner: item.owner }, portalOpts);
+    return updateItem(args);
   },
 
   /**
-   * Create a new item in a particulnpm run lint:jsar folder
+   * Create a new item in a particular folder
    * will create the `/data` if the `.text` value is present
    */
-  createInFolder (item, folderId/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return createItemInFolder({
+  createInFolder (item, folderId, portalOpts) {
+    const args = this.addOpts({
       item,
       owner: item.owner,
-      folder: folderId,
-      authentication: session,
-      fetch
-    });
+      folder: folderId
+    }, portalOpts);
+
+    return createItemInFolder(args);
   },
 
   /**
    * Create a new item
    * will create the `/data` if the `.text` value is present
    */
-  create (item/* ,portalOpts */) {
+  create (item, portalOpts) {
     // just call createInFolder with null folderId
-    return this.createInFolder(item, null);
+    return this.createInFolder(item, null, portalOpts);
   },
 
   /**
    * Delete an item from AGO
    */
-  remove (itemId, owner/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return removeItem({
+  remove (itemId, owner, portalOpts) {
+    const args = this.addOpts({
       id: itemId,
-      owner,
-      authentication: session,
-      fetch
-    });
+      owner
+    }, portalOpts);
+
+    return removeItem(args);
   },
 
-  protect (itemId, owner/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return protectItem({
+  protect (itemId, owner, portalOpts) {
+    const args = this.addOpts({
       id: itemId,
-      owner,
-      authentication: session,
-      fetch
-    });
+      owner
+    }, portalOpts);
+
+    return protectItem(args);
   },
 
-  unprotect (itemId, owner/* ,portalOpts */) {
-    const session = this.get('session.authMgr');
-    return unprotectItem({
+  unprotect (itemId, owner, portalOpts) {
+    const args = this.addOpts({
       id: itemId,
-      owner,
-      authentication: session,
-      fetch
-    });
+      owner
+    }, portalOpts);
+
+    return unprotectItem(args);
   },
 
   /**
