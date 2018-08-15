@@ -1,20 +1,8 @@
-// import Service from '@ember/service';
 import EmberObject from '@ember/object';
 import ServiceMixinMixin from 'ember-arcgis-portal-services/mixins/service-mixin';
 import { module, test } from 'qunit';
-// import { moduleFor, test } from 'ember-qunit';
 
 module('Unit | Mixin | service mixin');
-
-// moduleFor('mixin:service-mixin', 'Unit | Mixin | service mixin', {
-//   // needs: [ 'service' ],
-//   beforeEach () {
-//     const session = Service.extend({
-//       // implement stuff that gets called in your tests here
-//     });
-//     this.register('service:session', session);
-//   }
-// });
 
 // Replace this with your real tests.
 test('fixing a jacked up portal url', function (assert) {
@@ -56,15 +44,14 @@ test('drop nulls from form when encoding', function (assert) {
   assert.ok(includes(encoded, 'properties'), 'properties should be included');
 });
 
-// https://www.chriskrycho.com/2016/testing-emberjs-mixins-with-a-container.html
+test('addOptions', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
 
-// test('addOptions', function (assert) {
-//   let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
-//   this.registry.register('service.session', ServiceMixinObject);
-//   let subject = this.container.lookup('service.session');
+  subject.set('session', {
+    authMgr: {}
+  });
 
-//   subject.session.authMgr = {};
-
-//   const enriched = subject.addOptions({foo: 'bar'});
-//   assert.equal(enriched.foo, 'bar');
-// });
+  const enriched = subject.addOptions({foo: 'bar'});
+  assert.equal(enriched.foo, 'bar');
+});
