@@ -1,6 +1,7 @@
 import EmberObject from '@ember/object';
 import ServiceMixinMixin from 'ember-arcgis-portal-services/mixins/service-mixin';
 import { module, test } from 'qunit';
+import fetch from 'fetch';
 
 module('Unit | Mixin | service mixin');
 
@@ -44,7 +45,7 @@ test('drop nulls from form when encoding', function (assert) {
   assert.ok(includes(encoded, 'properties'), 'properties should be included');
 });
 
-test('addOptions', function (assert) {
+test('addOptions, bare bones', function (assert) {
   let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
 
@@ -53,5 +54,25 @@ test('addOptions', function (assert) {
   });
 
   const enriched = subject.addOptions({foo: 'bar'});
-  assert.equal(enriched.foo, 'bar');
+
+  assert.equal(enriched.foo, 'bar', 'original props should still be present');
+  assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
+  assert.deepEqual(enriched.authentication, {}, 'auth from torii should be tacked on');
+});
+
+test('addOptions, with portal options', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  subject.set('session', {
+    authMgr: {}
+  });
+
+  const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portal: 'https://super.custom/sharing/rest'});
+
+  assert.equal(enriched.foo, 'bar', 'original props should still be present');
+  assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
+  assert.equal(enriched.params.token, 'token', 'creds from portalOpts should take precedence');
+  assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
+  assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'the portal should come along for the ride too');
 });
