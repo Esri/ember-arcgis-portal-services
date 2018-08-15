@@ -35,7 +35,7 @@ test('drop nulls from form when encoding', function (assert) {
   };
   const encoded = subject.encodeForm(form);
   // had been using .includes in the tests, but that would fail in phantom...
-  assert.notOk(includes(encoded, 'nully'), 'nullyProp should not be included');
+  assert.notOk(includes(encoded, 'nullyProp'), 'nullyProp should not be included');
   assert.ok(includes(encoded, 'tags'), 'tags should be included');
   assert.ok(includes(encoded, 'falseyProp'), 'falseyProp should be included');
   assert.ok(includes(encoded, 'truthyProp'), 'truthyProp should be included');

@@ -2,7 +2,7 @@ import { copy } from '@ember/object/internals';
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import fetchImageAsBlob from 'ember-arcgis-portal-services/utils/fetch-image-as-blob';
-import fetch from 'fetch';
+import addOptions from 'ember-arcgis-portal-services/utils/add-options';
 import {
   searchItems,
   getItem,
@@ -27,7 +27,7 @@ export default Service.extend(serviceMixin, {
    * Item Search
    */
   search (form, portalOpts) {
-    const args = this.addOpts({ searchForm: form }, portalOpts);
+    const args = addOptions({ searchForm: form }, portalOpts, this);
     return searchItems(args);
   },
 
@@ -35,7 +35,7 @@ export default Service.extend(serviceMixin, {
    * Get the item json
    */
   getById (itemId, portalOpts) {
-    const args = this.addOpts({}, portalOpts);
+    const args = addOptions({}, portalOpts, this);
     return getItem(itemId, args);
   },
 
@@ -44,7 +44,7 @@ export default Service.extend(serviceMixin, {
    * and empty object (`{}`) will be returned by this call
    */
   getDataById (itemId, portalOpts) {
-    const args = this.addOpts({}, portalOpts);
+    const args = addOptions({}, portalOpts, this);
     return getItemData(itemId, args);
   },
 
@@ -53,7 +53,7 @@ export default Service.extend(serviceMixin, {
    * will update the `/data` if the `.text` value is present
    */
   update (item, portalOpts) {
-    const args = this.addOpts({ item, owner: item.owner }, portalOpts);
+    const args = addOptions({ item, owner: item.owner }, portalOpts, this);
     return updateItem(args);
   },
 
@@ -62,11 +62,11 @@ export default Service.extend(serviceMixin, {
    * will create the `/data` if the `.text` value is present
    */
   createInFolder (item, folderId, portalOpts) {
-    const args = this.addOpts({
+    const args = addOptions({
       item,
       owner: item.owner,
       folder: folderId
-    }, portalOpts);
+    }, portalOpts, this);
 
     return createItemInFolder(args);
   },
@@ -84,28 +84,28 @@ export default Service.extend(serviceMixin, {
    * Delete an item from AGO
    */
   remove (itemId, owner, portalOpts) {
-    const args = this.addOpts({
+    const args = addOptions({
       id: itemId,
       owner
-    }, portalOpts);
+    }, portalOpts, this);
 
     return removeItem(args);
   },
 
   protect (itemId, owner, portalOpts) {
-    const args = this.addOpts({
+    const args = addOptions({
       id: itemId,
       owner
-    }, portalOpts);
+    }, portalOpts, this);
 
     return protectItem(args);
   },
 
   unprotect (itemId, owner, portalOpts) {
-    const args = this.addOpts({
+    const args = addOptions({
       id: itemId,
       owner
-    }, portalOpts);
+    }, portalOpts, this);
 
     return unprotectItem(args);
   },
