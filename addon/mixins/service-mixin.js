@@ -178,9 +178,9 @@ export default Mixin.create({
   addOptions (args, portalOpts) {
     // use ember-fetch
     args.fetch = fetch;
-     // if portal options are present, they're preferred
+    // if portal options are present, they're preferred
     if (portalOpts && portalOpts.portal) {
-      args.portal = portal;
+      args.portal = portalOpts.portal;
       if (!args.params) {
         args.params = {};
       }
