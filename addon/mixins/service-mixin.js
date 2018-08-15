@@ -179,8 +179,8 @@ export default Mixin.create({
     // use ember-fetch
     args.fetch = fetch;
     // if portal options are present, they're preferred
-    if (portalOpts && portalOpts.portal) {
-      args.portal = portalOpts.portal;
+    if (portalOpts && portalOpts.portalHostname) {
+      args.portal = portalOpts.portalHostname + '/sharing/rest';
       if (!args.params) {
         args.params = {};
       }
