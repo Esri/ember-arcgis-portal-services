@@ -4,9 +4,7 @@ import { debug } from '@ember/debug';
 import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
-import fetch from 'fetch';
 import { setItemAccess } from '@esri/arcgis-rest-sharing';
-import addOptions from 'ember-arcgis-portal-services/utils/add-options';
 
 export default Service.extend(serviceMixin, {
 
@@ -22,11 +20,11 @@ export default Service.extend(serviceMixin, {
       access = 'public';
     }
 
-    const args = addOptions({
+    const args = this.addOptions({
       id: itemId,
       owner,
       access,
-    }, portalOpts, this);
+    }, portalOpts);
 
     return setItemAccess(args);
   },
