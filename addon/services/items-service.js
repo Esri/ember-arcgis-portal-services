@@ -1,4 +1,3 @@
-import { copy } from '@ember/object/internals';
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import fetchImageAsBlob from 'ember-arcgis-portal-services/utils/fetch-image-as-blob';
