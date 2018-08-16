@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - use @esri/arcgis-rest-sharing for `sharing-service:setAccess`
 - use @esri/arcgis-rest-items for `items-service`
 
+### Removed
+- `item-service._serializeItem()`
+- `item-service._post()`
+
 ## 1.5.0
 ### Added
 - `hosted-service:deleteFromDefinition` method
