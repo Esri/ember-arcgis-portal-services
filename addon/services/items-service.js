@@ -244,46 +244,5 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, {
       method: 'GET'
     }, portalOpts);
-  },
-
-  /**
-   * Extra logic to transform the item prior to POSTing it
-   */
-  _serializeItem (item) {
-    let clone = copy(item, true);
-    // Array items need to become comma delim strings
-    if (clone.typeKeywords) {
-      clone.typeKeywords = item.typeKeywords.join(', ');
-    }
-    if (clone.tags) {
-      clone.tags = item.tags.join(', ');
-    }
-    // convert .data to .text
-    if (clone.data) {
-      clone.text = JSON.stringify(clone.data);
-      delete clone.data;
-    }
-    // Convert properties to a string
-    if (clone.properties) {
-      clone.properties = JSON.stringify(clone.properties);
-    }
-
-    if (clone.serviceProxyParams) {
-      clone.serviceProxyParams = JSON.stringify(clone.serviceProxyParams);
-    }
-    return clone;
-  },
-  /**
-   * Shared logic for POST operations
-   */
-  _post (urlPath, item, portalOpts) {
-    const serializedItem = this._serializeItem(item);
-
-    const options = {
-      method: 'POST',
-      data: serializedItem
-    };
-    return this.request(urlPath, options, portalOpts);
   }
-
 });
