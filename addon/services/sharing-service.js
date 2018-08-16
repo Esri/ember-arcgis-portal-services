@@ -4,7 +4,6 @@ import { debug } from '@ember/debug';
 import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
-import fetch from 'fetch';
 import { setItemAccess } from '@esri/arcgis-rest-sharing';
 
 export default Service.extend(serviceMixin, {
@@ -16,20 +15,18 @@ export default Service.extend(serviceMixin, {
    * Set access
    * access options null | org | everyone
    */
-  setAccess (owner, itemId, access = null /* portalOpts? */) {
-    const session = this.get('session.authMgr');
-
+  setAccess (owner, itemId, access = null, portalOpts) {
     if (access === 'everyone') {
       access = 'public';
     }
 
-    return setItemAccess({
+    const args = this.addOptions({
       id: itemId,
       owner,
       access,
-      authentication: session,
-      fetch
-    });
+    }, portalOpts);
+
+    return setItemAccess(args);
   },
   /**
    * Share an item with a group, optionally with item control

@@ -3,9 +3,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+### Changed
+- use @esri/arcgis-rest-sharing for `sharing-service:setAccess`
+- use @esri/arcgis-rest-items for `items-service`
+
+## 1.5.0
 ### Added
 - `hosted-service:deleteFromDefinition` method
-- in the dummy app, if `fetch` is undefined, use polyfill.io to load it.
 
 ## 1.4.0
 ### Added

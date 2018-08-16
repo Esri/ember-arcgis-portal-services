@@ -2,6 +2,16 @@ import { copy } from '@ember/object/internals';
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import fetchImageAsBlob from 'ember-arcgis-portal-services/utils/fetch-image-as-blob';
+import {
+  searchItems,
+  getItem,
+  getItemData,
+  updateItem,
+  createItemInFolder,
+  removeItem,
+  protectItem,
+  unprotectItem
+} from '@esri/arcgis-rest-items';
 
 export default Service.extend(serviceMixin, {
 
@@ -16,18 +26,16 @@ export default Service.extend(serviceMixin, {
    * Item Search
    */
   search (form, portalOpts) {
-    const qs = this.encodeForm(form);
-    const urlPath = `/search?${qs}&f=json`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({ searchForm: form }, portalOpts);
+    return searchItems(args);
   },
 
   /**
    * Get the item json
    */
   getById (itemId, portalOpts) {
-    const qs = this.encodeForm(this.get('defaultParams'));
-    const urlPath = `/content/items/${itemId}?${qs}`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return getItem(itemId, args);
   },
 
   /**
@@ -35,9 +43,8 @@ export default Service.extend(serviceMixin, {
    * and empty object (`{}`) will be returned by this call
    */
   getDataById (itemId, portalOpts) {
-    const qs = this.encodeForm(this.get('defaultParams'));
-    const urlPath = `/content/items/${itemId}/data?${qs}`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return getItemData(itemId, args);
   },
 
   /**
@@ -45,8 +52,8 @@ export default Service.extend(serviceMixin, {
    * will update the `/data` if the `.text` value is present
    */
   update (item, portalOpts) {
-    const urlPath = `/content/users/${item.owner}/items/${item.id}/update?f=json`;
-    return this._post(urlPath, item, portalOpts);
+    const args = this.addOptions({ item, owner: item.owner }, portalOpts);
+    return updateItem(args);
   },
 
   /**
@@ -54,11 +61,13 @@ export default Service.extend(serviceMixin, {
    * will create the `/data` if the `.text` value is present
    */
   createInFolder (item, folderId, portalOpts) {
-    let urlPath = `/content/users/${item.owner}/addItem?f=json`;
-    if (folderId) {
-      urlPath = `/content/users/${item.owner}/${folderId}/addItem?f=json`;
-    }
-    return this._post(urlPath, item, portalOpts);
+    const args = this.addOptions({
+      item,
+      owner: item.owner,
+      folder: folderId
+    }, portalOpts);
+
+    return createItemInFolder(args);
   },
 
   /**
@@ -74,18 +83,30 @@ export default Service.extend(serviceMixin, {
    * Delete an item from AGO
    */
   remove (itemId, owner, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/delete?f=json`;
-    return this._post(urlPath, {}, portalOpts);
+    const args = this.addOptions({
+      id: itemId,
+      owner
+    }, portalOpts);
+
+    return removeItem(args);
   },
 
   protect (itemId, owner, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/protect?f=json`;
-    return this._post(urlPath, {}, portalOpts);
+    const args = this.addOptions({
+      id: itemId,
+      owner
+    }, portalOpts);
+
+    return protectItem(args);
   },
 
   unprotect (itemId, owner, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/unprotect?f=json`;
-    return this._post(urlPath, {}, portalOpts);
+    const args = this.addOptions({
+      id: itemId,
+      owner
+    }, portalOpts);
+
+    return unprotectItem(args);
   },
 
   /**

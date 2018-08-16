@@ -170,5 +170,25 @@ export default Mixin.create({
     .then((resp) => {
       return this.checkStatusAndParseJson(resp);
     });
+  },
+
+  /**
+   * Wrap the options passed to rest-js with auth info and use ember-fetch.
+   */
+  addOptions (args, portalOpts) {
+    // use ember-fetch
+    args.fetch = fetch;
+    // if portal options are present, they're preferred
+    if (portalOpts && portalOpts.portalHostname) {
+      args.portal = portalOpts.portalHostname + '/sharing/rest';
+      if (!args.params) {
+        args.params = {};
+      }
+      args.params.token = portalOpts.token;
+    } else {
+      // pass through auth info from the session
+      args.authentication = this.get('session.authMgr');
+    }
+    return args;
   }
 });
