@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - use @esri/arcgis-rest-sharing for `sharing-service:setAccess`
 - use @esri/arcgis-rest-items for `items-service`
+- upgrade to torii-provider-arcgis `v1.1.6`
 
 ### Removed
 - `item-service._serializeItem()`
