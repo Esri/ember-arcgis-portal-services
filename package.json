@@ -39,6 +39,7 @@
     "broccoli-merge-trees": "^2.0.0"
   },
   "devDependencies": {
+    "@esri/arcgis-rest-common-types": "^1.7.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~2.18.0",
     "ember-cli-active-link-wrapper": "0.3.2",
