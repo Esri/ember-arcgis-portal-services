@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## [Unreleased]
+
+## [1.5.1]
 ### Changed
 - use @esri/arcgis-rest-sharing for `sharing-service:setAccess`
 - use @esri/arcgis-rest-items for `items-service`
@@ -383,3 +385,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.getDataById(:itemId)`
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
+
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.1...HEAD
+[1.5.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.0...v1.5.1
