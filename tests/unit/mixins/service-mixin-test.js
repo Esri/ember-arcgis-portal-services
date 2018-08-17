@@ -68,7 +68,7 @@ test('addOptions, with portal options', function (assert) {
     authMgr: {}
   });
 
-  const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portalHostname: 'https://super.custom'});
+  const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portalHostname: 'super.custom'});
 
   assert.equal(enriched.foo, 'bar', 'original props should still be present');
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');

@@ -39,7 +39,7 @@ All the services expose a set of shared helper properties and methods:
 
 ```
 {
-  portalHostname: 'https://some.portal.com',
+  portalHostname: 'some.portal.com',
   token: 'BZSOMETOKENQJ'
 }
 ```
