@@ -4,11 +4,7 @@ import { debug } from '@ember/debug';
 import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
-import {
-  setItemAccess
-  // shareItemWithGroup,
-  // unshareItemWithGroup,
-} from '@esri/arcgis-rest-sharing';
+import { setItemAccess } from '@esri/arcgis-rest-sharing';
 
 export default Service.extend(serviceMixin, {
 
@@ -32,21 +28,18 @@ export default Service.extend(serviceMixin, {
 
     return setItemAccess(args);
   },
-
   /**
    * Share an item with a group, optionally with item control
    */
   shareWithGroup (owner, itemId, groupId, confirmItemControl = false, portalOpts) {
     return this.changeGroupSharing('share', owner, itemId, groupId, confirmItemControl, portalOpts);
   },
-
   /**
    * Unshare item with a group
    */
   unShareWithGroup (owner, itemId, groupId, portalOpts) {
     return this.changeGroupSharing('unshare', owner, itemId, groupId, false, portalOpts);
   },
-
   /**
    * Change sharing of an item with a group, optionally with item control
    * In order to make this more deterministic, we issue a query
@@ -147,6 +140,7 @@ export default Service.extend(serviceMixin, {
       }
     });
   },
+
   /**
    * Deprecated but proxy to the new callls
    */
@@ -159,6 +153,7 @@ export default Service.extend(serviceMixin, {
     deprecate('use .setAccess(owner,itemId, access).', false, {id: 'shareWithEveryoneDeprecation', until: '10.0.0'});
     return this.setAccess(owner, itemId, 'org', portalOpts);
   },
+
   /**
    * Deprecated without proxies to new calls
    */
@@ -176,14 +171,17 @@ export default Service.extend(serviceMixin, {
     deprecate('use .shareItemWithGroup(...) or .setAccess(...)', false, {id: 'shareItemsDeprecation', until: '10.0.0'});
     return reject('sharing-service::shareItemsWithControl is Deprecated. Use .shareItemWithGroup(...) or .setAccess(...)');
   },
+
   /**
    * Shared logic for POST operations
-  */
+   */
   _post (urlPath, data, portalOpts) {
     const options = {
       method: 'POST',
       data: data
     };
+
     return this.request(urlPath, options, portalOpts);
   }
+
 });
