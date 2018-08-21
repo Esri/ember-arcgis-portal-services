@@ -37,9 +37,14 @@ All the services expose a set of shared helper properties and methods:
 
 **NOTE: Most public methods take an optional portalOpts parameter. This takes the form:**
 
-```
+```js
 {
   portalHostname: 'some.portal.com',
+  token: 'BZSOMETOKENQJ'
+}
+// it might also look like this
+{
+  portalHostname: 'https://some.portal.com',
   token: 'BZSOMETOKENQJ'
 }
 ```
@@ -228,7 +233,7 @@ Esri welcomes contributions from anyone and everyone. Please see our [guidelines
 
 ### License
 
-Copyright 2017 Esri
+Copyright &copy; 2016-2018 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

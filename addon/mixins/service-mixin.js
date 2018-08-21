@@ -176,17 +176,25 @@ export default Mixin.create({
    * Wrap the options passed to rest-js with auth info and use ember-fetch.
    */
   addOptions (args, portalOpts) {
-    // use ember-fetch
+    // always use ember-fetch
     args.fetch = fetch;
-    // if portal options are present, they're preferred
+    // portal options are preferred over a normal auth session
     if (portalOpts && portalOpts.portalHostname) {
-      args.portal = `https://${portalOpts.portalHostname}/sharing/rest`;
-      if (!args.params) {
-        args.params = {};
+      // sometimes the protocol will be present, other times it wont
+      if (!/https?:\/\//.test(portalOpts.portalHostname)) {
+        args.portal = `https://${portalOpts.portalHostname}/sharing/rest`;
+      } else {
+        args.portal = `${portalOpts.portalHostname}/sharing/rest`;
       }
-      args.params.token = portalOpts.token;
+      // append a token, dont overwrite existing params if they exist
+      if (portalOpts.token) {
+        if (!args.params) {
+          args.params = {};
+        }
+        args.params.token = portalOpts.token;
+      }
     } else {
-      // pass through auth info from the session
+      // otherwise pass through auth info from the session
       args.authentication = this.get('session.authMgr');
     }
     return args;

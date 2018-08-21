@@ -182,6 +182,6 @@ export default Service.extend(serviceMixin, {
     };
 
     return this.request(urlPath, options, portalOpts);
-  },
+  }
 
 });

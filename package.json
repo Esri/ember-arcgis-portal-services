@@ -70,6 +70,7 @@
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-react": "^6.2.0",
     "eslint-plugin-standard": "^2.0.0",
+    "husky": "^1.0.0-rc.13",
     "jsoneditor": "5.5.6",
     "loader.js": "^4.2.3",
     "torii-provider-arcgis": "1.1.6"
@@ -88,5 +89,10 @@
   "bugs": {
     "url": "https://github.com/Esri/ember-arcgis-portal-services/issues"
   },
-  "homepage": "https://github.com/Esri/ember-arcgis-portal-services#readme"
+  "homepage": "https://github.com/Esri/ember-arcgis-portal-services#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:js"
+    }
+  }
 }
