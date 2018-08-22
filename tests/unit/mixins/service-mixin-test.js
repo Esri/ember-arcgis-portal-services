@@ -65,7 +65,7 @@ test('addOptions, with portal options', function (assert) {
   let subject = ServiceMixinObject.create();
 
   subject.set('session', {
-    authMgr: {}
+    authMgr: null
   });
 
   const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portalHostname: 'https://super.custom'});
@@ -77,12 +77,12 @@ test('addOptions, with portal options', function (assert) {
   assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'the portal should come along for the ride too');
 });
 
-test('addOptions, with portal options again', function (assert) {
+test('addOptions, with bare portal options', function (assert) {
   let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
 
   subject.set('session', {
-    authMgr: {}
+    authMgr: null
   });
 
   const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portalHostname: 'super.custom'});
@@ -92,4 +92,21 @@ test('addOptions, with portal options again', function (assert) {
   assert.equal(enriched.params.token, 'token', 'creds from portalOpts should take precedence');
   assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
   assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'a bare portal should be upgraded.');
+});
+
+test('addOptions, with a portal inside the session', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  subject.set('session', {
+    authMgr: null,
+    portalHostname: 'https://super.custom'
+  });
+
+  const enriched = subject.addOptions({foo: 'bar'});
+
+  assert.equal(enriched.foo, 'bar', 'original props should still be present');
+  assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
+  assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
+  assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'a portalHostname should be pulled from the session too.');
 });
