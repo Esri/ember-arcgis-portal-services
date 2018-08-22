@@ -4,7 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.5.3]
+### Fixed
+- make sure to pass through custom `portalHostname`s from a session when no `portalOpts` are defined.
+
 ## [1.5.2]
+### Fixed
 - handle portalOpts urls appropriately whether they supply a protocol or not
 
 ## [1.5.1]
@@ -389,6 +394,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
 
-[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.2...HEAD
-[1.5.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.1...v1.5.2
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.3...HEAD
+[1.5.3]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.2...v1.5.3
+[1.5.2]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.0...v1.5.1
