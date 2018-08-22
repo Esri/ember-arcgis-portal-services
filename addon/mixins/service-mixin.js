@@ -178,21 +178,16 @@ export default Mixin.create({
   addOptions (args, portalOpts) {
     // always use ember-fetch
     args.fetch = fetch;
+
     // portal options are preferred over a normal auth session
-    if (portalOpts && portalOpts.portalHostname) {
-      // sometimes the protocol will be present, other times it wont
-      if (!/https?:\/\//.test(portalOpts.portalHostname)) {
-        args.portal = `https://${portalOpts.portalHostname}/sharing/rest`;
-      } else {
-        args.portal = `${portalOpts.portalHostname}/sharing/rest`;
+    args.portal = this.getPortalRestUrl(portalOpts);
+
+    // append a token, dont overwrite existing params if they exist
+    if (portalOpts && portalOpts.token) {
+      if (!args.params) {
+        args.params = {};
       }
-      // append a token, dont overwrite existing params if they exist
-      if (portalOpts.token) {
-        if (!args.params) {
-          args.params = {};
-        }
-        args.params.token = portalOpts.token;
-      }
+      args.params.token = portalOpts.token;
     } else {
       // otherwise pass through auth info from the session
       args.authentication = this.get('session.authMgr');
