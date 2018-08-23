@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [1.5.4]
 ### Fixed
 - ensure `requestOptions.portal` is formed properly to search for ArcGIS Enterprise Sites
 
@@ -396,7 +397,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
 
-[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.3...HEAD
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.4...HEAD
+[1.5.4]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.0...v1.5.1
