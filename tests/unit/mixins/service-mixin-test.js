@@ -110,3 +110,20 @@ test('addOptions, with a portal inside the session', function (assert) {
   assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
   assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'a portalHostname should be pulled from the session too.');
 });
+
+test('addOptions with auth, should use auth for the portal', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  subject.set('session', {
+    authMgr: { portal: '../../../sharing/rest' },
+    portalHostname: 'https://super.custom'
+  });
+
+  const enriched = subject.addOptions({foo: 'bar'});
+
+  assert.equal(enriched.foo, 'bar', 'original props should still be present');
+  assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
+  assert.deepEqual(enriched.authentication, { portal: '../../../sharing/rest' }, 'auth from torii should be tacked on');
+  assert.equal(enriched.portal, '../../../sharing/rest', 'the portal should come from auth if possible.');
+});

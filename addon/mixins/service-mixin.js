@@ -176,21 +176,23 @@ export default Mixin.create({
    * Wrap the options passed to rest-js with auth info and use ember-fetch.
    */
   addOptions (args, portalOpts) {
+    const authMgr = this.get('session.authMgr');
+
     // always use ember-fetch
     args.fetch = fetch;
 
-    // portal options are preferred over a normal auth session
-    args.portal = this.getPortalRestUrl(portalOpts);
+    // for enterprise, only torii stores a relative path
+    args.portal = authMgr ? authMgr.portal : this.getPortalRestUrl(portalOpts);
 
-    // append a token, dont overwrite existing params if they exist
+    // append a token, dont overwrite existing params
     if (portalOpts && portalOpts.token) {
       if (!args.params) {
         args.params = {};
       }
       args.params.token = portalOpts.token;
     } else {
-      // otherwise pass through auth info from the session
-      args.authentication = this.get('session.authMgr');
+      // pass through auth info when no portalOpts.token is present
+      args.authentication = authMgr;
     }
     return args;
   }
