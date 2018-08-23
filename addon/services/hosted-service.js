@@ -4,6 +4,23 @@ import serviceMixin from '../mixins/service-mixin';
 
 export default Service.extend(serviceMixin, {
 
+  ensureUniqueServiceName (title, orgId, step = 0, portalOpts) {
+    let combinedName = title;
+
+    if (step) {
+      combinedName = `${title} ${step}`;
+    }
+
+    return this.serviceExists(combinedName, orgId, portalOpts)
+    .then((result) => {
+      if (!result.available) {
+        step++;
+        return this.ensureUniqueServiceName(title, orgId, step, portalOpts);
+      }
+      return combinedName;
+    });
+  },
+
   /**
    * Feature Service names must be unique within an organization
    */

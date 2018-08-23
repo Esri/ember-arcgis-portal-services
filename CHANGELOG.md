@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- `hosted-service` `ensureUniqueServiceName` method
+
 ## [1.5.4]
 ### Fixed
 - ensure `requestOptions.portal` is formed properly to search for ArcGIS Enterprise Sites
