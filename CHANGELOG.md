@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - `hosted-service` `ensureUniqueServiceName` method
 
+## [1.5.5]
+### Fixed
+- don't ever set authentication option; revert to previous portal/token logic
+
 ## [1.5.4]
 ### Fixed
 - ensure `requestOptions.portal` is formed properly to search for ArcGIS Enterprise Sites
@@ -400,7 +404,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
 
-[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.4...HEAD
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.5...HEAD
+[1.5.5]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.1...v1.5.2
