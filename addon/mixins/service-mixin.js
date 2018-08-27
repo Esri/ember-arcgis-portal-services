@@ -176,23 +176,19 @@ export default Mixin.create({
    * Wrap the options passed to rest-js with auth info and use ember-fetch.
    */
   addOptions (args, portalOpts) {
-    const authMgr = this.get('session.authMgr');
-
     // always use ember-fetch
     args.fetch = fetch;
 
-    // for enterprise, only torii stores a relative path
-    args.portal = authMgr ? authMgr.portal : this.getPortalRestUrl(portalOpts);
+    // force rest-js to use whatever the fuck EAPS thinks is the right portal URL
+    args.portal = this.getPortalRestUrl(portalOpts);
 
-    // append a token, dont overwrite existing params
-    if (portalOpts && portalOpts.token) {
+    // exactly the same token logic as in requestUrl() above
+    const token = portalOpts ? portalOpts.token : this.get('session.token');
+    if (token) {
       if (!args.params) {
         args.params = {};
       }
-      args.params.token = portalOpts.token;
-    } else {
-      // pass through auth info when no portalOpts.token is present
-      args.authentication = authMgr;
+      args.params.token = token;
     }
     return args;
   }
