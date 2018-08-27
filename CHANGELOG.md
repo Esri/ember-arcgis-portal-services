@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.6.0]
 ### Added
 - `hosted-service` `ensureUniqueServiceName` method
 
@@ -404,7 +404,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
 
-[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.5...HEAD
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.5.2...v1.5.3
