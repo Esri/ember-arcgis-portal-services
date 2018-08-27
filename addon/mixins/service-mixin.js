@@ -176,20 +176,38 @@ export default Mixin.create({
    * Wrap the options passed to rest-js with auth info and use ember-fetch.
    */
   addOptions (args, portalOpts) {
+    let authMgr = this.get('session.authMgr');
+    // ---------------------------------------------------
+    // TODO: just a test - this should be done in Torii
+    let correctPortalRestUrl = this.getPortalRestUrl();
+    if (authMgr.portal !== correctPortalRestUrl) {
+      debug(`AuthMgr.portal: ${authMgr.portal}`);
+      debug(`session.portalHostname: ${this.get('session.portalHostname')}`);
+      this.set('session.authMgr.portal', correctPortalRestUrl);
+    }
+    // ---------------------------------------------------
+    // exactly the same token logic as in requestUrl() above
+    if (portalOpts && portalOpts.token) {
+      // for some reason we REALLY want to use this token...
+      // so we construct a minimalist IAuthenticationManger
+      let portalToUse = portalOpts.portalHostname || this.get('session.portalHostname');
+      if (!portalToUse.includes('http')) {
+        portalToUse = `https://${portalToUse}/sharing/rest`;
+      }
+      args.authentication = {
+        portal: portalToUse,
+        getToken: function () {
+          return Promise.resolve(portalOpts.token);
+        }
+      };
+    } else {
+      // use the session authMgr
+      args.authentication = authMgr;
+    }
+    // debug(`addOptions is returning ${JSON.stringify(args, null, 4)}`);
+
     // always use ember-fetch
     args.fetch = fetch;
-
-    // force rest-js to use whatever the fuck EAPS thinks is the right portal URL
-    args.portal = this.getPortalRestUrl(portalOpts);
-
-    // exactly the same token logic as in requestUrl() above
-    const token = portalOpts ? portalOpts.token : this.get('session.token');
-    if (token) {
-      if (!args.params) {
-        args.params = {};
-      }
-      args.params.token = token;
-    }
     return args;
   }
 });
