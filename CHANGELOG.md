@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Fixed
+- use pre-rest-js format for error codes and messages
+
 ## [1.6.0]
 ### Added
 - `hosted-service` `ensureUniqueServiceName` method

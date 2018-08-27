@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import fetchImageAsBlob from 'ember-arcgis-portal-services/utils/fetch-image-as-blob';
+import { handleError } from 'ember-arcgis-portal-services/utils/errors';
 import {
   searchItems,
   getItem,
@@ -26,7 +27,8 @@ export default Service.extend(serviceMixin, {
    */
   search (form, portalOpts) {
     const args = this.addOptions({ searchForm: form }, portalOpts);
-    return searchItems(args);
+    return searchItems(args)
+    .catch(handleError);
   },
 
   /**
@@ -34,7 +36,8 @@ export default Service.extend(serviceMixin, {
    */
   getById (itemId, portalOpts) {
     const args = this.addOptions({}, portalOpts);
-    return getItem(itemId, args);
+    return getItem(itemId, args)
+    .catch(handleError);
   },
 
   /**
@@ -43,7 +46,8 @@ export default Service.extend(serviceMixin, {
    */
   getDataById (itemId, portalOpts) {
     const args = this.addOptions({}, portalOpts);
-    return getItemData(itemId, args);
+    return getItemData(itemId, args)
+    .catch(handleError);
   },
 
   /**
@@ -52,7 +56,8 @@ export default Service.extend(serviceMixin, {
    */
   update (item, portalOpts) {
     const args = this.addOptions({ item, owner: item.owner }, portalOpts);
-    return updateItem(args);
+    return updateItem(args)
+    .catch(handleError);
   },
 
   /**
@@ -66,7 +71,8 @@ export default Service.extend(serviceMixin, {
       folder: folderId
     }, portalOpts);
 
-    return createItemInFolder(args);
+    return createItemInFolder(args)
+    .catch(handleError);
   },
 
   /**
@@ -87,7 +93,8 @@ export default Service.extend(serviceMixin, {
       owner
     }, portalOpts);
 
-    return removeItem(args);
+    return removeItem(args)
+    .catch(handleError);
   },
 
   protect (itemId, owner, portalOpts) {
@@ -96,7 +103,8 @@ export default Service.extend(serviceMixin, {
       owner
     }, portalOpts);
 
-    return protectItem(args);
+    return protectItem(args)
+    .catch(handleError);
   },
 
   unprotect (itemId, owner, portalOpts) {
@@ -105,7 +113,8 @@ export default Service.extend(serviceMixin, {
       owner
     }, portalOpts);
 
-    return unprotectItem(args);
+    return unprotectItem(args)
+    .catch(handleError);
   },
 
   /**
