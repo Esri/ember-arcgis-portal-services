@@ -4,6 +4,7 @@ import { debug } from '@ember/debug';
 import { reject, resolve } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import { handleError } from 'ember-arcgis-portal-services/utils/errors';
 import { setItemAccess } from '@esri/arcgis-rest-sharing';
 
 export default Service.extend(serviceMixin, {
@@ -26,7 +27,8 @@ export default Service.extend(serviceMixin, {
       access,
     }, portalOpts);
 
-    return setItemAccess(args);
+    return setItemAccess(args)
+    .catch(handleError);
   },
   /**
    * Share an item with a group, optionally with item control
