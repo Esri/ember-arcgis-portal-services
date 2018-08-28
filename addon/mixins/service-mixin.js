@@ -176,20 +176,45 @@ export default Mixin.create({
    * Wrap the options passed to rest-js with auth info and use ember-fetch.
    */
   addOptions (args, portalOpts) {
+    if (portalOpts) {
+      // instead of getting portal and autentication from session
+      // use what has been explicitly passed in via portalOpts
+      let portal = this.getPortalRestUrl(portalOpts);
+      if (portalOpts.token) {
+        // make an authenticated request by constructing a one-time IAuthenticationManger
+        args.authentication = {
+          portal,
+          getToken: function () {
+            return Promise.resolve(portalOpts.token);
+          }
+        };
+      } else {
+        // just make an unauthenticated request to this portal
+        args.portal = portal;
+      }
+    } else {
+      // get portal and authtentication from the session
+      let correctPortalRestUrl = this.getPortalRestUrl();
+      let authMgr = this.get('session.authMgr');
+      if (authMgr) {
+        // first verify that the cached authentication has the right portal
+        // ---------------------------------------------------
+        // TODO: just a test - this should be done in Torii
+        if (authMgr.portal !== correctPortalRestUrl) {
+          debug(`AuthMgr.portal: ${authMgr.portal}`);
+          debug(`session.portalHostname: ${this.get('session.portalHostname')}`);
+          this.set('session.authMgr.portal', correctPortalRestUrl);
+        }
+        // ---------------------------------------------------
+        args.authentication = authMgr;
+      } else {
+        // user is unauthenticated, but we may still have a portalHostname
+        args.portal = correctPortalRestUrl;
+      }
+    }
+
     // always use ember-fetch
     args.fetch = fetch;
-
-    // force rest-js to use whatever the fuck EAPS thinks is the right portal URL
-    args.portal = this.getPortalRestUrl(portalOpts);
-
-    // exactly the same token logic as in requestUrl() above
-    const token = portalOpts ? portalOpts.token : this.get('session.token');
-    if (token) {
-      if (!args.params) {
-        args.params = {};
-      }
-      args.params.token = token;
-    }
     return args;
   }
 });
