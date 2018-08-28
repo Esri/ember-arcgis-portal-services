@@ -176,35 +176,39 @@ export default Mixin.create({
    * Wrap the options passed to rest-js with auth info and use ember-fetch.
    */
   addOptions (args, portalOpts) {
-    let authMgr = this.get('session.authMgr');
-    // ---------------------------------------------------
-    // TODO: just a test - this should be done in Torii
-    let correctPortalRestUrl = this.getPortalRestUrl();
-    if (authMgr.portal !== correctPortalRestUrl) {
-      debug(`AuthMgr.portal: ${authMgr.portal}`);
-      debug(`session.portalHostname: ${this.get('session.portalHostname')}`);
-      this.set('session.authMgr.portal', correctPortalRestUrl);
-    }
-    // ---------------------------------------------------
-    // exactly the same token logic as in requestUrl() above
-    if (portalOpts && portalOpts.token) {
-      // for some reason we REALLY want to use this token...
-      // so we construct a minimalist IAuthenticationManger
-      let portalToUse = portalOpts.portalHostname || this.get('session.portalHostname');
-      if (!portalToUse.includes('http')) {
-        portalToUse = `https://${portalToUse}/sharing/rest`;
+    if (portalOpts) {
+      // instead of getting portal and autentication from session
+      // use what has been explicitly passed in via portalOpts
+      let portal = this.getPortalRestUrl(portalOpts);
+      if (portalOpts.token) {
+        // make an authenticated request by constructing a one-time IAuthenticationManger
+        args.authentication = {
+          portal,
+          getToken: function () {
+            return Promise.resolve(portalOpts.token);
+          }
+        };
+      } else {
+        // just make an unauthenticated request to this portal
+        args.portal = portal;
       }
-      args.authentication = {
-        portal: portalToUse,
-        getToken: function () {
-          return Promise.resolve(portalOpts.token);
-        }
-      };
     } else {
-      // use the session authMgr
-      args.authentication = authMgr;
+      // get portal and authtentication from the session
+      let authMgr = this.get('session.authMgr');
+      if (authMgr) {
+        // first verify that the cached authentication has the right portal
+        // ---------------------------------------------------
+        // TODO: just a test - this should be done in Torii
+        let correctPortalRestUrl = this.getPortalRestUrl();
+        if (authMgr.portal !== correctPortalRestUrl) {
+          debug(`AuthMgr.portal: ${authMgr.portal}`);
+          debug(`session.portalHostname: ${this.get('session.portalHostname')}`);
+          this.set('session.authMgr.portal', correctPortalRestUrl);
+        }
+        // ---------------------------------------------------
+        args.authentication = authMgr;
+      }
     }
-    // debug(`addOptions is returning ${JSON.stringify(args, null, 4)}`);
 
     // always use ember-fetch
     args.fetch = fetch;

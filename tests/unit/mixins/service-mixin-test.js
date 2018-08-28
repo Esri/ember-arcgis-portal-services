@@ -59,8 +59,7 @@ test('addOptions, unauthenticated', function (assert) {
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
   assert.notOk(enriched.params, 'token param should NOT be set');
   assert.notOk(enriched.authentication, 'auth from torii should NOT be tacked on');
-  // TODO: this would be better tested w/ a stub
-  assert.equal(enriched.portal, subject.getPortalRestUrl(), 'should be whatever getPortalRestUrl() does w/ an unauthenticated session');
+  assert.notOk(enriched.portal, 'portal should NOT be set');
 });
 
 test('addOptions, authenticated sesssion', function (assert) {
@@ -70,23 +69,23 @@ test('addOptions, authenticated sesssion', function (assert) {
   subject.set('session', {
     portalHostname: 'https://session.host.com',
     token: 'tokenFromSession',
-    // NOTE: not sure if it is realistic to have authMgr.portal out of sync
-    // just here to make sure we don't use authMgr.portal instead of portalHostname
-    authMgr: { portal: 'https://somehow.this.got/stale' },
+    // NOTE: this would be the same as getPortalRestUrl()
+    // so it shouldn't get overwitten
+    authMgr: { portal: 'https://session.host.com/sharing/rest' },
   });
 
   const enriched = subject.addOptions({foo: 'bar'});
 
   assert.equal(enriched.foo, 'bar', 'original props should still be present');
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
-  assert.equal(enriched.params.token, 'tokenFromSession', 'token param should come from session');
-  assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
+  assert.notOk(enriched.params, 'should use authentication instead of token param');
   // NOTE: this is actually testing getPortalRestUrl() as well
   // TODO: relace this w/ a stub once we have getPortalRestUrl() tests
-  assert.equal(enriched.portal, 'https://session.host.com/sharing/rest', 'a portalHostname should be pulled from the session too.');
+  assert.equal(enriched.authentication, subject.get('session.authMgr'), 'should get authentication from torii');
+  assert.notOk(enriched.portal, 'should use authentication instead of portal');
 });
 
-test('addOptions, authenticated session with portal options', function (assert) {
+test('addOptions, authenticated sesssion with out of sync portal', function (assert) {
   let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
 
@@ -94,37 +93,89 @@ test('addOptions, authenticated session with portal options', function (assert) 
     portalHostname: 'https://session.host.com',
     token: 'tokenFromSession',
     // NOTE: not sure if it is realistic to have authMgr.portal out of sync
-    // just here to make sure we don't use authMgr.portal instead of portalHostname
     authMgr: { portal: 'https://somehow.this.got/stale' },
   });
 
-  const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portalHostname: 'https://super.custom'});
+  const enriched = subject.addOptions({foo: 'bar'});
 
   assert.equal(enriched.foo, 'bar', 'original props should still be present');
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
-  assert.equal(enriched.params.token, 'token', 'creds from portalOpts should take precedence');
-  assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
+  assert.notOk(enriched.params, 'should use authentication instead of token param');
+  assert.equal(enriched.authentication, subject.get('session.authMgr'), 'should get authentication from torii');
   // NOTE: this is actually testing getPortalRestUrl() as well
   // TODO: relace this w/ a stub once we have getPortalRestUrl() tests
-  assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'portal from portalOpts should take precedence');
+  assert.equal(enriched.authentication.portal, 'https://session.host.com/sharing/rest', 'stale torii portal should be updated');
+  assert.notOk(enriched.portal, 'should use authentication instead of portal');
 });
 
-// NOTE: I don't know how realistic this test scenario is
-test('addOptions, unauthenticated session with portal options', function (assert) {
+test('addOptions, authenticated session with authenticated portal options', function (assert) {
   let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
 
   subject.set('session', {
-    // NOTE: I'm guessing {} ~= an unauthenticated session
+    portalHostname: 'https://session.host.com',
+    token: 'tokenFromSession',
+    authMgr: { portal: 'https://session.host.com' },
   });
 
-  const enriched = subject.addOptions({foo: 'bar'}, {token: 'token', portalHostname: 'https://super.custom'});
+  const enriched = subject.addOptions({foo: 'bar'}, {token: 'tokenFromPortalOptions', portalHostname: 'https://super.custom'});
 
   assert.equal(enriched.foo, 'bar', 'original props should still be present');
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
-  assert.equal(enriched.params.token, 'token', 'creds from portalOpts should take precedence');
-  assert.equal(enriched.authentication, undefined, 'auth from torii should NOT be tacked on');
+  assert.notOk(enriched.params, 'should use authentication instead of token param');
+  assert.notOk(enriched.portal, 'should use authentication instead of portal');
   // NOTE: this is actually testing getPortalRestUrl() as well
   // TODO: relace this w/ a stub once we have getPortalRestUrl() tests
-  assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'portal from portalOpts should take precedence');
+  assert.equal(enriched.authentication.portal, 'https://super.custom/sharing/rest', 'authentication should have portal from portal options');
+  return enriched.authentication.getToken()
+  .then(token => {
+    assert.equal(token, 'tokenFromPortalOptions', 'getToken() should return portal from portal options');
+  });
+});
+
+test('addOptions, authenticated session with unauthenticated portal options', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  subject.set('session', {
+    portalHostname: 'https://session.host.com',
+    token: 'tokenFromSession',
+    authMgr: { portal: 'https://session.host.com' },
+  });
+
+  // NOTE: no token in these portal options
+  const enriched = subject.addOptions({foo: 'bar'}, { portalHostname: 'https://super.custom' });
+
+  assert.equal(enriched.foo, 'bar', 'original props should still be present');
+  assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
+  assert.notOk(enriched.params, 'should use authentication instead of token param');
+  assert.notOk(enriched.autentication, 'should use portal instead of authentication');
+  // NOTE: this is actually testing getPortalRestUrl() as well
+  // TODO: relace this w/ a stub once we have getPortalRestUrl() tests
+  assert.equal(enriched.portal, 'https://super.custom/sharing/rest', 'portal should have come from portal options');
+});
+
+// NOTE: this is how the README suggests you can work w/o torii
+// https://github.com/Esri/ember-arcgis-portal-services#dependencies
+test('addOptions, dummy session with portal options', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  // a dummy session service
+  subject.set('session', {
+  });
+
+  const enriched = subject.addOptions({foo: 'bar'}, {token: 'tokenFromPortalOptions', portalHostname: 'https://super.custom'});
+
+  assert.equal(enriched.foo, 'bar', 'original props should still be present');
+  assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
+  assert.notOk(enriched.params, 'should use authentication instead of token param');
+  assert.notOk(enriched.portal, 'should use authentication instead of portal');
+  // NOTE: this is actually testing getPortalRestUrl() as well
+  // TODO: relace this w/ a stub once we have getPortalRestUrl() tests
+  assert.equal(enriched.authentication.portal, 'https://super.custom/sharing/rest', 'authentication should have portal from portal options');
+  return enriched.authentication.getToken()
+  .then(token => {
+    assert.equal(token, 'tokenFromPortalOptions', 'getToken() should return portal from portal options');
+  });
 });
