@@ -50,7 +50,8 @@ test('addOptions, unauthenticated', function (assert) {
   let subject = ServiceMixinObject.create();
 
   subject.set('session', {
-    // NOTE: I'm guessing {} ~= an unauthenticated session
+    // NOTE: sometimes in hub the `session.portalHostname` for unauthenticated requests
+    portalHostname: 'https://session.host.com',
   });
 
   const enriched = subject.addOptions({foo: 'bar'});
@@ -59,7 +60,7 @@ test('addOptions, unauthenticated', function (assert) {
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
   assert.notOk(enriched.params, 'token param should NOT be set');
   assert.notOk(enriched.authentication, 'auth from torii should NOT be tacked on');
-  assert.notOk(enriched.portal, 'portal should NOT be set');
+  assert.equal(enriched.portal, 'https://session.host.com/sharing/rest', 'portal should come from session');
 });
 
 test('addOptions, authenticated sesssion', function (assert) {

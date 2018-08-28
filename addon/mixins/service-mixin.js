@@ -194,12 +194,12 @@ export default Mixin.create({
       }
     } else {
       // get portal and authtentication from the session
+      let correctPortalRestUrl = this.getPortalRestUrl();
       let authMgr = this.get('session.authMgr');
       if (authMgr) {
         // first verify that the cached authentication has the right portal
         // ---------------------------------------------------
         // TODO: just a test - this should be done in Torii
-        let correctPortalRestUrl = this.getPortalRestUrl();
         if (authMgr.portal !== correctPortalRestUrl) {
           debug(`AuthMgr.portal: ${authMgr.portal}`);
           debug(`session.portalHostname: ${this.get('session.portalHostname')}`);
@@ -207,6 +207,9 @@ export default Mixin.create({
         }
         // ---------------------------------------------------
         args.authentication = authMgr;
+      } else {
+        // user is unauthenticated, but we may still have a portalHostname
+        args.portal = correctPortalRestUrl;
       }
     }
 
