@@ -3,8 +3,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- bump to torii-provider-arcgis v2.0.0 so session.authMgr has correct portal
+
+## [1.7.0]
 ### Fixed
 - use pre-rest-js format for error codes and messages
+- unauthenticated rest-js requestOptions use portal, authenticated use authentication
 
 ## [1.6.0]
 ### Added
