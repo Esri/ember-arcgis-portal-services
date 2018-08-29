@@ -40,6 +40,11 @@ export default Mixin.create({
    * Return the ArcGIS Portal base url (for visiting pages etc)
    * Defaults to https because there is no negative to using it
    */
+  // NOTE: DO NOT CHANGE THIS FUNCTION
+  // instead we need to de-duplicate the logic from torii-provider-arcgis
+  // see: https://github.com/Esri/torii-provider-arcgis/blob/v2.0.0/addon/mixins/gatekeeper.js#L176-L201
+  // we should figure out how to extract the underlying utility fns into rest-js
+  // or some other common place so they can be applied to portalOptions.portalHostname here
   getPortalUrl (portalOptions = {}) {
     const portalHostname = portalOptions.portalHostname || this.get('session.portalHostname');
     let host;
@@ -198,14 +203,12 @@ export default Mixin.create({
       let authMgr = this.get('session.authMgr');
       if (authMgr) {
         // first verify that the cached authentication has the right portal
-        // ---------------------------------------------------
-        // TODO: just a test - this should be done in Torii
+        // NOTE: as of torii-provider-arcgis@2.0.0 this check should no longer be necessary
+        // TODO: remove once we are sure that it is no longer needed
         if (authMgr.portal !== correctPortalRestUrl) {
-          debug(`AuthMgr.portal: ${authMgr.portal}`);
-          debug(`session.portalHostname: ${this.get('session.portalHostname')}`);
+          console.warn(`AuthMgr.portal (${authMgr.portal}) does not match session.portalHostname (${this.get('session.portalHostname')})`);
           this.set('session.authMgr.portal', correctPortalRestUrl);
         }
-        // ---------------------------------------------------
         args.authentication = authMgr;
       } else {
         // user is unauthenticated, but we may still have a portalHostname
