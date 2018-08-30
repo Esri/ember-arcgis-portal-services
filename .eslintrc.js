@@ -7,7 +7,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'semistandard',
-    // 'plugin:ember/recommended'
+    'plugin:ember/recommended'
   ],
   env: {
     browser: true

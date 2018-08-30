@@ -22,9 +22,11 @@ test('it exists', function (assert) {
 
 test('owner share to group', function (assert) {
   let session = Service.extend({
+    /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
     currentUser: {
       username: 'fakeuser'
     },
+    /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
     isAdmin: function () {
       return false;
     }
@@ -66,9 +68,11 @@ test('owner share to group', function (assert) {
 
 test('owner re-share to group', function (assert) {
   let session = Service.extend({
+    /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
     currentUser: {
       username: 'fakeuser'
     },
+    /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
     isAdmin: function () {
       return false;
     }
@@ -96,9 +100,11 @@ test('owner re-share to group', function (assert) {
 
 test('admin re-share to group', function (assert) {
   let session = Service.extend({
+    /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
     currentUser: {
       username: 'fakeadmin'
     },
+    /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
     isAdmin: function () {
       return true;
     }
@@ -126,9 +132,11 @@ test('admin re-share to group', function (assert) {
 
 test('owner share to group with itemControl', function (assert) {
   let session = Service.extend({
+    /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
     currentUser: {
       username: 'fakeuser'
     },
+    /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
     isAdmin: function () {
       return false;
     }
@@ -168,9 +176,11 @@ test('owner share to group with itemControl', function (assert) {
 
 test('owner share to group message response', function (assert) {
   let session = Service.extend({
+    /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
     currentUser: {
       username: 'fakeuser'
     },
+    /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
     isAdmin: function () {
       return false;
     }
@@ -206,9 +216,11 @@ test('owner share to group message response', function (assert) {
 
 test('non-owner can not share item to group', function (assert) {
   let session = Service.extend({
+    /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
     currentUser: {
       username: 'otherfakeuser'
     },
+    /* eslint-enable ember/avoid-leaking-state-in-ember-objects */
     isAdmin: function () {
       return false;
     }
