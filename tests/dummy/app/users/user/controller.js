@@ -40,7 +40,6 @@ export default Controller.extend({
       });
     },
     removeNotification (notification) {
-      // alert(notification.id);
       this.get('userService').removeNotification(notification.id)
       .then(resp => {
         if (resp.success) {
