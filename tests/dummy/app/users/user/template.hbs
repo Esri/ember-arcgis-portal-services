@@ -30,5 +30,17 @@
     </table>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Notifications:</h2>
+    <ul class="notifications">
+      {{#each model.notifications as |notification|}}
+        <li>
+          <button type="button" class="btn btn-sm btn-danger" {{action "removeNotification" notification}}><span class="glyphicon glyphicon-trash"></span></button> {{notification.type}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
 
 {{outlet}}

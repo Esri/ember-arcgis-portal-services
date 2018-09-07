@@ -19,10 +19,12 @@ module.exports = {
     this.import('vendor/@esri/arcgis-rest-auth/auth.umd.js');
     this.import('vendor/@esri/arcgis-rest-sharing/sharing.umd.js');
     this.import('vendor/@esri/arcgis-rest-items/items.umd.js');
+    this.import('vendor/@esri/arcgis-rest-users/users.umd.js');
     this.import('vendor/shims/@esri/arcgis-rest-auth.js');
     this.import('vendor/shims/@esri/arcgis-rest-request.js');
     this.import('vendor/shims/@esri/arcgis-rest-sharing.js');
     this.import('vendor/shims/@esri/arcgis-rest-items.js');
+    this.import('vendor/shims/@esri/arcgis-rest-users.js');
   },
 
   treeForVendor (vendorTree) {
@@ -46,7 +48,12 @@ module.exports = {
       destDir: '@esri/arcgis-rest-items'
     });
 
-    var treesToMerge = [arcgisRequestTree, arcgisAuthTree, arcgisSharingTree, arcgisItemsTree];
+    var arcgisUsersTree = new Funnel(path.dirname(require.resolve('@esri/arcgis-rest-users/dist/umd/users.umd.js')), {
+      files: ['users.umd.js', 'users.umd.js.map'],
+      destDir: '@esri/arcgis-rest-users'
+    });
+
+    var treesToMerge = [arcgisRequestTree, arcgisAuthTree, arcgisSharingTree, arcgisItemsTree, arcgisUsersTree];
     // if we got a vendorTree, and add it in
     if (vendorTree) {
       treesToMerge.unshift(vendorTree);

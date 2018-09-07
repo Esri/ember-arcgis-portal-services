@@ -5,7 +5,7 @@ import serviceMixin from '../mixins/service-mixin';
 import {
   getUserNotifications,
   removeNotification
-} from '@esri/arcgis-rest-items';
+} from '@esri/arcgis-rest-users';
 
 export default Service.extend(serviceMixin, {
 

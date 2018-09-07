@@ -5,6 +5,7 @@ export default Controller.extend({
   folderExists: false,
   session: service('session'),
   folderService: service('folders-service'),
+  userService: service('user-service'),
   actions: {
     checkFolderExists (folderName) {
       let username = this.get('session.currentUser.username');
@@ -37,6 +38,18 @@ export default Controller.extend({
         // remove it from the model list...
         this.get('model.folders').without(folder);
       });
+    },
+    removeNotification (notification) {
+      // alert(notification.id);
+      this.get('userService').removeNotification(notification.id)
+      .then(resp => {
+        if (resp.success) {
+          this.send('forceRefresh');
+        } else {
+          throw new Error('oops');
+        }
+      })
+      .catch(_ => { alert('boo'); });
     }
   }
 });
