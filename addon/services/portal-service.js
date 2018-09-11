@@ -1,5 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import { deprecate } from '@ember/application/deprecations';
 
 export default Service.extend(serviceMixin, {
   session: service('session'),
@@ -188,12 +189,50 @@ export default Service.extend(serviceMixin, {
     return this._post(urlPath, opts, portalOpts);
   },
 
+  // notifications api stuff
+  // see http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications
   sendMessage (subject, message, users = [], notificationChannelType = 'email', portalOpts) {
+    deprecate('use .sendEmailNotification(...), sendBuiltinNotification(...) or .sendPushNotification(...)', false, {id: 'sendMessageDeprecation', until: '10.0.0'});
+    return this._createNotification(subject, message, users, 'email', null, null, portalOpts);
+  },
+
+  sendEmailNotification (subject, message, users = [], portalOpts) {
+    return this._createNotification(subject, message, users, 'email', null, null, portalOpts);
+  },
+
+  sendBuiltinNotification (subject, message, users = [], portalOpts) {
+    return this._createNotification(subject, message, users, 'builtin', null, null, portalOpts);
+  },
+
+  sendPushNotification (data, users = [], clientId, silent, portalOpts) {
+    // data is an object that will be passed as the `message` parameter
+    // {
+    //   "title": "title",
+    //   "message" : "message",
+    //   "title-loc-key" : "title-loc-key",
+    //   "title-loc-args" : [arg1,arg2,...],
+    //   "loc-key": "loc-key",
+    //   "loc-args":[arg1, arg2, arg3...],
+    //   "category":"category",
+    //   "badge": badge,
+    //   "sound": "sound",
+    //   "customProperties" :{
+    //     "key":"value",
+    //     "key1":"value1",
+    //       ....
+    //   }
+    // }
+    return this._createNotification(null, data, users, 'push', clientId, silent, portalOpts);
+  },
+
+  _createNotification (subject, message, users = [], notificationChannelType, clientId, silentNotification, portalOpts) {
     const opts = {
       subject,
       message,
       users: users.join(','),
-      notificationChannelType
+      notificationChannelType,
+      clientId,
+      silentNotification
     };
     const urlPath = `/portals/self/createNotification?f=json`;
     return this._post(urlPath, opts, portalOpts);

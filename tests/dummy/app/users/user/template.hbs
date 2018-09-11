@@ -31,15 +31,53 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-4">
     <h2>Notifications:</h2>
     <ul class="notifications">
       {{#each model.notifications as |notification|}}
         <li>
-          <button type="button" class="btn btn-sm btn-danger" {{action "removeNotification" notification}}><span class="glyphicon glyphicon-trash"></span></button> {{notification.type}}
+          <button type="button" class="btn btn-sm btn-danger" {{action "removeNotification" notification}}>
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+          &nbsp;
+          {{notification.type}}
+          {{#if notification.data.subject}}
+            - {{notification.data.subject}}
+          {{/if}}
         </li>
       {{/each}}
     </ul>
+  </div>
+  <div class="col-sm-8">
+    <form {{action "sendNotification" notificationSubject notificationMessage notificationType on="submit"}}>
+      <div class="form-group">
+        <label for="subject-field">Subject</label>
+        <input class="form-control" id="subject-field" value={{notificationSubject}} oninput={{action (mut notificationSubject) value="target.value"}}>
+      </div>
+      <div class="form-group">
+        <label for="message-field">Message</label>
+        <textarea class="form-control" id="message-field" value={{notificationMessage}} oninput={{action (mut notificationMessage) value="target.value"}}></textarea>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="notificationType" checked={{eq notificationType "email"}} onclick={{action (mut notificationType) "email"}}>
+          Email
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="notificationType" checked={{eq notificationType "builtin"}} onclick={{action (mut notificationType) "builtin"}}>
+          Builtin
+        </label>
+      </div>
+      <div class="radio disabled">
+        <label>
+          <input type="radio" name="notificationType" checked={{eq notificationType "push"}} onclick={{action (mut notificationType) "push"}} disabled>
+          Push
+        </label>
+      </div>
+      <button class="btn btn-primary">Send message to self</button>
+    </form>
   </div>
 </div>
 

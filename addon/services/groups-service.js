@@ -2,6 +2,8 @@ import { reject, resolve } from 'rsvp';
 import { debug } from '@ember/debug';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import { deprecate } from '@ember/application/deprecations';
+import { createGroupNotification } from '@esri/arcgis-rest-groups';
 
 export default Service.extend(serviceMixin, {
 
@@ -317,21 +319,56 @@ export default Service.extend(serviceMixin, {
     });
   },
 
+  // notifications api stuff
+  // see http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications
   sendGroupMessage (groupId, subject, message, users = [], notificationChannelType = 'email', portalOpts) {
-    const notifyAll = !users.length;
+    deprecate('use .sendEmailNotification(...), sendBuiltinNotification(...) or .sendPushNotification(...)', false, {id: 'sendMessageDeprecation', until: '10.0.0'});
+    return this._createNotification(groupId, subject, message, users, 'email', null, null, portalOpts);
+  },
+
+  sendEmailNotification (groupId, subject, message, users = [], portalOpts) {
+    return this._createNotification(groupId, subject, message, users, 'email', null, null, portalOpts);
+  },
+
+  sendBuiltinNotification (groupId, subject, message, users = [], portalOpts) {
+    return this._createNotification(groupId, subject, message, users, 'builtin', null, null, portalOpts);
+  },
+
+  sendPushNotification (groupId, data, users = [], clientId, silent, portalOpts) {
+    // data is an object that will be passed as the `message` parameter
+    // {
+    //   "title": "title",
+    //   "message" : "message",
+    //   "title-loc-key" : "title-loc-key",
+    //   "title-loc-args" : [arg1,arg2,...],
+    //   "loc-key": "loc-key",
+    //   "loc-args":[arg1, arg2, arg3...],
+    //   "category":"category",
+    //   "badge": badge,
+    //   "sound": "sound",
+    //   "customProperties" :{
+    //     "key":"value",
+    //     "key1":"value1",
+    //       ....
+    //   }
+    // }
+    return this._createNotification(groupId, null, data, users, 'push', clientId, silent, portalOpts);
+  },
+
+  _createNotification (groupId, subject, message, users = [], notificationChannelType, clientId, silentNotification, portalOpts) {
+    // const notifyAll = !users.length;
     const data = {
+      id: groupId,
       subject,
       message,
       users: users.join(','),
       notificationChannelType,
-      notifyAll
+      clientId,
+      silentNotification
     };
-    const urlPath = `/community/groups/${groupId}/createNotification?f=json`;
-    const options = {
-      method: 'POST',
-      data: data
-    };
-    return this.request(urlPath, options, portalOpts);
+
+    const args = this.addOptions(data, portalOpts);
+    return createGroupNotification(args);
   }
 
 });
