@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### changed
+- upgraded arcgis-rest-js to 1.9.0
 
 ## [1.7.1]
 - bump to torii-provider-arcgis v2.0.0 so session.authMgr has correct portal
