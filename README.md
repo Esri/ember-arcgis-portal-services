@@ -98,7 +98,10 @@ All the services expose a set of shared helper properties and methods:
 | `updateUserMemberships (id, users, type, portalOpts)` |  `promise` | Updates membership(s) from user to admin or admin to user |
 | `ensureUniqueGroupName (title, step, portalOpts)` |  `promise` | Return a group name guaranteed to be unique in the org |
 | `doesGroupExist` (title, portalOpts) | `promise` | Return a boolean indicating whether the group exists in the org |
-| `sendGroupMessage (groupId, subject, message, users, notificationChannelType, portalOpts)` | `promise` | Sends a notification to the group. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
+| `sendGroupMessage (groupId, subject, message, users, notificationChannelType, portalOpts)` (deprecated) | `promise` | Sends a notification to the group. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
+| `sendEmailNotification (groupId, subject, message, users = [], portalOpts)` | `promise` | Sends an email notification to the specified group members |
+| `sendBuiltinNotification (groupId, subject, message, users = [], portalOpts)` | `promise` | Sends a "builtin" notification to the specified group members |
+| `sendPushNotificaiton (groupId, data, users = [], portalOpts)` | `promise` | Sends a push notification to the specified group members |
 
 ## Sharing Service
 
@@ -122,8 +125,8 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `getByName(username, portalOpts)` | `promise` | Get a user object by name. |
 | `update(user, portalOpts)` | `promise` | Update a user |
 | `signup (user, portalOpts)` | `promise` | Signs the user up to the organization |
-
-
+| `getNotifications (portalOpts)` | 'promise' | Gets the user's "builtin" notifications |
+| `removeNotification (id, portalOpts)` | 'promise' | Removes the notification |
 
 ## OAuth Service
 **Note:** This is not used for authentication - rather its purpose is to allow Application Items to be programatically manipulated.
@@ -158,7 +161,10 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `activate (opts, portalOpts)` | `promise` | Activates the organization |
 | `addApprovedApp (itemId, properties, portalOpts)` | `promise` | Adds an approved app to the portal. Used to create App Launcher entries |
 | `getApprovedApps (portalOpts)` | `promise` | Gets all approved apps to the portal. |
-| `sendMessage (subject, message, users, notificationChannelType, portalOpts)` | `promise` | Sends a notification to the specified users. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
+| `sendMessage (subject, message, users, notificationChannelType, portalOpts)` (deprecated) | `promise` | Sends a notification to the specified users. See: http://mediawikidev.esri.com/index.php/ArcGIS.com/User_Notifications  |
+| `sendEmailNotification (subject, message, users = [], portalOpts)` | `promise` | Sends an email notification to the specified users |
+| `sendBuiltinNotification (subject, message, users = [], portalOpts)` | `promise` | Sends a builtin notification to the specified users |
+| `sendPushNotification (data, users = [], portalOpts)` | `promise` | Sends a push notification to the specified users |
 
 ### Folders Service
 | Method |  Returns | Description |

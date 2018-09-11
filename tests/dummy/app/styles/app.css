@@ -46,3 +46,6 @@ div.jsoneditor{
 	outline: 1px dotted #000;
 	outline: -webkit-focus-ring-color auto 5px;
 }
+ul.notifications li {
+  margin: 5px 0;
+}

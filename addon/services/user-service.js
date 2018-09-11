@@ -2,6 +2,10 @@ import { copy } from '@ember/object/internals';
 import { deprecate } from '@ember/application/deprecations';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import {
+  getUserNotifications,
+  removeNotification
+} from '@esri/arcgis-rest-users';
 
 export default Service.extend(serviceMixin, {
 
@@ -54,6 +58,16 @@ export default Service.extend(serviceMixin, {
   signup (user, portalOpts) {
     const urlPath = `/community/signup?f=json`;
     return this._post(urlPath, user, portalOpts);
+  },
+
+  getNotifications (portalOpts) {
+    const args = this.addOptions({}, portalOpts);
+    return getUserNotifications(args);
+  },
+
+  removeNotification (id, portalOpts) {
+    const args = this.addOptions({id}, portalOpts);
+    return removeNotification(args);
   },
 
   /**

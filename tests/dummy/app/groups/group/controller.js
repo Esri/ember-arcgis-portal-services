@@ -8,8 +8,7 @@ export default Controller.extend({
   actions: {
     sendMessage (groupId, messageModel) {
       const groupsService = this.get('groupsService');
-
-      groupsService.sendGroupMessage(groupId, messageModel.subject, messageModel.message)
+      groupsService.sendEmailNotification(groupId, messageModel.subject, messageModel.message)
       .then(resp => {
         this.set('msg', {
           message: 'Message Sent',
