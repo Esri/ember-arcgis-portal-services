@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "keywords": [
     "ember-addon"
@@ -28,18 +28,20 @@
     "deploy:portalqa": "ember surge --new-domain='eapsportalqa.surge.sh' --environment=portalqa"
   },
   "dependencies": {
-    "@esri/arcgis-rest-request": "^1.8.0",
-    "@esri/arcgis-rest-auth": "^1.8.0",
-    "@esri/arcgis-rest-sharing": "^1.8.0",
-    "@esri/arcgis-rest-items": "^1.8.0",
+    "@esri/arcgis-rest-common-types": "^1.9.0",
+    "@esri/arcgis-rest-auth": "^1.9.0",
+    "@esri/arcgis-rest-groups": "^1.9.0",
+    "@esri/arcgis-rest-items": "^1.9.0",
+    "@esri/arcgis-rest-request": "^1.9.0",
+    "@esri/arcgis-rest-sharing": "^1.9.0",
+    "@esri/arcgis-rest-users": "^1.9.0",
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
     "ember-cli-babel": "^6.7.1",
     "ember-cli-htmlbars": "^1.0.3",
-    "ember-fetch": "3.4.4",
-    "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0"
+    "ember-fetch": "3.4.4"
   },
   "devDependencies": {
-    "@esri/arcgis-rest-common-types": "^1.7.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~2.18.0",
     "ember-cli-active-link-wrapper": "0.3.2",
@@ -63,6 +65,7 @@
     "ember-sinon": "0.6.0",
     "ember-sinon-qunit": "1.4.1",
     "ember-source": "~2.18.0",
+    "ember-truth-helpers": "^2.1.0",
     "eslint-config-semistandard": "~7.0.0",
     "eslint-config-standard": "~6.0.0",
     "eslint-plugin-ember": "^5.0.0",

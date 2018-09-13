@@ -7,15 +7,24 @@ export default Route.extend({
   folderService: service('folders-service'),
   model (params) {
     // get the user info...
+    const userService = this.get('userService');
     return hashSettled({
-      user: this.get('userService').getByName(params.username),
-      folders: this.get('folderService').getUserFolders(params.username)
-    })
-    .then((result) => {
-      return {
-        user: result.user.value,
-        folders: result.folders.value
-      };
+      user: userService.getByName(params.username),
+      folders: this.get('folderService').getUserFolders(params.username),
+      notifications: userService.getNotifications()
     });
+  },
+  setupController (controller, model) {
+    controller.set('model', {
+      user: model.user.value,
+      folders: model.folders.value,
+      notifications: model.notifications.value.notifications
+    });
+  },
+  actions: {
+    forceRefresh () {
+      this.refresh();
+    }
   }
+
 });
