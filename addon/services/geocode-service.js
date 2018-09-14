@@ -1,3 +1,4 @@
+// TODO: remove jQuery - this should have been caught by eslint
 import $ from 'jquery';
 import { computed } from '@ember/object';
 import Service from '@ember/service';
@@ -18,6 +19,7 @@ export default Service.extend(serviceMixin, {
       maxLocations: 1,
       bbox: null
     };
+    // TODO: find a non-jQuery way to deep merge options into defaults
     let ops = $.extend({}, defaults, options);
     let url = `${geocodeUrl}findAddressCandidates?f=json&singleLine=${inputString}&maxLocations=${ops.maxLocations}&outSR=${ops.outSR}`;
 

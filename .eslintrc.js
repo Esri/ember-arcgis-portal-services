@@ -4,10 +4,13 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module'
   },
+  plugins: [
+    'ember'
+  ],
   extends: [
     'eslint:recommended',
     'semistandard',
-    // 'plugin:ember/recommended'
+    'plugin:ember/recommended'
   ],
   env: {
     browser: true
@@ -16,10 +19,8 @@ module.exports = {
     "comma-dangle": [2, "only-multiline"],
     "no-console": 0,
     "indent": [2, 2, { "SwitchCase": 1, "MemberExpression": "off" }],
+    "ember/no-jquery": 2,
   },
-  // plugins: [
-  //   'ember'
-  // ],
   overrides: [
     // node files
     {

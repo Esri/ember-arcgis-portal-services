@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### changed
+- configure eslint to use default ember rules & avoid jQuery
+
+## [1.8.0]
 ### added
 - `user-service` `getNotifications` and `removeNotification` methods
 - `portal-service` `sendEmailNotification`, `sendBuiltinNotification`, & `sendPushNotification` methods
