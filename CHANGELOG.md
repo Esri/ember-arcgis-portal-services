@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### changed
+- configure eslint to use default ember rules & avoid jQuery
+
+## [1.8.0]
 ### added
 - `user-service` `getNotifications` and `removeNotification` methods
 - `portal-service` `sendEmailNotification`, `sendBuiltinNotification`, & `sendPushNotification` methods
@@ -12,7 +16,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - upgraded arcgis-rest-js to 1.9.0
 - deprecated `portal-service` `sendMessage` method
 - deprecated `groups-service` `sendGroupMessage` method
-- configure eslint to use default ember rules & avoid jQuery
 
 ## [1.7.1]
 - bump to torii-provider-arcgis v2.0.0 so session.authMgr has correct portal
