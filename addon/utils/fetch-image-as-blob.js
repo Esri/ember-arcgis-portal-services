@@ -1,3 +1,5 @@
+import fetch from 'fetch';
+
 /**
  * Fetch an image from a url, and return it as a blob that can
  * then be uploaded to an item as a resource
