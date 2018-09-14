@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### changed
 - configure eslint to use default ember rules & avoid jQuery
+- don't use global fetch
 
 ## [1.8.0]
 ### added

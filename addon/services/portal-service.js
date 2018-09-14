@@ -1,6 +1,7 @@
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import { deprecate } from '@ember/application/deprecations';
+import fetch from 'fetch';
 
 export default Service.extend(serviceMixin, {
   session: service('session'),
