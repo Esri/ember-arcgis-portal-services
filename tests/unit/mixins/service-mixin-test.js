@@ -2,6 +2,7 @@ import EmberObject from '@ember/object';
 import ServiceMixinMixin from 'ember-arcgis-portal-services/mixins/service-mixin';
 import { module, test } from 'qunit';
 import fetch from 'fetch';
+// import { resolve } from 'rsvp';
 
 module('Unit | Mixin | service mixin');
 
@@ -13,7 +14,6 @@ function includes (str, target) {
   return included;
 }
 
-// Replace this with your real tests.
 test('fixing a jacked up portal url', function (assert) {
   let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
   let subject = ServiceMixinObject.create();
@@ -119,6 +119,11 @@ test('addOptions, authenticated session with authenticated portal options', func
     authMgr: { portal: 'https://session.host.com' },
   });
 
+  // no clue
+  // stub(subject, 'getPortalRestUrl', function (obj) {
+  //   return resolve('https://super.custom/sharing/rest');
+  // });
+
   const enriched = subject.addOptions({foo: 'bar'}, {token: 'tokenFromPortalOptions', portalHostname: 'https://super.custom'});
 
   assert.equal(enriched.foo, 'bar', 'original props should still be present');
@@ -166,7 +171,10 @@ test('addOptions, dummy session with portal options', function (assert) {
   subject.set('session', {
   });
 
-  const enriched = subject.addOptions({foo: 'bar'}, {token: 'tokenFromPortalOptions', portalHostname: 'https://super.custom'});
+  const enriched = subject.addOptions({foo: 'bar'}, {
+    token: 'tokenFromPortalOptions',
+    portalHostname: 'https://super.custom'
+  });
 
   assert.equal(enriched.foo, 'bar', 'original props should still be present');
   assert.equal(enriched.fetch, fetch, 'fetch should be tacked on');
@@ -179,4 +187,51 @@ test('addOptions, dummy session with portal options', function (assert) {
   .then(token => {
     assert.equal(token, 'tokenFromPortalOptions', 'getToken() should return portal from portal options');
   });
+});
+
+test('getPortalUrl should pull from the session', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+  // a dummy session service
+  subject.set('session', {
+    portal: { isPortal: false }
+  });
+
+  subject.set('session', {
+    portalHostname: 'https://session.host.com',
+    token: 'tokenFromSession'
+  });
+
+  const url = subject.getPortalUrl();
+  assert.equal(url, 'https://session.host.com');
+});
+
+test('getPortalUrl should upgrade a bare url', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  // a dummy session service
+  subject.set('session', {
+    portalHostname: 'https://session.host.com',
+    token: 'tokenFromSession',
+    portal: { isPortal: false }
+  });
+
+  const url = subject.getPortalUrl({ portalHostname: 'foo.bar.com' });
+  assert.equal(url, 'https://foo.bar.com');
+});
+
+test('getPortalRestUrl should upgrade a bare url too', function (assert) {
+  let ServiceMixinObject = EmberObject.extend(ServiceMixinMixin);
+  let subject = ServiceMixinObject.create();
+
+  // a dummy session service
+  subject.set('session', {
+    portalHostname: 'https://session.host.com',
+    token: 'tokenFromSession',
+    portal: { isPortal: false }
+  });
+
+  const url = subject.getPortalRestUrl({ portalHostname: 'foo.bar.com' });
+  assert.equal(url, 'https://foo.bar.com/sharing/rest');
 });
