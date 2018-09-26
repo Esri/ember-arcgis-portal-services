@@ -11,7 +11,7 @@ export default Controller.extend({
       let group = {
         title: this.get('title'),
         description: 'Collaboration group',
-        tags: this.get('tags'),
+        tags: this.get('groupsService')._cleanupTags((this.get('tags'))),
         sortField: 'title',
         sortOrder: 'asc',
         access: 'org'
@@ -24,6 +24,6 @@ export default Controller.extend({
       }
 
       return this.get('groupsService').create(group);
-    }
+    },
   }
 });

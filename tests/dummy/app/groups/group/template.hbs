@@ -1,23 +1,10 @@
 <div class="row">
-  <div class="col-sm-12">
-    <table class="table table-striped">
-      <thead>
-        <th>Item Title</th>
-        <th>Id</th>
-        <th>Type</th>
-        <th>Owner</th>
-      </thead>
-      <tbody>
-        {{#each model.items.items as |item|}}
-          <tr>
-            <td>{{item.title}}</td>
-            <td>{{item.id}}</td>
-            <td>{{item.type}}</td>
-            <td>{{item.owner}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-3">
+    Protect: <button type="button" class="btn btn-success" {{action "protect"}}> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>
+  </div>
+  <div class="col-sm-3">
+    Unprotect: <button type="button" class="btn btn-danger" {{action "unprotect"}}> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>
   </div>
   <div class="col-sm-12">
     <table class="table table-striped">

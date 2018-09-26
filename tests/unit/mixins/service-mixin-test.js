@@ -2,7 +2,6 @@ import EmberObject from '@ember/object';
 import ServiceMixinMixin from 'ember-arcgis-portal-services/mixins/service-mixin';
 import { module, test } from 'qunit';
 import fetch from 'fetch';
-// import { resolve } from 'rsvp';
 
 module('Unit | Mixin | service mixin');
 
@@ -118,11 +117,6 @@ test('addOptions, authenticated session with authenticated portal options', func
     token: 'tokenFromSession',
     authMgr: { portal: 'https://session.host.com' },
   });
-
-  // no clue
-  // stub(subject, 'getPortalRestUrl', function (obj) {
-  //   return resolve('https://super.custom/sharing/rest');
-  // });
 
   const enriched = subject.addOptions({foo: 'bar'}, {token: 'tokenFromPortalOptions', portalHostname: 'https://super.custom'});
 
