@@ -27,6 +27,24 @@ export default Route.extend({
       }, (err) => {
         alert(err);
       });
+    },
+
+    protect () {
+      this.get('groupsService').protect(this.get('groupId'))
+      .then((resp) => {
+        this.refresh();
+      }, (err) => {
+        alert(err);
+      });
+    },
+
+    unprotect () {
+      this.get('groupsService').unprotect(this.get('groupId'))
+      .then((resp) => {
+        this.refresh();
+      }, (err) => {
+        alert(err);
+      });
     }
   }
 });

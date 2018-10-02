@@ -2,8 +2,21 @@ import { reject, resolve } from 'rsvp';
 import { debug } from '@ember/debug';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import { handleError } from 'ember-arcgis-portal-services/utils/errors';
 import { deprecate } from '@ember/application/deprecations';
-import { createGroupNotification } from '@esri/arcgis-rest-groups';
+
+import {
+  searchGroups,
+  getGroup,
+  getGroupContent,
+  getGroupUsers,
+  createGroup,
+  updateGroup,
+  removeGroup,
+  protectGroup,
+  unprotectGroup,
+  createGroupNotification
+} from '@esri/arcgis-rest-groups';
 
 export default Service.extend(serviceMixin, {
 
@@ -13,17 +26,18 @@ export default Service.extend(serviceMixin, {
    * Group Search
    */
   search (form, portalOpts) {
-    const qs = this.encodeForm(form);
-    const urlPath = `/community/groups?${qs}&f=json`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return searchGroups(form, args)
+    .catch(handleError);
   },
 
   /**
    * Get group by id
    */
   getById (id, portalOpts) {
-    const urlPath = `/community/groups/${id}?f=json`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return getGroup(id, args)
+    .catch(handleError);
   },
 
   /**
@@ -54,24 +68,41 @@ export default Service.extend(serviceMixin, {
    * TODO: Add Paging
    */
   getItemsById (id, portalOpts) {
-    const urlPath = `/content/groups/${id}?f=json`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return getGroupContent(id, args)
+    .catch(handleError);
   },
 
   /**
    * Create a group
    */
   create (group, portalOpts) {
-    const urlPath = `/community/createGroup?f=json`;
-    return this._post(urlPath, group, portalOpts);
+    let clonedGroup = JSON.parse(JSON.stringify(group));
+
+    // noticed this in the dummy app, hoping its not _too_ common
+    if (group.tags && typeof group.tags === 'string') {
+      clonedGroup.tags = this._cleanupTags(group.tags);
+      debug(`GroupService:create expected tags to be an array of strings, not a single string`);
+    }
+    const args = this.addOptions({ group: clonedGroup }, portalOpts);
+    return createGroup(args)
+    .catch(handleError);
   },
 
   /**
    * Update an existing group
    */
   update (group, portalOpts) {
-    const urlPath = `/community/groups/${group.id}/update?f=json`;
-    return this._post(urlPath, group, portalOpts);
+    let clonedGroup = JSON.parse(JSON.stringify(group));
+
+    if (group.tags && typeof group.tags === 'string') {
+      clonedGroup.tags = this._cleanupTags(group.tags);
+      debug(`GroupService:create expected tags to be an array of strings, not a single string`);
+    }
+    const args = this.addOptions({ group: clonedGroup }, portalOpts);
+
+    return updateGroup(args)
+    .catch(handleError);
   },
 
   /**
@@ -91,22 +122,12 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
-   * Shared logic for POST operations
-   */
-  _post (urlPath, group, portalOpts) {
-    const options = {
-      method: 'POST',
-      data: group
-    };
-    return this.request(urlPath, options, portalOpts);
-  },
-
-  /**
    * Get the users that are members of a group
    */
   users (id, portalOpts) {
-    const urlPath = `/community/groups/${id}/users?f=json`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return getGroupUsers(id, args)
+    .catch(handleError);
   },
 
   /**
@@ -172,33 +193,27 @@ export default Service.extend(serviceMixin, {
    * Protect a group in AGO from deletion
    */
   protect (id, portalOpts) {
-    const urlPath = `/community/groups/${id}/protect?f=json`;
-    const options = {
-      method: 'POST'
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id }, portalOpts);
+    return protectGroup(args)
+    .catch(handleError);
   },
 
   /**
    * Unprotect a group in AGO from deletion
    */
   unprotect (id, portalOpts) {
-    const urlPath = `/community/groups/${id}/unprotect?f=json`;
-    const options = {
-      method: 'POST'
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id }, portalOpts);
+    return unprotectGroup(args)
+    .catch(handleError);
   },
 
   /**
    * Delete a group from AGO
    */
   remove (id, portalOpts) {
-    const urlPath = `/community/groups/${id}/delete?f=json`;
-    const options = {
-      method: 'POST'
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id }, portalOpts);
+    return removeGroup(args)
+    .catch(handleError);
   },
 
   /**
@@ -369,6 +384,15 @@ export default Service.extend(serviceMixin, {
 
     const args = this.addOptions(data, portalOpts);
     return createGroupNotification(args);
-  }
+  },
 
+  /**
+   * just in case there are instances in the parent app
+   * that set tags: "foo, bar, baz"
+   * instead of tags: ["foo", "bar", "baz"]
+   */
+  _cleanupTags (tags) {
+    // cast to a cleaned up array of strings
+    return tags.split(',').map(tag => tag.trim());
+  }
 });
