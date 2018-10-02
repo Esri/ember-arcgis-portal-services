@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "keywords": [
     "ember-addon"
