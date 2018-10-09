@@ -1,4 +1,5 @@
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -8,6 +9,12 @@ export default Controller.extend({
   userService: service('user-service'),
   portalService: service('portal-service'),
   notificationType: 'email',
+  selectedInvitationJson: computed('selectedInvitation', function () {
+    const selectedInvitation = this.get('selectedInvitation');
+    if (selectedInvitation) {
+      return JSON.stringify(selectedInvitation, null, 4);
+    }
+  }),
   actions: {
     checkFolderExists (folderName) {
       let username = this.get('session.currentUser.username');
@@ -69,6 +76,26 @@ export default Controller.extend({
         this.send('forceRefresh');
       })
       .catch(_ => alert('boo'));
+    },
+    acceptInvitation (invitation) {
+      this.get('userService').acceptInvitation(invitation.id)
+      .then(resp => {
+        this.send('forceRefresh');
+      })
+      .catch(_ => { alert('boo'); });
+    },
+    declineInvitation (invitation) {
+      this.get('userService').declineInvitation(invitation.id)
+      .then(resp => {
+        this.send('forceRefresh');
+      })
+      .catch(_ => { alert('boo'); });
+    },
+    showInvitationDetails (invitation) {
+      this.get('userService').getInvitationById(invitation.id)
+      .then(invitationDetail => {
+        this.set('selectedInvitation', invitationDetail);
+      });
     }
   }
 });

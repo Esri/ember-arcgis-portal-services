@@ -127,6 +127,10 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `signup (user, portalOpts)` | `promise` | Signs the user up to the organization |
 | `getNotifications (portalOpts)` | 'promise' | Gets the user's "builtin" notifications |
 | `removeNotification (id, portalOpts)` | 'promise' | Removes the notification |
+| 'getInvitations (portalOpts)' | 'promise' | Gets the user's invitations |
+| 'getInvitationById (id, portalOpts)' | 'promise' | Gets the specified invitation for the user |
+| 'acceptInvitation (id, portalOpts)' | 'promise' | Accepts the invitation |
+| 'declineInvitation (id, portalOpts)' | 'promise' | Declines the invitation |
 
 ## OAuth Service
 **Note:** This is not used for authentication - rather its purpose is to allow Application Items to be programatically manipulated.

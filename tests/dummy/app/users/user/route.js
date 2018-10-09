@@ -11,14 +11,16 @@ export default Route.extend({
     return hashSettled({
       user: userService.getByName(params.username),
       folders: this.get('folderService').getUserFolders(params.username),
-      notifications: userService.getNotifications()
+      notifications: userService.getNotifications(),
+      invitations: userService.getInvitations()
     });
   },
   setupController (controller, model) {
     controller.set('model', {
       user: model.user.value,
       folders: model.folders.value,
-      notifications: model.notifications.value.notifications
+      notifications: model.notifications.value.notifications,
+      invitations: model.invitations.value.userInvitations
     });
   },
   actions: {
