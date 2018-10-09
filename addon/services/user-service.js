@@ -4,7 +4,11 @@ import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import {
   getUserNotifications,
-  removeNotification
+  removeNotification,
+  getUserInvitations,
+  getUserInvitation,
+  acceptInvitation,
+  declineInvitation
 } from '@esri/arcgis-rest-users';
 
 export default Service.extend(serviceMixin, {
@@ -68,6 +72,26 @@ export default Service.extend(serviceMixin, {
   removeNotification (id, portalOpts) {
     const args = this.addOptions({id}, portalOpts);
     return removeNotification(args);
+  },
+
+  getInvitations (portalOpts) {
+    const args = this.addOptions({}, portalOpts);
+    return getUserInvitations(args);
+  },
+
+  getInvitationById (invitationId, portalOpts) {
+    const args = this.addOptions({invitationId}, portalOpts);
+    return getUserInvitation(args);
+  },
+
+  acceptInvitation (invitationId, portalOpts) {
+    const args = this.addOptions({invitationId}, portalOpts);
+    return acceptInvitation(args);
+  },
+
+  declineInvitation (invitationId, portalOpts) {
+    const args = this.addOptions({invitationId}, portalOpts);
+    return declineInvitation(args);
   },
 
   /**

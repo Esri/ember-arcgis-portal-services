@@ -42,13 +42,13 @@ module.exports = function (environment) {
 
   if (environment === 'development') {
     // if you need to test against dev API/data:
-    const env = 'dev';
-    // dev item id: b1e048699a6943dfa9a5f1f6b325998c
-    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = '7xJPH3g6bgpP8MNw';
+    // const env = 'dev';
+    // // dev item id: b1e048699a6943dfa9a5f1f6b325998c
+    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = '7xJPH3g6bgpP8MNw';
 
     // if you need to test against QA API/data:
-    // const env = 'qa';
-    // ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
+    const env = 'qa';
+    ENV.torii.providers['arcgis-oauth-bearer'].apiKey = 'VpiQwiuWl7KMTGys';
 
     // set dev/qa portalUrl
     ENV.torii.providers['arcgis-oauth-bearer'].portalUrl = `https://${env}ext.arcgis.com`;

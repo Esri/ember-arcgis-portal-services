@@ -80,5 +80,32 @@
     </form>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-6">
+    <h2>Invitations:</h2>
+    {{#each model.invitations as |invitation|}}
+      <li>
+        <button type="button" class="btn btn-sm btn-primary" {{action "acceptInvitation" invitation}}>
+          <span class="glyphicon glyphicon-check"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-danger" {{action "declineInvitation" invitation}}>
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-danger" {{action "showInvitationDetails" invitation}}>
+          ...
+        </button>
+        &nbsp;
+        {{invitation.fromUsername.username}} invited you to {{invitation.groupId}}
+      </li>
+    {{/each}}
+  </div>
+  <div class="col-sm-6">
+    {{#if selectedInvitationJson}}
+      <pre>
+{{selectedInvitationJson}}
+      </pre>
+    {{/if}}
+  </div>
+</div>
 
 {{outlet}}
