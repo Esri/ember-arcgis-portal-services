@@ -93,7 +93,7 @@
     "url": "https://github.com/Esri/ember-arcgis-portal-services/issues"
   },
   "homepage": "https://github.com/Esri/ember-arcgis-portal-services#readme",
-  "husky": {
+  "huskyOut": {
     "hooks": {
       "pre-commit": "npm run lint:js"
     }

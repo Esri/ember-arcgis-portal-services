@@ -1,5 +1,4 @@
 /* Copyright 2017-2018 Esri - Apache 2.0 */
-
 /* jshint node: true */
 'use strict';
 var path = require('path');
@@ -7,7 +6,7 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
-  name: 'ember-arcgis-portal-services',
+  name: require('./package').name
   isDevelopingAddon: function () {
     return false;
   },
