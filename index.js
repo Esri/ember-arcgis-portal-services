@@ -6,7 +6,7 @@ var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
-  name: require('./package').name
+  name: require('./package').name,
   isDevelopingAddon: function () {
     return false;
   },
