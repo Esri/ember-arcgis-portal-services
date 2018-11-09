@@ -16,7 +16,7 @@ export default Controller.extend({
   }),
 
   thumbnailUrl: computed('model.item.thumbnail', function () {
-    let portalHostname = this.get('session.portalHostName');
+    let portalHostname = this.get('session.portalHostname');
     let item = this.get('model.item');
     let url = `https://${portalHostname}/sharing/rest/content/items/${item.id}/info/${item.thumbnail}?w=400`;
     if (item.access !== 'public') {
