@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### added
 - user notification methods on user service
+- upgrade to Ember 3.5
 
 ## [1.8.2]
 ### changed
