@@ -222,7 +222,9 @@ torii: {
 
 ### Building
 
-* `ember build`
+
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [http://ember-cli.com/" target="_blank" class="rg-linkified-code">http://ember-cli.com/](http://ember-cli.com/).
 

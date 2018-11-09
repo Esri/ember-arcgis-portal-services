@@ -22,7 +22,7 @@ export default Controller.extend({
   }),
 
   agoGroupsBaseUrl: computed('session', function () {
-    return `https://${this.get('session.portalHostName')}/home/group.html`;
+    return `https://${this.get('session.portalHostname')}/home/group.html`;
   }),
 
   queryChanged: observer('q', function () {

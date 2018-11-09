@@ -19,7 +19,7 @@ export default Component.extend({
     this._getResources();
   },
   resourceBaseUrl: computed('session', 'item', function () {
-    let portalHostName = this.get('session.portalHostName');
+    let portalHostName = this.get('session.portalHostname');
     let item = this.get('item');
     return `//${portalHostName}/sharing/rest/content/items/${item.id}/resources/`;
   }),
