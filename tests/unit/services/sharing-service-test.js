@@ -40,11 +40,11 @@ test('owner share to group', function (assert) {
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
-  this.stub(service, '_post', function (url, data) {
+  this.stub(service, '_post').callsFake(function (url, data) {
     return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
-  this.stub(service, 'isItemSharedWithGroup', function (q) {
+  this.stub(service, 'isItemSharedWithGroup').callsFake(function (q) {
     return resolve(false);
   });
 
@@ -80,11 +80,11 @@ test('owner re-share to group', function (assert) {
   this.register('service:session', session);
   let service = this.subject();
   // stub the ._post so we can inspect things
-  this.stub(service, '_post', function (url, data) {
+  this.stub(service, '_post').callsFake(function (url, data) {
     return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
-  this.stub(service, 'isItemSharedWithGroup', function (q) {
+  this.stub(service, 'isItemSharedWithGroup').callsFake(function (q) {
     return resolve(true);
   });
 
@@ -112,11 +112,11 @@ test('admin re-share to group', function (assert) {
   this.register('service:session', session);
   let service = this.subject();
   // stub the ._post so we can inspect things
-  this.stub(service, '_post', function (url, data) {
+  this.stub(service, '_post').callsFake(function (url, data) {
     return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
-  this.stub(service, 'isItemSharedWithGroup', function (q) {
+  this.stub(service, 'isItemSharedWithGroup').callsFake(function (q) {
     return resolve(true);
   });
 
@@ -150,11 +150,11 @@ test('owner share to group with itemControl', function (assert) {
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
-  this.stub(service, '_post', function (url, data) {
+  this.stub(service, '_post').callsFake(function (url, data) {
     return resolve({'itemId': '3efakeId', notSharedWith: []});
   });
 
-  this.stub(service, 'isItemSharedWithGroup', function (q) {
+  this.stub(service, 'isItemSharedWithGroup').callsFake(function (q) {
     return resolve(false);
   });
 
@@ -194,10 +194,10 @@ test('owner share to group message response', function (assert) {
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
-  this.stub(service, '_post', function (url, data) {
+  this.stub(service, '_post').callsFake(function (url, data) {
     return resolve({'itemId': '3efakeId', notSharedWith: ['4efakeGroupId']});
   });
-  this.stub(service, 'isItemSharedWithGroup', function (q) {
+  this.stub(service, 'isItemSharedWithGroup').callsFake(function (q) {
     return resolve(false);
   });
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')
@@ -234,10 +234,10 @@ test('non-owner can not share item to group', function (assert) {
   this.register('service:groups-service', groupSvc);
   let service = this.subject();
   // stub the ._post so we can inspect things
-  this.stub(service, '_post', function (url, data) {
+  this.stub(service, '_post').callsFake(function (url, data) {
     return resolve({'itemId': '3efakeId'});
   });
-  this.stub(service, 'isItemSharedWithGroup', function (q) {
+  this.stub(service, 'isItemSharedWithGroup').callsFake(function (q) {
     return resolve(false);
   });
   return service.shareWithGroup('fakeuser', '3efakeId', '4efakeGroupId')

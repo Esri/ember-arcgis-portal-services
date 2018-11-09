@@ -16,8 +16,7 @@ test('it returns the passed service name when it is unique', function (assert) {
   assert.expect(2);
 
   const service = this.subject();
-
-  this.stub(service, 'serviceExists', function (serviceName) {
+  this.stub(service, 'serviceExists').callsFake((serviceName) => {
     const available = true;
     return resolve({ available });
   });
@@ -35,8 +34,7 @@ test('it returns a unique service name when passed name is not unique', function
   const service = this.subject();
 
   let callCount = 0;
-
-  this.stub(service, 'serviceExists', function (serviceName) {
+  this.stub(service, 'serviceExists').callsFake((serviceName) => {
     const available = serviceName === 'Hub Events 3';
     callCount++;
     return resolve({ available });
