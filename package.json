@@ -40,7 +40,7 @@
     "broccoli-merge-trees": "^2.0.0",
     "ember-cli-babel": "^6.16.0",
     "ember-cli-htmlbars": "^3.0.0",
-    "ember-fetch": "^6.1.0"
+    "ember-fetch": "buschtoens/ember-fetch#upgrade"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
