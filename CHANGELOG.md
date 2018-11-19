@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - user notification methods on user service
 - upgrade to Ember 3.5
 
+### changed
+- upgraded to ember-fetch 6.2.0
+
 ## [1.8.2]
 ### changed
 - configure eslint to use default ember rules & avoid jQuery
