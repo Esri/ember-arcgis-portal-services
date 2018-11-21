@@ -54,9 +54,9 @@ export default Service.extend(serviceMixin, {
    * Update an existing user
    * will update the `/data` if the `.text` value is present
    */
-  update (user, portalOpts) {
+  update (user, portalOpts, formData) {
     const urlPath = `/community/users/${user.username}/update?f=json`;
-    return this._post(urlPath, user, portalOpts);
+    return this._post(urlPath, formData || user, portalOpts);
   },
 
   signup (user, portalOpts) {
@@ -121,12 +121,16 @@ export default Service.extend(serviceMixin, {
    * Shared logic for POST operations
    */
   _post (urlPath, item, portalOpts) {
-    const serializedItem = this._serializeUser(item);
-
-    const options = {
-      method: 'POST',
-      data: serializedItem
-    };
+    const options = { method: 'POST' };
+    if (item.toString() === '[object FormData]') {
+      options.data = item;
+      options.headers = {
+        'Accept': '*/*',
+        'Content-Type': 'multipart/form-data; boundary=------chase-is-really-cool'
+      }
+    } else {
+      options.data = this._serializeUser(item);
+    }
     return this.request(urlPath, options, portalOpts);
   }
 
