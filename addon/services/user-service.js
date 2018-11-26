@@ -123,10 +123,9 @@ export default Service.extend(serviceMixin, {
   _post (urlPath, item, portalOpts) {
     const options = { method: 'POST' };
     if (item.toString() === '[object FormData]') {
-      options.data = item;
+      options.body = item;
       options.headers = {
-        'Accept': '*/*',
-        'Content-Type': 'multipart/form-data; boundary=------chase-is-really-cool'
+        'Content-Type': 'multipart/form-data;'
       }
     } else {
       options.data = this._serializeUser(item);
