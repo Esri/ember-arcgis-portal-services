@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- adds ability to POST multipart/form-data requests from users service
 
 ## [1.11.0]
 ### added
