@@ -124,9 +124,6 @@ export default Service.extend(serviceMixin, {
     const options = { method: 'POST' };
     if (item.toString() === '[object FormData]') {
       options.body = item;
-      options.headers = {
-        'Content-Type': 'multipart/form-data;'
-      }
     } else {
       options.data = this._serializeUser(item);
     }

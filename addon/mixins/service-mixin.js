@@ -141,8 +141,9 @@ export default Mixin.create({
       if (opts.body) {
         delete opts.headers['Content-Type'];// = 'multipart/form-data';
       }
+
       // if we have a data, create a formData from it
-      if (opts.data && opts.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
+      if (opts.data) {
         var form = this.encodeForm(opts.data);
         opts.body = form;
       }
