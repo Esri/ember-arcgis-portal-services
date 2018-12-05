@@ -94,6 +94,12 @@ export default Service.extend(serviceMixin, {
     return declineInvitation(args);
   },
 
+  getSecuritySettings (portalOpts) {
+    let {username} = this.get('session.currentUser');
+    const urlPath = `/community/users/${username}/forgotPassword?f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
   /**
    * Extra logic to transform the item prior to POSTing it
    */
