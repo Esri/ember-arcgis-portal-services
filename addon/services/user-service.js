@@ -100,6 +100,11 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
+  generateToken (user, portalOpts, formData) {
+    const urlPath = `/generateToken?f=json`;
+    return this._post(urlPath, formData || user, portalOpts);
+  },
+
   /**
    * Extra logic to transform the item prior to POSTing it
    */
