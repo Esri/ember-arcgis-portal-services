@@ -16,6 +16,11 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
+  getSecurityPolicy (portalOpts) {
+    const urlPath = `/portals/self/securityPolicy?f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
   /**
    * Update the portal
    */
