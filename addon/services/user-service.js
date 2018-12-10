@@ -94,12 +94,14 @@ export default Service.extend(serviceMixin, {
     return declineInvitation(args);
   },
 
+  // TODO: migrate to arcgis-rest-js
   getSecuritySettings (portalOpts) {
     let {username} = this.get('session.currentUser');
     const urlPath = `/community/users/${username}/forgotPassword?f=json`;
     return this.request(urlPath, null, portalOpts);
   },
 
+  // TODO: use arcgis-rest-js method https://esri.github.io/arcgis-rest-js/api/auth/generateToken
   generateToken (user, portalOpts, formData) {
     const urlPath = `/generateToken?f=json`;
     return this._post(urlPath, formData || user, portalOpts);
