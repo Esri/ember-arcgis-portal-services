@@ -2,7 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased
+## [Unreleased]
+### added
+- `user-service` `getSecuritySettings` and `generateToken` methods
+- `portal-service` `getSecurityPolicy` method
 
 ## [1.12.0]
 - adds ability to POST multipart/form-data requests from users service

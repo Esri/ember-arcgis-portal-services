@@ -10,6 +10,7 @@ import {
   acceptInvitation,
   declineInvitation
 } from '@esri/arcgis-rest-users';
+import { generateToken } from '@esri/arcgis-rest-auth';
 
 export default Service.extend(serviceMixin, {
 
@@ -92,6 +93,19 @@ export default Service.extend(serviceMixin, {
   declineInvitation (invitationId, portalOpts) {
     const args = this.addOptions({invitationId}, portalOpts);
     return declineInvitation(args);
+  },
+
+  // TODO: migrate to arcgis-rest-js
+  getSecuritySettings (portalOpts) {
+    let {username} = this.get('session.currentUser');
+    const urlPath = `/community/users/${username}/forgotPassword?f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
+  generateToken (params, portalOpts) {
+    const url = `${this.getPortalRestUrl(portalOpts)}/generateToken?f=json`;
+    const args = this.addOptions({params}, portalOpts);
+    return generateToken(url, args);
   },
 
   /**
