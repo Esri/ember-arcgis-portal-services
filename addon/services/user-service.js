@@ -10,6 +10,7 @@ import {
   acceptInvitation,
   declineInvitation
 } from '@esri/arcgis-rest-users';
+import { generateToken } from '@esri/arcgis-rest-auth';
 
 export default Service.extend(serviceMixin, {
 
@@ -101,10 +102,10 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
-  // TODO: use arcgis-rest-js method https://esri.github.io/arcgis-rest-js/api/auth/generateToken
-  generateToken (user, portalOpts, formData) {
-    const urlPath = `/generateToken?f=json`;
-    return this._post(urlPath, formData || user, portalOpts);
+  generateToken (params, portalOpts) {
+    const url = `${this.getPortalRestUrl(portalOpts)}/generateToken?f=json`;
+    const args = this.addOptions({params}, portalOpts);
+    return generateToken(url, args);
   },
 
   /**
