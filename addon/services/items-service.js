@@ -51,8 +51,7 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
-   * Get the `/groups` as json. If nothing is returned by AGO
-   * and empty array (`[]`) will be returned by this call
+   * Get the `/groups` as json
    */
   getGroupsById (itemId, portalOpts) {
     const urlPath = `/content/items/${itemId}/groups?f=json`;
