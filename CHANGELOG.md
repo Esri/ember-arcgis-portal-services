@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### added
+- `items-service` `getGroupsById` method
+
+## [1.13.0]
+### added
 - `user-service` `getSecuritySettings` and `generateToken` methods
 - `portal-service` `getSecurityPolicy` method
 

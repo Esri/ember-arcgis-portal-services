@@ -51,6 +51,14 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
+   * Get the `/groups` as json
+   */
+  getGroupsById (itemId, portalOpts) {
+    const urlPath = `/content/items/${itemId}/groups?f=json`;
+    return this.request(urlPath, null, portalOpts);
+  },
+
+  /**
    * Update an existing item
    * will update the `/data` if the `.text` value is present
    */
