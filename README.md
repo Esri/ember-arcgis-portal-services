@@ -9,24 +9,23 @@
 [travis-img]: https://img.shields.io/travis/Esri/ember-arcgis-portal-services/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/Esri/ember-arcgis-portal-services
 
-Ember Services for working with ArcGIS Portal/Online
+Ember Services for working with ArcGIS Portal/Online. Essentially a wrapper around the functions from [arcgis-rest-js](https://esri.github.io/arcgis-rest-js/) for working with [items](https://esri.github.io/arcgis-rest-js/api/items/), [groups](https://esri.github.io/arcgis-rest-js/api/groups/), and [users](https://esri.github.io/arcgis-rest-js/api/users/) that integrates with [torii] authentication.
 
-**Note**  This is still a very nascent project, and things will change.
-
-We recommend locking to a specific version in your own `package.json` - although we try to avoid breaking changes,
-
-### ArcGIS Portal Services
-After adding this to your project, you will have a number of services available for injection into your routes/controllers/services.
-
-### Dependencies
-This project is now using `ember-fetch`, which is included in dependencies.
-
-If you're using `torii` for oauth management, please also `npm install torii-provider-arcgis`. More information [here](https://github.com/dbouwman/torii-provider-arcgis).
-Otherwise, you can use the `portalOpts` parameter described below, but you need a service named `session` in your app or addon. You can generate a dummy service using `ember generate service session`. *TODO: there's probably a better way to do this...*
+## Getting Started
 
 ### Installation
 To consume this library in any ember application:
 * `ember install ember-arcgis-portal-services`
+
+### Dependencies
+This project uses `ember-fetch`, and a few packages from [arcgis-rest-js](https://github.com/Esri/arcgis-rest-js), which will be installed as dependencies.
+
+If you're using [torii] for oauth management, please also `npm install torii-provider-arcgis`. More information [here](https://github.com/dbouwman/torii-provider-arcgis).
+
+Otherwise, you can use the `portalOpts` parameter described below, but you need a service named `session` in your app or addon. You can generate a dummy service using `ember generate service session`. *TODO: there's probably a better way to do this...*
+
+## ArcGIS Portal Services
+After adding this to your project, you will have a number of services available for injection into your routes/controllers/services.
 
 ### Shared Methods
 All the services expose a set of shared helper properties and methods:
@@ -260,3 +259,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 A copy of the license is available in the repository's [LICENSE](./LICENSE) file.
+
+[torii]:https://github.com/Vestorly/torii
