@@ -242,6 +242,18 @@ export default Service.extend(serviceMixin, {
     };
     const urlPath = `/portals/self/createNotification?f=json`;
     return this._post(urlPath, opts, portalOpts);
-  }
+  },
+
+  setUserDefaultSettings (opts, portalOpts) {
+    /*
+      opts: {
+        role: 'org_publisher',
+        userLicenseType: 'creatorUT',
+        groups: ['9307951034514d378246d806b28b6192']
+      }
+    */
+    const urlPath = `/portals/self/setUserDefaultSettings?f=json`;
+    return this._post(urlPath, opts, portalOpts);
+  },
 
 });
