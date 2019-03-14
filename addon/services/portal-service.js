@@ -247,9 +247,9 @@ export default Service.extend(serviceMixin, {
   setUserDefaultSettings (opts, portalOpts) {
     /*
       opts: {
-        role: org_publisher,
-        userLicenseType: creatorUT,
-        groups: 9307951034514d378246d806b28b6192
+        role: 'org_publisher',
+        userLicenseType: 'creatorUT',
+        groups: ['9307951034514d378246d806b28b6192']
       }
     */
     const urlPath = `/portals/self/setUserDefaultSettings?f=json`;
