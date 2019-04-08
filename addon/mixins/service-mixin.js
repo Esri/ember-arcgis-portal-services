@@ -169,6 +169,7 @@ export default Mixin.create({
         url = url + '?token=' + token;
       }
     }
+
     // Ember.debug('Portal Services making request to: ' + url);
     return fetch(url, opts)
     // we need the => here, just .then(this.checkStatusAndParseJson) causes problems with rejection

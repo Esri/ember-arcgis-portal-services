@@ -12,7 +12,6 @@ moduleFor('service:user-service', 'Unit | Service | user service', {
   }
 });
 
-// Replace this with your real tests.
 test('it serializes tags', function (assert) {
   const service = this.subject();
   const user = {
@@ -22,4 +21,13 @@ test('it serializes tags', function (assert) {
   assert.equal(service._serializeUser(user).tags, user.tags.join(', '), 'should return comma delimited list');
   user.tags = [];
   assert.equal(service._serializeUser(user).tags, 'user', 'should return default tag for empty array');
+});
+
+test('it serializes typeKeywords', function (assert) {
+  const service = this.subject();
+  const user = {
+    username: 'tomwayson',
+    typeKeywords: ['test', 'test1']
+  };
+  assert.equal(service._serializeUser(user).typeKeywords, user.typeKeywords.join(', '), 'should return comma delimited list');
 });

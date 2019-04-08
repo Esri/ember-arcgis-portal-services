@@ -256,4 +256,9 @@ export default Service.extend(serviceMixin, {
     return this._post(urlPath, opts, portalOpts);
   },
 
+  getUserDefaultSettings (portalOpts) {
+    const urlPath = `/portals/self/userDefaultSettings?f=json`;
+    return this.request(urlPath, {}, portalOpts);
+  }
+
 });
