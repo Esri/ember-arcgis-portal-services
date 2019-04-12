@@ -22,12 +22,3 @@ test('it serializes tags', function (assert) {
   user.tags = [];
   assert.equal(service._serializeUser(user).tags, 'user', 'should return default tag for empty array');
 });
-
-test('it serializes typeKeywords', function (assert) {
-  const service = this.subject();
-  const user = {
-    username: 'tomwayson',
-    typeKeywords: ['test', 'test1']
-  };
-  assert.equal(service._serializeUser(user).typeKeywords, user.typeKeywords.join(', '), 'should return comma delimited list');
-});
