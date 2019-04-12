@@ -9,7 +9,8 @@ export default Route.extend({
   model () {
     return hash({
       portal: this.get('session.portal'),
-      resources: this.get('portalService').getResources()
+      resources: this.get('portalService').getResources(),
+      userDefaultSettings: this.get('portalService').getUserDefaultSettings()
     });
   }
 });

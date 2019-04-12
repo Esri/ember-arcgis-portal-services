@@ -1,7 +1,8 @@
-import { copy } from '@ember/object/internals';
+
 import { deprecate } from '@ember/application/deprecations';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
+import { cloneObject } from 'ember-arcgis-portal-services/utils/clone-object';
 import {
   getUserNotifications,
   removeNotification,
@@ -112,13 +113,13 @@ export default Service.extend(serviceMixin, {
    * Extra logic to transform the item prior to POSTing it
    */
   _serializeUser (user) {
-    let clone = copy(user, true);
+    let clone = cloneObject(user);
 
     // groups are ignored
     delete clone.groups;
 
     // Array items need to become comma delim strings
-    if (user.tags && user.tags.join) {
+    if (Array.isArray(user.tags)) {
       clone.tags = user.tags.join(', ');
       if (clone.tags === '') {
         // NOTE: you can't currently reset the tags to an empty array

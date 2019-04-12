@@ -8,6 +8,7 @@
       <strong>Please...</strong> do not make ANY changes here if you are not 100% sure about what you are doing.
     </div>
   </div>
+
   <div class="col-sm-6">
     <h3>Portal Settings </h3>
     <ul>
@@ -15,14 +16,39 @@
       <li>Id: {{model.portal.id}}</li>
       <li>Access: {{model.portal.access}}</li>
       <li>All SSL: {{model.portal.allSSL}}</li>
+      <li>Platform SSO: {{hasPlatformSSO}}</li>
       <li>Created: {{createDate}}</li>
       <li>Modified: {{modifyDate}}</li>
     </ul>
   </div>
   <div class="col-sm-6">
-    <h3>Portal Properties Json <button class="btn btn-primary pull-right" {{action 'saveChanges'}}>Save</button></h3>
-    {{json-editor json=propertiesJson mode="code" onChange=(action (mut propertiesJson))}}
+    <h3>Toggle Platform SSO</h3>
+    {{#if hasPlatformSSO}}
+      <button class="btn btn-danger" {{action "disablePlatformSSO"}}>Disable Platform SSO</button>
+    {{else}}
+      <button class="btn btn-success" {{action "enablePlatformSSO"}}>Enable Platform SSO</button>
+    {{/if}}
   </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>User Default Settings <button class="btn btn-primary pull-right" {{action 'saveUserDefaults'}}>Save User Defaults</button></h3>
+    {{json-editor json=userDefaultsJson mode="code" onChange=(action (mut userDefaultsJson))}}
+    <h5>Example</h5>
+    <p>All properties are required!</p>
+    <pre>
+      <code>
+{{userDefaultsExample}}
+      </code>
+    </pre>
+  </div>
+  <div class="col-sm-6">
+    <h3>Portal Properties Json <button class="btn btn-primary pull-right" {{action 'saveChanges'}}>Save Properties</button></h3>
+    {{json-editor json=propertiesJson mode="code" onChange=(action (mut propertiesJson))}}
+
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-12">
     {{portal-resources
       onFetchResources=(action 'fetchResources')
@@ -30,5 +56,13 @@
       onUploadFile=(action 'uploadFile')
       onJsonUpload=(action 'sendJson')
       }}
+  </div>
+  <div class="col-sm-12">
+    <h3>Portal Json</h3>
+    <pre>
+      <code>
+{{jsonPortal}}
+      </code>
+    </pre>
   </div>
 </div>

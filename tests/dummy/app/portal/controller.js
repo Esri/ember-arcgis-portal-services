@@ -17,6 +17,34 @@ export default Controller.extend({
     return this.get('model.portal.portalProperties');
   }),
 
+  userDefaultsJson: computed('model.userDefaultSettings', function () {
+    return this.get('model.userDefaultSettings');
+  }),
+
+  jsonPortal: computed('model.portal', function () {
+    return JSON.stringify(this.get('model.portal'), null, 4);
+  }),
+
+  hasPlatformSSO: computed('model.portal.platformSSO', function () {
+    return this.get('model.portal.platformSSO');
+  }),
+
+  userDefaultsExample: computed('model.portal', function () {
+    return JSON.stringify({
+      role: 'org_publisher',
+      userLicenseType: 'creatorUT',
+      groups: ['group-id-you-want-users-joined-to']
+    }, null, 4);
+  }),
+
+  setPlatformSSO (val) {
+    // set it on the model...
+    this.set('model.portal.platformSSO', val);
+    let portal = this.get('model.portal');
+
+    return this.get('portalService').update(portal);
+  },
+
   actions: {
     removeResource (resourceName) {
       return this.get('portalService').removeResource(resourceName);
@@ -44,6 +72,19 @@ export default Controller.extend({
           this.set('dirty', false);
         }
       });
+    },
+
+    enablePlatformSSO () {
+      this.setPlatformSSO(true);
+    },
+
+    disablePlatformSSO () {
+      this.setPlatformSSO(false);
+    },
+
+    saveUserDefaults () {
+      const userDefaults = this.get('userDefaultsJson');
+      return this.get('portalService').setUserDefaultSettings(userDefaults);
     }
   }
 });

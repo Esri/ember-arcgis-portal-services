@@ -12,7 +12,6 @@ moduleFor('service:user-service', 'Unit | Service | user service', {
   }
 });
 
-// Replace this with your real tests.
 test('it serializes tags', function (assert) {
   const service = this.subject();
   const user = {
