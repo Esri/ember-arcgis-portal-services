@@ -129,10 +129,6 @@ export default Service.extend(serviceMixin, {
       }
     }
 
-    if (Array.isArray(user.typeKeywords)) {
-      clone.typeKeywords = user.typeKeywords.join(', ');
-    }
-
     return clone;
   },
 
