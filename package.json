@@ -19,7 +19,7 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
-    "test": "ember test",
+    "test": "npm run lint:js && ember test",
     "test:all": "ember try:each",
     "start:portal": "ember s --env=koopernetes",
     "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",

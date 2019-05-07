@@ -1,7 +1,5 @@
 import { deprecate } from '@ember/application/deprecations';
-import { A } from '@ember/array';
-import { debug } from '@ember/debug';
-import { reject, resolve } from 'rsvp';
+import { reject } from 'rsvp';
 import Service, { inject as service } from '@ember/service';
 import serviceMixin from '../mixins/service-mixin';
 import { handleError } from 'ember-arcgis-portal-services/utils/errors';
@@ -51,8 +49,7 @@ export default Service.extend(serviceMixin, {
     const args = this.addOptions({
       id: itemId,
       owner,
-      groupId,
-      params: { confirmItemControl }
+      groupId
     }, portalOpts);
 
     return unshareItemWithGroup(args)

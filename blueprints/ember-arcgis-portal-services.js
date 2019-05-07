@@ -2,7 +2,7 @@
 module.exports = {
   description: 'Install torii-provider-arcgis dependencies',
 
-  normalizeEntityName() {
+  normalizeEntityName () {
     // this prevents an error when the entityName is
     // not specified (since that doesn't actually matter
     // to us
@@ -15,7 +15,7 @@ module.exports = {
   //   };
   // }
 
-  afterInstall(/* options */) {
+  afterInstall (/* options */) {
     // ensure peerDependencies are installed
     this.addPackageToProject('@esri/arcgis-rest-request', '^2.0.0');
     this.addPackageToProject('@esri/arcgis-rest-auth', '^2.0.0');
