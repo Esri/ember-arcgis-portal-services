@@ -11,7 +11,7 @@ import {
   removeItem,
   protectItem,
   unprotectItem
-} from '@esri/arcgis-rest-items';
+} from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
 
@@ -26,7 +26,7 @@ export default Service.extend(serviceMixin, {
    * Item Search
    */
   search (form, portalOpts) {
-    const args = this.addOptions({ searchForm: form }, portalOpts);
+    const args = this.addOptions(form, portalOpts);
     return searchItems(args)
     .catch(handleError);
   },
@@ -76,7 +76,7 @@ export default Service.extend(serviceMixin, {
     const args = this.addOptions({
       item,
       owner: item.owner,
-      folder: folderId
+      folderId
     }, portalOpts);
 
     return createItemInFolder(args)

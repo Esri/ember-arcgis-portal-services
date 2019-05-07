@@ -10,7 +10,7 @@ import {
   getUserInvitation,
   acceptInvitation,
   declineInvitation
-} from '@esri/arcgis-rest-users';
+} from '@esri/arcgis-rest-portal';
 import { generateToken } from '@esri/arcgis-rest-auth';
 
 export default Service.extend(serviceMixin, {

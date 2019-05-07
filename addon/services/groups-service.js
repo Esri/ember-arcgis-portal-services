@@ -16,7 +16,7 @@ import {
   protectGroup,
   unprotectGroup,
   createGroupNotification
-} from '@esri/arcgis-rest-groups';
+} from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
 
@@ -26,8 +26,8 @@ export default Service.extend(serviceMixin, {
    * Group Search
    */
   search (form, portalOpts) {
-    const args = this.addOptions({}, portalOpts);
-    return searchGroups(form, args)
+    const args = this.addOptions(form, portalOpts);
+    return searchGroups(args)
     .catch(handleError);
   },
 

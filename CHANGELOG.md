@@ -4,9 +4,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- ArcGIS REST JS v2.x is now used under the hood
+- ember-auto-import is now used to load ArcGIS REST JS
+
+### Removed
+- `geocode-service` `findLocationAddress` method.
+
 ## [1.15.1]
 ### Changed
-- Allow updating `defaultUserCreditAssignment` & `platformSSO` on portal 
+- Allow updating `defaultUserCreditAssignment` & `platformSSO` on portal
 
 ## [1.15.0]
 ### Added
