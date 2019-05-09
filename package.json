@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "1.15.2",
+  "version": "2.0.0",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "keywords": [
     "ember-addon"
@@ -82,7 +82,7 @@
     "jsoneditor": "5.5.6",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "torii-provider-arcgis": "^2.2.2"
+    "torii-provider-arcgis": "^3.0.0"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0]
 ### Changed
 - ArcGIS REST JS v2.x is now used under the hood
 - ember-auto-import is now used to load ArcGIS REST JS
@@ -469,7 +470,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
 
-[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.8.2...HEAD
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.15.1...v2.0.0
+[1.15.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.15.0...1.15.1
+[1.15.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.14.0...1.15.0
+[1.14.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.13.0...1.14.0
+[1.13.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.12.0...1.13.0
+[1.12.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.11.0...1.12.0
+[1.11.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.8.2...1.11.0
 [1.8.2]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.8.1...v1.8.2
 [1.8.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.8.0...v1.8.1
 [1.8.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.7.1...v1.8.0
