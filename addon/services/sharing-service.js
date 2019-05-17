@@ -36,7 +36,7 @@ export default Service.extend(serviceMixin, {
       id: itemId,
       owner,
       groupId,
-      params: { confirmItemControl }
+      confirmItemControl
     }, portalOpts);
 
     return shareItemWithGroup(args)
