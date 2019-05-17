@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.1]
+### Fixed
+- `confirmItemControl` is now passed through in sharing requests
+
 ## [2.0.0]
 ### Changed
 - ArcGIS REST JS v2.x is now used under the hood
@@ -470,7 +474,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
    - `.create(item)`, will create the data via `item.text` is sent
    - `.update(item)`, will update the data via `item.text` is sent
 
-[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/Esri/ember-arcgis-portal-services/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.15.1...v2.0.0
 [1.15.1]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.15.0...1.15.1
 [1.15.0]: https://github.com/Esri/ember-arcgis-portal-services/compare/v1.14.0...1.15.0
