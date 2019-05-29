@@ -70,7 +70,7 @@
     "ember-source": "~3.5.0",
     "ember-source-channel-url": "^1.1.0",
     "ember-truth-helpers": "^2.1.0",
-    "ember-try": "^1.0.0",
+    "ember-try": "^1.2.1",
     "eslint-config-semistandard": "~7.0.0",
     "eslint-config-standard": "~6.0.0",
     "eslint-plugin-ember": "^5.2.0",
