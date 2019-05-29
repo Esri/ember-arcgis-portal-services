@@ -146,6 +146,21 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
+   * Add admins to a group
+   */
+  addAdmins (id, admins, portalOpts) {
+    const data = {
+      admins: admins.join(',')
+    };
+    const urlPath = `/community/groups/${id}/addUsers?f=json`;
+    const options = {
+      method: 'POST',
+      data: data
+    };
+    return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
    * Invites users to group
    * @param {string} id Group id
    * @param {boolean} string Whether to make the invited user an admin
