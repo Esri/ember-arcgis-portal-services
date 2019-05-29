@@ -88,6 +88,7 @@ All the services expose a set of shared helper properties and methods:
 | `unprotect(id, portalOpts)` |  `promise` | Unprotect the Group from deletion. |
 | `users(id, portalOpts)` |  `promise` | Return array of users that are members of the Group. [Documentation](http://resources.arcgis.com/en/help/arcgis-rest-api/#/Group_Users/02r30000006p000000/) |
 | `addUsers(id, users, portalOpts)` |  `promise` | Adds users to the Group. Expects an array of usernames. |
+| `addAdmins(id, admins, portalOpts)` |  `promise` | Adds admins to the Group. Expects an array of usernames. |
 | `reassign(id, username, portalOpts)` | `promise` | Reassign ownership of the group |
 | `remove(id, portalOpts)` |  `promise` | Deletes a group from AGO |
 | `join(id, portalOpts)` |  `promise` | Request for current user to join a group |
