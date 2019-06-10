@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- bug in `groups-service` where `doesGroupExist` would incorrectly report that a group name exists.
+
 ## [2.1.0]
 ### Added
 - 'groups-service' 'addAdmins' method.
