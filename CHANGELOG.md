@@ -7,9 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - bug in `groups-service` where `doesGroupExist` would incorrectly report that a group name exists.
 
+### Added
+- `portal-service` `setSigninSettings` and `getSigninSettings` methods
+
 ## [2.1.0]
 ### Added
-- 'groups-service' 'addAdmins' method.
+- `groups-service` `addAdmins` method.
 
 ## [2.0.1]
 ### Fixed

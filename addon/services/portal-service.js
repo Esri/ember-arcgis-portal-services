@@ -259,6 +259,24 @@ export default Service.extend(serviceMixin, {
   getUserDefaultSettings (portalOpts) {
     const urlPath = `/portals/self/userDefaultSettings?f=json`;
     return this.request(urlPath, {}, portalOpts);
+  },
+
+  setSigninSettings (opts, portalOpts) {
+    /*
+      opts: {
+        termsAndConditions,
+        signinThumbnail,
+        hideCrossOrgSigninLink: false
+        enableArcGISAutoSignups: true
+      }
+    */
+    const urlPath = `/portals/self/setSigninSettings?f=json`;
+    return this._post(urlPath, opts, portalOpts);
+  },
+
+  getSigninSettings (portalOpts) {
+    const urlPath = `/portals/self/signinSettings?f=json`;
+    return this.request(urlPath, {}, portalOpts);
   }
 
 });

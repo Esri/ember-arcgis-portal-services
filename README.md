@@ -170,6 +170,9 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `sendBuiltinNotification (subject, message, users = [], portalOpts)` | `promise` | Sends a builtin notification to the specified users |
 | `sendPushNotification (data, users = [], portalOpts)` | `promise` | Sends a push notification to the specified users |
 | `setUserDefaultSettings (opts, portalOpts)` | `promise` | sets default user settings |
+| `getUserDefaultSettings (opts, portalOpts)` | `promise` | gets default user settings |
+| `setSigninSettings (opts, portalOpts)` | `promise` | sets organization signin settings |
+| `getSigninSettings (opts, portalOpts)` | `promise` | gets organization signin settings |
 
 ### Folders Service
 | Method |  Returns | Description |
