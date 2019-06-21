@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- use `arcgis-rest-js` in the `addUsers` and `addAdmins` methods of `groups-service`
+
 ### Fixed
 - bug in `groups-service` where `doesGroupExist` would incorrectly report that a group name exists.
 

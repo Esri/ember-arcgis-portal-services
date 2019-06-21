@@ -15,7 +15,8 @@ import {
   removeGroup,
   protectGroup,
   unprotectGroup,
-  createGroupNotification
+  createGroupNotification,
+  addGroupUsers
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -134,30 +135,16 @@ export default Service.extend(serviceMixin, {
    * Add users to a group
    */
   addUsers (id, users, portalOpts) {
-    const data = {
-      users: users.join(',')
-    };
-    const urlPath = `/community/groups/${id}/addUsers?f=json`;
-    const options = {
-      method: 'POST',
-      data: data
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id, users }, portalOpts);
+    return addGroupUsers(args);
   },
 
   /**
    * Add admins to a group
    */
   addAdmins (id, admins, portalOpts) {
-    const data = {
-      admins: admins.join(',')
-    };
-    const urlPath = `/community/groups/${id}/addUsers?f=json`;
-    const options = {
-      method: 'POST',
-      data: data
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id, admins }, portalOpts);
+    return addGroupUsers(args);
   },
 
   /**
