@@ -4,16 +4,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.2.1
 ### Changed
 - use `arcgis-rest-js` in the `addUsers` and `addAdmins` methods of `groups-service`
 
 ### Fixed
 - bug in `groups-service` where `doesGroupExist` would incorrectly report that a group name exists.
 
+## 2.2.0
+
 ### Added
 - `portal-service` `setSigninSettings` and `getSigninSettings` methods
 
-## [2.1.0]
+## 2.1.0
 ### Added
 - `groups-service` `addAdmins` method.
 
