@@ -33,7 +33,7 @@ export default Controller.extend({
     return this.get('model.portal.platformSSO');
   }),
 
-    userDefaultsExample: computed('model.signinSettings', function () {
+    userDefaultsExample: computed('model.portal', function () {
     return JSON.stringify({
       role: 'org_publisher',
       userLicenseType: 'creatorUT',
@@ -41,7 +41,7 @@ export default Controller.extend({
     }, null, 4);
   }),
 
-  signinSettingsExample: computed('model.portal', function () {
+  signinSettingsExample: computed('model.signinSettings', function () {
     return JSON.stringify({
         "termsAndConditions": "Must love klaus",
         "hideCrossOrgSigninLink": true,
