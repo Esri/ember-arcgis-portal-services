@@ -33,7 +33,7 @@ export default Controller.extend({
     return this.get('model.portal.platformSSO');
   }),
 
-    userDefaultsExample: computed('model.portal', function () {
+  userDefaultsExample: computed('model.portal', function () {
     return JSON.stringify({
       role: 'org_publisher',
       userLicenseType: 'creatorUT',
