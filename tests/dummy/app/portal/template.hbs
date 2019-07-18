@@ -49,8 +49,13 @@
   <div class="col-sm-4">
     <h3>Signin Settings <button class="btn btn-primary pull-right" {{action 'saveSigninSettings'}}>Save Sign In Settings</button></h3>
     {{json-editor json=signinSettingsJson mode="code" onChange=(action (mut signinSettingsJson))}}
-    <h5>NOTE</h5>
-    <p>Auto Sign Up property does not work on non-community orgs</p>
+    <h5>Example</h5>
+    <p>enableArcGISAutoSignups only avail. on community orgs</p>
+    <pre>
+      <code>
+{{signinSettingsExample}}
+      </code>
+    </pre>
   </div>
 </div>
 <div class="row">

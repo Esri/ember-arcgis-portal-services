@@ -35,6 +35,14 @@ export default Controller.extend({
 
   userDefaultsExample: computed('model.portal', function () {
     return JSON.stringify({
+        "termsAndConditions": "Must love klaus",
+        "hideCrossOrgSigninLink": true,
+        "enableArcGISAutoSignups": false
+    }, null, 4);
+  }),
+
+  signinSettingsExample: computed('model.signinSettings', function () {
+    return JSON.stringify({
       role: 'org_publisher',
       userLicenseType: 'creatorUT',
       groups: ['group-id-you-want-users-joined-to']
