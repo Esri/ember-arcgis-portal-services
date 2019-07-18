@@ -43,9 +43,9 @@ export default Controller.extend({
 
   signinSettingsExample: computed('model.signinSettings', function () {
     return JSON.stringify({
-      'termsAndConditions': 'Must love klaus',
-      'hideCrossOrgSigninLink': true,
-      'enableArcGISAutoSignups': false
+      termsAndConditions: 'Must love klaus',
+      hideCrossOrgSigninLink: true,
+      enableArcGISAutoSignups: false
     }, null, 4);
   }),
 
