@@ -21,12 +21,20 @@ export default Controller.extend({
     return this.get('model.userDefaultSettings');
   }),
 
+  signinSettingsJson: computed('model.signinSettings', function () {
+    return this.get('model.signinSettings');
+  }),
+
   jsonPortal: computed('model.portal', function () {
     return JSON.stringify(this.get('model.portal'), null, 4);
   }),
 
   hasPlatformSSO: computed('model.portal.platformSSO', function () {
     return this.get('model.portal.platformSSO');
+  }),
+
+  enableArcGISAutoSignups: computed('model.signinSettings.enableArcGISAutoSignups', function () {
+    return this.get('model.signinSettings.enableArcGISAutoSignups');
   }),
 
   userDefaultsExample: computed('model.portal', function () {
@@ -85,6 +93,19 @@ export default Controller.extend({
     saveUserDefaults () {
       const userDefaults = this.get('userDefaultsJson');
       return this.get('portalService').setUserDefaultSettings(userDefaults);
+    },
+
+    saveSigninSettings () {
+      const signinSettings = this.get('signinSettingsJson');
+      return this.get('portalService').setSigninSettings(signinSettings);
+    },
+
+    disableArcGISAutoSignups () {
+      this.setSigninSettings({enableArcGISAutoSignups:false});
+    },
+
+    enableArcGISAutoSignups () {
+      this.setSigninSettings({enableArcGISAutoSignups:true});
     }
   }
 });

@@ -31,8 +31,12 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6">
-    <h3>User Default Settings <button class="btn btn-primary pull-right" {{action 'saveUserDefaults'}}>Save User Defaults</button></h3>
+  <div class="col-sm-4">
+    <h3>Portal Properties<button class="btn btn-primary pull-right" {{action 'saveChanges'}}>Save Properties</button></h3>
+    {{json-editor json=propertiesJson mode="code" onChange=(action (mut propertiesJson))}}
+  </div>
+  <div class="col-sm-4">
+    <h3>Usr Default<button class="btn btn-primary pull-right" {{action 'saveUserDefaults'}}>Save User Defaults</button></h3>
     {{json-editor json=userDefaultsJson mode="code" onChange=(action (mut userDefaultsJson))}}
     <h5>Example</h5>
     <p>All properties are required!</p>
@@ -42,10 +46,11 @@
       </code>
     </pre>
   </div>
-  <div class="col-sm-6">
-    <h3>Portal Properties Json <button class="btn btn-primary pull-right" {{action 'saveChanges'}}>Save Properties</button></h3>
-    {{json-editor json=propertiesJson mode="code" onChange=(action (mut propertiesJson))}}
-
+  <div class="col-sm-4">
+    <h3>Signin Settings <button class="btn btn-primary pull-right" {{action 'saveSigninSettings'}}>Save Sign In Settings</button></h3>
+    {{json-editor json=signinSettingsJson mode="code" onChange=(action (mut signinSettingsJson))}}
+    <h5>NOTE</h5>
+    <p>Auto Sign Up property does not work on non-community orgs</p>
   </div>
 </div>
 <div class="row">
