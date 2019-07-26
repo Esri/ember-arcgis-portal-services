@@ -98,7 +98,7 @@ export default Service.extend(serviceMixin, {
 
     if (group.tags && typeof group.tags === 'string') {
       clonedGroup.tags = this._cleanupTags(group.tags);
-      debug(`GroupService:create expected tags to be an array of strings, not a single string`);
+      debug(`GroupService:update expected tags to be an array of strings, not a single string`);
     }
     const args = this.addOptions({ group: clonedGroup }, portalOpts);
 
@@ -120,6 +120,25 @@ export default Service.extend(serviceMixin, {
     } else {
       return this.create(group, portalOpts);
     }
+  },
+
+  /**
+   * Changes the title of a group
+   * @param {Group Model} group
+   * @param {string} newTitle - The new title for the group
+   * @param {Portal Options} portalOpts
+   */
+  rename (group, newTitle, portalOpts) {
+    if (!group.id) {
+      debug(`GroupService:rename no group id on group argument. make sure this group already exists`);
+    }
+    const clonedGroup = JSON.parse(JSON.stringify(group));
+
+    return this.ensureUniqueGroupName(newTitle)
+      .then(dedupedTitle => {
+        clonedGroup.title = dedupedTitle;
+        return this.update(clonedGroup, portalOpts);
+      });
   },
 
   /**
