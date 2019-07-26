@@ -7,7 +7,7 @@ export default Controller.extend({
   session: service(),
   queryParams: ['start', 'num', 'q', 'owner', 'tags', 'type'],
   start: 1,
-  q: null,
+  q: '*',
   query: '*',
   num: 10,
   owner: null,
