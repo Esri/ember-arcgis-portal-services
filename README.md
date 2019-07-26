@@ -81,6 +81,7 @@ All the services expose a set of shared helper properties and methods:
 | `getBulk(ids, portalOpts)` | `promise` | Returns an array of Groups. |
 | `getItemsById(id, portalOpts)` | `promise` | Returns Items in the group. **Note:** Does not currently support paging. |
 | `save(group, portalOpts)` |  `promise` | Creates or Updates a group.  |
+| `rename(group, newTitle, portalOpts)` |  `promise` | Renames an existing group.  |
 | `update(group, portalOpts)` |  `promise` | Updates an existing group.  |
 | `create(group, portalOpts)` |  `promise` | Creates an item. The `.owner` property must be set. |
 | `remove(id, portalOpts)` |  `promise` | Delete the Group. |
