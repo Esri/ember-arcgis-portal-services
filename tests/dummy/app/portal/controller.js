@@ -21,6 +21,10 @@ export default Controller.extend({
     return this.get('model.userDefaultSettings');
   }),
 
+  signinSettingsJson: computed('model.signinSettings', function () {
+    return this.get('model.signinSettings');
+  }),
+
   jsonPortal: computed('model.portal', function () {
     return JSON.stringify(this.get('model.portal'), null, 4);
   }),
@@ -34,6 +38,14 @@ export default Controller.extend({
       role: 'org_publisher',
       userLicenseType: 'creatorUT',
       groups: ['group-id-you-want-users-joined-to']
+    }, null, 4);
+  }),
+
+  signinSettingsExample: computed('model.signinSettings', function () {
+    return JSON.stringify({
+      termsAndConditions: 'Must love klaus',
+      hideCrossOrgSigninLink: true,
+      enableArcGISAutoSignups: false
     }, null, 4);
   }),
 
@@ -85,6 +97,11 @@ export default Controller.extend({
     saveUserDefaults () {
       const userDefaults = this.get('userDefaultsJson');
       return this.get('portalService').setUserDefaultSettings(userDefaults);
+    },
+
+    saveSigninSettings () {
+      const signinSettings = this.get('signinSettingsJson');
+      return this.get('portalService').setSigninSettings(signinSettings);
     }
   }
 });
