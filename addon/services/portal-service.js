@@ -165,6 +165,9 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
+  /**
+   * Config object defining ability to auto-join org with social logins
+   */
   getSocialProviders (portalOpts) {
     const urlPath = `/portals/self/socialProviders?f=json`;
     return this.request(urlPath, null, portalOpts);
