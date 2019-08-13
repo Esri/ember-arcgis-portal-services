@@ -288,7 +288,7 @@ export default Service.extend(serviceMixin, {
       }
     }, portalOpts)
     .then(job => {
-      let jobStatusUrl = `/content/users/${username}/items/${job.exportItemId}/status`
+      let jobStatusUrl = `/content/users/${username}/items/${job.exportItemId}/status`;
       job.getStatus = () => {
         return this.request(jobStatusUrl, {
           method: 'POST',
@@ -298,8 +298,8 @@ export default Service.extend(serviceMixin, {
             f: 'json'
           }
         }, portalOpts);
-      }
-      return job
+      };
+      return job;
     });
   }
 });
