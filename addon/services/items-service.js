@@ -276,7 +276,7 @@ export default Service.extend(serviceMixin, {
   /**
    * Export item
    */
-  export (username, itemId, title, exportFormat, portalOpts) {
+  export (username, itemId, {itemId, title, exportFormat}, portalOpts) {
     let urlPath = `/content/users/${username}/export`;
     return this.request(urlPath, {
       method: 'POST',

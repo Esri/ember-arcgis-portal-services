@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - `getSocialProviders` call to `portal-service` to get social login info
+- `export` call to `item-service`
+- `move` call to `item-service`
 
 ## 2.2.1
 ### Changed
