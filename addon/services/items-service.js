@@ -284,6 +284,7 @@ export default Service.extend(serviceMixin, {
         itemId,
         title,
         exportFormat,
+        f: 'json'
       }
     }, portalOpts)
     .then(job => {
@@ -293,7 +294,8 @@ export default Service.extend(serviceMixin, {
           method: 'POST',
           data: {
             jobId: job.jobId,
-            jobType: 'export'
+            jobType: 'export',
+            f: 'json'
           }
         }, portalOpts);
       }
