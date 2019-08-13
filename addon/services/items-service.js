@@ -271,5 +271,33 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, {
       method: 'GET'
     }, portalOpts);
+  },
+
+  /**
+   * Export item
+   */
+  export (username, itemId, title, exportFormat, portalOpts) {
+    let urlPath = `/content/users/${username}/export`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        itemId,
+        title,
+        exportFormat,
+      }
+    }, portalOpts)
+    .then(job => {
+      let jobStatusUrl = `/content/users/${username}/items/${job.exportItemId}/status`
+      job.getStatus = () => {
+        return this.request(jobStatusUrl, {
+          method: 'POST',
+          data: {
+            jobId: job.jobId,
+            jobType: 'export'
+          }
+        }, portalOpts);
+      }
+      return job
+    });
   }
 });
