@@ -64,7 +64,7 @@ All the services expose a set of shared helper properties and methods:
 | `getDataById(id, portalOpts)` | `promise` | Returns the Item-Data (`/data`). |
 | `update(item, portalOpts)` |  `promise` | Updates an existing item. The `.owner` property must be set. |
 | `create(item, portalOpts)` |  `promise` | Creates an item. The `.owner` property must be set. |
-| `move (temId, folderId, portalOpts)` | `promise` | Move the item to a specified folder |
+| `move (itemId, folderId, portalOpts)` | `promise` | Move the item to a specified folder |
 | `remove(itemId, owner, portalOpts)` |  `promise` | Delete the item. |
 | `protect(itemId, owner, portalOpts)` |  `promise` | Protect the item (to avoid accidental deletion). |
 | `unprotect(itemId, owner, portalOpts)` |  `promise` | Unprotect the item. |
