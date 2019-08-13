@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- `export` call to `item-service` to export an item
+- `move` call to `item-service` to move an item to a folder
+
+## 2.3.0
+### Added
 - `getSocialProviders` call to `portal-service` to get social login info
 
 ## 2.2.1

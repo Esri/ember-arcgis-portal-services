@@ -8,6 +8,7 @@ import {
   getItemData,
   updateItem,
   createItemInFolder,
+  moveItem,
   removeItem,
   protectItem,
   unprotectItem
@@ -90,6 +91,16 @@ export default Service.extend(serviceMixin, {
   create (item, portalOpts) {
     // just call createInFolder with null folderId
     return this.createInFolder(item, null, portalOpts);
+  },
+
+  /**
+   * Move a item to a folder
+   */
+  move (itemId, folderId, portalOpts) {
+    const args = this.addOptions({ itemId, folderId }, portalOpts);
+
+    return moveItem(args)
+    .catch(handleError);
   },
 
   /**
@@ -260,5 +271,35 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, {
       method: 'GET'
     }, portalOpts);
+  },
+
+  /**
+   * Export item
+   */
+  export (username, itemId, {title, exportFormat}, portalOpts) {
+    let urlPath = `/content/users/${username}/export`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        itemId,
+        title,
+        exportFormat,
+        f: 'json'
+      }
+    }, portalOpts)
+    .then(job => {
+      let jobStatusUrl = `/content/users/${username}/items/${job.exportItemId}/status`;
+      job.getStatus = () => {
+        return this.request(jobStatusUrl, {
+          method: 'POST',
+          data: {
+            jobId: job.jobId,
+            jobType: 'export',
+            f: 'json'
+          }
+        }, portalOpts);
+      };
+      return job;
+    });
   }
 });

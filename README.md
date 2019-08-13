@@ -64,6 +64,7 @@ All the services expose a set of shared helper properties and methods:
 | `getDataById(id, portalOpts)` | `promise` | Returns the Item-Data (`/data`). |
 | `update(item, portalOpts)` |  `promise` | Updates an existing item. The `.owner` property must be set. |
 | `create(item, portalOpts)` |  `promise` | Creates an item. The `.owner` property must be set. |
+| `move (itemId, folderId, portalOpts)` | `promise` | Move the item to a specified folder |
 | `remove(itemId, owner, portalOpts)` |  `promise` | Delete the item. |
 | `protect(itemId, owner, portalOpts)` |  `promise` | Protect the item (to avoid accidental deletion). |
 | `unprotect(itemId, owner, portalOpts)` |  `promise` | Unprotect the item. |
@@ -71,6 +72,8 @@ All the services expose a set of shared helper properties and methods:
 | `addRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Add a relationship between items |
 | `removeRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Delete a relationship between items |
 | `addImageResourceFromUrl (itemId, owner, filename, url)` | `promise` | Add an image at the specified url to the item as a resource |
+| `export (username, itemId, title, exportOpts, portalOpts)` | `promise` | Export a service item to a file. Call getStatus for job status |
+
 
 ### Groups Service
 
