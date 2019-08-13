@@ -8,6 +8,7 @@ import {
   getItemData,
   updateItem,
   createItemInFolder,
+  moveItem,
   removeItem,
   protectItem,
   unprotectItem
@@ -90,6 +91,16 @@ export default Service.extend(serviceMixin, {
   create (item, portalOpts) {
     // just call createInFolder with null folderId
     return this.createInFolder(item, null, portalOpts);
+  },
+
+  /**
+   * Move a item to a folder
+   */
+  move (itemId, folderId, portalOpts) {
+    const args = this.addOptions({ itemId, folderId }, portalOpts);
+
+    return moveItem(args)
+    .catch(handleError);
   },
 
   /**

@@ -9,7 +9,8 @@ import {
   getUserInvitations,
   getUserInvitation,
   acceptInvitation,
-  declineInvitation
+  declineInvitation,
+  createFolder
 } from '@esri/arcgis-rest-portal';
 import { generateToken } from '@esri/arcgis-rest-auth';
 
