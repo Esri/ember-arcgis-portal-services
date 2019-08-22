@@ -80,7 +80,14 @@ export default Service.extend(serviceMixin, {
     const args = this.addOptions({
       item,
       owner: item.owner,
-      folderId
+      folderId,
+      // have to add these parameters to avoid changing the exiting function params
+      file: item.file,
+      filename: item.filename,
+      dataUrl: item.dataUrl,
+      text: item.text,
+      multipart: item.multipart,
+      async: item.async
     }, portalOpts);
 
     return createItemInFolder(args)
