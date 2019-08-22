@@ -346,7 +346,7 @@ export default Service.extend(serviceMixin, {
         owner: username,
         jobId: job.jobId,
         jobType: 'export'
-      });
+      }, portalOpts);
       return job;
     });
   }
