@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Added
 - `addParts`, `getParts`, `getStatus` functions in `items-service`
+- `getUserTags` function in the `user-service`
 
 ## 2.4.0
 ### Added
