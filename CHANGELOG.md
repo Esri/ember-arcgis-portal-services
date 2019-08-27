@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.15.3]
+### Added
+- Backport move and export item from 2
 
 ## [1.15.1]
 ### Changed
