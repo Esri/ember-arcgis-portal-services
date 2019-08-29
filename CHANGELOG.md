@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+### Added
+- `addParts`, `getParts`, `getStatus` functions in `items-service`
+- `getUserTags` function in the `user-service`
+
 ## 2.4.0
 ### Added
 - `export` call to `item-service` to export an item
