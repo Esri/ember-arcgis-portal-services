@@ -345,7 +345,7 @@ export default Service.extend(serviceMixin, {
     }
 
     return orgIdPromise
-    .then(orgId => ({ q: `title:"(${title}" accountid:${orgId})` }))
+    .then(orgId => ({ q: `(title:"${title}" accountid:${orgId})` }))
     .then(query => {
       return this.search(query, portalOpts);
     })
