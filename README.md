@@ -73,7 +73,9 @@ All the services expose a set of shared helper properties and methods:
 | `removeRelationship (username, itemId, destItemId, relType, portalOpts)` | `promise` | Delete a relationship between items |
 | `addImageResourceFromUrl (itemId, owner, filename, url)` | `promise` | Add an image at the specified url to the item as a resource |
 | `export (username, itemId, title, exportOpts, portalOpts)` | `promise` | Export a service item to a file. Call getStatus for job status |
-
+| `getStatus(item, portalOpts)` |  `promise` | Get item/job status |
+| `addPart(item, portalOpts)` |  `promise` | Add an item file part |
+| `getParts(item, portalOpts)` |  `promise` | Get a list of uploaded item file parts |
 
 ### Groups Service
 
@@ -129,12 +131,13 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `getByName(username, portalOpts)` | `promise` | Get a user object by name. |
 | `update(user, portalOpts)` | `promise` | Update a user |
 | `signup (user, portalOpts)` | `promise` | Signs the user up to the organization |
-| `getNotifications (portalOpts)` | 'promise' | Gets the user's "builtin" notifications |
-| `removeNotification (id, portalOpts)` | 'promise' | Removes the notification |
-| 'getInvitations (portalOpts)' | 'promise' | Gets the user's invitations |
-| 'getInvitationById (id, portalOpts)' | 'promise' | Gets the specified invitation for the user |
-| 'acceptInvitation (id, portalOpts)' | 'promise' | Accepts the invitation |
-| 'declineInvitation (id, portalOpts)' | 'promise' | Declines the invitation |
+| `getNotifications (portalOpts)` | `promise` | Gets the user's "builtin" notifications |
+| `removeNotification (id, portalOpts)` | `promise` | Removes the notification |
+| `getInvitations (portalOpts)` | `promise` | Gets the user's invitations |
+| `getInvitationById (id, portalOpts)` | `promise` | Gets the specified invitation for the user |
+| `acceptInvitation (id, portalOpts)` | `promise` | Accepts the invitation |
+| `declineInvitation (id, portalOpts)` | `promise` | Declines the invitation |
+| `getUserTags (username, portalOpts)` | `promise` | Gets item tags used by the user |
 
 ## OAuth Service
 **Note:** This is not used for authentication - rather its purpose is to allow Application Items to be programatically manipulated.
