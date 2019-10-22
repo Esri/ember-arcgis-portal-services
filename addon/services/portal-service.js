@@ -175,7 +175,7 @@ export default Service.extend(serviceMixin, {
 
   configureSocialProviders (opts, portalOpts) {
     /*
-      portalOpts: {
+      opts: {
         signUpMode: Automatic | ???
         providers: facebook,google
         level: 1 | 2
