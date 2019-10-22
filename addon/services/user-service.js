@@ -9,7 +9,8 @@ import {
   getUserInvitations,
   getUserInvitation,
   acceptInvitation,
-  declineInvitation
+  declineInvitation,
+  getUserTags
 } from '@esri/arcgis-rest-portal';
 import { generateToken } from '@esri/arcgis-rest-auth';
 
@@ -107,6 +108,11 @@ export default Service.extend(serviceMixin, {
     const url = `${this.getPortalRestUrl(portalOpts)}/generateToken?f=json`;
     const args = this.addOptions({params}, portalOpts);
     return generateToken(url, args);
+  },
+
+  getUserTags (username, portalOpts) {
+    const args = this.addOptions({ username }, portalOpts);
+    return getUserTags(args);
   },
 
   /**

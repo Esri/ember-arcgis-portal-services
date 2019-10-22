@@ -2,9 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.5.0
+## Unreleased
+## 2.6.0
 ### Added
 - `removeSocialProviders` call to `portal-service` to remove social providers
+
+## 2.5.0
+### Added
+- `addParts`, `getParts`, `getStatus` functions in `items-service`
+- `getUserTags` function in the `user-service`
 
 ## 2.4.0
 ### Added

@@ -6,12 +6,15 @@ import {
   searchItems,
   getItem,
   getItemData,
+  getItemStatus,
+  getItemParts,
   updateItem,
   createItemInFolder,
   moveItem,
   removeItem,
   protectItem,
-  unprotectItem
+  unprotectItem,
+  addItemPart
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -77,7 +80,14 @@ export default Service.extend(serviceMixin, {
     const args = this.addOptions({
       item,
       owner: item.owner,
-      folderId
+      folderId,
+      // have to add these parameters to avoid changing the exiting function params
+      file: item.file,
+      filename: item.filename,
+      dataUrl: item.dataUrl,
+      text: item.text,
+      multipart: item.multipart,
+      async: item.async
     }, portalOpts);
 
     return createItemInFolder(args)
@@ -199,6 +209,21 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
+   * Add an item part
+   */
+  addPart ({ id, owner, file, partNum }, portalOpts) {
+    const args = this.addOptions({
+      id,
+      owner,
+      file,
+      partNum
+    }, portalOpts);
+
+    return addItemPart(args)
+      .catch(handleError);
+  },
+
+  /**
    * Update a resource
    */
   updateResource (itemId, owner, name, content, portalOpts) {
@@ -274,6 +299,34 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
+   * Get item (job) status
+   */
+  getStatus ({ id, owner, jobId, jobType }, portalOpts) {
+    const args = this.addOptions({
+      id,
+      owner,
+      jobId,
+      jobType,
+    }, portalOpts);
+
+    return getItemStatus(args)
+      .catch(handleError);
+  },
+
+  /**
+   * Get uploaded item parts
+   */
+  getParts ({ id, owner }, portalOpts) {
+    const args = this.addOptions({
+      id,
+      owner
+    }, portalOpts);
+
+    return getItemParts(args)
+      .catch(handleError);
+  },
+
+  /**
    * Export item
    */
   export (username, itemId, {title, exportFormat}, portalOpts) {
@@ -288,17 +341,12 @@ export default Service.extend(serviceMixin, {
       }
     }, portalOpts)
     .then(job => {
-      let jobStatusUrl = `/content/users/${username}/items/${job.exportItemId}/status`;
-      job.getStatus = () => {
-        return this.request(jobStatusUrl, {
-          method: 'POST',
-          data: {
-            jobId: job.jobId,
-            jobType: 'export',
-            f: 'json'
-          }
-        }, portalOpts);
-      };
+      job.getStatus = this.getStatus.bind(this, {
+        id: job.exportItemId,
+        owner: username,
+        jobId: job.jobId,
+        jobType: 'export'
+      }, portalOpts);
       return job;
     });
   }
