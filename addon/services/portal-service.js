@@ -188,6 +188,14 @@ export default Service.extend(serviceMixin, {
     return this._post(urlPath, opts, portalOpts);
   },
 
+  /**
+   * Remove a Social Providers
+   */
+  removeSocialProviders (portalOpts) {
+    const urlPath = `/portals/self/socialProviders/remove?f=json`;
+    return this.request(urlPath, { method: 'POST' }, portalOpts);
+  },
+
   checkUsername (username, portalOpts) {
     const urlPath = `/community/checkUsernames?f=json&usernames=${username}`;
     return this.request(urlPath, null, portalOpts);
