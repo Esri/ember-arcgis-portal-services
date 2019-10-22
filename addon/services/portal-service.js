@@ -175,7 +175,7 @@ export default Service.extend(serviceMixin, {
 
   configureSocialProviders (opts, portalOpts) {
     /*
-      portalOpts: {
+      opts: {
         signUpMode: Automatic | ???
         providers: facebook,google
         level: 1 | 2
@@ -186,6 +186,14 @@ export default Service.extend(serviceMixin, {
     */
     const urlPath = `/portals/self/socialProviders/configure?f=json`;
     return this._post(urlPath, opts, portalOpts);
+  },
+
+  /**
+   * Remove a Social Providers
+   */
+  removeSocialProviders (portalOpts) {
+    const urlPath = `/portals/self/socialProviders/remove?f=json`;
+    return this.request(urlPath, { method: 'POST' }, portalOpts);
   },
 
   checkUsername (username, portalOpts) {

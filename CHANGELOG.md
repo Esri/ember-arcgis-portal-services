@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+## 2.6.0
+### Added
+- `removeSocialProviders` call to `portal-service` to remove social providers
 
 ## 2.5.0
 ### Added
