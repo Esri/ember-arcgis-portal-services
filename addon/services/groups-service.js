@@ -79,6 +79,10 @@ export default Service.extend(serviceMixin, {
    */
   create (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
+    // JSON parse / json stringify utterly mucks up the thumbnail object so...
+    if (group.thumbnail) {
+      clonedGroup.thumbnail = group.thumbnail;
+    }
 
     // noticed this in the dummy app, hoping its not _too_ common
     if (group.tags && typeof group.tags === 'string') {
@@ -95,6 +99,10 @@ export default Service.extend(serviceMixin, {
    */
   update (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
+    // JSON parse / json stringify utterly mucks up the thumbnail object so...
+    if (group.thumbnail) {
+      clonedGroup.thumbnail = group.thumbnail;
+    }
 
     if (group.tags && typeof group.tags === 'string') {
       clonedGroup.tags = this._cleanupTags(group.tags);
