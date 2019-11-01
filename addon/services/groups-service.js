@@ -80,7 +80,7 @@ export default Service.extend(serviceMixin, {
   create (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
     // cloning can't handle Blobs, so we pass the thumbnail property forward
-    if (typeof Blob !== "undefined" && group.thumbnail instanceof Blob) {
+    if (typeof Blob !== 'undefined' && group.thumbnail instanceof Blob) {
       clonedGroup.thumbnail = group.thumbnail;
     }
 
@@ -100,7 +100,7 @@ export default Service.extend(serviceMixin, {
   update (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
     // cloning can't handle Blobs, so we pass the thumbnail property forward
-    if (typeof Blob !== "undefined" && group.thumbnail instanceof Blob) {
+    if (typeof Blob !== 'undefined' && group.thumbnail instanceof Blob) {
       clonedGroup.thumbnail = group.thumbnail;
     }
 
