@@ -79,6 +79,10 @@ export default Service.extend(serviceMixin, {
    */
   create (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
+    // cloning can't handle Blobs, so we pass the thumbnail property forward
+    if (typeof Blob !== 'undefined' && group.thumbnail instanceof Blob) {
+      clonedGroup.thumbnail = group.thumbnail;
+    }
 
     // noticed this in the dummy app, hoping its not _too_ common
     if (group.tags && typeof group.tags === 'string') {
@@ -95,6 +99,10 @@ export default Service.extend(serviceMixin, {
    */
   update (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
+    // cloning can't handle Blobs, so we pass the thumbnail property forward
+    if (typeof Blob !== 'undefined' && group.thumbnail instanceof Blob) {
+      clonedGroup.thumbnail = group.thumbnail;
+    }
 
     if (group.tags && typeof group.tags === 'string') {
       clonedGroup.tags = this._cleanupTags(group.tags);
