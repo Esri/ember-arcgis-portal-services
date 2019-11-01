@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+### Changed
+- Allow thumbnail blobs to be included in `update` and `create` in `groups-service`
 ## 2.6.0
 ### Added
 - `removeSocialProviders` call to `portal-service` to remove social providers
