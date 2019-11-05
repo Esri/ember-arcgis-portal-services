@@ -19,16 +19,16 @@ export default Route.extend({
           if (result) {
             return result;
           } else {
-            return { noData: ` Item type is not in whitelist to retrieve data: [${validTypes.join(', ')}]` };
+            return { noData: `Portal API returned nothing for the data` };
           }
         }, () => {
-          return {};
+          return { error: 'Fetching data resulted in an error. Check console.' };
         })
       });
     } else {
       return resolve({
         item: item,
-        data: {}
+        data: { noData: ` Item type is not in whitelist to retrieve data: [${validTypes.join(', ')}]` }
       });
     }
   }
