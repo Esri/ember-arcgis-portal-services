@@ -295,11 +295,11 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, {}, portalOpts);
   },
 
-  updateContacts (contacts, portalOpts) {
+  updateContacts (users = [], portalOpts) {
     /*
-      contacts: [contact1Username, contact2Username]
+      users: [user1Username, user2Username]
     */
-    const urlPath = `/portals/self/update?contacts=${contacts}&f=json`;
+    const urlPath = `/portals/self/update?contacts=${users}&f=json`;
     return this._post(urlPath, null, portalOpts);
   }
 
