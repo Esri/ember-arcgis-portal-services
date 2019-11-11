@@ -293,6 +293,14 @@ export default Service.extend(serviceMixin, {
   getSigninSettings (portalOpts) {
     const urlPath = `/portals/self/signinSettings?f=json`;
     return this.request(urlPath, {}, portalOpts);
+  },
+
+  updateContacts (users = [], portalOpts) {
+    /*
+      users: [user1Username, user2Username]
+    */
+    const urlPath = `/portals/self/update?contacts=${users}&f=json`;
+    return this._post(urlPath, null, portalOpts);
   }
 
 });

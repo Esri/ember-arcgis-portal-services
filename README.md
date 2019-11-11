@@ -181,6 +181,9 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `setSigninSettings (opts, portalOpts)` | `promise` | sets organization signin settings |
 | `getSigninSettings (opts, portalOpts)` | `promise` | gets organization signin settings |
 
+| `removeSocialProviders (portalOpts)` | `promise` | remove social logins |
+| `updateContacts (users = [], portalOpts)` | `promise` | update organization support contacts |
+
 ### Folders Service
 | Method |  Returns | Description |
 | --- | --- | --- |
