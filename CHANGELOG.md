@@ -5,10 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Changed
 - Allow thumbnail blobs to be included in `update` and `create` in `groups-service`
+
+### Added
+- `updateContacts` call to `portal-service` to update support contacts
+
 ## 2.6.0
 ### Added
 - `removeSocialProviders` call to `portal-service` to remove social providers
-- `updateContacts` call to `portal-service` to update support contacts
 
 ## 2.5.0
 ### Added
