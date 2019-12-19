@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Added
 ### Changed
+- Refactor folderService folderExists method to be case insensitive to prevent error when creating create method [101433](https://esriarlington.tpondemand.com/entity/101433-creating-survey-with-name-that-already)
 ### Fixed
 ### Removed
 ### Breaking
