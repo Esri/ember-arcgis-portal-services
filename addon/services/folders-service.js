@@ -18,17 +18,10 @@ export default Service.extend(serviceMixin, {
    * Check if a folder already exists...
    */
   folderExists (folderTitle, username, portalOpts) {
-    return this.getUserFolders(username, portalOpts)
-      .then((folders) => {
-        let match = folders.find((folder) => {
-          return folder.title === folderTitle;
-        });
-        if (match) {
-          return true;
-        } else {
-          return false;
-        }
-      });
+    const folderTitleLower = folderTitle.toLowerCase();
+    const caseInsensitiveTitleExists = ({ title }) => title.toLowerCase() === folderTitleLower;
+    const folderExists = folders => folders.some(caseInsensitiveTitleExists);
+    return this.getUserFolders(username, portalOpts).then(folderExists);
   },
 
   /**
