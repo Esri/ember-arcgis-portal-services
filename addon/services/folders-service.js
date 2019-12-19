@@ -20,8 +20,8 @@ export default Service.extend(serviceMixin, {
   folderExists (folderTitle, username, portalOpts) {
     const folderTitleLower = folderTitle.toLowerCase();
     const caseInsensitiveTitleExists = ({ title }) => title.toLowerCase() === folderTitleLower;
-    const folderExists = folders => folders.some(caseInsensitiveTitleExists);
-    return this.getUserFolders(username, portalOpts).then(folderExists);
+    const folderTitleExists = folders => folders.some(caseInsensitiveTitleExists);
+    return this.getUserFolders(username, portalOpts).then(folderTitleExists);
   },
 
   /**
