@@ -196,14 +196,14 @@ export default Service.extend(serviceMixin, {
   /**
    * Add a resource
    */
-  addResource (itemId, owner, name, content, portalOpts) {
+  addResource (itemId, owner, name, content, portalOpts, addl = {}) {
     const urlPath = `/content/users/${owner}/items/${itemId}/addResources?f=json`;
     const options = {
       method: 'POST',
-      data: {
+      data: Object.assign(addl, {
         fileName: name,
         text: content
-      }
+      })
     };
     return this.request(urlPath, options, portalOpts);
   },

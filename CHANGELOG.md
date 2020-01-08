@@ -5,10 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 ### Added
 ### Changed
-- Refactor folderService folderExists method to be case insensitive to prevent error when creating create method [101433](https://esriarlington.tpondemand.com/entity/101433-creating-survey-with-name-that-already)
 ### Fixed
 ### Removed
 ### Breaking
+
+## 2.6.4
+### Changed
+- Refactor items-service addResource to accept an optional 6th argument that allows for additional params [106911](https://esriarlington.tpondemand.com/entity/106911-update-survey-service-to-account-for)
+
+## 2.6.3
+### Changed
+- Refactor folderService folderExists method to be case insensitive to prevent error when creating create method [101433](https://esriarlington.tpondemand.com/entity/101433-creating-survey-with-name-that-already)
 
 ## 2.6.2
 ### Changed
