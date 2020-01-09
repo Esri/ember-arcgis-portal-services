@@ -1,6 +1,6 @@
 {
   "name": "ember-arcgis-portal-services",
-  "version": "2.2.0",
+  "version": "2.6.4",
   "description": "A set of promise-based Ember Services for working with the ArcGIS Portal API.",
   "keywords": [
     "ember-addon"
@@ -23,7 +23,7 @@
     "test:all": "ember try:each",
     "start:portal": "ember s --env=koopernetes",
     "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",
-    "deploy:qaext": "ember surge --new-domain='eapsqa.surge.sh' --environment=qaext",
+    "deploy:qaext": "ember surge --new-domain='eapsqaext.surge.sh' --environment=qaext",
     "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production",
     "deploy:portaldev": "ember surge --new-domain='eapsportaldev.surge.sh' --environment=portaldev",
     "deploy:portalqa": "ember surge --new-domain='eapsportalqa.surge.sh' --environment=portalqa"
@@ -35,17 +35,17 @@
     "ember-fetch": "^6.2.0"
   },
   "peerDependencies": {
-    "@esri/arcgis-rest-auth": "^2.0.0",
-    "@esri/arcgis-rest-portal": "^2.0.0",
-    "@esri/arcgis-rest-request": "^2.0.0",
-    "@esri/arcgis-rest-types": "^2.0.0"
+    "@esri/arcgis-rest-auth": "^2.4.0",
+    "@esri/arcgis-rest-portal": "^2.4.0",
+    "@esri/arcgis-rest-request": "^2.4.0",
+    "@esri/arcgis-rest-types": "^2.4.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
-    "@esri/arcgis-rest-auth": "^2.0.0",
-    "@esri/arcgis-rest-portal": "^2.0.0",
-    "@esri/arcgis-rest-request": "^2.0.0",
-    "@esri/arcgis-rest-types": "^2.0.0",
+    "@esri/arcgis-rest-auth": "^2.4.0",
+    "@esri/arcgis-rest-portal": "^2.4.0",
+    "@esri/arcgis-rest-request": "^2.4.0",
+    "@esri/arcgis-rest-types": "^2.4.0",
     "broccoli-asset-rev": "^2.7.0",
     "ember-cli": "~3.5.0",
     "ember-cli-active-link-wrapper": "0.5.0",

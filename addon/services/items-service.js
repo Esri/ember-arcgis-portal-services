@@ -6,11 +6,15 @@ import {
   searchItems,
   getItem,
   getItemData,
+  getItemStatus,
+  getItemParts,
   updateItem,
   createItemInFolder,
+  moveItem,
   removeItem,
   protectItem,
-  unprotectItem
+  unprotectItem,
+  addItemPart
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -76,7 +80,14 @@ export default Service.extend(serviceMixin, {
     const args = this.addOptions({
       item,
       owner: item.owner,
-      folderId
+      folderId,
+      // have to add these parameters to avoid changing the exiting function params
+      file: item.file,
+      filename: item.filename,
+      dataUrl: item.dataUrl,
+      text: item.text,
+      multipart: item.multipart,
+      async: item.async
     }, portalOpts);
 
     return createItemInFolder(args)
@@ -90,6 +101,16 @@ export default Service.extend(serviceMixin, {
   create (item, portalOpts) {
     // just call createInFolder with null folderId
     return this.createInFolder(item, null, portalOpts);
+  },
+
+  /**
+   * Move a item to a folder
+   */
+  move (itemId, folderId, portalOpts) {
+    const args = this.addOptions({ itemId, folderId }, portalOpts);
+
+    return moveItem(args)
+    .catch(handleError);
   },
 
   /**
@@ -175,16 +196,31 @@ export default Service.extend(serviceMixin, {
   /**
    * Add a resource
    */
-  addResource (itemId, owner, name, content, portalOpts) {
+  addResource (itemId, owner, name, content, portalOpts, addl = {}) {
     const urlPath = `/content/users/${owner}/items/${itemId}/addResources?f=json`;
     const options = {
       method: 'POST',
-      data: {
+      data: Object.assign(addl, {
         fileName: name,
         text: content
-      }
+      })
     };
     return this.request(urlPath, options, portalOpts);
+  },
+
+  /**
+   * Add an item part
+   */
+  addPart ({ id, owner, file, partNum }, portalOpts) {
+    const args = this.addOptions({
+      id,
+      owner,
+      file,
+      partNum
+    }, portalOpts);
+
+    return addItemPart(args)
+      .catch(handleError);
   },
 
   /**
@@ -260,5 +296,58 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, {
       method: 'GET'
     }, portalOpts);
+  },
+
+  /**
+   * Get item (job) status
+   */
+  getStatus ({ id, owner, jobId, jobType }, portalOpts) {
+    const args = this.addOptions({
+      id,
+      owner,
+      jobId,
+      jobType,
+    }, portalOpts);
+
+    return getItemStatus(args)
+      .catch(handleError);
+  },
+
+  /**
+   * Get uploaded item parts
+   */
+  getParts ({ id, owner }, portalOpts) {
+    const args = this.addOptions({
+      id,
+      owner
+    }, portalOpts);
+
+    return getItemParts(args)
+      .catch(handleError);
+  },
+
+  /**
+   * Export item
+   */
+  export (username, itemId, {title, exportFormat}, portalOpts) {
+    let urlPath = `/content/users/${username}/export`;
+    return this.request(urlPath, {
+      method: 'POST',
+      data: {
+        itemId,
+        title,
+        exportFormat,
+        f: 'json'
+      }
+    }, portalOpts)
+    .then(job => {
+      job.getStatus = this.getStatus.bind(this, {
+        id: job.exportItemId,
+        owner: username,
+        jobId: job.jobId,
+        jobType: 'export'
+      }, portalOpts);
+      return job;
+    });
   }
 });

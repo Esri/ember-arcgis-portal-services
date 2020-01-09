@@ -15,7 +15,8 @@ import {
   removeGroup,
   protectGroup,
   unprotectGroup,
-  createGroupNotification
+  createGroupNotification,
+  addGroupUsers
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -78,6 +79,10 @@ export default Service.extend(serviceMixin, {
    */
   create (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
+    // cloning can't handle Blobs, so we pass the thumbnail property forward
+    if (typeof Blob !== 'undefined' && group.thumbnail instanceof Blob) {
+      clonedGroup.thumbnail = group.thumbnail;
+    }
 
     // noticed this in the dummy app, hoping its not _too_ common
     if (group.tags && typeof group.tags === 'string') {
@@ -94,10 +99,14 @@ export default Service.extend(serviceMixin, {
    */
   update (group, portalOpts) {
     let clonedGroup = JSON.parse(JSON.stringify(group));
+    // cloning can't handle Blobs, so we pass the thumbnail property forward
+    if (typeof Blob !== 'undefined' && group.thumbnail instanceof Blob) {
+      clonedGroup.thumbnail = group.thumbnail;
+    }
 
     if (group.tags && typeof group.tags === 'string') {
       clonedGroup.tags = this._cleanupTags(group.tags);
-      debug(`GroupService:create expected tags to be an array of strings, not a single string`);
+      debug(`GroupService:update expected tags to be an array of strings, not a single string`);
     }
     const args = this.addOptions({ group: clonedGroup }, portalOpts);
 
@@ -122,6 +131,25 @@ export default Service.extend(serviceMixin, {
   },
 
   /**
+   * Changes the title of a group
+   * @param {Group Model} group
+   * @param {string} newTitle - The new title for the group
+   * @param {Portal Options} portalOpts
+   */
+  rename (group, newTitle, portalOpts) {
+    if (!group.id) {
+      debug(`GroupService:rename no group id on group argument. make sure this group already exists`);
+    }
+    const clonedGroup = JSON.parse(JSON.stringify(group));
+
+    return this.ensureUniqueGroupName(newTitle)
+      .then(dedupedTitle => {
+        clonedGroup.title = dedupedTitle;
+        return this.update(clonedGroup, portalOpts);
+      });
+  },
+
+  /**
    * Get the users that are members of a group
    */
   users (id, portalOpts) {
@@ -134,30 +162,16 @@ export default Service.extend(serviceMixin, {
    * Add users to a group
    */
   addUsers (id, users, portalOpts) {
-    const data = {
-      users: users.join(',')
-    };
-    const urlPath = `/community/groups/${id}/addUsers?f=json`;
-    const options = {
-      method: 'POST',
-      data: data
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id, users }, portalOpts);
+    return addGroupUsers(args);
   },
 
   /**
    * Add admins to a group
    */
   addAdmins (id, admins, portalOpts) {
-    const data = {
-      admins: admins.join(',')
-    };
-    const urlPath = `/community/groups/${id}/addUsers?f=json`;
-    const options = {
-      method: 'POST',
-      data: data
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({ id, admins }, portalOpts);
+    return addGroupUsers(args);
   },
 
   /**
@@ -339,7 +353,7 @@ export default Service.extend(serviceMixin, {
     }
 
     return orgIdPromise
-    .then(orgId => ({ q: `title:"(${title}" accountid:${orgId})` }))
+    .then(orgId => ({ q: `(title:"${title}" accountid:${orgId})` }))
     .then(query => {
       return this.search(query, portalOpts);
     })

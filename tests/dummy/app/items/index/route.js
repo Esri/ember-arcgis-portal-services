@@ -23,6 +23,8 @@ export default Route.extend({
     let parts = [];
     if (query) {
       parts.push(query);
+    } else {
+      parts.push('');
     }
 
     if (owner) {

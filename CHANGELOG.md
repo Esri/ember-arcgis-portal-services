@@ -2,15 +2,59 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.2.0]
+## Unreleased
+### Added
+### Changed
+### Fixed
+### Removed
+### Breaking
+
+## 2.6.4
+### Changed
+- Refactor items-service addResource to accept an optional 6th argument that allows for additional params [106911](https://esriarlington.tpondemand.com/entity/106911-update-survey-service-to-account-for)
+
+## 2.6.3
+### Changed
+- Refactor folderService folderExists method to be case insensitive to prevent error when creating create method [101433](https://esriarlington.tpondemand.com/entity/101433-creating-survey-with-name-that-already)
+
+## 2.6.2
+### Changed
+- Allow thumbnail blobs to be included in `update` and `create` in `groups-service`
+
+### Added
+- `updateContacts` call to `portal-service` to update support contacts
+
+## 2.6.0
+### Added
+- `removeSocialProviders` call to `portal-service` to remove social providers
+
+## 2.5.0
+### Added
+- `addParts`, `getParts`, `getStatus` functions in `items-service`
+- `getUserTags` function in the `user-service`
+
+## 2.4.0
+### Added
+- `export` call to `item-service` to export an item
+- `move` call to `item-service` to move an item to a folder
+
+## 2.3.0
+### Added
+- `getSocialProviders` call to `portal-service` to get social login info
+
+## 2.2.1
+### Changed
+- use `arcgis-rest-js` in the `addUsers` and `addAdmins` methods of `groups-service`
 
 ### Fixed
 - bug in `groups-service` where `doesGroupExist` would incorrectly report that a group name exists.
 
+## 2.2.0
+
 ### Added
 - `portal-service` `setSigninSettings` and `getSigninSettings` methods
 
-## [2.1.0]
+## 2.1.0
 ### Added
 - `groups-service` `addAdmins` method.
 

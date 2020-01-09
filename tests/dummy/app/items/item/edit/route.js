@@ -10,7 +10,7 @@ export default Route.extend({
     debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
 
     // only get the data if this is a type with data!
-    let validTypes = ['Web Mapping Application', 'Web Map', 'Dashboard', 'Hub Site Application', 'Hub Page', 'Hub Initiative', 'Map Service', 'Solution'];
+    let validTypes = ['Web Mapping Application', 'Web Map', 'Dashboard', 'Hub Site Application', 'Hub Page', 'Hub Initiative', 'Map Service', 'Solution', 'StoryMap'];
     if (validTypes.includes(item.type)) {
       return hash({
         item: item,
@@ -19,16 +19,16 @@ export default Route.extend({
           if (result) {
             return result;
           } else {
-            return {};
+            return { noData: `Portal API returned nothing for the data` };
           }
         }, () => {
-          return {};
+          return { error: 'Fetching data resulted in an error. Check console.' };
         })
       });
     } else {
       return resolve({
         item: item,
-        data: {}
+        data: { noData: ` Item type is not in whitelist to retrieve data: [${validTypes.join(', ')}]` }
       });
     }
   }
