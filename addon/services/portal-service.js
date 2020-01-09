@@ -21,6 +21,19 @@ export default Service.extend(serviceMixin, {
     return this.request(urlPath, null, portalOpts);
   },
 
+  validatePassword (password, portalOpts) {
+    const urlPath = `/portals/checkPasswordStrength`;
+
+    let options = {
+      body: new FormData(),
+      method: 'POST'
+    };
+    options.body.set('password', password);
+    options.body.set('f', 'json');
+
+    return this.request(urlPath, options, portalOpts);
+  },
+
   /**
    * Update the portal
    */
