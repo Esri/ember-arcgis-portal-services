@@ -180,6 +180,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 | `getUserDefaultSettings (opts, portalOpts)` | `promise` | gets default user settings |
 | `setSigninSettings (opts, portalOpts)` | `promise` | sets organization signin settings |
 | `getSigninSettings (opts, portalOpts)` | `promise` | gets organization signin settings |
+| `validatePassword (password, portalOpts)` | `promise` | validates whether the provided password meets the requirements |
 
 | `removeSocialProviders (portalOpts)` | `promise` | remove social logins |
 | `updateContacts (users = [], portalOpts)` | `promise` | update organization support contacts |
