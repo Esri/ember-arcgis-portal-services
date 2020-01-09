@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 ### Added
+- portal-service.validatePassword method
 ### Changed
 ### Fixed
 ### Removed
