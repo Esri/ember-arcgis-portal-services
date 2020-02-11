@@ -14,7 +14,9 @@ import {
   removeItem,
   protectItem,
   unprotectItem,
-  addItemPart
+  addItemPart,
+  addItemResource,
+  updateItemResource
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -150,24 +152,18 @@ export default Service.extend(serviceMixin, {
    * Upload a resource (file) to an item
    */
   uploadResource (itemId, owner, file, filename, replace = false, portalOpts) {
-    // Valid types
-    // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
-    // TODO: Check type
-    let action = 'addResources';
+    let action = addItemResource;
     if (replace) {
-      action = 'updateResources';
+      action = updateItemResource;
     }
-    const urlPath = `/content/users/${owner}/items/${itemId}/${action}?f=json`;
-    const options = {};
-    options.body = new FormData();
-    // stuff the file into the formData...
-    if (filename) {
-      options.body.append('file', file, filename);
-    } else {
-      options.body.append('file', file);
-    }
-    options.method = 'POST';
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({
+      id: itemId,
+      owner,
+      resource: file,
+      name: filename
+    }, portalOpts);
+    return action(args)
+    .catch(handleError);
   },
 
   /**

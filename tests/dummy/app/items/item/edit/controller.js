@@ -102,7 +102,9 @@ export default Controller.extend({
     uploadFile (files, thing) {
       const file = files[0];
       const item = this.get('model.item');
-      return this.get('itemsService').uploadResource(item.id, item.owner, file);
+      return this.get('itemsService').uploadResource(item.id, item.owner, file, file.name, false).catch(_ => {
+        return this.get('itemsService').uploadResource(item.id, item.owner, file, file.name, true);
+      });
     },
     sendJson (jsonObj) {
       const item = this.get('model.item');
