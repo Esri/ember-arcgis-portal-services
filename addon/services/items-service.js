@@ -16,7 +16,8 @@ import {
   unprotectItem,
   addItemPart,
   addItemResource,
-  updateItemResource
+  updateItemResource,
+  removeItemResource
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -246,13 +247,14 @@ export default Service.extend(serviceMixin, {
    * Remove a resource
    */
   removeResource (itemId, owner, resource, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/removeResources?f=json`;
-    return this.request(urlPath, {
-      method: 'POST',
-      data: {
-        resource: resource
-      }
+    debugger;
+    const args = this.addOptions({
+      id: itemId,
+      owner,
+      resource,
     }, portalOpts);
+    return removeItemResource(args)
+    .catch(handleError);
   },
 
   /**
