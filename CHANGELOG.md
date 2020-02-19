@@ -3,12 +3,20 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+
 ### Added
-- portal-service.validatePassword method
 ### Changed
 ### Fixed
 ### Removed
 ### Breaking
+
+## 2.7.1
+### Changed
+- uses @esri/arcgis-rest-portal for item resources
+
+## 2.7.0
+### Added
+- portal-service.validatePassword method
 
 ## 2.6.4
 ### Changed
