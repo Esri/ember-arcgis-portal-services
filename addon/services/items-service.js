@@ -14,7 +14,11 @@ import {
   removeItem,
   protectItem,
   unprotectItem,
-  addItemPart
+  addItemPart,
+  addItemResource,
+  updateItemResource,
+  removeItemResource,
+  getItemResources
 } from '@esri/arcgis-rest-portal';
 
 export default Service.extend(serviceMixin, {
@@ -150,24 +154,11 @@ export default Service.extend(serviceMixin, {
    * Upload a resource (file) to an item
    */
   uploadResource (itemId, owner, file, filename, replace = false, portalOpts) {
-    // Valid types
-    // const validTypes = ['json', 'xml', 'txt', 'png', 'jpeg', 'gif', 'bmp', 'pdf', 'mp3', 'mp4', 'zip'];
-    // TODO: Check type
-    let action = 'addResources';
+    let action = this.addResource.bind(this);
     if (replace) {
-      action = 'updateResources';
+      action = this.updateResource.bind(this);
     }
-    const urlPath = `/content/users/${owner}/items/${itemId}/${action}?f=json`;
-    const options = {};
-    options.body = new FormData();
-    // stuff the file into the formData...
-    if (filename) {
-      options.body.append('file', file, filename);
-    } else {
-      options.body.append('file', file);
-    }
-    options.method = 'POST';
-    return this.request(urlPath, options, portalOpts);
+    return action(itemId, owner, filename, file, portalOpts);
   },
 
   /**
@@ -197,15 +188,14 @@ export default Service.extend(serviceMixin, {
    * Add a resource
    */
   addResource (itemId, owner, name, content, portalOpts, addl = {}) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/addResources?f=json`;
-    const options = {
-      method: 'POST',
-      data: Object.assign(addl, {
-        fileName: name,
-        text: content
-      })
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({
+      id: itemId,
+      owner,
+      name: name,
+      resource: content
+    }, portalOpts);
+    return addItemResource(args)
+      .catch(handleError);
   },
 
   /**
@@ -227,36 +217,36 @@ export default Service.extend(serviceMixin, {
    * Update a resource
    */
   updateResource (itemId, owner, name, content, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/updateResources?f=json`;
-    const options = {
-      method: 'POST',
-      data: {
-        fileName: name,
-        text: content
-      }
-    };
-    return this.request(urlPath, options, portalOpts);
+    const args = this.addOptions({
+      id: itemId,
+      owner,
+      name: name,
+      resource: content
+    }, portalOpts);
+    return updateItemResource(args)
+      .catch(handleError);
   },
 
   /**
    * Get the resources associated with an Item
    */
   getResources (itemId, portalOpts) {
-    const urlPath = `/content/items/${itemId}/resources?f=json&num=1000`;
-    return this.request(urlPath, null, portalOpts);
+    const args = this.addOptions({}, portalOpts);
+    return getItemResources(itemId, args)
+      .catch(handleError);
   },
 
   /**
    * Remove a resource
    */
   removeResource (itemId, owner, resource, portalOpts) {
-    const urlPath = `/content/users/${owner}/items/${itemId}/removeResources?f=json`;
-    return this.request(urlPath, {
-      method: 'POST',
-      data: {
-        resource: resource
-      }
+    const args = this.addOptions({
+      id: itemId,
+      owner,
+      resource,
     }, portalOpts);
+    return removeItemResource(args)
+    .catch(handleError);
   },
 
   /**
