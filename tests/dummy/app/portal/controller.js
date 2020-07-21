@@ -57,6 +57,14 @@ export default Controller.extend({
     return this.get('portalService').update(portal);
   },
 
+  setNotificationsEnabled (val) {
+    // set it on the model...
+    this.set('model.portal.notificationsEnabled', val);
+    let portal = this.get('model.portal');
+
+    return this.get('portalService').update(portal);
+  },
+
   actions: {
     removeResource (resourceName) {
       return this.get('portalService').removeResource(resourceName);
@@ -92,6 +100,10 @@ export default Controller.extend({
 
     disablePlatformSSO () {
       this.setPlatformSSO(false);
+    },
+
+    toggleNotifications (val) {
+      this.setNotificationsEnabled(val);
     },
 
     saveUserDefaults () {
