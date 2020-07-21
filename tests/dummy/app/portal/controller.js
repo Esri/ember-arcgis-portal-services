@@ -59,7 +59,6 @@ export default Controller.extend({
 
   setNotificationsEnabled (val) {
     // set it on the model...
-    debugger;
     this.set('model.portal.notificationsEnabled', val);
     let portal = this.get('model.portal');
 
