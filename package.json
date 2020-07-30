@@ -24,9 +24,12 @@
     "start:portal": "ember s --env=koopernetes",
     "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",
     "deploy:qaext": "ember surge --new-domain='eapsqaext.surge.sh' --environment=qaext",
-    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production",
+    "deploy:prod": "ember surge --new-domain='eapsprod2.surge.sh' --environment=production",
     "deploy:portaldev": "ember surge --new-domain='eapsportaldev.surge.sh' --environment=portaldev",
-    "deploy:portalqa": "ember surge --new-domain='eapsportalqa.surge.sh' --environment=portalqa"
+    "deploy:portalqa": "ember surge --new-domain='eapsportalqa.surge.sh' --environment=portalqa",
+    "deploy:n:prod": "ember b -e production && netlify deploy --prod --dir=dist",
+    "deploy:n:qaext": "ember b -e qaext && netlify deploy --alias=qaext --dir=dist",
+    "deploy:n:devext": "ember b -e qaext && netlify deploy --alias=devext --dir=dist"
   },
   "dependencies": {
     "ember-auto-import": "^1.5.3",
@@ -80,6 +83,7 @@
     "husky": "^1.0.0-rc.13",
     "jsoneditor": "5.5.6",
     "loader.js": "^4.7.0",
+    "netlify-cli": "^2.58.0",
     "qunit-dom": "^0.8.0",
     "torii-provider-arcgis": "^3.2.0"
   },
