@@ -24,7 +24,7 @@
     "start:portal": "ember s --env=koopernetes",
     "deploy:devext": "ember surge --new-domain='eapsdev.surge.sh' --environment=devext",
     "deploy:qaext": "ember surge --new-domain='eapsqaext.surge.sh' --environment=qaext",
-    "deploy:prod": "ember surge --new-domain='eapsprod2.surge.sh' --environment=production",
+    "deploy:prod": "ember surge --new-domain='eapsprod.surge.sh' --environment=production",
     "deploy:portaldev": "ember surge --new-domain='eapsportaldev.surge.sh' --environment=portaldev",
     "deploy:portalqa": "ember surge --new-domain='eapsportalqa.surge.sh' --environment=portalqa",
     "deploy:n:prod": "ember b -e production && netlify deploy --prod --dir=dist",
