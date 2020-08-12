@@ -73,13 +73,13 @@ export default Service.extend(serviceMixin, {
    */
   update (item, portalOpts) {
     const args = this.addOptions({ item, owner: item.owner }, portalOpts);
-    // Send item.file through as params.file 
+    // Send item.file through as params.file
     if (item.file && item.file instanceof Blob) {
       if (args.params) {
         args.params.file = item.file;
       } else {
         args.params = {
-          file:item.file
+          file: item.file
         };
       }
       delete item.file;
