@@ -78,10 +78,16 @@ export default Controller.extend({
     save: function () {
       // get the item
       let item = this.get('itemJson');
-
-      if (this.get('dataJson')) {
-        item.text = JSON.stringify(this.get('dataJson'));
+      let dataJson = this.get('dataJson')
+      if (dataJson) {
+      // Notebooks have to be serialized into the file as a blob
+        if (item.type === 'Notebook') {
+          item.file = new Blob([JSON.stringify(dataJson)], {type: "application/json"})
+        } else {
+          item.text = JSON.stringify(dataJson);
+        }
       }
+      
 
       this.get('itemsService').update(item)
         .then((resp) => {
