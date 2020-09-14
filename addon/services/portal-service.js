@@ -49,7 +49,7 @@ export default Service.extend(serviceMixin, {
    * we strip it down A LOT.
    */
   _serializePortal (portal) {
-    const allowedProperties = [ 'access', 'creditAssignments', 'name', 'urlKey', 'defaultUserCreditAssignment', 'platformSSO', 'notificationsEnabled' ];
+    const allowedProperties = [ 'access', 'creditAssignments', 'name', 'urlKey', 'defaultUserCreditAssignment', 'platformSSO', 'notificationsEnabled', 'allowedExternalLinks' ];
 
     let result = allowedProperties.reduce((acc, property) => {
       if (portal.hasOwnProperty(property)) {
@@ -62,6 +62,9 @@ export default Service.extend(serviceMixin, {
       result.portalProperties = JSON.stringify(portal.portalProperties);
     }
 
+    if (portal.allowedExternalLinks) {
+      result.allowedExternalLinks = result.allowedExternalLinks.join(',');
+    }
     return result;
   },
 
