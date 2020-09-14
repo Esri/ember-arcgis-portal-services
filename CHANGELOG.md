@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 
 ### Added
+- `updateAllowedExternalLinks` call to `portal-service` to update allowed external links
 ### Changed
 ### Fixed
 ### Removed

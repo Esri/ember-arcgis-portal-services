@@ -314,6 +314,14 @@ export default Service.extend(serviceMixin, {
     */
     const urlPath = `/portals/self/update?contacts=${users}&f=json`;
     return this._post(urlPath, null, portalOpts);
+  },
+
+  updateAllowedExternalLinks (links, portalOpts) {
+    /*
+      links: allowedExternalLink1,allowedExternalLinks2,allowedExternalLinks3
+    */
+    const urlPath = `/portals/self/update?allowedExternalLinks=${links}&f=json`;
+    return this._post(urlPath, null, portalOpts);
   }
 
 });

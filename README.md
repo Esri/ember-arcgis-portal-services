@@ -184,6 +184,7 @@ The sharing service separates setting Access (private/shared/org/everyone) from 
 
 | `removeSocialProviders (portalOpts)` | `promise` | remove social logins |
 | `updateContacts (users = [], portalOpts)` | `promise` | update organization support contacts |
+| `updateAllowedExternalLinks (links, portalOpts)` | `promise` | update allowed external links |
 
 ### Folders Service
 | Method |  Returns | Description |
