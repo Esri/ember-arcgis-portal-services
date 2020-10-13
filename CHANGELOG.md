@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 
 ### Added
+### Changed
+### Fixed
+### Removed
+### Breaking
+
+## 2.7.6
+
+### Added
 - Add `allowedExternalLinks` to `allowedProperties` in `_serializePortal`
 ### Changed
 - Bump @esri/arcgis-rest-portal
