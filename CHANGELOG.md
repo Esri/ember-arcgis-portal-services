@@ -10,6 +10,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 ### Breaking
 
+## 2.7.7
+
+- revert bump of peerDependencies in 2.7.6
+
 ## 2.7.6
 
 ### Added
