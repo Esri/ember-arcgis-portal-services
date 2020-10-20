@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## Unreleased
 
 ### Added
+- Add `clearEmptyFields` to `allowedProperties` in `_serializePortal`
 ### Changed
 ### Fixed
 ### Removed
