@@ -319,17 +319,10 @@ export default Service.extend(serviceMixin, {
   /**
    * Export item
    */
-  export (username, itemId, {title, exportFormat}, portalOpts) {
+  export (username, itemId, exportArgs, portalOpts) {
     let urlPath = `/content/users/${username}/export`;
-    return this.request(urlPath, {
-      method: 'POST',
-      data: {
-        itemId,
-        title,
-        exportFormat,
-        f: 'json'
-      }
-    }, portalOpts)
+    let data = Object.assign({ itemId, f: 'json' }, exportArgs);
+    return this.request(urlPath, { method: 'POST', data }, portalOpts)
     .then(job => {
       job.getStatus = this.getStatus.bind(this, {
         id: job.exportItemId,
