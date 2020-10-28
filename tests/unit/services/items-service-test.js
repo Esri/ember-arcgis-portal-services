@@ -5,7 +5,7 @@ import sinon from 'sinon';
 module('Unit | Service | Items Service', function (hooks) {
   setupTest(hooks);
 
-  test('should correctly concat foo', function (assert) {
+  test('should call export with the correct params and return a "job" object', function (assert) {
     assert.expect(2);
 
     const itemsService = this.owner.lookup('service:items-service');
