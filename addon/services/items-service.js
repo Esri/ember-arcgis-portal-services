@@ -69,9 +69,21 @@ export default Service.extend(serviceMixin, {
   /**
    * Update an existing item
    * will update the `/data` if the `.text` value is present
+   * will upload a Blob passed in as item.file
    */
   update (item, portalOpts) {
     const args = this.addOptions({ item, owner: item.owner }, portalOpts);
+    // Send item.file through as params.file
+    if (item.file && item.file instanceof Blob) {
+      if (args.params) {
+        args.params.file = item.file;
+      } else {
+        args.params = {
+          file: item.file
+        };
+      }
+      delete item.file;
+    }
     return updateItem(args)
     .catch(handleError);
   },
