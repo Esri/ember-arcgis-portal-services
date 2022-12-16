@@ -10,7 +10,7 @@ export default Route.extend({
     debug('Items.item.edit id: ' + params.id + ' item.id ' + item.id + JSON.stringify(params));
 
     // only get the data if this is a type with data!
-    let validTypes = ['Web Mapping Application', 'Web Map', 'Dashboard', 'Hub Site Application', 'Hub Page', 'Hub Initiative', 'Map Service', 'Solution', 'StoryMap', 'Web Experience'];
+    let validTypes = ['Web Mapping Application', 'Web Map', 'Dashboard', 'Hub Site Application', 'Hub Page', 'Hub Initiative', 'Hub Initiative Template', 'Map Service', 'Solution', 'StoryMap', 'Web Experience', 'Hub Project'];
     if (validTypes.includes(item.type)) {
       return hash({
         item: item,
